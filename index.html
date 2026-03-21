@@ -720,8 +720,12 @@
         width: 100%; max-width: 380px;
         margin-top: 8px;
         transform: translateY(8px) scale(0.97);
+        display: none;
       }
-      .dossier.active { transform: translateY(0) scale(1); }
+      .dossier.active {
+        display: block;
+        transform: translateY(0) scale(1);
+      }
       .hint-desktop { display: none; }
       .hint-mobile { display: inline; }
       .how-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1591,6 +1595,12 @@ function setActive(i){
     el.classList.toggle('active',j===i);
     if(j===i && !isMobile()) positionDossier(j);
   });
+  if(i>=0 && isMobile()){
+    const activeDossier=dossierEls[i];
+    setTimeout(()=>{
+      activeDossier.scrollIntoView({behavior:'smooth',block:'nearest'});
+    },50);
+  }
   if(i>=0 && !hasInteracted){hasInteracted=true;hintEl.classList.add('hidden');}
   if(i>=0){for(let j=0;j<6;j++)nParts.push({ai:i,p:Math.random()*0.2,s:0.006+Math.random()*0.006,r:2+Math.random()*2,d:1,life:1,extra:true});}
 }
