@@ -1,0 +1,70 @@
+# ZxAI — llms.txt
+# Machine-readable brand facts for AI crawlers and LLM search engines
+# https://zxai.ai | hello@zxai.ai
+
+## Who We Are
+
+ZxAI is an AI agent platform built specifically for private medical practices in the United States. We install AI agents that automate the operational and administrative work that currently burdens physicians, front desk staff, and practice managers.
+
+## What We Do
+
+ZxAI provides done-for-you AI agents that integrate directly into a medical practice's existing EHR system and workflows. Practices do not need to change software, retrain staff, or hire technical resources. Agents go live in 10 days.
+
+## The Problem We Solve
+
+Independent and private medical practices lose significant revenue and time to manual administrative work: unanswered calls, scheduling friction, prior authorization delays, uncollected revenue, and patient attrition. Hospital systems and large groups have IT departments deploying AI at scale. Private practices have not had access to the same infrastructure — until now.
+
+## Our AI Agents
+
+1. Front Desk Agent — Answers calls 24/7, handles intake, routes inquiries
+2. Scheduling Agent — Books, confirms, and reschedules appointments; reduces no-shows
+3. Prior Auth Agent — Submits and tracks prior authorization requests automatically
+4. Revenue Recovery Agent — Identifies and pursues uncollected insurance and patient balances
+5. Reactivation Agent — Re-engages lapsed patients via SMS and email
+6. Retention Agent — Proactive outreach to keep existing patients engaged
+7. Reputation Agent — Monitors and responds to reviews; drives new patient acquisition
+8. Marketing Agent — Content, campaigns, and patient acquisition workflows
+9. Web/SEO Agent — Ongoing website and search visibility management
+
+## Pricing
+
+- Single Agent: $1,500/month
+- 3-Agent Bundle: $3,997/month ($1,332/agent)
+- 6-Agent Bundle: $6,997/month ($1,166/agent)
+- Full Platform (9 agents): $9,997/month ($1,111/agent)
+- Annual plans: 10% discount, pricing locked for life
+- 90-day ROI guarantee on Full Platform
+
+## EHR Integrations
+
+Athena Health, Epic, eClinicalWorks, Kareo, Modernizing Medicine, DrChrono. FHIR API and HL7 feed support.
+
+## Compliance
+
+HIPAA compliant. All vendors have signed BAAs. Patient data is encrypted in transit and at rest and never leaves the practice's systems.
+
+## Target Customers
+
+Private medical practices, independent physician groups, specialty practices, and concierge medicine practices in the United States. Both insurance-based and cash/concierge practice models.
+
+## Key Claims (cited statistics)
+
+- 76% of patients who hit voicemail call a competitor (Accenture Health)
+- Physicians lose 4.6 hours per week to prior authorization alone (AMA 2024)
+- Practices recover an average of 18% more revenue with automated billing follow-up (MGMA)
+- AI-driven reactivation recovers 35% of lapsed patients within 90 days (Accenture Health)
+- $3.20 returned for every $1 invested in healthcare AI (industry average)
+- Only 10% of independent practices have any AI infrastructure deployed today
+
+## Contact
+
+Website: https://zxai.ai
+Email: hello@zxai.ai
+Founded: 2026
+Location: United States
+
+## Content Permissions
+
+ZxAI permits AI crawlers to index and cite this website for informational purposes.
+We request accurate representation of our services, pricing, and compliance posture.
+Do not represent ZxAI as a clinical AI or diagnostic tool. ZxAI automates administrative and operational workflows only.

@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZxAI: AI Agents for Medical Practices | Scheduling, Billing &amp; Patient Outreach</title>
+  <meta name="description" content="ZxAI installs AI agents into private medical practices that handle scheduling, billing, prior auth, and patient outreach. Works inside your existing EHR. Live in 10 days.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zxai.ai/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zxai.ai/">
+  <meta property="og:site_name" content="ZxAI">
+  <meta property="og:title" content="ZxAI: AI Agents for Medical Practices">
+  <meta property="og:description" content="AI agents that handle scheduling, billing, prior auth, and patient outreach — inside your existing EHR. No new software. No new hires. Live in 10 days.">
+  <meta property="og:image" content="https://zxai.ai/og-image.png">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@zxai_ai">
+  <meta name="twitter:title" content="ZxAI: AI Agents for Medical Practices">
+  <meta name="twitter:description" content="AI agents that handle scheduling, billing, prior auth, and patient outreach — inside your existing EHR. Live in 10 days.">
+  <meta name="twitter:image" content="https://zxai.ai/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23060B18'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%2306B6D4' stroke-width='1.5'/%3E%3Cline x1='19' y1='9' x2='13' y2='23' stroke='%2306B6D4' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://zxai.ai/#organization",
+        "name": "ZxAI",
+        "url": "https://zxai.ai",
+        "email": "hello@zxai.ai",
+        "foundingDate": "2026",
+        "description": "ZxAI installs AI agents into private medical practices that automate scheduling, billing, prior authorization, patient outreach, and revenue recovery. HIPAA-compliant, EHR-integrated, live in 10 days.",
+        "areaServed": "US",
+        "knowsAbout": [
+          "AI agents for healthcare",
+          "Medical practice automation",
+          "HIPAA-compliant AI",
+          "EHR integration",
+          "Prior authorization automation",
+          "Medical billing AI",
+          "Patient outreach automation",
+          "Healthcare revenue recovery"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://zxai.ai/#website",
+        "url": "https://zxai.ai",
+        "name": "ZxAI",
+        "publisher": { "@id": "https://zxai.ai/#organization" }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://zxai.ai/#service",
+        "name": "AI Agent Platform for Medical Practices",
+        "provider": { "@id": "https://zxai.ai/#organization" },
+        "serviceType": "AI Automation for Healthcare",
+        "description": "Done-for-you AI agents for private medical practices covering front desk answering, appointment scheduling, prior authorization, revenue recovery, patient reactivation, retention, reputation management, marketing, and web/SEO.",
+        "areaServed": "US",
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Private Medical Practices"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "ZxAI Agent Plans",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Single AI Agent",
+              "price": "1500",
+              "priceCurrency": "USD",
+              "description": "One AI agent for your medical practice — front desk, scheduling, billing, or any single workflow."
+            },
+            {
+              "@type": "Offer",
+              "name": "3-Agent Bundle",
+              "price": "3997",
+              "priceCurrency": "USD",
+              "description": "Three AI agents for medical practices at $1,332 per agent per month."
+            },
+            {
+              "@type": "Offer",
+              "name": "6-Agent Bundle",
+              "price": "6997",
+              "priceCurrency": "USD",
+              "description": "Six AI agents for medical practices at $1,166 per agent per month."
+            },
+            {
+              "@type": "Offer",
+              "name": "Full Platform — 9 Agents",
+              "price": "9997",
+              "priceCurrency": "USD",
+              "description": "Complete AI staff for your medical practice. All 9 agents, 90-day ROI guarantee, pricing locked for life."
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://zxai.ai/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is ZxAI HIPAA compliant?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Every vendor in the ZxAI stack has a signed BAA. Patient data never leaves your systems. All transmissions are encrypted in transit and at rest. ZxAI is built specifically for healthcare — HIPAA compliance is built in, not added on."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will ZxAI AI agents work with my EHR?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. ZxAI connects to Athena Health, Epic, eClinicalWorks, Kareo, Modernizing Medicine, DrChrono, and others via FHIR API or secure HL7 feed. If your EHR is not listed, contact us — we have not encountered one we could not integrate."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does it take to set up AI agents for my medical practice?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ten days from signed agreement to live agents. Most of that time is waiting on your EHR vendor to issue API credentials. Your staff receives one hour of walkthrough training. That is it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will my patients know they are talking to an AI?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ZxAI agents have fully customizable names, voices, and personalities. ZxAI requires all practices to notify patients that automated AI systems are used in their operations — this is a contractual requirement and consistent with applicable law. Most practices introduce agents with a custom name and patients respond well to the transparency. What patients care about is that their call gets answered promptly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if my practice does not see results from AI agents?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Full Platform includes a 90-day ROI guarantee. If your agents do not recover their cost within 90 days, ZxAI keeps working for free until they do."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do we need to change how we operate to use ZxAI?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. ZxAI agents work inside your existing systems. Your staff keeps using the same EHR, phone system, and processes. They check a dashboard instead of manually handling what the agents now automate."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the contract terms for ZxAI?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Month-to-month on monthly plans. Annual plans are prepaid with pricing locked for life. No long-term commitments required to get started."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --hero-bg: #060B18;
+      --white: #FFFFFF;
+      --bg-alt: #F7F8FA;
+      --text-primary: #0B0B0B;
+      --text-secondary: #64748B;
+      --text-tertiary: #6B7280;
+      --border: #E2E8F0;
+      --cyan: #06B6D4;
+      --sky: #0EA5E9;
+      --indigo: #6366F1;
+      --violet: #8B5CF6;
+      --purple: #A855F7;
+      --pink: #EC4899;
+      --teal: #14B8A6;
+      --rose: #F43F5E;
+      --amber: #F59E0B;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-primary);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 48px; height: 80px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.3s, box-shadow 0.3s, backdrop-filter 0.3s;
+    }
+    .nav.scrolled {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav.scrolled .nav-logo svg { color: var(--text-primary); }
+    .nav.scrolled .nav-link { color: var(--text-secondary); }
+    .nav.scrolled .nav-link:hover { color: var(--text-primary); }
+    .nav.scrolled .nav-cta { background: var(--text-primary); color: var(--white); }
+    .nav-logo svg { height: 40px; width: auto; color: var(--white); transition: color 0.3s; }
+    .nav-right { display: flex; align-items: center; gap: 36px; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-link { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.01em; transition: color 0.2s; }
+    .nav-link:hover { color: var(--white); }
+    .nav-cta { background: var(--white); color: var(--hero-bg); border: none; padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+    .nav-cta:hover { transform: translateY(-1px); opacity: 0.9; }
+
+    /* ── HERO ── */
+    .hero { position: relative; background: var(--hero-bg); min-height: 100vh; display: flex; align-items: center; padding: 120px 48px 80px; overflow: hidden; }
+    .hero-inner { max-width: 1280px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 64px; }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-headline { font-size: clamp(40px, 5.5vw, 72px); font-weight: 300; color: var(--white); line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 28px; animation: fadeUp 0.8s ease-out 0.2s both; }
+    .hero-headline strong { font-weight: 600; }
+    .hero-body { font-size: 18px; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 520px; margin-bottom: 40px; font-weight: 400; animation: fadeUp 0.8s ease-out 0.4s both; }
+    .hero-guarantee { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 16px; letter-spacing: 0.02em; animation: fadeUp 0.8s ease-out 0.7s both; }
+    .hero-ctas { display: flex; gap: 16px; animation: fadeUp 0.8s ease-out 0.6s both; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: linear-gradient(135deg, var(--cyan), var(--indigo)); color: var(--white); border: none; border-radius: 10px; font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.25s; text-decoration: none; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(6,182,212,0.3); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: transparent; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; font-size: 15px; font-weight: 500; font-family: inherit; cursor: pointer; transition: all 0.25s; text-decoration: none; }
+    .btn-secondary:hover { color: var(--white); border-color: rgba(255,255,255,0.35); }
+    .hero-canvas-wrap { position: relative; width: 100%; aspect-ratio: 1; animation: fadeIn 1.2s ease-out 0.3s both; }
+    #heroCanvas { width: 100%; height: 100%; display: block; }
+
+    /* ── SECTION BASICS ── */
+    .section { padding: 120px 48px; }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .section-label { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cyan); margin-bottom: 16px; }
+    .section-heading { font-size: clamp(32px, 4vw, 48px); font-weight: 300; letter-spacing: -0.03em; line-height: 1.15; color: var(--text-primary); margin-bottom: 16px; }
+    .section-heading strong { font-weight: 600; }
+    .section-sub { font-size: 17px; line-height: 1.7; color: var(--text-secondary); max-width: 560px; }
+
+    /* ── THE NETWORK ── */
+    .network-section {
+      background: var(--hero-bg);
+      padding: 80px 0 48px;
+      position: relative;
+    }
+    .network-header {
+      text-align: center;
+      padding: 0 48px;
+      margin-bottom: 24px;
+    }
+    .network-heading {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: rgba(255,255,255,0.85);
+    }
+    .network-heading strong { font-weight: 600; color: var(--white); }
+    .network-section .section-label { margin-bottom: 12px; }
+
+    .network-stage {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      height: 70vh;
+      min-height: 560px;
+      max-height: 780px;
+      margin: 0 auto;
+    }
+    #networkCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: default;
+    }
+
+    /* ── DOSSIER PANELS ── */
+    .dossier {
+      position: absolute;
+      width: 300px;
+      padding: 24px 28px 20px;
+      background: rgba(10, 18, 42, 0.92);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px) scale(0.97);
+      transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1), transform 0.4s cubic-bezier(0.16,1,0.3,1);
+      z-index: 10;
+    }
+    .dossier.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+    .dossier-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .dossier-status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      animation: statusBlink 2s ease-in-out infinite;
+    }
+    @keyframes statusBlink {
+      0%, 100% { opacity: 1; box-shadow: 0 0 6px currentColor; }
+      50% { opacity: 0.4; box-shadow: none; }
+    }
+    .status-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.45);
+    }
+    .dossier-num {
+      font-size: 32px;
+      font-weight: 200;
+      color: rgba(255,255,255,0.15);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .dossier-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 3px;
+    }
+    .dossier-role {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+    .dossier-desc {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 16px;
+    }
+    .dossier-outcomes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .dossier-outcome {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.08);
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+    .dossier-outcome::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dossier-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.05);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .dossier-accent {
+      position: absolute;
+      top: 0; left: 24px; right: 24px;
+      height: 1px;
+      border-radius: 1px;
+    }
+
+    .network-hint {
+      text-align: center;
+      padding: 20px 48px 0;
+      font-size: 13px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.01em;
+      transition: opacity 0.6s;
+    }
+    .network-hint.hidden { opacity: 0; }
+    .hint-mobile { display: none; }
+
+    /* ── HOW IT WORKS ── */
+    .how-section { background: var(--bg-alt); }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 72px; }
+    .how-step { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+    .how-step.visible { opacity: 1; transform: translateY(0); }
+    .how-number { font-size: 56px; font-weight: 200; letter-spacing: -0.04em; background: linear-gradient(135deg, var(--cyan), var(--indigo)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 24px; }
+    .how-title { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 12px; color: var(--text-primary); }
+    .how-desc { font-size: 15px; line-height: 1.7; color: var(--text-secondary); }
+
+    /* ── CTA ── */
+    .cta-section { background: var(--white); text-align: center; }
+    .cta-section .section-heading { max-width: 600px; margin: 0 auto 16px; }
+    .cta-section .section-sub { max-width: 480px; margin: 0 auto 40px; }
+    .btn-primary-large { display: inline-flex; align-items: center; gap: 10px; padding: 18px 40px; background: linear-gradient(135deg, var(--cyan), var(--indigo)); color: var(--white); border: none; border-radius: 12px; font-size: 16px; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.25s; text-decoration: none; }
+    .btn-primary-large:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(6,182,212,0.3); }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--hero-bg); padding: 56px 48px 40px; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo svg { height: 32px; width: auto; color: rgba(255,255,255,0.5); transition: color 0.2s; }
+    .footer-logo:hover svg { color: rgba(255,255,255,0.7); }
+    .footer-right { display: flex; align-items: center; gap: 32px; }
+    .footer-link { font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
+    .footer-link:hover { color: var(--white); }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.55); }
+    .footer-disclaimer { max-width: 1280px; margin: 24px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.07); font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── PROOF STRIP ── */
+    .proof-strip { background: var(--white); border-bottom: 1px solid var(--border); padding: 56px 48px; }
+    .proof-strip-inner { max-width: 1280px; margin: 0 auto; }
+    .proof-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 40px; }
+    .proof-stat { padding: 28px 24px; border-right: 1px solid var(--border); }
+    .proof-stat:last-child { border-right: none; }
+    .proof-stat-num { font-size: 36px; font-weight: 700; letter-spacing: -0.04em; background: linear-gradient(135deg, var(--cyan), var(--indigo)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 6px; }
+    .proof-stat-label { font-size: 14px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+    .proof-stat-source { font-size: 11px; color: var(--text-tertiary); }
+    .proof-integrates { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .proof-integrates-label { font-size: 13px; font-weight: 600; color: var(--text-tertiary); letter-spacing: 0.04em; text-transform: uppercase; flex-shrink: 0; }
+    .proof-pill { display: inline-flex; align-items: center; font-size: 13px; font-weight: 500; color: var(--text-secondary); background: var(--bg-alt); border: 1px solid var(--border); padding: 5px 14px; border-radius: 100px; }
+
+    /* ── STAFF COMPARE ── */
+    .compare-section { background: var(--hero-bg); padding: 80px 48px; }
+    .compare-inner { max-width: 1280px; margin: 0 auto; }
+    .compare-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; align-items: start; }
+    .compare-col { border-radius: 16px; overflow: hidden; }
+    .compare-head { padding: 20px 28px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .compare-col.old .compare-head { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); }
+    .compare-col.new .compare-head { background: linear-gradient(135deg, rgba(6,182,212,0.2), rgba(99,102,241,0.2)); color: var(--cyan); }
+    .compare-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 28px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .compare-col.old .compare-row { background: rgba(255,255,255,0.03); }
+    .compare-col.new .compare-row { background: rgba(255,255,255,0.04); }
+    .compare-item { font-size: 14px; color: rgba(255,255,255,0.6); }
+    .compare-cost { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.5); }
+    .compare-col.new .compare-cost { color: var(--cyan); }
+    .compare-foot { padding: 20px 28px; display: flex; justify-content: space-between; align-items: baseline; }
+    .compare-col.old .compare-foot { background: rgba(255,255,255,0.06); }
+    .compare-col.new .compare-foot { background: linear-gradient(135deg, rgba(6,182,212,0.15), rgba(99,102,241,0.15)); }
+    .compare-total-label { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.06em; }
+    .compare-col.old .compare-total-label { color: rgba(255,255,255,0.35); }
+    .compare-total-num { font-size: 28px; font-weight: 700; letter-spacing: -0.04em; color: rgba(255,255,255,0.45); }
+    .compare-col.new .compare-total-num { color: var(--white); }
+    .compare-savings-bar { margin-top: 28px; background: rgba(20,184,166,0.12); border: 1px solid rgba(20,184,166,0.25); border-radius: 12px; padding: 18px 28px; display: flex; justify-content: space-between; align-items: center; }
+    .compare-savings-text { font-size: 15px; color: rgba(255,255,255,0.7); }
+    .compare-savings-text strong { color: var(--white); }
+    .compare-savings-num { font-size: 24px; font-weight: 700; letter-spacing: -0.03em; color: var(--teal); }
+
+    /* ── AI ADOPTION GAP ── */
+    .adoption-section { background: var(--hero-bg); border-top: 1px solid rgba(255,255,255,0.07); padding: 96px 48px; }
+    .adoption-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .adoption-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 20px; }
+    .adoption-heading { font-size: clamp(28px,3.5vw,42px); font-weight: 300; letter-spacing: -0.03em; color: #fff; margin-bottom: 16px; }
+    .adoption-heading strong { font-weight: 600; }
+    .adoption-sub { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 580px; margin: 0 auto 56px; }
+    .adoption-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; margin-bottom: 56px; }
+    .adoption-stat { padding: 36px 24px; background: rgba(255,255,255,0.03); }
+    .adoption-stat-num { font-size: clamp(36px,4vw,52px); font-weight: 700; letter-spacing: -0.04em; color: var(--cyan); line-height: 1; margin-bottom: 10px; }
+    .adoption-stat-label { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.5); }
+    .adoption-barrier { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 36px 40px; max-width: 680px; margin: 0 auto 48px; text-align: left; }
+    .adoption-barrier-heading { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 20px; letter-spacing: -0.01em; }
+    .adoption-barrier-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+    .adoption-barrier-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+    .adoption-barrier-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); flex-shrink: 0; margin-top: 6px; }
+    .adoption-note { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 40px; }
+
+    /* ── FAQ ── */
+    .faq-section { background: var(--white); padding: 80px 48px; }
+    .faq-inner { max-width: 760px; margin: 0 auto; }
+    .faq-list { margin-top: 48px; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; cursor: pointer; gap: 24px; user-select: none; }
+    .faq-question-text { font-size: 16px; font-weight: 500; color: var(--text-primary); letter-spacing: -0.01em; }
+    .faq-icon { font-size: 20px; font-weight: 300; color: var(--text-tertiary); flex-shrink: 0; transition: transform 0.25s; line-height: 1; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--text-primary); }
+    .faq-answer { font-size: 15px; line-height: 1.7; color: var(--text-secondary); max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.16,1,0.3,1), padding 0.25s; }
+    .faq-answer p { padding-bottom: 22px; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    /* ── ROI CALCULATOR ── */
+    .calc-section { background: var(--bg-alt); }
+    .calc-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-top: 72px; align-items: start; }
+    .calc-inputs { display: flex; flex-direction: column; gap: 36px; }
+    .calc-slider-group { display: flex; flex-direction: column; gap: 12px; }
+    .calc-slider-label { display: flex; justify-content: space-between; align-items: baseline; }
+    .calc-slider-label span:first-child { font-size: 15px; font-weight: 500; color: var(--text-primary); }
+    .calc-slider-value { font-size: 22px; font-weight: 600; color: var(--text-primary); letter-spacing: -0.03em; }
+    .calc-slider-value sup { font-size: 14px; font-weight: 500; letter-spacing: 0; }
+    .calc-range {
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 4px; border-radius: 4px; outline: none; cursor: pointer;
+      background: linear-gradient(to right, var(--cyan) 0%, var(--cyan) var(--pct,20%), var(--border) var(--pct,20%), var(--border) 100%);
+    }
+    .calc-range::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--white); border: 2px solid var(--cyan);
+      box-shadow: 0 2px 8px rgba(6,182,212,0.25);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .calc-range::-webkit-slider-thumb:hover { transform: scale(1.2); box-shadow: 0 4px 16px rgba(6,182,212,0.35); }
+    .calc-range::-moz-range-thumb {
+      width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--cyan);
+      background: var(--white); box-shadow: 0 2px 8px rgba(6,182,212,0.25); cursor: pointer;
+    }
+    .calc-range-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+
+    .calc-results {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
+      position: sticky; top: 100px;
+    }
+    .calc-results-heading { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 28px; }
+    .calc-breakdown { display: flex; flex-direction: column; gap: 0; margin-bottom: 0; }
+    .calc-row { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 8px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .calc-row:last-child { border-bottom: none; }
+    .calc-row-label { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; color: var(--text-primary); }
+    .calc-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .calc-row-monthly { font-size: 13px; color: var(--text-secondary); text-align: right; min-width: 80px; }
+    .calc-row-annual { font-size: 14px; font-weight: 600; color: var(--text-primary); text-align: right; min-width: 90px; }
+    .calc-col-headers { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; padding-bottom: 10px; border-bottom: 2px solid var(--border); margin-bottom: 0; }
+    .calc-col-h { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary); text-align: right; }
+    .calc-col-h:first-child { text-align: left; min-width: unset; }
+    .calc-col-h:nth-child(2) { min-width: 80px; }
+    .calc-col-h:nth-child(3) { min-width: 90px; }
+
+    .calc-total-row { margin-top: 4px; background: var(--bg-alt); border-radius: 12px; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .calc-total-label { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+    .calc-total-nums { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+    .calc-total-annual { font-size: 28px; font-weight: 700; letter-spacing: -0.04em; background: linear-gradient(135deg, var(--cyan), var(--indigo)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+    .calc-total-monthly { font-size: 13px; color: var(--text-tertiary); }
+
+    .calc-roi-bar { margin-top: 16px; display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border: 1px solid var(--border); border-radius: 12px; }
+    .calc-roi-left { display: flex; flex-direction: column; gap: 2px; }
+    .calc-roi-title { font-size: 12px; color: var(--text-tertiary); }
+    .calc-roi-cost { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+    .calc-roi-badge { background: linear-gradient(135deg, var(--cyan), var(--indigo)); color: var(--white); font-size: 18px; font-weight: 700; letter-spacing: -0.03em; padding: 8px 18px; border-radius: 100px; }
+
+    .calc-cta-row { margin-top: 20px; text-align: center; }
+    .calc-cta-row .btn-primary { justify-content: center; width: 100%; }
+    .calc-note { font-size: 12px; color: var(--text-tertiary); text-align: center; margin-top: 10px; }
+    .cta-reassurance { font-size: 13px; color: var(--text-tertiary); margin-top: 14px; opacity: 0.7; }
+
+    .calc-type-toggle { display: flex; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 4px; gap: 2px; margin-bottom: 32px; width: fit-content; }
+    .calc-type-btn { padding: 9px 20px; border: none; border-radius: 7px; font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; background: transparent; color: var(--text-secondary); }
+    .calc-type-btn.active { background: var(--hero-bg); color: var(--white); font-weight: 600; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }
+    .calc-type-note { font-size: 12px; color: var(--text-tertiary); margin-bottom: 24px; }
+
+    /* ── PRICING ── */
+    .pricing-section { background: var(--white); }
+    .pricing-toggle-wrap { display: flex; justify-content: center; margin-top: 40px; }
+    .pricing-toggle { display: flex; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px; padding: 4px; gap: 2px; }
+    .pricing-toggle-btn { padding: 10px 24px; border: none; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; background: transparent; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
+    .pricing-toggle-btn.active { background: var(--white); color: var(--text-primary); box-shadow: 0 1px 4px rgba(0,0,0,0.08); font-weight: 600; }
+    .save-chip { background: linear-gradient(135deg,var(--cyan),var(--indigo)); color: white; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 100px; letter-spacing: 0.02em; }
+
+    .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 52px; align-items: start; }
+    .pricing-card { border: 1px solid var(--border); border-radius: 20px; padding: 32px; position: relative; transition: transform 0.2s, box-shadow 0.2s; background: var(--white); }
+    .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .pricing-card.popular { border-color: transparent; background: linear-gradient(white,white) padding-box, linear-gradient(135deg,var(--cyan),var(--indigo)) border-box; box-shadow: 0 8px 32px rgba(6,182,212,0.15); }
+    .pricing-card.featured { background: var(--hero-bg); border-color: rgba(255,255,255,0.1); }
+    .pricing-card.featured:hover { box-shadow: 0 16px 48px rgba(6,182,212,0.2); }
+    .pricing-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg,var(--cyan),var(--indigo)); color: white; font-size: 11px; font-weight: 700; padding: 4px 16px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+
+    .pricing-tier { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
+    .pricing-card.featured .pricing-tier { color: rgba(6,182,212,0.8); }
+    .pricing-name { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 4px; }
+    .pricing-card.featured .pricing-name { color: var(--white); }
+    .pricing-tagline { font-size: 13px; color: var(--text-secondary); margin-bottom: 28px; line-height: 1.5; }
+    .pricing-card.featured .pricing-tagline { color: rgba(255,255,255,0.5); }
+
+    .pricing-amount { display: flex; align-items: flex-end; gap: 4px; margin-bottom: 6px; }
+    .pricing-dollar { font-size: 20px; font-weight: 600; color: var(--text-primary); line-height: 1.6; }
+    .pricing-price { font-size: 44px; font-weight: 700; letter-spacing: -0.04em; color: var(--text-primary); line-height: 1; }
+    .pricing-per { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .pricing-card.featured .pricing-dollar,
+    .pricing-card.featured .pricing-price { color: var(--white); }
+    .pricing-card.featured .pricing-per { color: rgba(255,255,255,0.5); }
+    .pricing-per-agent { font-size: 13px; color: var(--text-tertiary); margin-bottom: 28px; min-height: 20px; }
+    .pricing-card.featured .pricing-per-agent { color: rgba(255,255,255,0.35); }
+    .pricing-savings { display: inline-block; font-size: 12px; font-weight: 600; color: var(--teal); background: rgba(20,184,166,0.1); padding: 3px 10px; border-radius: 100px; margin-bottom: 28px; min-height: 24px; }
+    .pricing-card.featured .pricing-savings { color: rgba(20,184,166,0.9); background: rgba(20,184,166,0.15); }
+
+    .pricing-divider { border: none; border-top: 1px solid var(--border); margin-bottom: 24px; }
+    .pricing-card.featured .pricing-divider { border-color: rgba(255,255,255,0.1); }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .pricing-feature { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
+    .pricing-card.featured .pricing-feature { color: rgba(255,255,255,0.6); }
+    .pricing-check { color: var(--teal); font-size: 16px; line-height: 1.4; flex-shrink: 0; }
+    .pricing-card.featured .pricing-check { color: rgba(20,184,166,0.9); }
+
+    .pricing-btn { display: block; text-align: center; padding: 14px; border-radius: 10px; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; border: 1px solid var(--border); background: transparent; color: var(--text-primary); }
+    .pricing-btn:hover { border-color: var(--text-primary); }
+    .pricing-btn.primary { background: linear-gradient(135deg,var(--cyan),var(--indigo)); border-color: transparent; color: var(--white); }
+    .pricing-btn.primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(6,182,212,0.3); }
+    .pricing-btn.dark { background: var(--white); border-color: rgba(255,255,255,0.2); color: var(--hero-bg); }
+    .pricing-btn.dark:hover { background: rgba(255,255,255,0.9); }
+
+    .pricing-footnote { text-align: center; margin-top: 32px; font-size: 13px; color: var(--text-tertiary); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-body { margin-left: auto; margin-right: auto; }
+      .hero-ctas { justify-content: center; }
+      .hero-canvas-wrap { max-width: 480px; margin: 0 auto; }
+    }
+    /* ── STICKY BAR ── */
+    .sticky-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: var(--hero-bg);
+      border-top: 1px solid rgba(6,182,212,0.25);
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.35);
+      transform: translateY(100%);
+      transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+    }
+    .sticky-bar.visible { transform: translateY(0); }
+    .sticky-bar-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 0 48px; height: 72px;
+      display: flex; align-items: center; gap: 32px;
+    }
+    .sticky-bar-copy { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .sticky-bar-copy strong { font-size: 15px; font-weight: 600; color: var(--white); letter-spacing: -0.01em; }
+    .sticky-bar-copy span { font-size: 13px; color: rgba(255,255,255,0.45); }
+    .sticky-bar-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 28px;
+      background: linear-gradient(135deg, var(--cyan), var(--indigo));
+      color: var(--white); border: none; border-radius: 8px;
+      font-family: inherit; font-size: 14px; font-weight: 600;
+      cursor: pointer; text-decoration: none; white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .sticky-bar-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(6,182,212,0.35); }
+    .sticky-bar-dismiss {
+      background: none; border: none; color: rgba(255,255,255,0.25);
+      font-size: 22px; cursor: pointer; padding: 8px 4px; line-height: 1;
+      transition: color 0.2s; flex-shrink: 0;
+    }
+    .sticky-bar-dismiss:hover { color: rgba(255,255,255,0.55); }
+
+    @media (max-width: 1100px) {
+      .pricing-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav { padding: 0 24px; height: 72px; }
+      .nav-logo svg { height: 32px; }
+      .nav-links { display: none; }
+      .section { padding: 80px 24px; }
+      .hero { padding: 110px 24px 60px; min-height: auto; }
+      .hero-headline { margin-bottom: 20px; }
+      .hero-body { font-size: 16px; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .network-section { padding: 60px 0 32px; }
+      .calc-layout { grid-template-columns: 1fr; gap: 40px; }
+      .calc-results { position: static; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card.popular .pricing-badge { font-size: 10px; }
+      .proof-stats { grid-template-columns: repeat(2,1fr); }
+      .proof-stat:nth-child(2) { border-right: none; }
+      .proof-stat:nth-child(3) { border-top: 1px solid var(--border); }
+      .proof-stat:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+      .compare-layout { grid-template-columns: 1fr; }
+
+      .proof-strip { padding: 40px 24px; }
+      .compare-section { padding: 60px 24px; }
+      .adoption-section { padding: 60px 24px; }
+      .adoption-stats { grid-template-columns: 1fr; }
+      .adoption-barrier { padding: 28px 24px; }
+      .faq-section { padding: 60px 24px; }
+      .network-stage { height: auto; min-height: auto; max-height: none; display: flex; flex-direction: column; align-items: center; padding: 0 24px; }
+      #networkCanvas { width: 100%; height: 380px; max-width: 420px; }
+      .dossier {
+        position: relative !important;
+        left: auto !important; top: auto !important;
+        width: 100%; max-width: 380px;
+        margin-top: 8px;
+        transform: translateY(8px) scale(0.97);
+      }
+      .dossier.active { transform: translateY(0) scale(1); }
+      .hint-desktop { display: none; }
+      .hint-mobile { display: inline; }
+      .how-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer { padding: 48px 24px 32px; }
+      .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
+      .footer-right { flex-wrap: wrap; justify-content: center; gap: 16px; }
+      .footer-disclaimer { text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ── SKIP NAV ── */
+    .skip-nav {
+      position: absolute; top: -56px; left: 16px; z-index: 9999;
+      background: var(--cyan); color: var(--hero-bg);
+      padding: 10px 20px; border-radius: 0 0 8px 8px;
+      font-size: 14px; font-weight: 700; text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-nav:focus { top: 0; outline: 3px solid var(--white); outline-offset: 2px; }
+
+    /* ── FAQ as buttons ── */
+    button.faq-question {
+      width: 100%; background: none; border: none; cursor: pointer;
+      font-family: inherit; padding: 22px 0;
+      display: flex; justify-content: space-between; align-items: center; gap: 24px;
+      user-select: none;
+    }
+    button.faq-question:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; border-radius: 4px; }
+
+    /* ── Accessible focus rings ── */
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
+    input[type="range"]:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+
+    /* ── Visually hidden utility ── */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* ── Section labels on light bg: accessible teal (5.35:1 on white) ── */
+    .how-section .section-label,
+    .calc-section .section-label,
+    .faq-section .section-label,
+    .cta-section .section-label,
+    .pricing-section .section-label,
+    .proof-strip .section-label { color: #0E7490; }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" aria-label="Primary">
+    <a href="#" class="nav-logo" aria-label="ZxAI — back to top">
+      <svg viewBox="0 0 1280 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="currentColor"><path fill-rule="evenodd" d="M176 94A86 86 0 1 1 176 266A86 86 0 1 1 176 94ZM176 108A72 72 0 1 0 176 252A72 72 0 1 0 176 108ZM212 122L226 131L179 237L165 228L212 122Z"/></g><g fill="currentColor"><path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/><path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/><path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/><path d="M800 116H819V244H800V116Z"/></g></svg>
+    </a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#agents" class="nav-link">Agents</a></li>
+        <li><a href="#how" class="nav-link">How it works</a></li>
+        <li><a href="#roi" class="nav-link">ROI</a></li>
+        <li><a href="#pricing" class="nav-link">Pricing</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Hire your first agent</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <h1 class="hero-headline">Your medical practice,<br><strong>fully staffed with AI.</strong></h1>
+        <p class="hero-body">We install AI agents into your medical practice that handle scheduling, billing, follow-ups, and patient outreach. They work inside your existing systems. No new software. No new hires. Just outcomes.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn-primary">Hire your AI staff <span aria-hidden="true">&rarr;</span></a>
+          <a href="#agents" class="btn-secondary">Meet the agents</a>
+        </div>
+        <p class="hero-guarantee">90-day ROI guarantee on Full Platform &nbsp;·&nbsp; Live in 10 days &nbsp;·&nbsp; No new software</p>
+      </div>
+      <div class="hero-canvas-wrap" aria-hidden="true">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF STRIP -->
+  <div class="proof-strip">
+    <div class="proof-strip-inner reveal">
+      <div class="proof-stats">
+        <div class="proof-stat">
+          <div class="proof-stat-num">76%</div>
+          <div class="proof-stat-label">of patients who hit your voicemail call a competitor instead</div>
+          <div class="proof-stat-source">Source: Accenture Health</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-stat-num">4.6 hrs</div>
+          <div class="proof-stat-label">lost per physician per week in your practice to prior auth alone</div>
+          <div class="proof-stat-source">Source: AMA 2024</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-stat-num">18%</div>
+          <div class="proof-stat-label">of your scheduled patients may not show up — each one lost revenue</div>
+          <div class="proof-stat-source">Source: MGMA Benchmarks</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-stat-num">35%</div>
+          <div class="proof-stat-label">of your active patient panel hasn't booked in 12+ months</div>
+          <div class="proof-stat-source">Source: MGMA Benchmarks</div>
+        </div>
+      </div>
+      <div class="proof-integrates">
+        <span class="proof-integrates-label">Works with</span>
+        <span class="proof-pill">Athena Health</span>
+        <span class="proof-pill">Epic</span>
+        <span class="proof-pill">eClinicalWorks</span>
+        <span class="proof-pill">Kareo</span>
+        <span class="proof-pill">Modernizing Medicine</span>
+        <span class="proof-pill">DrChrono</span>
+        <span class="proof-pill">+ your phone system</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE NETWORK -->
+  <section class="network-section" id="agents">
+    <div class="network-header reveal">
+      <div class="section-label">Your AI Staff</div>
+      <h2 class="network-heading">Meet your <strong>AI staff.</strong></h2>
+    </div>
+    <!-- Screen-reader accessible agent list (visually hidden) -->
+    <ul class="sr-only" aria-label="ZxAI AI Agent roster">
+      <li>Front Desk Agent — Answers patient inquiries 24/7, pre-qualifies new patients, and books directly into your schedule.</li>
+      <li>Scheduling Agent — Identifies high-risk no-shows and escalates outreach before the slot is lost. Cancellations auto-filled from your waitlist.</li>
+      <li>Prior Auth Agent — Prepares and routes prior auth requests at scheduling. Average turnaround drops from 11 days to 2–3.</li>
+      <li>Revenue Recovery Agent — Tracks aging receivables, stalled claims, and underpayments automatically.</li>
+      <li>Reactivation Agent — Re-engages every patient inactive 90+ days with personalized outreach.</li>
+      <li>Retention Agent — Sends personalized follow-ups timed to the natural rebooking window for each procedure.</li>
+      <li>Reputation Agent — Asks for reviews at peak satisfaction and responds at scale.</li>
+      <li>Marketing Agent — Produces posts, short-form videos, and campaign content calibrated to your specialty.</li>
+      <li>Web Agent — Optimizes your web presence across search engines, AI answer engines, voice assistants, and LLM citations.</li>
+    </ul>
+
+    <div class="network-stage" id="networkStage">
+      <canvas id="networkCanvas" aria-hidden="true"></canvas>
+
+      <div class="dossier" data-agent="0">
+        <div class="dossier-accent" style="background:var(--cyan);"></div>
+        <div class="dossier-header"><div class="dossier-status"><span class="status-dot" style="color:var(--cyan);background:var(--cyan);"></span><span class="status-label">ONLINE</span></div><span class="dossier-num">01</span></div>
+        <h3 class="dossier-name">Front Desk Agent</h3>
+        <div class="dossier-role" style="color:var(--cyan);">Patient intake + scheduling</div>
+        <p class="dossier-desc">Answers patient inquiries 24/7, pre-qualifies new patients, and books directly into your schedule. Never misses a call. Never goes on lunch.</p>
+        <div class="dossier-outcomes">
+          <span class="dossier-outcome" style="--dot:var(--cyan);"><style>.dossier[data-agent="0"] .dossier-outcome::before{background:var(--cyan);}</style>Zero Missed Calls</span>
+          <span class="dossier-outcome">Faster Intake</span>
+          <span class="dossier-outcome">24/7 Availability</span>
+        </div>
+        <span class="dossier-tag">All practice types</span>
+      </div>
+
+      <div class="dossier" data-agent="1">
+        <div class="dossier-accent" style="background:var(--sky);"></div>
+        <div class="dossier-header"><div class="dossier-status"><span class="status-dot" style="color:var(--sky);background:var(--sky);"></span><span class="status-label">ONLINE</span></div><span class="dossier-num">02</span></div>
+        <h3 class="dossier-name">Scheduling Agent</h3>
+        <div class="dossier-role" style="color:var(--sky);">No-show prevention + backfill</div>
+        <p class="dossier-desc">Identifies high-risk no-shows and escalates outreach before the slot is lost. Cancellations auto-filled from your waitlist the same day.</p>
+        <div class="dossier-outcomes">
+          <span class="dossier-outcome"><style>.dossier[data-agent="1"] .dossier-outcome::before{background:var(--sky);}</style>24/7 Scheduling</span>
+          <span class="dossier-outcome">Lower Cancellations</span>
+          <span class="dossier-outcome">More Bookings</span>
+        </div>
+        <span class="dossier-tag">All practice types</span>
+      </div>
+
+      <div class="dossier" data-agent="2">
+        <div class="dossier-accent" style="background:var(--indigo);"></div>
+        <div class="dossier-header"><div class="dossier-status"><span class="status-dot" style="color:var(--indigo);background:var(--indigo);"></span><span class="status-label">ONLINE</span></div><span class="dossier-num">03</span></div>
+        <h3 class="dossier-name">Prior Auth Agent</h3>
+        <div class="dossier-role" style="color:var(--indigo);">Authorization prep + follow-up</div>
+        <p class="dossier-desc">Prepares and routes prior auth requests at scheduling. Your staff approves. Your agent handles everything else. Average turnaround drops from 11 days to 2-3.</p>
+        <div class="dossier-outcomes">
+          <span class="dossier-outcome"><style>.dossier[data-agent="2"] .dossier-outcome::before{background:var(--indigo);}</style>Faster Approvals</span>
+          <span class="dossier-outcome">Fewer Denials</span>
+          <span class="dossier-outcome">Less Staff Time</span>
+        </div>
+        <span class="dossier-tag">Insurance-billing practices</span>
+      </div>
+
+      <div class="dossier" data-agent="3">
+        <div class="dossier-accent" style="background:var(--violet);"></div>
+        <div class="dossier-header"><div class="dossier-status"><span class="status-dot" style="color:var(--violet);background:var(--violet);"></span><span class="status-label">ONLINE</span></div><span class="dossier-num">04</span></div>
+        <h3 class="dossier-name">Revenue Recovery Agent</h3>
+        <div class="dossier-role" style="color:var(--violet);">Claims + receivables pursuit</div>
+        <p class="dossier-desc">Tracks aging receivables, stalled claims, and underpayments. Your biller reviews the package. Your agent builds it and keeps pushing until it moves.</p>
+        <div class="dossier-outcomes">
+          <span class="dossier-outcome"><style>.dossier[data-agent="3"] .dossier-outcome::before{background:var(--violet);}</style>Fewer Write-offs</span>
+          <span class="dossier-outcome">Faster Collections</span>
+          <span class="dossier-outcome">Higher Revenue</span>
+        </div>
+        <span class="dossier-tag">Insurance-billing practices</span>
+      </div>
+
+      <div class="dossier" data-agent="4">
+        <div class="dossier-accent" style="background:var(--purple);"></div>
+        <div class="dossier-header"><div class="dossier-status"><span class="status-dot" style="color:var(--purple);background:var(--purple);"></span><span class="status-label">ONLINE</span></div><span class="dossier-num">05</span></div>
+        <h3 class="dossier-name">Reactivation Agent</h3>
+        <div class="dossier-role" style="color:var(--purple);">Lapsed patient re-engagement</div>
+        <p class="dossier-desc">Re-engages every patient inactive 90+ days with personalized outreach based on their treatment history. Works your existing database. Zero acquisition cost.</p>
+        <div class="dossier-outcomes">
+          <span class="dossier-outcome"><style>.dossier[data-agent="4"] .dossier-outcome::before{background:var(--purple);}</style>More Returning Patients</span>
+          <span class="dossier-outcome">Zero Acquisition Cost</span>
+          <span class="dossier-outcome">Higher LTV</span>
+        </div>
+        <span class="dossier-tag">All practice types</span>
+      </div>
+
+      <div class="dossier" data-agent="5">
+        <div class="dossier-accent" style="background:var(--pink);"></div>
+        <div class="dossier-header"><div class="dossier-status"><span class="status-dot" style="color:var(--pink);background:var(--pink);"></span><span class="status-label">ONLINE</span></div><span class="dossier-num">06</span></div>
+        <h3 class="dossier-name">Retention Agent</h3>
+        <div class="dossier-role" style="color:var(--pink);">Post-visit follow-up + rebooking</div>
+        <p class="dossier-desc">Sends personalized follow-ups timed to the natural rebooking window for each procedure. Runs seasonal campaigns from your service menu. No staff input needed.</p>
+        <div class="dossier-outcomes">
+          <span class="dossier-outcome"><style>.dossier[data-agent="5"] .dossier-outcome::before{background:var(--pink);}</style>Higher Rebooking Rates</span>
+          <span class="dossier-outcome">Fewer Lapsed Patients</span>
+          <span class="dossier-outcome">More Revenue Per Patient</span>
+        </div>
+        <span class="dossier-tag">All practice types</span>
+      </div>
+
+      <div class="dossier" data-agent="6">
+        <div class="dossier-accent" style="background:var(--teal);"></div>
+        <div class="dossier-header"><div class="dossier-status"><span class="status-dot" style="color:var(--teal);background:var(--teal);"></span><span class="status-label">ONLINE</span></div><span class="dossier-num">07</span></div>
+        <h3 class="dossier-name">Reputation Agent</h3>
+        <div class="dossier-role" style="color:var(--teal);">Review generation + response</div>
+        <p class="dossier-desc">Asks for reviews at peak satisfaction, routes unhappy patients to a private channel before they post publicly, and responds at scale. Your rating reflects your care.</p>
+        <div class="dossier-outcomes">
+          <span class="dossier-outcome"><style>.dossier[data-agent="6"] .dossier-outcome::before{background:var(--teal);}</style>Higher Star Rating</span>
+          <span class="dossier-outcome">More Reviews</span>
+          <span class="dossier-outcome">Fewer Public Complaints</span>
+        </div>
+        <span class="dossier-tag">All practice types</span>
+      </div>
+
+      <div class="dossier" data-agent="7">
+        <div class="dossier-accent" style="background:var(--rose);"></div>
+        <div class="dossier-header"><div class="dossier-status"><span class="status-dot" style="color:var(--rose);background:var(--rose);"></span><span class="status-label">ONLINE</span></div><span class="dossier-num">08</span></div>
+        <h3 class="dossier-name">Marketing Agent</h3>
+        <div class="dossier-role" style="color:var(--rose);">Content, video + social</div>
+        <p class="dossier-desc">Produces posts, short-form videos, and campaign content calibrated to your specialty. Keeps your practice visible without you or your staff lifting a finger.</p>
+        <div class="dossier-outcomes">
+          <span class="dossier-outcome"><style>.dossier[data-agent="7"] .dossier-outcome::before{background:var(--rose);}</style>Consistent Content</span>
+          <span class="dossier-outcome">Stronger Social Presence</span>
+          <span class="dossier-outcome">More New Patients</span>
+        </div>
+        <span class="dossier-tag">All practice types</span>
+      </div>
+
+      <div class="dossier" data-agent="8">
+        <div class="dossier-accent" style="background:var(--amber);"></div>
+        <div class="dossier-header"><div class="dossier-status"><span class="status-dot" style="color:var(--amber);background:var(--amber);"></span><span class="status-label">ONLINE</span></div><span class="dossier-num">09</span></div>
+        <h3 class="dossier-name">Web Agent</h3>
+        <div class="dossier-role" style="color:var(--amber);">SEO, AEO, voice + LLM optimization</div>
+        <p class="dossier-desc">Optimizes your web presence across search engines, AI answer engines, voice assistants, and LLM citations. Patients find you however they search.</p>
+        <div class="dossier-outcomes">
+          <span class="dossier-outcome"><style>.dossier[data-agent="8"] .dossier-outcome::before{background:var(--amber);}</style>Higher Search Rankings</span>
+          <span class="dossier-outcome">More Website Traffic</span>
+          <span class="dossier-outcome">Found Everywhere</span>
+        </div>
+        <span class="dossier-tag">All practice types</span>
+      </div>
+
+    </div>
+    <div class="network-hint" id="networkHint">
+      <span class="hint-desktop">Hover a node to meet an agent</span>
+      <span class="hint-mobile">Tap a node to meet an agent</span>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section how-section" id="how">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">How It Works</div>
+        <h2 class="section-heading">Three steps.<br><strong>First results in one week.</strong></h2>
+      </div>
+      <div class="how-grid">
+        <div class="how-step"><div class="how-number">01</div><div class="how-title">We audit your practice</div><p class="how-desc">We review your systems, patient flow, and where work falls through the cracks. Every practice is different. Your agent team should be too.</p></div>
+        <div class="how-step"><div class="how-number">02</div><div class="how-title">We install your agents</div><p class="how-desc">Each agent connects to your existing tools. EMR, phone system, billing software. No data migration. No new logins for your staff.</p></div>
+        <div class="how-step"><div class="how-number">03</div><div class="how-title">They go to work</div><p class="how-desc">Your agents operate around the clock. You get a dashboard to see what they're doing. Most practices see measurable results within the first week.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAFF COMPARE -->
+  <section class="compare-section">
+    <div class="compare-inner">
+      <div class="reveal" style="text-align:center; margin-bottom: 0;">
+        <div class="section-label" style="color: rgba(6,182,212,0.8)">The Real Cost</div>
+        <h2 class="section-heading" style="color:var(--white)">Hiring people to do this<br><strong style="color:var(--white)">is the expensive option.</strong></h2>
+      </div>
+      <div class="compare-layout reveal">
+        <div class="compare-col old">
+          <div class="compare-head">Traditional staffing</div>
+          <div class="compare-row"><span class="compare-item">Front desk (3 FTEs, 24/7)</span><span class="compare-cost">$145K/yr</span></div>
+          <div class="compare-row"><span class="compare-item">Prior auth coordinator</span><span class="compare-cost">$72K/yr</span></div>
+          <div class="compare-row"><span class="compare-item">Scheduling coordinator</span><span class="compare-cost">$62K/yr</span></div>
+          <div class="compare-row"><span class="compare-item">Benefits + payroll tax</span><span class="compare-cost">$42K/yr</span></div>
+          <div class="compare-row"><span class="compare-item">Recruiting + turnover</span><span class="compare-cost">$28K/yr</span></div>
+          <div class="compare-row"><span class="compare-item">Coverage: 40 hrs/wk only</span><span class="compare-cost" style="color:rgba(244,63,94,0.8)">—</span></div>
+          <div class="compare-foot">
+            <span class="compare-total-label">Total per year</span>
+            <span class="compare-total-num">$349K</span>
+          </div>
+        </div>
+        <div class="compare-col new">
+          <div class="compare-head">ZxAI Full Platform</div>
+          <div class="compare-row"><span class="compare-item">All 9 agents, fully configured</span><span class="compare-cost">$120K/yr</span></div>
+          <div class="compare-row"><span class="compare-item">Prior auth, automated</span><span class="compare-cost">included</span></div>
+          <div class="compare-row"><span class="compare-item">Scheduling + reminders</span><span class="compare-cost">included</span></div>
+          <div class="compare-row"><span class="compare-item">No benefits or payroll</span><span class="compare-cost">$0</span></div>
+          <div class="compare-row"><span class="compare-item">No recruiting or turnover</span><span class="compare-cost">$0</span></div>
+          <div class="compare-row"><span class="compare-item">Coverage: 24/7, 365 days</span><span class="compare-cost">included</span></div>
+          <div class="compare-foot">
+            <span class="compare-total-label">Total per year</span>
+            <span class="compare-total-num">$120K</span>
+          </div>
+        </div>
+      </div>
+      <div class="compare-savings-bar reveal">
+        <span class="compare-savings-text"><strong>You save $229K per year</strong> and get better coverage than any team of humans can provide.</span>
+        <span class="compare-savings-num">$229K saved</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI CALCULATOR -->
+  <section class="section calc-section" id="roi">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">ROI Calculator</div>
+        <h2 class="section-heading">See what your practice<br><strong>could recover.</strong></h2>
+        <p class="section-sub">Enter your numbers. See your monthly recovery potential by agent.</p>
+      </div>
+
+      <div class="calc-layout">
+        <!-- INPUTS -->
+        <div class="calc-inputs reveal">
+
+          <div class="calc-type-toggle" role="group" aria-label="Practice type">
+            <button class="calc-type-btn active" id="btn-ins" onclick="setPracticeType('insurance')" aria-pressed="true">Insurance-Based</button>
+            <button class="calc-type-btn" id="btn-cash" onclick="setPracticeType('cash')" aria-pressed="false">Cash / Concierge</button>
+          </div>
+          <p class="calc-type-note" id="calc-type-note">Includes prior auth savings, A/R recovery, and insurance billing optimization.</p>
+
+          <div class="calc-slider-group">
+            <label class="calc-slider-label" for="slider-providers">
+              <span>Providers in your practice</span>
+              <span class="calc-slider-value" id="val-providers">2</span>
+            </label>
+            <input type="range" min="1" max="10" value="2" class="calc-range" id="slider-providers" aria-describedby="ticks-providers">
+            <div class="calc-range-ticks" id="ticks-providers"><span>1 provider</span><span>10 providers</span></div>
+          </div>
+
+          <div class="calc-slider-group">
+            <label class="calc-slider-label" for="slider-revenue">
+              <span>Monthly revenue</span>
+              <span class="calc-slider-value" id="val-revenue"><sup>$</sup>400K</span>
+            </label>
+            <input type="range" min="100" max="2000" step="50" value="400" class="calc-range" id="slider-revenue" aria-describedby="ticks-revenue">
+            <div class="calc-range-ticks" id="ticks-revenue"><span>$100K</span><span>$2M</span></div>
+          </div>
+
+          <div class="calc-slider-group">
+            <label class="calc-slider-label" for="slider-noshow">
+              <span>Current no-show rate</span>
+              <span class="calc-slider-value" id="val-noshow">18<sup>%</sup></span>
+            </label>
+            <input type="range" min="5" max="35" value="18" class="calc-range" id="slider-noshow" aria-describedby="ticks-noshow">
+            <div class="calc-range-ticks" id="ticks-noshow"><span>5%</span><span>35%</span></div>
+          </div>
+
+          <div class="calc-slider-group">
+            <label class="calc-slider-label" for="slider-calls">
+              <span>Unanswered calls per day</span>
+              <span class="calc-slider-value" id="val-calls">8</span>
+            </label>
+            <input type="range" min="2" max="30" value="8" class="calc-range" id="slider-calls" aria-describedby="ticks-calls">
+            <div class="calc-range-ticks" id="ticks-calls"><span>2 calls</span><span>30 calls</span></div>
+          </div>
+
+        </div>
+
+        <!-- RESULTS -->
+        <div class="calc-results reveal">
+          <div class="calc-results-heading">Your practice: monthly &amp; annual recovery</div>
+
+          <div class="calc-col-headers">
+            <div class="calc-col-h">Agent</div>
+            <div class="calc-col-h">Monthly</div>
+            <div class="calc-col-h">Annual</div>
+          </div>
+
+          <div class="calc-breakdown">
+            <div class="calc-row">
+              <div class="calc-row-label"><span class="calc-dot" style="background:#06B6D4"></span>Front Desk</div>
+              <div class="calc-row-monthly" id="r-frontdesk-mo">—</div>
+              <div class="calc-row-annual" id="r-frontdesk-yr">—</div>
+            </div>
+            <div class="calc-row">
+              <div class="calc-row-label"><span class="calc-dot" style="background:#0EA5E9"></span>Scheduling</div>
+              <div class="calc-row-monthly" id="r-sched-mo">—</div>
+              <div class="calc-row-annual" id="r-sched-yr">—</div>
+            </div>
+            <div class="calc-row">
+              <div class="calc-row-label"><span class="calc-dot" style="background:#6366F1"></span><span id="calc-row3-label">Revenue Recovery</span></div>
+              <div class="calc-row-monthly" id="r-rev-mo">—</div>
+              <div class="calc-row-annual" id="r-rev-yr">—</div>
+            </div>
+            <div class="calc-row">
+              <div class="calc-row-label"><span class="calc-dot" style="background:#A855F7"></span>Reactivation</div>
+              <div class="calc-row-monthly" id="r-react-mo">—</div>
+              <div class="calc-row-annual" id="r-react-yr">—</div>
+            </div>
+            <div class="calc-row">
+              <div class="calc-row-label"><span class="calc-dot" style="background:#14B8A6"></span>Staff Savings</div>
+              <div class="calc-row-monthly" id="r-staff-mo">—</div>
+              <div class="calc-row-annual" id="r-staff-yr">—</div>
+            </div>
+          </div>
+
+          <div class="calc-total-row">
+            <div class="calc-total-label">Total annual recovery</div>
+            <div class="calc-total-nums">
+              <div class="calc-total-annual" id="r-total-yr">$0</div>
+              <div class="calc-total-monthly" id="r-total-mo">$0/mo</div>
+            </div>
+          </div>
+
+          <div class="calc-roi-bar">
+            <div class="calc-roi-left">
+              <div class="calc-roi-title">ZxAI Full Platform cost</div>
+              <div class="calc-roi-cost">$9,997/month</div>
+            </div>
+            <div class="calc-roi-badge" id="r-roi-multiple">—</div>
+          </div>
+
+          <div class="calc-cta-row">
+            <a href="#contact" class="btn-primary">Start recovering this revenue &rarr;</a>
+          </div>
+          <p class="calc-note">Conservative estimates based on MGMA benchmarks and ZxAI client data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section pricing-section" id="pricing">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label">Pricing</div>
+        <h2 class="section-heading" style="margin:0 auto 16px">Start with one agent.<br><strong>Scale to nine.</strong></h2>
+        <p class="section-sub" style="margin:0 auto 0">Every agent is a standalone revenue or savings driver. Pick the ones that fit your practice now. Add more any time.</p>
+
+        <div class="pricing-toggle-wrap">
+          <div class="pricing-toggle" role="group" aria-label="Billing period">
+            <button class="pricing-toggle-btn active" id="btn-monthly" onclick="setPricingPeriod('monthly')" aria-pressed="true">Monthly</button>
+            <button class="pricing-toggle-btn" id="btn-annual" onclick="setPricingPeriod('annual')" aria-pressed="false">Annual &nbsp;<span class="save-chip" aria-label="Save 10 percent">Save 10%</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-grid reveal">
+
+        <!-- CARD 1: Per Agent -->
+        <div class="pricing-card">
+          <div class="pricing-tier">Single Agent</div>
+          <div class="pricing-name">Per Agent</div>
+          <div class="pricing-tagline">Start with your biggest problem. Add more when you're ready.</div>
+          <div class="pricing-amount">
+            <span class="pricing-dollar">$</span>
+            <span class="pricing-price" id="price-single">1,500</span>
+            <span class="pricing-per">/mo</span>
+          </div>
+          <div class="pricing-per-agent" id="peragent-single">&nbsp;</div>
+          <div class="pricing-savings" id="savings-single">&nbsp;</div>
+          <hr class="pricing-divider">
+          <ul class="pricing-features">
+            <li class="pricing-feature"><span class="pricing-check">✓</span>1 AI agent, fully configured</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>EHR + systems integration</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>Real-time dashboard access</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>Monthly performance report</li>
+          </ul>
+          <a href="#contact" class="pricing-btn">Hire your first agent &rarr;</a>
+        </div>
+
+        <!-- CARD 2: 3-Agent Bundle -->
+        <div class="pricing-card">
+          <div class="pricing-tier">3-Agent Bundle</div>
+          <div class="pricing-name">Starter Pack</div>
+          <div class="pricing-tagline">Cover your three highest-impact workflows from day one.</div>
+          <div class="pricing-amount">
+            <span class="pricing-dollar">$</span>
+            <span class="pricing-price" id="price-3">3,997</span>
+            <span class="pricing-per">/mo</span>
+          </div>
+          <div class="pricing-per-agent" id="peragent-3">$1,332/agent</div>
+          <div class="pricing-savings" id="savings-3">Save 11% vs. per-agent</div>
+          <hr class="pricing-divider">
+          <ul class="pricing-features">
+            <li class="pricing-feature"><span class="pricing-check">✓</span>3 AI agents, fully configured</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>EHR + systems integration</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>Real-time dashboard access</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>Monthly performance report</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>Priority onboarding (48 hrs)</li>
+          </ul>
+          <a href="#contact" class="pricing-btn">Hire 3 agents &rarr;</a>
+        </div>
+
+        <!-- CARD 3: 6-Agent Bundle (Most Popular) -->
+        <div class="pricing-card popular">
+          <div class="pricing-badge">Most Popular</div>
+          <div class="pricing-tier">6-Agent Bundle</div>
+          <div class="pricing-name">Growth Pack</div>
+          <div class="pricing-tagline">The setup most practices need to fully stabilize operations and grow.</div>
+          <div class="pricing-amount">
+            <span class="pricing-dollar">$</span>
+            <span class="pricing-price" id="price-6">6,997</span>
+            <span class="pricing-per">/mo</span>
+          </div>
+          <div class="pricing-per-agent" id="peragent-6">$1,166/agent</div>
+          <div class="pricing-savings" id="savings-6">Save 22% vs. per-agent</div>
+          <hr class="pricing-divider">
+          <ul class="pricing-features">
+            <li class="pricing-feature"><span class="pricing-check">✓</span>6 AI agents, fully configured</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>EHR + systems integration</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>Real-time dashboard access</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>Monthly performance report</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>Priority onboarding (48 hrs)</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>Quarterly strategy review</li>
+          </ul>
+          <a href="#contact" class="pricing-btn primary">Hire 6 agents &rarr;</a>
+        </div>
+
+        <!-- CARD 4: Full Platform -->
+        <div class="pricing-card featured">
+          <div class="pricing-tier">Full Platform</div>
+          <div class="pricing-name" style="color:var(--white)">All 9 Agents</div>
+          <div class="pricing-tagline">Your practice, fully staffed. Every revenue leak plugged. Every workflow covered.</div>
+          <div class="pricing-amount">
+            <span class="pricing-dollar">$</span>
+            <span class="pricing-price" id="price-9">9,997</span>
+            <span class="pricing-per">/mo</span>
+          </div>
+          <div class="pricing-per-agent" id="peragent-9">$1,111/agent</div>
+          <div class="pricing-savings" id="savings-9">Save 26% vs. per-agent</div>
+          <hr class="pricing-divider">
+          <ul class="pricing-features">
+            <li class="pricing-feature"><span class="pricing-check">✓</span>All 9 AI agents, configured</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>Full systems integration</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>Real-time dashboard access</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>Monthly performance report</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>Concierge onboarding (24 hrs)</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>Quarterly strategy review</li>
+            <li class="pricing-feature"><span class="pricing-check">✓</span>90-day ROI guarantee</li>
+          </ul>
+          <a href="#contact" class="pricing-btn dark">Hire all 9 agents &rarr;</a>
+        </div>
+
+      </div>
+
+      <p class="pricing-footnote reveal">Annual plans billed upfront (10% off any tier). Multi-location pricing available. All plans include HIPAA-compliant infrastructure and BAAs with all vendors.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="faq-inner">
+      <div class="reveal">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-heading">Questions we hear<br><strong>before every call.</strong></h2>
+      </div>
+      <div class="faq-list reveal">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+            <span class="faq-question-text">Is this HIPAA compliant?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-1" role="region"><p>Yes. Every vendor in our stack has a signed BAA. Patient data never leaves your systems. All transmissions are encrypted in transit and at rest. We've built this specifically for healthcare — HIPAA isn't an afterthought.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+            <span class="faq-question-text">Will it work with my EHR?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-2" role="region"><p>Yes. We connect to Athena Health, Epic, eClinicalWorks, Kareo, Modernizing Medicine, DrChrono, and others via FHIR API or secure HL7 feed. If yours isn't listed, ask us. We haven't met one we couldn't work with.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+            <span class="faq-question-text">How long does setup take?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-3" role="region"><p>Ten days from signed agreement to live agents. Most of that is waiting on your EHR vendor to issue API credentials — not us. Your staff gets one hour of walkthrough. That's it.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+            <span class="faq-question-text">Will my patients know they're talking to AI?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-4" role="region"><p>ZxAI agents have fully customizable names, voices, and personalities. We require all practices to notify patients that automated AI systems are used in their operations — this is a contractual requirement and consistent with applicable law. Most practices introduce agents with a friendly custom name ("Hi, this is Mia, an AI assistant at Riverside Family Medicine") and patients respond well to the transparency. What patients actually care about is that their call gets answered promptly.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+            <span class="faq-question-text">What if we don't see results?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-5" role="region"><p>Full Platform includes a 90-day ROI guarantee. If your agents don't recover their cost within 90 days, we keep working — for free — until they do. We put the risk on us, not you. If it doesn't work, we keep working until it does.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6">
+            <span class="faq-question-text">Do we need to change anything about how we operate?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-6" role="region"><p>No. Agents work inside your existing systems. Your staff keeps using the same EHR, the same phone system, the same processes. They just check a dashboard instead of manually doing the work the agents now handle.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-7">
+            <span class="faq-question-text">What are the contract terms?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-7" role="region"><p>Month-to-month on monthly plans. Annual plans are prepaid and locked in — no cancellation mid-term, but pricing is locked for life. No long-term commitments required to get started.</p></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDING COHORT -->
+  <!-- AI ADOPTION GAP -->
+  <section class="adoption-section">
+    <div class="adoption-inner reveal">
+      <div class="adoption-eyebrow">The Shift Is Underway</div>
+      <h2 class="adoption-heading">The practices winning patients today<br><strong>already have AI working for them.</strong></h2>
+      <p class="adoption-sub">Hospital systems and large groups have IT teams deploying AI at scale. Independent practices don't. That gap is widening — and patients are noticing.</p>
+      <div class="adoption-stats">
+        <div class="adoption-stat">
+          <div class="adoption-stat-num">70%</div>
+          <div class="adoption-stat-label">of patients now use AI to research and choose their doctor. Nearly equal to referrals.</div>
+        </div>
+        <div class="adoption-stat">
+          <div class="adoption-stat-num">$3.20</div>
+          <div class="adoption-stat-label">returned for every $1 invested in AI, with a typical payback in 14 months</div>
+        </div>
+        <div class="adoption-stat">
+          <div class="adoption-stat-num">10%</div>
+          <div class="adoption-stat-label">of independent practices have any AI infrastructure deployed today</div>
+        </div>
+      </div>
+      <div class="adoption-barrier">
+        <div class="adoption-barrier-heading">Most practices want to use AI. The barrier isn't interest.</div>
+        <ul class="adoption-barrier-list">
+          <li>They don't know which tools are actually worth deploying for a private practice</li>
+          <li>They don't have the time to implement, train staff, and maintain new systems</li>
+          <li>They can't afford the risk of disrupting operations that are already running</li>
+        </ul>
+      </div>
+      <p class="adoption-note">ZxAI is built for exactly this: configured for your practice, integrated with your systems, live in 10 days.</p>
+      <a href="#contact" class="btn-primary" style="display:inline-flex">See how it works for your practice &rarr;</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-section" id="contact">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Hire Your Staff</div>
+        <h2 class="section-heading">Ready to <strong>hire your AI staff?</strong></h2>
+        <p class="section-sub">Book a 15-minute call. We'll show you exactly which agents fit your practice and what the first week looks like.</p>
+        <a href="mailto:hello@zxai.ai" class="btn-primary-large">Hire your AI staff <span aria-hidden="true">&rarr;</span></a>
+        <p class="cta-reassurance">We respond within 1 business day. The call is 15 minutes. No sales pressure.</p>
+      </div>
+    </div>
+  </section>
+
+  </main><!-- /#main-content -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="#" class="footer-logo" aria-label="ZxAI — back to top">
+        <svg viewBox="0 0 1280 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="currentColor"><path fill-rule="evenodd" d="M176 94A86 86 0 1 1 176 266A86 86 0 1 1 176 94ZM176 108A72 72 0 1 0 176 252A72 72 0 1 0 176 108ZM212 122L226 131L179 237L165 228L212 122Z"/></g><g fill="currentColor"><path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/><path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/><path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/><path d="M800 116H819V244H800V116Z"/></g></svg>
+      </a>
+      <div class="footer-right">
+        <a href="privacy-policy.html" class="footer-link">Privacy</a>
+        <a href="terms-of-service.html" class="footer-link">Terms</a>
+        <a href="mailto:hello@zxai.ai" class="footer-link">hello@zxai.ai</a>
+        <span class="footer-copy">&copy; 2026 ZxAI</span>
+      </div>
+    </div>
+    <div class="footer-disclaimer">ZxAI automates administrative and operational workflows only. Not a clinical decision support tool, diagnostic system, or medical device. Individual results vary.</div>
+  </footer>
+
+  <!-- STICKY BAR -->
+  <div class="sticky-bar" id="stickyBar" role="complementary" aria-label="Call to action">
+    <div class="sticky-bar-inner">
+      <div class="sticky-bar-copy">
+        <strong>Your practice could be recovering $150K+ per year.</strong>
+        <span>AI agents. No new hires. Live in 10 days.</span>
+      </div>
+      <a href="#contact" class="sticky-bar-cta">See how it works &rarr;</a>
+      <button class="sticky-bar-dismiss" id="stickyDismiss" aria-label="Dismiss">&times;</button>
+    </div>
+  </div>
+
+<script>
+// ── UTILS ──
+function hexToRgb(h){return{r:parseInt(h.slice(1,3),16),g:parseInt(h.slice(3,5),16),b:parseInt(h.slice(5,7),16)};}
+
+const AGENT_COUNT = 9;
+const COLORS = ['#06B6D4','#0EA5E9','#6366F1','#8B5CF6','#A855F7','#EC4899','#14B8A6','#F43F5E','#F59E0B'];
+const NAMES = ['Front Desk','Scheduling','Prior Auth','Rev Recovery','Reactivation','Retention','Reputation','Marketing','Web'];
+const isMobile = () => window.innerWidth <= 768;
+
+// ── NAV ──
+const nav = document.getElementById('nav');
+function updateNav(){nav.classList.toggle('scrolled',window.scrollY>60);}
+window.addEventListener('scroll',updateNav,{passive:true});
+updateNav();
+
+// ── REVEALS ──
+const revealObserver = new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);revealObserver.unobserve(e.target);}});
+},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.how-step').forEach(el=>revealObserver.observe(el));
+
+// ══════════════════════════════════════════
+//  HERO CANVAS (ambient, non-interactive)
+// ══════════════════════════════════════════
+const hC = document.getElementById('heroCanvas');
+const hCtx = hC.getContext('2d');
+let hW,hH,hcx,hcy,hDpr,hTime=0,hReveal=0;
+let hAgents=[],hParts=[],hDots=[];
+let heroVisible=true;
+
+function hResize(){
+  hDpr=Math.min(devicePixelRatio||1,2);
+  const r=hC.parentElement.getBoundingClientRect();
+  hW=r.width;hH=r.height;
+  hC.width=hW*hDpr;hC.height=hH*hDpr;
+  hC.style.width=hW+'px';hC.style.height=hH+'px';
+  hCtx.setTransform(hDpr,0,0,hDpr,0,0);
+  hcx=hW/2;hcy=hH/2;
+  const orbit=Math.min(hW,hH)*0.32;
+  hAgents=COLORS.map((c,i)=>{const a=Math.PI*2*i/AGENT_COUNT-Math.PI/2;return{x:hcx+Math.cos(a)*orbit,y:hcy+Math.sin(a)*orbit,color:c,br:Math.min(hW,hH)*0.018};});
+  hParts=[];hAgents.forEach((ag,ai)=>{for(let j=0;j<3;j++)hParts.push({ai,p:Math.random(),s:0.003+Math.random()*0.004,r:1.5+Math.random()*1.5,d:Math.random()>0.3?1:-1});});
+  hDots=[];const oR=Math.min(hW,hH)*0.44;for(let i=0;i<40;i++){const a=Math.random()*Math.PI*2,rr=oR+Math.random()*Math.min(hW,hH)*0.08;hDots.push({x:hcx+Math.cos(a)*rr,y:hcy+Math.sin(a)*rr,ba:0.15+Math.random()*0.2,ph:Math.random()*Math.PI*2,r:1+Math.random()*1.5});}
+}
+
+function hDraw(){
+  if(!heroVisible)return;
+  hTime+=0.008;hReveal=Math.min(hReveal+0.012,1);
+  hCtx.clearRect(0,0,hW,hH);
+  const e=1-Math.pow(1-hReveal,3),cr=Math.min(hW,hH)*0.04,cp=1+Math.sin(hTime*2)*0.08;
+  hAgents.forEach((ag,i)=>{const ar=Math.max(0,Math.min(1,(e-0.2-i*0.04)/0.3));if(ar<=0)return;const ax=hcx+(ag.x-hcx)*ar,ay=hcy+(ag.y-hcy)*ar,rgb=hexToRgb(ag.color);
+    hCtx.beginPath();hCtx.moveTo(hcx,hcy);hCtx.lineTo(ax,ay);hCtx.strokeStyle=`rgba(${rgb.r},${rgb.g},${rgb.b},${0.12*ar})`;hCtx.lineWidth=1;hCtx.stroke();
+    const nx=hAgents[(i+1)%AGENT_COUNT],nr=Math.max(0,Math.min(1,(e-0.2-((i+1)%AGENT_COUNT)*0.04)/0.3));
+    if(nr>0){const nxx=hcx+(nx.x-hcx)*nr,nyy=hcy+(nx.y-hcy)*nr;hCtx.beginPath();hCtx.moveTo(ax,ay);hCtx.lineTo(nxx,nyy);hCtx.strokeStyle=`rgba(255,255,255,${0.04*Math.min(ar,nr)})`;hCtx.lineWidth=0.5;hCtx.stroke();}
+  });
+  hParts.forEach(p=>{const ag=hAgents[p.ai],ar=Math.max(0,Math.min(1,(e-0.4-p.ai*0.04)/0.3));if(ar<=0)return;p.p+=p.s*p.d;if(p.p>1)p.p=0;if(p.p<0)p.p=1;const ax=hcx+(ag.x-hcx)*ar,ay=hcy+(ag.y-hcy)*ar,px=hcx+(ax-hcx)*p.p,py=hcy+(ay-hcy)*p.p,rgb=hexToRgb(ag.color),al=ar*(0.4+Math.sin(p.p*Math.PI)*0.5);hCtx.beginPath();hCtx.arc(px,py,p.r,0,Math.PI*2);hCtx.fillStyle=`rgba(${rgb.r},${rgb.g},${rgb.b},${al})`;hCtx.fill();});
+  hDots.forEach(d=>{const al=d.ba*e*(0.5+Math.sin(hTime+d.ph)*0.5);hCtx.beginPath();hCtx.arc(d.x,d.y,d.r,0,Math.PI*2);hCtx.fillStyle=`rgba(255,255,255,${al*0.3})`;hCtx.fill();});
+  hAgents.forEach((ag,i)=>{const ar=Math.max(0,Math.min(1,(e-0.2-i*0.04)/0.3));if(ar<=0)return;const ax=hcx+(ag.x-hcx)*ar,ay=hcy+(ag.y-hcy)*ar,rgb=hexToRgb(ag.color),pulse=1+Math.sin(hTime*1.5+i)*0.1,r=ag.br*ar*pulse;
+    hCtx.beginPath();hCtx.arc(ax,ay,r*2.5,0,Math.PI*2);const g=hCtx.createRadialGradient(ax,ay,0,ax,ay,r*2.5);g.addColorStop(0,`rgba(${rgb.r},${rgb.g},${rgb.b},${0.15*ar})`);g.addColorStop(1,`rgba(${rgb.r},${rgb.g},${rgb.b},0)`);hCtx.fillStyle=g;hCtx.fill();
+    hCtx.beginPath();hCtx.arc(ax,ay,r,0,Math.PI*2);hCtx.fillStyle=`rgba(${rgb.r},${rgb.g},${rgb.b},${0.9*ar})`;hCtx.fill();
+    hCtx.beginPath();hCtx.arc(ax,ay,r*0.4,0,Math.PI*2);hCtx.fillStyle=`rgba(255,255,255,${0.6*ar})`;hCtx.fill();});
+  const crr=cr*e*cp;
+  hCtx.beginPath();hCtx.arc(hcx,hcy,crr*3,0,Math.PI*2);const cg=hCtx.createRadialGradient(hcx,hcy,0,hcx,hcy,crr*3);cg.addColorStop(0,`rgba(255,255,255,${0.12*e})`);cg.addColorStop(0.5,`rgba(6,182,212,${0.06*e})`);cg.addColorStop(1,'rgba(6,182,212,0)');hCtx.fillStyle=cg;hCtx.fill();
+  hCtx.beginPath();hCtx.arc(hcx,hcy,crr,0,Math.PI*2);hCtx.strokeStyle=`rgba(255,255,255,${0.3*e})`;hCtx.lineWidth=1.5;hCtx.stroke();
+  hCtx.beginPath();hCtx.arc(hcx,hcy,crr*0.7,0,Math.PI*2);hCtx.fillStyle=`rgba(255,255,255,${0.9*e})`;hCtx.fill();
+  if(e>0.5){const sa=Math.min(1,(e-0.5)*2);hCtx.beginPath();hCtx.moveTo(hcx+crr*0.43,hcy-crr*0.535);hCtx.lineTo(hcx-crr*0.04,hcy+crr*0.525);hCtx.strokeStyle=`rgba(6,11,24,${0.75*sa})`;hCtx.lineWidth=3;hCtx.lineCap='round';hCtx.stroke();hCtx.lineCap='butt';}
+}
+
+// ══════════════════════════════════════════
+//  NETWORK CANVAS (interactive)
+// ══════════════════════════════════════════
+const nC = document.getElementById('networkCanvas');
+const nCtx = nC.getContext('2d');
+const stage = document.getElementById('networkStage');
+const dossierEls = [...document.querySelectorAll('.dossier')];
+const hintEl = document.getElementById('networkHint');
+
+let nW,nH,ncx,ncy,nDpr,nTime=0,nReveal=0;
+let nNodes=[],nParts=[];
+let activeAgent=-1, prevActive=-1;
+let brightness=[];
+let networkVisible=false, networkRevealed=false;
+let hasInteracted=false;
+
+function nResize(){
+  nDpr=Math.min(devicePixelRatio||1,2);
+  if(isMobile()){
+    nW=nC.clientWidth; nH=nC.clientHeight;
+  } else {
+    const r=stage.getBoundingClientRect();
+    nW=r.width; nH=r.height;
+    nC.style.width=nW+'px'; nC.style.height=nH+'px';
+  }
+  nC.width=nW*nDpr; nC.height=nH*nDpr;
+  nCtx.setTransform(nDpr,0,0,nDpr,0,0);
+  ncx=nW/2; ncy=nH/2;
+
+  const orbit=Math.min(nW*0.35, nH*0.38, 260);
+  nNodes=COLORS.map((c,i)=>{
+    const a=Math.PI*2*i/AGENT_COUNT - Math.PI/2;
+    return{x:ncx+Math.cos(a)*orbit, y:ncy+Math.sin(a)*orbit, color:c, angle:a, baseR:Math.max(9,Math.min(nW,nH)*0.018)};
+  });
+  brightness=new Array(AGENT_COUNT).fill(0.65);
+
+  nParts=[];
+  nNodes.forEach((_,ai)=>{for(let j=0;j<4;j++)nParts.push({ai,p:Math.random(),s:0.002+Math.random()*0.003,r:1.2+Math.random()*1.5,d:Math.random()>0.3?1:-1});});
+}
+
+function findNode(mx,my){
+  const hitBase=isMobile()?50:38;
+  // Larger sticky zone for currently active node (hysteresis)
+  const hitSticky=isMobile()?60:56;
+  let best=-1,bestD=Infinity;
+  nNodes.forEach((n,i)=>{
+    const dx=mx-n.x,dy=my-n.y,d=Math.sqrt(dx*dx+dy*dy);
+    const threshold = (i===activeAgent) ? hitSticky : hitBase;
+    if(d<threshold&&d<bestD){best=i;bestD=d;}
+  });
+  return best;
+}
+
+function positionDossier(i){
+  if(isMobile())return;
+  const n=nNodes[i], el=dossierEls[i];
+  const dx=n.x-ncx, dy=n.y-ncy;
+  const ang=Math.atan2(dy,dx);
+  const gap=55;
+  const dW=300, dH=el.offsetHeight||280;
+  let x=n.x+Math.cos(ang)*gap;
+  let y=n.y+Math.sin(ang)*gap;
+  if(Math.cos(ang)>0.25) { y-=dH/2; }
+  else if(Math.cos(ang)<-0.25) { x-=dW; y-=dH/2; }
+  else if(Math.sin(ang)<0) { x-=dW/2; y-=dH; }
+  else { x-=dW/2; }
+  x=Math.max(8,Math.min(nW-dW-8,x));
+  y=Math.max(8,Math.min(nH-dH-8,y));
+  el.style.left=x+'px'; el.style.top=y+'px';
+}
+
+function setActive(i){
+  if(i===activeAgent)return;
+  prevActive=activeAgent; activeAgent=i;
+  dossierEls.forEach((el,j)=>{
+    el.classList.toggle('active',j===i);
+    if(j===i && !isMobile()) positionDossier(j);
+  });
+  if(i>=0 && !hasInteracted){hasInteracted=true;hintEl.classList.add('hidden');}
+  if(i>=0){for(let j=0;j<6;j++)nParts.push({ai:i,p:Math.random()*0.2,s:0.006+Math.random()*0.006,r:2+Math.random()*2,d:1,life:1,extra:true});}
+}
+
+// Mouse/touch
+nC.addEventListener('mousemove',e=>{
+  const r=nC.getBoundingClientRect();
+  const mx=(e.clientX-r.left)*(nW/r.width), my=(e.clientY-r.top)*(nH/r.height);
+  const found=findNode(mx,my);
+  nC.style.cursor=found>=0?'pointer':'default';
+  setActive(found);
+});
+nC.addEventListener('mouseleave',()=>{setActive(-1);nC.style.cursor='default';});
+nC.addEventListener('touchstart',e=>{
+  e.preventDefault();
+  const t=e.touches[0],r=nC.getBoundingClientRect();
+  const mx=(t.clientX-r.left)*(nW/r.width), my=(t.clientY-r.top)*(nH/r.height);
+  const found=findNode(mx,my);
+  setActive(found===activeAgent?-1:found);
+},{passive:false});
+
+function nDraw(){
+  if(!networkVisible)return;
+  if(!networkRevealed){networkRevealed=true;}
+  nTime+=0.007;
+  nReveal=Math.min(nReveal+0.015,1);
+  const ease=1-Math.pow(1-nReveal,3);
+  nCtx.clearRect(0,0,nW,nH);
+
+  // Update brightness
+  nNodes.forEach((_,i)=>{
+    let target;
+    if(activeAgent===-1) target=0.65;
+    else if(i===activeAgent) target=1.0;
+    else target=0.18;
+    brightness[i]+=(target-brightness[i])*0.09;
+  });
+
+  const cr=Math.max(16,Math.min(nW,nH)*0.032);
+
+  // Center heartbeat pulse rings
+  const pulseT=(nTime*0.4)%1;
+  const pulseR=cr+cr*3*pulseT;
+  const pulseA=0.1*(1-pulseT)*ease;
+  nCtx.beginPath();nCtx.arc(ncx,ncy,pulseR,0,Math.PI*2);
+  nCtx.strokeStyle=`rgba(255,255,255,${pulseA})`;nCtx.lineWidth=1;nCtx.stroke();
+  const pulseT2=((nTime*0.4)+0.5)%1;
+  const pulseR2=cr+cr*3*pulseT2;
+  const pulseA2=0.07*(1-pulseT2)*ease;
+  nCtx.beginPath();nCtx.arc(ncx,ncy,pulseR2,0,Math.PI*2);
+  nCtx.strokeStyle=`rgba(255,255,255,${pulseA2})`;nCtx.lineWidth=0.7;nCtx.stroke();
+
+  // Connections
+  nNodes.forEach((n,i)=>{
+    const ar=Math.max(0,Math.min(1,(ease-0.15-i*0.03)/0.3));
+    if(ar<=0)return;
+    const ax=ncx+(n.x-ncx)*ar, ay=ncy+(n.y-ncy)*ar;
+    const rgb=hexToRgb(n.color), b=brightness[i];
+    const lineA = i===activeAgent ? 0.35 : 0.07*b;
+    const lineW = i===activeAgent ? 1.5 : 0.8;
+    nCtx.beginPath();nCtx.moveTo(ncx,ncy);nCtx.lineTo(ax,ay);
+    nCtx.strokeStyle=`rgba(${rgb.r},${rgb.g},${rgb.b},${lineA*ar})`;nCtx.lineWidth=lineW;nCtx.stroke();
+
+    // Neighbor lines
+    const ni=(i+1)%AGENT_COUNT, nn=nNodes[ni];
+    const nr=Math.max(0,Math.min(1,(ease-0.15-ni*0.03)/0.3));
+    if(nr>0){
+      const nx2=ncx+(nn.x-ncx)*nr,ny2=ncy+(nn.y-ncy)*nr;
+      nCtx.beginPath();nCtx.moveTo(ax,ay);nCtx.lineTo(nx2,ny2);
+      nCtx.strokeStyle=`rgba(255,255,255,${0.025*Math.min(brightness[i],brightness[ni])*ar})`;nCtx.lineWidth=0.5;nCtx.stroke();
+    }
+  });
+
+  // Particles
+  nParts=nParts.filter(p=>{
+    if(p.extra){p.life-=0.012;if(p.life<=0)return false;}
+    return true;
+  });
+  nParts.forEach(p=>{
+    const n=nNodes[p.ai];
+    const ar=Math.max(0,Math.min(1,(ease-0.3-p.ai*0.03)/0.3));
+    if(ar<=0)return;
+    const speedMult=p.ai===activeAgent?2.5:1;
+    p.p+=p.s*p.d*speedMult;
+    if(p.p>1)p.p=0;if(p.p<0)p.p=1;
+    const ax=ncx+(n.x-ncx)*ar, ay=ncy+(n.y-ncy)*ar;
+    const px=ncx+(ax-ncx)*p.p, py=ncy+(ay-ncy)*p.p;
+    const rgb=hexToRgb(n.color);
+    let al=brightness[p.ai]*(0.3+Math.sin(p.p*Math.PI)*0.6)*ar;
+    if(p.extra)al*=p.life;
+    nCtx.beginPath();nCtx.arc(px,py,p.r,0,Math.PI*2);
+    nCtx.fillStyle=`rgba(${rgb.r},${rgb.g},${rgb.b},${al})`;nCtx.fill();
+  });
+
+  // Agent nodes
+  nNodes.forEach((n,i)=>{
+    const ar=Math.max(0,Math.min(1,(ease-0.15-i*0.03)/0.3));
+    if(ar<=0)return;
+    const ax=ncx+(n.x-ncx)*ar, ay=ncy+(n.y-ncy)*ar;
+    const rgb=hexToRgb(n.color), b=brightness[i];
+    const pulse=1+Math.sin(nTime*1.5+i*0.9)*0.08;
+    const active=i===activeAgent;
+    const r=n.baseR*ar*pulse*(active?1.3:1);
+
+    // Glow
+    const glowR=r*(active?4:2.5);
+    nCtx.beginPath();nCtx.arc(ax,ay,glowR,0,Math.PI*2);
+    const g=nCtx.createRadialGradient(ax,ay,0,ax,ay,glowR);
+    g.addColorStop(0,`rgba(${rgb.r},${rgb.g},${rgb.b},${(active?0.3:0.12)*b*ar})`);
+    g.addColorStop(1,`rgba(${rgb.r},${rgb.g},${rgb.b},0)`);
+    nCtx.fillStyle=g;nCtx.fill();
+
+    // Outer ring (active only)
+    if(active){
+      nCtx.beginPath();nCtx.arc(ax,ay,r*1.8,0,Math.PI*2);
+      nCtx.strokeStyle=`rgba(${rgb.r},${rgb.g},${rgb.b},${0.2*ar})`;nCtx.lineWidth=1;nCtx.stroke();
+    }
+
+    // Fill
+    nCtx.beginPath();nCtx.arc(ax,ay,r,0,Math.PI*2);
+    nCtx.fillStyle=`rgba(${rgb.r},${rgb.g},${rgb.b},${(active?1:0.75)*b*ar})`;nCtx.fill();
+
+    // Core
+    nCtx.beginPath();nCtx.arc(ax,ay,r*0.35,0,Math.PI*2);
+    nCtx.fillStyle=`rgba(255,255,255,${(active?0.8:0.45)*b*ar})`;nCtx.fill();
+
+    // Label
+    nCtx.font='500 '+(active?'13':'11')+'px Inter,sans-serif';
+    nCtx.textAlign='center';nCtx.textBaseline='top';
+    nCtx.fillStyle=`rgba(255,255,255,${(active?0.9:0.4)*b*ar})`;
+    nCtx.fillText(NAMES[i],ax,ay+r+10);
+  });
+
+  // Center node
+  const cPulse=1+Math.sin(nTime*2)*0.06;
+  const cR=cr*ease*cPulse;
+
+  // Center glow
+  nCtx.beginPath();nCtx.arc(ncx,ncy,cR*3.5,0,Math.PI*2);
+  const cGrad=nCtx.createRadialGradient(ncx,ncy,0,ncx,ncy,cR*3.5);
+  const activeCrgb=activeAgent>=0?hexToRgb(COLORS[activeAgent]):{r:6,g:182,b:212};
+  cGrad.addColorStop(0,`rgba(${activeCrgb.r},${activeCrgb.g},${activeCrgb.b},${0.08*ease})`);
+  cGrad.addColorStop(0.5,`rgba(255,255,255,${0.04*ease})`);
+  cGrad.addColorStop(1,'rgba(255,255,255,0)');
+  nCtx.fillStyle=cGrad;nCtx.fill();
+
+  // Center ring
+  nCtx.beginPath();nCtx.arc(ncx,ncy,cR,0,Math.PI*2);
+  nCtx.strokeStyle=`rgba(255,255,255,${0.35*ease})`;nCtx.lineWidth=2;nCtx.stroke();
+
+  // Center fill
+  nCtx.beginPath();nCtx.arc(ncx,ncy,cR*0.72,0,Math.PI*2);
+  nCtx.fillStyle=`rgba(255,255,255,${0.92*ease})`;nCtx.fill();
+
+  // Center slash (ZxAI mark)
+  if(ease>0.4){
+    const sa=Math.min(1,(ease-0.4)/0.3);
+    nCtx.beginPath();nCtx.moveTo(ncx+cR*0.43,ncy-cR*0.535);nCtx.lineTo(ncx-cR*0.04,ncy+cR*0.525);
+    nCtx.strokeStyle=`rgba(6,11,24,${0.75*sa})`;nCtx.lineWidth=3.5;nCtx.lineCap='round';nCtx.stroke();nCtx.lineCap='butt';
+  }
+
+  // Center label
+  if(ease>0.6){
+    const la=Math.min(1,(ease-0.6)/0.2);
+    nCtx.font='600 11px Inter,sans-serif';nCtx.textAlign='center';nCtx.textBaseline='top';
+    nCtx.fillStyle=`rgba(255,255,255,${0.35*la})`;
+    nCtx.fillText('YOUR PRACTICE',ncx,ncy+cR+14);
+  }
+}
+
+// ── Visibility observers ──
+new IntersectionObserver(e=>{heroVisible=e[0].isIntersecting;},{threshold:0}).observe(hC.parentElement);
+new IntersectionObserver(e=>{networkVisible=e[0].isIntersecting;},{threshold:0.05}).observe(stage);
+
+// ── Resize ──
+function onResize(){hResize();nResize();}
+window.addEventListener('resize',onResize);
+onResize();
+
+// ── Main loop ──
+(function loop(){
+  hDraw();
+  nDraw();
+  requestAnimationFrame(loop);
+})();
+
+// ── FAQ accordion ──
+document.querySelectorAll('.faq-question').forEach(q=>{
+  q.addEventListener('click',function(){
+    const item=this.closest('.faq-item');
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el=>{
+      el.classList.remove('open');
+      el.querySelector('.faq-question').setAttribute('aria-expanded','false');
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      this.setAttribute('aria-expanded','true');
+    }
+  });
+  // Support keyboard: Space and Enter already work on <button>, but also support Escape to close
+  q.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){
+      const item=this.closest('.faq-item');
+      item.classList.remove('open');
+      this.setAttribute('aria-expanded','false');
+    }
+  });
+});
+
+// ── Sticky bar ──
+(function(){
+  const bar     = document.getElementById('stickyBar');
+  const dismiss = document.getElementById('stickyDismiss');
+  let dismissed = false;
+  window.addEventListener('scroll', function(){
+    if(!dismissed) bar.classList.toggle('visible', window.scrollY > 560);
+  }, {passive:true});
+  dismiss.addEventListener('click', function(){
+    dismissed = true;
+    bar.classList.remove('visible');
+  });
+})();
+
+// ── Smooth scroll ──
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});
+});
+
+// ══════════════════════════════════════════
+//  ROI CALCULATOR
+// ══════════════════════════════════════════
+(function(){
+  var practiceType = 'insurance';
+
+  function currency(n, compact) {
+    if(compact){
+      if(n>=1000000) return '$'+(n/1000000).toFixed(1)+'M';
+      if(n>=1000)    return '$'+(n/1000).toFixed(0)+'K';
+    }
+    return '$'+Math.round(n).toLocaleString();
+  }
+
+  function currencyMo(n){ return currency(n)+'/mo'; }
+
+  function runCalc(){
+    var providers   = parseInt(document.getElementById('slider-providers').value,10);
+    var revK        = parseInt(document.getElementById('slider-revenue').value,10);
+    var noShowPct   = parseInt(document.getElementById('slider-noshow').value,10)/100;
+    var missedCalls = parseInt(document.getElementById('slider-calls').value,10);
+
+    var revenue        = revK * 1000;
+    var isCash         = practiceType === 'cash';
+    var visitsPerMonth = providers * (isCash ? 80 : 200);
+    var avgVisit       = revenue / visitsPerMonth;
+
+    var frontDesk    = missedCalls * 22 * 0.20 * avgVisit;
+    var recoveryRate = isCash ? 0.80 : 0.75;
+    var scheduling   = visitsPerMonth * noShowPct * recoveryRate * avgVisit;
+
+    var row3;
+    if(isCash){
+      row3 = providers * 4 * avgVisit;
+      document.getElementById('calc-row3-label').textContent = 'Reputation & Growth';
+    } else {
+      row3 = revenue * 0.025;
+      document.getElementById('calc-row3-label').textContent = 'Revenue Recovery';
+    }
+
+    var reactMultiplier = isCash ? 1.6 : 1.0;
+    var reactiv = providers * 10 * avgVisit * reactMultiplier;
+    var staff   = providers * (isCash ? 600 : 800);
+
+    var totalMo = frontDesk + scheduling + row3 + reactiv + staff;
+    var totalYr = totalMo * 12;
+
+    function setRow(moId, yrId, moVal, yrVal){
+      document.getElementById(moId).textContent = currencyMo(moVal);
+      document.getElementById(yrId).textContent = currency(yrVal, true);
+    }
+    setRow('r-frontdesk-mo','r-frontdesk-yr', frontDesk,  frontDesk*12);
+    setRow('r-sched-mo',    'r-sched-yr',     scheduling, scheduling*12);
+    setRow('r-rev-mo',      'r-rev-yr',       row3,       row3*12);
+    setRow('r-react-mo',    'r-react-yr',     reactiv,    reactiv*12);
+    setRow('r-staff-mo',    'r-staff-yr',     staff,      staff*12);
+    document.getElementById('r-total-yr').textContent = currency(totalYr);
+    document.getElementById('r-total-mo').textContent = currencyMo(totalMo);
+    document.getElementById('r-roi-multiple').textContent = (totalMo/9997).toFixed(1)+'x ROI';
+  }
+
+  function updateSlider(slider, displayId, displayFormat){
+    var min = parseFloat(slider.min);
+    var max = parseFloat(slider.max);
+    var val = parseFloat(slider.value);
+    slider.style.setProperty('--pct', ((val-min)/(max-min)*100).toFixed(1)+'%');
+    var el = document.getElementById(displayId);
+    if(displayFormat === 'revenue'){
+      el.innerHTML = val>=1000 ? '<sup>$</sup>'+(val/1000).toFixed(1)+'M' : '<sup>$</sup>'+val+'K';
+    } else if(displayFormat === 'pct'){
+      el.innerHTML = val+'<sup>%</sup>';
+    } else {
+      el.textContent = val;
+    }
+  }
+
+  var sliders = [
+    {id:'slider-providers', display:'val-providers', displayFormat:'int'},
+    {id:'slider-revenue',   display:'val-revenue',   displayFormat:'revenue'},
+    {id:'slider-noshow',    display:'val-noshow',    displayFormat:'pct'},
+    {id:'slider-calls',     display:'val-calls',     displayFormat:'int'},
+  ];
+
+  sliders.forEach(function(def){
+    var sl = document.getElementById(def.id);
+    if(!sl) return;
+    sl.addEventListener('input', function(){
+      updateSlider(sl, def.display, def.displayFormat);
+      runCalc();
+    });
+    updateSlider(sl, def.display, def.displayFormat);
+  });
+
+  runCalc();
+
+  window.setPracticeType = function(type){
+    practiceType = type;
+    var isCash = type === 'cash';
+    document.getElementById('btn-ins').classList.toggle('active', !isCash);
+    document.getElementById('btn-cash').classList.toggle('active', isCash);
+    document.getElementById('btn-ins').setAttribute('aria-pressed', String(!isCash));
+    document.getElementById('btn-cash').setAttribute('aria-pressed', String(isCash));
+    document.getElementById('calc-type-note').textContent = isCash
+      ? 'Optimized for cash-pay and concierge practices. Emphasizes reputation, reactivation, and premium patient retention.'
+      : 'Includes prior auth savings, A/R recovery, and insurance billing optimization.';
+    var ns = document.getElementById('slider-noshow');
+    ns.value = isCash ? 8 : 18;
+    updateSlider(ns, 'val-noshow', 'pct');
+    runCalc();
+  };
+})();
+
+// ══════════════════════════════════════════
+//  PRICING TOGGLE
+// ══════════════════════════════════════════
+(function(){
+  const plans = {
+    single: { mo: 1500,  yr: 1350  },
+    p3:     { mo: 3997,  yr: 3597  },
+    p6:     { mo: 6997,  yr: 6297  },
+    p9:     { mo: 9997,  yr: 8997  },
+  };
+  const perAgent = {
+    single: { mo: null,  yr: null  },
+    p3:     { mo: 1332,  yr: 1199  },
+    p6:     { mo: 1166,  yr: 1050  },
+    p9:     { mo: 1111,  yr: 999   },
+  };
+
+  window.setPricingPeriod = function(period){
+    const annual = period === 'annual';
+    document.getElementById('btn-monthly').classList.toggle('active', !annual);
+    document.getElementById('btn-annual').classList.toggle('active',  annual);
+    document.getElementById('btn-monthly').setAttribute('aria-pressed', String(!annual));
+    document.getElementById('btn-annual').setAttribute('aria-pressed',  String(annual));
+
+    const p = annual ? 'yr' : 'mo';
+
+    document.getElementById('price-single').textContent = plans.single[p].toLocaleString();
+    document.getElementById('price-3').textContent      = plans.p3[p].toLocaleString();
+    document.getElementById('price-6').textContent      = plans.p6[p].toLocaleString();
+    document.getElementById('price-9').textContent      = plans.p9[p].toLocaleString();
+
+    // Per-agent line
+    document.getElementById('peragent-single').innerHTML = annual ? '<span style="color:var(--teal);font-weight:600">$1,350/mo effective</span>' : '&nbsp;';
+    document.getElementById('peragent-3').textContent = annual ? '$1,199/agent' : '$1,332/agent';
+    document.getElementById('peragent-6').textContent = annual ? '$1,050/agent' : '$1,166/agent';
+    document.getElementById('peragent-9').textContent = annual ? '$999/agent'   : '$1,111/agent';
+
+    // Savings line
+    document.getElementById('savings-single').innerHTML = annual ? '$1,800 saved per year' : '&nbsp;';
+    document.getElementById('savings-3').textContent    = annual ? 'Save 20% vs. per-agent' : 'Save 11% vs. per-agent';
+    document.getElementById('savings-6').textContent    = annual ? 'Save 30% vs. per-agent' : 'Save 22% vs. per-agent';
+    document.getElementById('savings-9').textContent    = annual ? 'Save 33% vs. per-agent' : 'Save 26% vs. per-agent';
+  };
+
+  // Initialize monthly
+  setPricingPeriod('monthly');
+})();
+</script>
+
+</body>
+</html>

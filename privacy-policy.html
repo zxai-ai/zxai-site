@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | ZxAI</title>
+  <meta name="description" content="ZxAI Privacy Policy — how we collect, use, and protect information on zxai.ai.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zxai.ai/privacy-policy">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23060B18'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%2306B6D4' stroke-width='1.5'/%3E%3Cline x1='19' y1='9' x2='13' y2='23' stroke='%2306B6D4' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --hero-bg: #060B18;
+      --white: #FFFFFF;
+      --bg-alt: #F7F8FA;
+      --text-primary: #0B0B0B;
+      --text-secondary: #64748B;
+      --border: #E2E8F0;
+      --cyan: #06B6D4;
+      --indigo: #6366F1;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-primary);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 48px; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-logo { text-decoration: none; }
+    .nav-logo svg { height: 32px; width: auto; color: var(--text-primary); }
+    .nav-back {
+      font-size: 14px; font-weight: 500; color: var(--text-secondary);
+      text-decoration: none; display: flex; align-items: center; gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text-primary); }
+    .nav-back svg { width: 16px; height: 16px; }
+
+    /* HERO BAND */
+    .page-hero {
+      background: var(--hero-bg);
+      padding: 120px 48px 72px;
+      text-align: center;
+    }
+    .page-label {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 16px;
+    }
+    .page-title {
+      font-size: clamp(36px, 5vw, 56px); font-weight: 300;
+      letter-spacing: -0.03em; line-height: 1.1; color: var(--white);
+      margin-bottom: 16px;
+    }
+    .page-title strong { font-weight: 600; }
+    .page-meta {
+      font-size: 14px; color: rgba(255,255,255,0.65); letter-spacing: 0.01em;
+    }
+
+    /* CONTENT */
+    .content-wrap {
+      max-width: 760px; margin: 0 auto;
+      padding: 72px 48px 120px;
+    }
+
+    /* TOC */
+    .toc {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 56px;
+    }
+    .toc-heading {
+      font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 8px; }
+    .toc a {
+      font-size: 14px; font-weight: 500; color: var(--text-secondary);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .toc a:hover { color: var(--cyan); }
+
+    /* SECTIONS */
+    .policy-section { margin-bottom: 56px; }
+    .policy-section:last-child { margin-bottom: 0; }
+
+    h2 {
+      font-size: 22px; font-weight: 600; letter-spacing: -0.02em;
+      color: var(--text-primary); margin-bottom: 20px;
+      padding-top: 8px;
+    }
+    h3 {
+      font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
+      color: var(--text-primary); margin-bottom: 12px; margin-top: 28px;
+    }
+    p {
+      font-size: 15px; line-height: 1.8; color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+    p:last-child { margin-bottom: 0; }
+    ul, ol {
+      padding-left: 20px; margin-bottom: 16px;
+    }
+    li {
+      font-size: 15px; line-height: 1.8; color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { font-weight: 600; color: var(--text-primary); }
+
+    /* CALLOUT BOX */
+    .callout {
+      background: linear-gradient(135deg, rgba(6,182,212,0.06), rgba(99,102,241,0.06));
+      border: 1px solid rgba(6,182,212,0.2);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+    }
+    .callout p { color: var(--text-primary); font-size: 14px; margin: 0; }
+
+    /* DIVIDER */
+    hr {
+      border: none; border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* CONTACT TABLE */
+    .contact-block {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-top: 20px;
+    }
+    .contact-block p { margin-bottom: 6px; font-size: 14px; }
+    .contact-block p:last-child { margin-bottom: 0; }
+
+    /* FOOTER */
+    .footer { background: var(--hero-bg); padding: 48px; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo svg { height: 28px; width: auto; color: rgba(255,255,255,0.55); }
+    .footer-right { display: flex; align-items: center; gap: 32px; }
+    .footer-link { font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
+    .footer-link:hover { color: var(--white); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.55); }
+
+    /* SKIP NAV */
+    .skip-nav {
+      position: absolute; top: -56px; left: 16px; z-index: 9999;
+      background: var(--cyan); color: var(--hero-bg);
+      padding: 10px 20px; border-radius: 0 0 8px 8px;
+      font-size: 14px; font-weight: 700; text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-nav:focus { top: 0; outline: 3px solid #0B0B0B; outline-offset: 2px; }
+
+    /* ACCESSIBLE FOCUS RINGS */
+    a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 3px; }
+
+    /* ACCESSIBLE BODY LINK COLOR */
+    .content-wrap a { color: #0369A1; text-decoration: underline; }
+    .content-wrap a:hover { color: var(--cyan); }
+    .toc a { color: var(--text-secondary); text-decoration: none; }
+    .toc a:hover { color: var(--cyan); text-decoration: underline; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav { padding: 0 24px; }
+      .page-hero { padding: 100px 24px 56px; }
+      .content-wrap { padding: 48px 24px 80px; }
+      .footer { padding: 40px 24px; }
+      .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+      .footer-right { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Site navigation">
+    <a href="/" class="nav-logo" aria-label="ZxAI home">
+      <svg viewBox="0 0 1280 360" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><path fill-rule="evenodd" d="M176 94A86 86 0 1 1 176 266A86 86 0 1 1 176 94ZM176 108A72 72 0 1 0 176 252A72 72 0 1 0 176 108ZM212 122L226 131L179 237L165 228L212 122Z"/></g><g fill="currentColor"><path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/><path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/><path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/><path d="M800 116H819V244H800V116Z"/></g></svg>
+    </a>
+    <a href="/" class="nav-back">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3L5 8l5 5"/></svg>
+      Back to site
+    </a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-label">Legal</div>
+    <h1 class="page-title"><strong>Privacy Policy</strong></h1>
+    <p class="page-meta">Effective date: March 20, 2026 &nbsp;·&nbsp; Last updated: March 20, 2026</p>
+  </section>
+
+  <!-- CONTENT -->
+  <main class="content-wrap" id="main-content">
+
+    <div class="callout">
+      <p><strong>The short version:</strong> ZxAI is a B2B company. We do not sell your data. We do not run advertising. We collect only what we need to operate this website and respond to inquiries. If you are a medical practice using ZxAI's services, your patient data is governed by a separate Business Associate Agreement (BAA) — not this policy.</p>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <nav class="toc" aria-label="Table of contents">
+      <div class="toc-heading">Contents</div>
+      <ol>
+        <li><a href="#who-we-are">Who We Are</a></li>
+        <li><a href="#what-we-collect">Information We Collect</a></li>
+        <li><a href="#how-we-use">How We Use Information</a></li>
+        <li><a href="#sharing">How We Share Information</a></li>
+        <li><a href="#cookies">Cookies and Tracking Technologies</a></li>
+        <li><a href="#data-retention">Data Retention</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#hipaa">HIPAA and Healthcare Data</a></li>
+        <li><a href="#ccpa">California Residents (CCPA/CPRA)</a></li>
+        <li><a href="#children">Children's Privacy</a></li>
+        <li><a href="#changes">Changes to This Policy</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ol>
+    </nav>
+
+    <!-- 1 -->
+    <section class="policy-section" id="who-we-are">
+      <h2>1. Who We Are</h2>
+      <p>ZxAI ("ZxAI," "we," "us," or "our") operates the website located at <a href="https://zxai.ai">https://zxai.ai</a> (the "Site"). ZxAI provides AI-powered automation agents for private medical practices in the United States.</p>
+      <p>This Privacy Policy explains how we collect, use, disclose, and safeguard information in connection with your use of this Site. It applies to visitors and prospective customers. It does not apply to information processed on behalf of ZxAI's business customers through our service platform, which is governed by the applicable Master Service Agreement and Business Associate Agreement.</p>
+      <p>For questions about this policy, please contact us at <a href="mailto:hello@zxai.ai">hello@zxai.ai</a>.</p>
+    </section>
+
+    <hr>
+
+    <!-- 2 -->
+    <section class="policy-section" id="what-we-collect">
+      <h2>2. Information We Collect</h2>
+
+      <h3>Information You Provide Directly</h3>
+      <p>We collect information you voluntarily provide when you:</p>
+      <ul>
+        <li><strong>Contact us by email.</strong> When you email <a href="mailto:hello@zxai.ai">hello@zxai.ai</a>, we receive your email address, name (if provided), and the content of your message.</li>
+        <li><strong>Request a consultation or demo.</strong> If you book a call through a scheduling service linked from our Site, the scheduling provider may collect your name, email address, phone number, and calendar availability. Please review the privacy policy of any third-party scheduling tool you use.</li>
+      </ul>
+
+      <h3>Information Collected Automatically</h3>
+      <p>When you visit the Site, certain information may be collected automatically by our web hosting infrastructure or by third-party services embedded in the Site:</p>
+      <ul>
+        <li><strong>Server and access logs.</strong> Standard web server logs may record your IP address, browser type, operating system, referring URL, pages visited, and the date and time of your visit. This is a standard feature of web hosting and is used for security and operational purposes.</li>
+        <li><strong>Google Fonts.</strong> Our Site loads typefaces from Google Fonts. When your browser requests a font file, your IP address is transmitted to Google's servers. Google's privacy practices are governed by the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>. We do not control this data transmission. If you prefer, you can block Google Fonts requests using a browser extension or privacy-focused DNS.</li>
+      </ul>
+
+      <h3>Information We Do Not Collect</h3>
+      <p>ZxAI does not currently use third-party website analytics services (such as Google Analytics), advertising pixels, session recording tools, or chat widgets on this Site. We do not collect payment information through this Site.</p>
+    </section>
+
+    <hr>
+
+    <!-- 3 -->
+    <section class="policy-section" id="how-we-use">
+      <h2>3. How We Use Information</h2>
+      <p>We use the information described above to:</p>
+      <ul>
+        <li>Respond to your inquiries and communicate with you about our services</li>
+        <li>Schedule and conduct consultations and product demonstrations</li>
+        <li>Maintain the security and proper functioning of the Site</li>
+        <li>Comply with legal obligations</li>
+        <li>Improve our marketing and website content (based on aggregate, non-identifiable patterns)</li>
+      </ul>
+      <p>We do not use your information for targeted advertising. We do not sell, rent, or trade your personal information to third parties for their marketing purposes.</p>
+    </section>
+
+    <hr>
+
+    <!-- 4 -->
+    <section class="policy-section" id="sharing">
+      <h2>4. How We Share Information</h2>
+      <p>We do not sell or share your personal information with third parties for their own marketing purposes. We may share information in the following limited circumstances:</p>
+
+      <h3>Service Providers</h3>
+      <p>We may share information with vendors who help us operate the Site or conduct our business — such as web hosting providers, email service providers, and scheduling tools. These vendors are permitted to use your information only to perform services on our behalf.</p>
+
+      <h3>Legal Requirements</h3>
+      <p>We may disclose information when required by law, subpoena, court order, or other legal process, or when we believe disclosure is necessary to protect the rights, property, or safety of ZxAI, our customers, or others.</p>
+
+      <h3>Business Transfers</h3>
+      <p>In the event of a merger, acquisition, sale of assets, or other business transaction, personal information may be transferred as part of that transaction. We will notify you by updating this policy if such a transfer materially affects your rights.</p>
+    </section>
+
+    <hr>
+
+    <!-- 5 -->
+    <section class="policy-section" id="cookies">
+      <h2>5. Cookies and Tracking Technologies</h2>
+      <p>This Site does not use first-party cookies for analytics or advertising. Your browser may receive cookies from third-party services whose content is embedded in or linked from our Site (such as Google Fonts or any scheduling tool you use). These cookies are set by those third parties and are governed by their respective privacy policies.</p>
+      <p>You can control cookies through your browser settings. Most browsers allow you to refuse or delete cookies. Note that blocking certain cookies may affect the functionality of third-party features on this Site.</p>
+    </section>
+
+    <hr>
+
+    <!-- 6 -->
+    <section class="policy-section" id="data-retention">
+      <h2>6. Data Retention</h2>
+      <p>We retain email correspondence and inquiry records for as long as necessary to respond to your request and to maintain a reasonable record of our business communications — typically no longer than three years unless a longer period is required by law or ongoing business relationship.</p>
+      <p>Server log data is retained for up to 90 days for security and operational purposes, after which it is deleted or anonymized.</p>
+      <p>You may request deletion of your personal information at any time by emailing <a href="mailto:hello@zxai.ai">hello@zxai.ai</a>. We will honor deletion requests to the extent consistent with our legal obligations.</p>
+    </section>
+
+    <hr>
+
+    <!-- 7 -->
+    <section class="policy-section" id="security">
+      <h2>7. Security</h2>
+      <p>We implement reasonable technical and organizational measures to protect information against unauthorized access, alteration, disclosure, or destruction. Our Site is served over HTTPS. Access to business communications is restricted to ZxAI personnel with a need to know.</p>
+      <p>No method of transmission over the internet or electronic storage is 100% secure. While we strive to protect your information, we cannot guarantee absolute security. If you believe your information has been compromised, please contact us immediately at <a href="mailto:hello@zxai.ai">hello@zxai.ai</a>.</p>
+    </section>
+
+    <hr>
+
+    <!-- 8 -->
+    <section class="policy-section" id="hipaa">
+      <h2>8. HIPAA and Healthcare Data</h2>
+      <p>ZxAI's service platform processes protected health information (PHI) on behalf of medical practice customers under a Business Associate Agreement (BAA) as required by the Health Insurance Portability and Accountability Act (HIPAA). The BAA governs ZxAI's obligations with respect to PHI.</p>
+      <p><strong>This Privacy Policy does not govern PHI.</strong> If you are a patient of a medical practice that uses ZxAI's platform, please contact that practice directly regarding how your health information is handled. ZxAI processes PHI solely to perform services for covered entities and does not use PHI for its own business purposes.</p>
+      <p>ZxAI automates <strong>administrative and operational</strong> workflows only. ZxAI is not a clinical decision support tool, diagnostic system, or medical device. Nothing in ZxAI's services constitutes medical advice.</p>
+    </section>
+
+    <hr>
+
+    <!-- 9 -->
+    <section class="policy-section" id="ccpa">
+      <h2>9. California Residents (CCPA / CPRA)</h2>
+      <p>If you are a California resident, the California Consumer Privacy Act (CCPA), as amended by the California Privacy Rights Act (CPRA), grants you additional rights with respect to your personal information.</p>
+
+      <h3>Categories of Personal Information Collected</h3>
+      <p>In the past 12 months, we may have collected the following categories of personal information from Site visitors and prospective customers:</p>
+      <ul>
+        <li><strong>Identifiers:</strong> name, email address, IP address</li>
+        <li><strong>Commercial information:</strong> records of correspondence regarding our services</li>
+        <li><strong>Internet activity:</strong> server log information (pages visited, browser type)</li>
+      </ul>
+      <p>We do not sell or share personal information as defined under CCPA/CPRA. We do not use personal information for cross-context behavioral advertising.</p>
+
+      <h3>Your Rights</h3>
+      <p>California residents have the right to:</p>
+      <ul>
+        <li><strong>Know</strong> what personal information we have collected, used, disclosed, or sold</li>
+        <li><strong>Delete</strong> personal information we have collected about you (subject to certain exceptions)</li>
+        <li><strong>Correct</strong> inaccurate personal information</li>
+        <li><strong>Opt out</strong> of the sale or sharing of personal information (we do not sell or share personal information)</li>
+        <li><strong>Non-discrimination</strong> for exercising your rights</li>
+      </ul>
+
+      <h3>How to Submit a Request</h3>
+      <p>To submit a rights request, please email <a href="mailto:hello@zxai.ai">hello@zxai.ai</a> with the subject line "California Privacy Request" and describe your request. We will acknowledge receipt within 10 business days and respond within 45 calendar days. We may ask you to verify your identity before processing your request.</p>
+
+      <h3>Authorized Agent</h3>
+      <p>You may designate an authorized agent to submit a request on your behalf. We will require written proof of the agent's authorization and may verify your identity directly.</p>
+    </section>
+
+    <hr>
+
+    <!-- 10 -->
+    <section class="policy-section" id="children">
+      <h2>10. Children's Privacy</h2>
+      <p>This Site is directed to business professionals and is not intended for use by individuals under the age of 18. We do not knowingly collect personal information from children. If you believe we have inadvertently received information from a child, please contact us at <a href="mailto:hello@zxai.ai">hello@zxai.ai</a> and we will promptly delete it.</p>
+    </section>
+
+    <hr>
+
+    <!-- 11 -->
+    <section class="policy-section" id="changes">
+      <h2>11. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, or legal requirements. We will update the "Last updated" date at the top of this page when we make material changes. We encourage you to review this policy periodically.</p>
+      <p>If we make material changes that significantly affect your rights, we will make reasonable efforts to notify you (for example, by emailing you if you are a registered customer or by posting a notice on the Site).</p>
+    </section>
+
+    <hr>
+
+    <!-- 12 -->
+    <section class="policy-section" id="contact">
+      <h2>12. Contact Us</h2>
+      <p>If you have questions about this Privacy Policy, want to exercise your privacy rights, or have concerns about how your information is handled, please contact us:</p>
+      <div class="contact-block">
+        <p><strong>ZxAI</strong></p>
+        <p>Email: <a href="mailto:hello@zxai.ai">hello@zxai.ai</a></p>
+        <p>Website: <a href="https://zxai.ai">https://zxai.ai</a></p>
+        <p>United States</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="/" class="footer-logo" aria-label="ZxAI home">
+        <svg viewBox="0 0 1280 360" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><path fill-rule="evenodd" d="M176 94A86 86 0 1 1 176 266A86 86 0 1 1 176 94ZM176 108A72 72 0 1 0 176 252A72 72 0 1 0 176 108ZM212 122L226 131L179 237L165 228L212 122Z"/></g><g fill="currentColor"><path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/><path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/><path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/><path d="M800 116H819V244H800V116Z"/></g></svg>
+      </a>
+      <div class="footer-right">
+        <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+        <a href="terms-of-service.html" class="footer-link">Terms of Service</a>
+        <a href="mailto:hello@zxai.ai" class="footer-link">hello@zxai.ai</a>
+        <span class="footer-copy">&copy; 2026 ZxAI</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
