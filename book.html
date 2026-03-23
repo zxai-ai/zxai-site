@@ -21,10 +21,14 @@
 
     :root {
       --hero: #060B18;
+      --surface: #0F172A;
       --cyan: #06B6D4;
+      --cyan-glow: rgba(6, 182, 212, 0.15);
       --white: #FFFFFF;
+      --gray-300: #CBD5E1;
       --gray-400: #94A3B8;
       --gray-600: #475569;
+      --green: #22C55E;
     }
 
     body {
@@ -35,15 +39,15 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
     }
 
-    /* Header */
     .header {
+      position: absolute;
+      top: 0;
       width: 100%;
       padding: 1.25rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      text-align: center;
     }
     .logo-text {
       font-size: 1.5rem;
@@ -54,106 +58,147 @@
     }
     .logo-text span { color: var(--cyan); }
 
-    /* Main content area */
-    .main {
-      width: 100%;
-      max-width: 1000px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 1rem 1.5rem 2rem;
+    .card {
+      max-width: 560px;
+      width: 90%;
+      text-align: center;
+      padding: 3rem 2rem;
     }
 
-    .headline {
-      text-align: center;
-      margin-bottom: 0.5rem;
-    }
-    .headline h1 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
+    .card h1 {
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.2;
+      margin-bottom: 0.75rem;
     }
-    .headline h1 em {
+    .card h1 em {
       font-style: normal;
       color: var(--cyan);
     }
-    .headline p {
+    .card .subtitle {
       color: var(--gray-400);
-      font-size: 1rem;
-      margin-top: 0.5rem;
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
     }
 
-    /* Iframe container */
-    .calendar-wrap {
-      width: 100%;
-      background: var(--white);
-      border-radius: 16px;
-      overflow: hidden;
-      margin-top: 1rem;
-      position: relative;
-      min-height: 680px;
-    }
-    .calendar-wrap iframe {
-      width: 100%;
-      height: 700px;
-      border: none;
-      display: block;
-    }
-
-    /* Loading state */
-    .loading-overlay {
-      position: absolute;
-      inset: 0;
-      background: var(--white);
-      display: flex;
+    /* Primary CTA — opens Google Calendar */
+    .book-btn {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      z-index: 2;
-      transition: opacity 0.4s ease;
+      gap: 0.5rem;
+      background: var(--cyan);
+      color: var(--hero);
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 0 24px var(--cyan-glow);
     }
-    .loading-overlay.hidden {
-      opacity: 0;
-      pointer-events: none;
+    .book-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px var(--cyan-glow);
     }
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid #E2E8F0;
-      border-top-color: var(--cyan);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Trust bar */
+    /* Trust badges */
     .trust {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 1.25rem;
+      margin-top: 2rem;
       color: var(--gray-400);
-      font-size: 0.875rem;
+      font-size: 0.85rem;
     }
     .trust span::before {
-      content: '✓ ';
+      content: '\2713  ';
       color: var(--cyan);
       font-weight: 600;
     }
 
-    /* Footer */
+    /* What to expect section */
+    .expect {
+      margin-top: 2.5rem;
+      text-align: left;
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .expect h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray-400);
+      margin-bottom: 1rem;
+    }
+    .expect ul {
+      list-style: none;
+      padding: 0;
+    }
+    .expect li {
+      padding: 0.5rem 0;
+      color: var(--gray-300);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+    .expect li::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--cyan);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.5rem;
+    }
+
+    /* Post-booking state (hidden by default) */
+    .post-booking {
+      display: none;
+    }
+    .post-booking.visible {
+      display: block;
+    }
+
+    .done-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--cyan);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      border: 1px solid var(--cyan);
+      text-decoration: none;
+      margin-top: 1.5rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .done-btn:hover {
+      background: var(--cyan);
+      color: var(--hero);
+    }
+
     .footer {
-      padding: 1.5rem;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 1.25rem;
       text-align: center;
       color: var(--gray-600);
       font-size: 0.8rem;
     }
 
-    @media (max-width: 600px) {
-      .calendar-wrap iframe { height: 600px; }
-      .trust { gap: 1rem; }
+    @media (max-width: 500px) {
+      .card { padding: 2rem 1.25rem; }
+      .trust { gap: 0.75rem; }
+      .expect { padding: 1.25rem; }
     }
   </style>
 </head>
@@ -163,22 +208,21 @@
     <a href="/" class="logo-text">Zx<span>AI</span></a>
   </div>
 
-  <div class="main">
-    <div class="headline">
-      <h1>Pick a time. <em>We'll handle the rest.</em></h1>
-      <p>30 minutes. Zero cost. Zero pressure.</p>
-    </div>
+  <div class="card">
+    <h1>Pick a time. <em>We handle the rest.</em></h1>
+    <p class="subtitle">30 minutes. Zero cost. Zero pressure.</p>
 
-    <div class="calendar-wrap" id="calendarWrap">
-      <div class="loading-overlay" id="loadingOverlay">
-        <div class="spinner"></div>
-      </div>
-      <iframe
-        id="bookingFrame"
-        src="https://calendar.app.google/jF4TiJNkzXP8DE8n9"
-        title="Schedule a Discovery Call"
-        loading="eager"
-      ></iframe>
+    <a
+      href="https://calendar.app.google/jF4TiJNkzXP8DE8n9"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="book-btn"
+      id="bookBtn"
+    >Choose a time slot &rarr;</a>
+
+    <!-- Shows after user clicks the booking button -->
+    <div class="post-booking" id="postBooking">
+      <a href="/booking-confirmed.html" class="done-btn">I've booked my call &rarr;</a>
     </div>
 
     <div class="trust">
@@ -187,6 +231,16 @@
       <span>No sales pressure</span>
       <span>HIPAA compliant</span>
     </div>
+
+    <div class="expect">
+      <h3>What we'll cover</h3>
+      <ul>
+        <li>Where your practice is losing the most time and revenue right now</li>
+        <li>Which of the 9 AI agents would make the biggest impact first</li>
+        <li>Whether ZxAI is the right fit — no hard sell, honest assessment</li>
+        <li>A clear 90-day roadmap if we move forward together</li>
+      </ul>
+    </div>
   </div>
 
   <div class="footer">
@@ -194,60 +248,29 @@
   </div>
 
   <script>
-    // Hide loading spinner once iframe loads
-    const iframe = document.getElementById('bookingFrame');
-    const overlay = document.getElementById('loadingOverlay');
-    iframe.addEventListener('load', () => {
-      overlay.classList.add('hidden');
+    const bookBtn = document.getElementById('bookBtn');
+    const postBooking = document.getElementById('postBooking');
+
+    // When user clicks the booking button, show the "I've booked" CTA
+    bookBtn.addEventListener('click', () => {
+      gtag('event', 'booking_clicked', {
+        event_category: 'conversion',
+        event_label: 'calendar_opened'
+      });
+
+      // Show the "I've booked my call" button after a short delay
+      setTimeout(() => {
+        postBooking.classList.add('visible');
+      }, 2000);
     });
 
-    // Google Calendar embeds don't allow cross-origin access,
-    // so we can't detect the confirmation inside the iframe directly.
-    // Instead, we use two detection strategies:
-
-    // Strategy 1: Listen for iframe navigation events via load
-    // Google's booking widget fires a new 'load' event after confirmation.
-    let loadCount = 0;
-    iframe.addEventListener('load', () => {
-      loadCount++;
-      // First load = initial page. Second load = confirmation after booking.
-      if (loadCount >= 2) {
-        gtag('event', 'booking_initiated', {
-          event_category: 'conversion',
-          event_label: 'calendar_embed'
-        });
-        // Short delay to let user see the Google confirmation, then redirect
-        setTimeout(() => {
-          window.location.href = '/booking-confirmed.html';
-        }, 2000);
+    // Also show it when user returns to this tab (they booked in the other tab)
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && !postBooking.classList.contains('visible')) {
+        // User came back from the Google Calendar tab
+        postBooking.classList.add('visible');
       }
     });
-
-    // Strategy 2: Fallback — poll for visibility/focus changes
-    // When the user completes booking, they often switch focus back to the page.
-    // We show a subtle "Done booking?" prompt after enough time has passed.
-    let interactionTimer = null;
-    const INTERACTION_DELAY = 60000; // 60 seconds after page load
-
-    setTimeout(() => {
-      // After 60s, if user clicks anywhere outside the iframe, offer redirect
-      document.addEventListener('click', function redirectPrompt(e) {
-        if (!document.getElementById('doneBar')) {
-          const bar = document.createElement('div');
-          bar.id = 'doneBar';
-          bar.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#0F172A;border-top:1px solid #1E293B;padding:1rem;text-align:center;z-index:999;animation:slideUp 0.3s ease';
-          bar.innerHTML = `
-            <span style="color:#94A3B8;margin-right:1rem;">Already booked your call?</span>
-            <a href="/booking-confirmed.html" style="background:#06B6D4;color:#060B18;padding:0.6rem 1.5rem;border-radius:8px;font-weight:600;text-decoration:none;font-size:0.95rem;">Yes — show me what's next →</a>
-          `;
-          document.body.appendChild(bar);
-          // Add slideUp animation
-          const style = document.createElement('style');
-          style.textContent = '@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}';
-          document.head.appendChild(style);
-        }
-      });
-    }, INTERACTION_DELAY);
   </script>
 
 </body>
