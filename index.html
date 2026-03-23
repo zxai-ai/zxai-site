@@ -132,7 +132,7 @@
             },
             {
               "@type": "Offer",
-              "name": "Full Platform — 9 Agents",
+              "name": "Full Platform: 9 Agents",
               "price": "9997",
               "priceCurrency": "USD",
               "description": "Complete AI staff for your medical practice. All 9 agents, 90-day ROI guarantee, pricing locked for life."
@@ -173,7 +173,7 @@
             "name": "Will my patients know they are talking to an AI?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "ZxAI agents have fully customizable names, voices, and personalities. ZxAI requires all practices to notify patients that automated AI systems are used in their operations — this is a contractual requirement and consistent with applicable law. Most practices introduce agents with a custom name and patients respond well to the transparency. What patients care about is that their call gets answered promptly."
+              "text": "ZxAI agents have fully customizable names, voices, and personalities. ZxAI requires all practices to notify patients that automated AI systems are used in their operations. This is a contractual requirement and consistent with applicable law. Most practices introduce agents with a custom name and patients respond well to the transparency. What patients care about is that their call gets answered promptly."
             }
           },
           {
@@ -441,14 +441,52 @@
 
     .network-hint {
       text-align: center;
-      padding: 20px 48px 0;
-      font-size: 13px;
-      color: rgba(255,255,255,0.2);
-      letter-spacing: 0.01em;
+      padding: 16px 48px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
       transition: opacity 0.6s;
     }
-    .network-hint.hidden { opacity: 0; }
+    .network-hint.hidden { opacity: 0; pointer-events: none; }
+    .hint-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 24px;
+      background: rgba(6,182,212,0.1);
+      border: 1px solid rgba(6,182,212,0.4);
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.92);
+      letter-spacing: 0.01em;
+      animation: hintGlow 2.8s ease-in-out infinite;
+    }
+    @keyframes hintGlow {
+      0%, 100% { border-color: rgba(6,182,212,0.4); box-shadow: 0 0 0 0 rgba(6,182,212,0); }
+      50% { border-color: rgba(6,182,212,0.75); box-shadow: 0 0 24px rgba(6,182,212,0.18); }
+    }
+    .hint-icon { width: 16px; height: 16px; opacity: 0.8; flex-shrink: 0; }
     .hint-mobile { display: none; }
+
+    /* Dossier CTA */
+    .dossier-cta {
+      display: block;
+      margin-top: 16px;
+      padding: 10px 16px;
+      background: rgba(6,182,212,0.1);
+      border: 1px solid rgba(6,182,212,0.3);
+      border-radius: 8px;
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .dossier-cta:hover { background: rgba(6,182,212,0.2); border-color: rgba(6,182,212,0.55); color: #fff; }
 
     /* ── HOW IT WORKS ── */
     .how-section { background: var(--bg-alt); }
@@ -875,7 +913,7 @@
         </div>
         <div class="proof-stat">
           <div class="proof-stat-num">18%</div>
-          <div class="proof-stat-label">of your scheduled patients may not show up — each one lost revenue</div>
+          <div class="proof-stat-label">of your scheduled patients may not show up, each one lost revenue</div>
           <div class="proof-stat-source">Source: MGMA Benchmarks</div>
         </div>
         <div class="proof-stat">
@@ -931,6 +969,7 @@
           <span class="dossier-outcome">24/7 Availability</span>
         </div>
         <span class="dossier-tag">All practice types</span>
+        <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="dossier-cta" target="_blank" rel="noopener noreferrer">Hire this agent &rarr;</a>
       </div>
 
       <div class="dossier" data-agent="1">
@@ -945,6 +984,7 @@
           <span class="dossier-outcome">More Bookings</span>
         </div>
         <span class="dossier-tag">All practice types</span>
+        <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="dossier-cta" target="_blank" rel="noopener noreferrer">Hire this agent &rarr;</a>
       </div>
 
       <div class="dossier" data-agent="2">
@@ -987,6 +1027,7 @@
           <span class="dossier-outcome">Higher LTV</span>
         </div>
         <span class="dossier-tag">All practice types</span>
+        <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="dossier-cta" target="_blank" rel="noopener noreferrer">Hire this agent &rarr;</a>
       </div>
 
       <div class="dossier" data-agent="5">
@@ -1001,6 +1042,7 @@
           <span class="dossier-outcome">More Revenue Per Patient</span>
         </div>
         <span class="dossier-tag">All practice types</span>
+        <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="dossier-cta" target="_blank" rel="noopener noreferrer">Hire this agent &rarr;</a>
       </div>
 
       <div class="dossier" data-agent="6">
@@ -1015,6 +1057,7 @@
           <span class="dossier-outcome">Fewer Public Complaints</span>
         </div>
         <span class="dossier-tag">All practice types</span>
+        <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="dossier-cta" target="_blank" rel="noopener noreferrer">Hire this agent &rarr;</a>
       </div>
 
       <div class="dossier" data-agent="7">
@@ -1029,6 +1072,7 @@
           <span class="dossier-outcome">More New Patients</span>
         </div>
         <span class="dossier-tag">All practice types</span>
+        <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="dossier-cta" target="_blank" rel="noopener noreferrer">Hire this agent &rarr;</a>
       </div>
 
       <div class="dossier" data-agent="8">
@@ -1043,12 +1087,18 @@
           <span class="dossier-outcome">Found Everywhere</span>
         </div>
         <span class="dossier-tag">All practice types</span>
+        <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="dossier-cta" target="_blank" rel="noopener noreferrer">Hire this agent &rarr;</a>
       </div>
 
     </div>
     <div class="network-hint" id="networkHint">
-      <span class="hint-desktop">Hover a node to meet an agent</span>
-      <span class="hint-mobile">Tap a node to meet an agent</span>
+      <div class="hint-pill">
+        <svg class="hint-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3.5 0L3.5 11L6 8.5L7.5 13L9 12.5L7.5 8H11L3.5 0Z" fill="currentColor"/>
+        </svg>
+        <span class="hint-desktop">Hover a node to meet an agent</span>
+        <span class="hint-mobile">Tap a node to meet an agent</span>
+      </div>
     </div>
   </section>
 
@@ -1362,7 +1412,7 @@
             <span class="faq-question-text">Is this HIPAA compliant?</span>
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
-          <div class="faq-answer" id="faq-answer-1" role="region"><p>Yes. Every vendor in our stack has a signed BAA. Patient data never leaves your systems. All transmissions are encrypted in transit and at rest. We've built this specifically for healthcare — HIPAA isn't an afterthought.</p></div>
+          <div class="faq-answer" id="faq-answer-1" role="region"><p>Yes. Every vendor in our stack has a signed BAA. Patient data never leaves your systems. All transmissions are encrypted in transit and at rest. We've built this specifically for healthcare. HIPAA isn't an afterthought.</p></div>
         </div>
 
         <div class="faq-item">
@@ -1378,7 +1428,7 @@
             <span class="faq-question-text">How long does setup take?</span>
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
-          <div class="faq-answer" id="faq-answer-3" role="region"><p>Most practices are live within 2–4 weeks of signing. The main variable is EHR vendor credentialing — processing times vary by system and typically range from a few days to two weeks. Once API credentials are issued, our setup takes under a week. Your staff gets one hour of walkthrough. That's it.</p></div>
+          <div class="faq-answer" id="faq-answer-3" role="region"><p>Most practices are live within 2–4 weeks of signing. The main variable is EHR vendor credentialing. Processing times vary by system and typically range from a few days to two weeks. Once API credentials are issued, our setup takes under a week. Your staff gets one hour of walkthrough. That's it.</p></div>
         </div>
 
         <div class="faq-item">
@@ -1386,7 +1436,7 @@
             <span class="faq-question-text">Will my patients know they're talking to AI?</span>
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
-          <div class="faq-answer" id="faq-answer-4" role="region"><p>ZxAI agents have fully customizable names, voices, and personalities. We require all practices to notify patients that automated AI systems are used in their operations — this is a contractual requirement and consistent with applicable law. Most practices introduce agents with a friendly custom name ("Hi, this is Mia, an AI assistant at Riverside Family Medicine") and patients respond well to the transparency. What patients actually care about is that their call gets answered promptly.</p></div>
+          <div class="faq-answer" id="faq-answer-4" role="region"><p>ZxAI agents have fully customizable names, voices, and personalities. We require all practices to notify patients that automated AI systems are used in their operations. This is a contractual requirement and consistent with applicable law. Most practices introduce agents with a friendly custom name ("Hi, this is Mia, an AI assistant at Riverside Family Medicine") and patients respond well to the transparency. What patients actually care about is that their call gets answered promptly.</p></div>
         </div>
 
         <div class="faq-item">
@@ -1394,7 +1444,7 @@
             <span class="faq-question-text">What if we don't see results?</span>
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
-          <div class="faq-answer" id="faq-answer-5" role="region"><p>Full Platform includes a 90-day ROI guarantee. If your agents don't recover their cost within 90 days, we keep working — for free — until they do. We put the risk on us, not you. If it doesn't work, we keep working until it does.</p></div>
+          <div class="faq-answer" id="faq-answer-5" role="region"><p>Full Platform includes a 90-day ROI guarantee. If your agents don't recover their cost within 90 days, we keep working for free until they do. We put the risk on us, not you. If it doesn't work, we keep working until it does.</p></div>
         </div>
 
         <div class="faq-item">
@@ -1410,7 +1460,7 @@
             <span class="faq-question-text">What are the contract terms?</span>
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
-          <div class="faq-answer" id="faq-answer-7" role="region"><p>Month-to-month on monthly plans. Annual plans are prepaid and locked in — no cancellation mid-term, but pricing is locked for life. No long-term commitments required to get started.</p></div>
+          <div class="faq-answer" id="faq-answer-7" role="region"><p>Month-to-month on monthly plans. Annual plans are prepaid and locked in with no cancellation mid-term, but pricing is locked for life. No long-term commitments required to get started.</p></div>
         </div>
 
       </div>
@@ -1423,7 +1473,7 @@
     <div class="adoption-inner reveal">
       <div class="adoption-eyebrow">The Shift Is Underway</div>
       <h2 class="adoption-heading">The practices winning patients today<br><strong>already have AI working for them.</strong></h2>
-      <p class="adoption-sub">Hospital systems and large groups have IT teams deploying AI at scale. Independent practices don't. That gap is widening — and patients are noticing.</p>
+      <p class="adoption-sub">Hospital systems and large groups have IT teams deploying AI at scale. Independent practices don't. That gap is widening, and patients are noticing.</p>
       <div class="adoption-stats">
         <div class="adoption-stat">
           <div class="adoption-stat-num">70%</div>
