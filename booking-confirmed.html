@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're In — ZxAI Discovery Call Confirmed</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23060B18'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%2306B6D4' stroke-width='1.5'/%3E%3Cline x1='19' y1='9' x2='13' y2='23' stroke='%2306B6D4' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2TJ8X70VZT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2TJ8X70VZT');
+    // Track booking conversion
+    gtag('event', 'booking_confirmed', { event_category: 'conversion', event_label: 'discovery_call' });
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --hero: #060B18;
+      --cyan: #06B6D4;
+      --cyan-dark: #0891B2;
+      --indigo: #6366F1;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-500: #64748B;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1E293B;
+      --gray-900: #0F172A;
+      --green: #10B981;
+      --green-bg: #ECFDF5;
+      --green-border: #A7F3D0;
+    }
+
+    body {
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--hero);
+      color: var(--white);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header ── */
+    .header {
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo svg { height: 32px; width: auto; }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 40px 24px 48px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .check-badge {
+      width: 72px; height: 72px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      animation: scaleIn 0.5s ease-out;
+    }
+    @keyframes scaleIn {
+      0% { transform: scale(0); opacity: 0; }
+      60% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .check-badge svg { width: 36px; height: 36px; }
+
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      color: var(--white);
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--gray-400);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ── Main Content ── */
+    .content {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--gray-900);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 20px;
+    }
+    .card-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      margin-bottom: 16px;
+    }
+    .card h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+    .card p {
+      font-size: 15px;
+      color: var(--gray-400);
+      margin-bottom: 12px;
+    }
+
+    /* ── Agenda List ── */
+    .agenda-list {
+      list-style: none;
+      padding: 0;
+    }
+    .agenda-item {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .agenda-item:last-child { border-bottom: none; }
+    .agenda-num {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      background: rgba(6,182,212,0.1);
+      border: 1px solid rgba(6,182,212,0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+    .agenda-text {
+      flex: 1;
+      padding-top: 4px;
+    }
+    .agenda-text strong {
+      display: block;
+      font-size: 15px;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+    .agenda-text span {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+
+    /* ── Prep Checklist ── */
+    .prep-list {
+      list-style: none;
+      padding: 0;
+    }
+    .prep-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 10px 0;
+    }
+    .prep-check {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border: 2px solid var(--gray-600);
+      border-radius: 6px;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .prep-check.checked {
+      background: var(--green);
+      border-color: var(--green);
+    }
+    .prep-check svg { width: 14px; height: 14px; opacity: 0; transition: opacity 0.2s; }
+    .prep-check.checked svg { opacity: 1; }
+    .prep-item-text {
+      font-size: 15px;
+      color: var(--gray-400);
+      transition: color 0.2s;
+    }
+    .prep-item.done .prep-item-text {
+      color: var(--gray-600);
+      text-decoration: line-through;
+    }
+
+    /* ── Stat Row ── */
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .stat {
+      background: var(--gray-900);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--cyan);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+
+    /* ── Expectation Bar ── */
+    .expect-bar {
+      background: rgba(6,182,212,0.06);
+      border: 1px solid rgba(6,182,212,0.12);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .expect-icon {
+      flex-shrink: 0;
+      width: 40px; height: 40px;
+      background: rgba(6,182,212,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .expect-icon svg { width: 20px; height: 20px; color: var(--cyan); }
+    .expect-text { font-size: 14px; color: var(--gray-400); }
+    .expect-text strong { color: var(--white); }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer p { font-size: 13px; color: var(--gray-600); }
+    .footer a { color: var(--cyan-dark); text-decoration: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 16px; }
+      .stats { grid-template-columns: 1fr; }
+      .card { padding: 24px 20px; }
+    }
+
+    /* ── Google Fonts ── */
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <a href="https://zxai.ai" class="logo">
+      <svg viewBox="0 0 1280 360" xmlns="http://www.w3.org/2000/svg" style="color:#fff">
+        <g fill="currentColor"><path fill-rule="evenodd" d="M176 94A86 86 0 1 1 176 266A86 86 0 1 1 176 94ZM176 108A72 72 0 1 0 176 252A72 72 0 1 0 176 108ZM212 122L226 131L179 237L165 228L212 122Z"/></g>
+        <g fill="currentColor"><path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/><path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/><path d="M654 116H697L773 244H753L736 211H614L597 244H577L654 116ZM624 195H726L675 134L624 195Z"/><path d="M813 116H833V244H813V116Z"/></g>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="check-badge">
+      <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="3">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <h1>You're confirmed.</h1>
+    <p>Your discovery call is booked. Here's exactly what to expect so we make the most of your 30 minutes.</p>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">30</div>
+        <div class="stat-label">Minutes</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">$0</div>
+        <div class="stat-label">Cost to you</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">Zero</div>
+        <div class="stat-label">Sales pressure</div>
+      </div>
+    </div>
+
+    <!-- Agenda -->
+    <div class="card">
+      <div class="card-label">Call Agenda</div>
+      <h2>What we'll cover</h2>
+      <p>This is not a pitch. We'll spend the full 30 minutes on your practice — your numbers, your bottlenecks, your specific situation.</p>
+
+      <ul class="agenda-list">
+        <li class="agenda-item">
+          <div class="agenda-num">1</div>
+          <div class="agenda-text">
+            <strong>Your biggest time sinks</strong>
+            <span>Where your team is spending hours on tasks that should take minutes — scheduling, prior auth, billing follow-ups, patient outreach.</span>
+          </div>
+        </li>
+        <li class="agenda-item">
+          <div class="agenda-num">2</div>
+          <div class="agenda-text">
+            <strong>The revenue you're leaving on the table</strong>
+            <span>We'll estimate what no-shows, lapsed patients, and billing gaps are actually costing you per year. Most practices don't know until they do the math.</span>
+          </div>
+        </li>
+        <li class="agenda-item">
+          <div class="agenda-num">3</div>
+          <div class="agenda-text">
+            <strong>Which agents fit your practice</strong>
+            <span>Not every practice needs all nine. We'll identify the 2–3 agents that would have the highest impact based on your volume and payer mix.</span>
+          </div>
+        </li>
+        <li class="agenda-item">
+          <div class="agenda-num">4</div>
+          <div class="agenda-text">
+            <strong>What the first 90 days look like</strong>
+            <span>If it makes sense, we'll walk through the onboarding timeline and what results to expect by month three.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Prep Checklist -->
+    <div class="card">
+      <div class="card-label">Before the Call</div>
+      <h2>Quick prep (optional, but helpful)</h2>
+      <p>You don't need to prepare anything. But if you have these numbers handy, we can get more specific in 30 minutes.</p>
+
+      <ul class="prep-list">
+        <li class="prep-item" onclick="togglePrep(this)">
+          <div class="prep-check">
+            <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="prep-item-text">Your approximate monthly patient volume</span>
+        </li>
+        <li class="prep-item" onclick="togglePrep(this)">
+          <div class="prep-check">
+            <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="prep-item-text">Your no-show / cancellation rate (even a rough guess)</span>
+        </li>
+        <li class="prep-item" onclick="togglePrep(this)">
+          <div class="prep-check">
+            <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="prep-item-text">Which EHR/PMS you use (athenahealth, Tebra, AdvancedMD, etc.)</span>
+        </li>
+        <li class="prep-item" onclick="togglePrep(this)">
+          <div class="prep-check">
+            <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="prep-item-text">Your top payer mix (which insurers make up most of your claims)</span>
+        </li>
+        <li class="prep-item" onclick="togglePrep(this)">
+          <div class="prep-check">
+            <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="prep-item-text">The one thing that frustrates your front desk team the most</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- What this is NOT -->
+    <div class="expect-bar">
+      <div class="expect-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
+      <div class="expect-text">
+        <strong>No slides. No pitch deck. No pressure.</strong> Just your numbers and an honest conversation about whether AI agents make sense for your practice.
+      </div>
+    </div>
+
+    <!-- Video placeholder — ready for VSL when recorded -->
+    <!--
+    <div class="card" id="vsl-container" style="padding:0; overflow:hidden;">
+      <div class="card-label" style="padding:24px 32px 0;">Watch Before Your Call</div>
+      <div style="position:relative; padding-bottom:56.25%; height:0;">
+        <iframe src="YOUR_VIDEO_URL" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:0 0 16px 16px;" allowfullscreen></iframe>
+      </div>
+    </div>
+    -->
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Questions before the call? Email <a href="mailto:am@zxai.ai">am@zxai.ai</a></p>
+    <p style="margin-top:8px;">&copy; 2026 ZxAI LLC &middot; <a href="https://zxai.ai">zxai.ai</a></p>
+  </div>
+
+  <script>
+    function togglePrep(el) {
+      el.classList.toggle('done');
+      el.querySelector('.prep-check').classList.toggle('checked');
+    }
+  </script>
+</body>
+</html>

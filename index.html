@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- www to apex redirect: must be first to avoid rendering www at all -->
-    <script>
-          (function(){
-                  var h = window.location.hostname;
-                  if (h === 'www.zxai.ai') {
-                            window.location.replace(
-                                        window.location.href.replace('://www.zxai.ai', '://zxai.ai')
-                                      );
-                  }
-          })();
-    </script>
+  <!-- www → apex redirect: must be first to avoid rendering www at all -->
+  <script>
+    (function(){
+      var h = window.location.hostname;
+      if (h === 'www.zxai.ai') {
+        window.location.replace(
+          window.location.href.replace('://www.zxai.ai', '://zxai.ai')
+        );
+      }
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2TJ8X70VZT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2TJ8X70VZT');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZxAI: AI Agents for Medical Practices | Scheduling, Billing &amp; Patient Outreach</title>
