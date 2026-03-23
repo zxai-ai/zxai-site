@@ -1652,9 +1652,9 @@ function nResize(){
 }
 
 function findNode(mx,my){
-  const hitBase=isMobile()?50:38;
-  // Larger sticky zone for currently active node (hysteresis)
-  const hitSticky=isMobile()?60:56;
+  const hitBase=isMobile()?50:44;
+  // Larger sticky zone for currently active node — keeps dossier open while reading
+  const hitSticky=isMobile()?65:72;
   let best=-1,bestD=Infinity;
   nNodes.forEach((n,i)=>{
     const dx=mx-n.x,dy=my-n.y,d=Math.sqrt(dx*dx+dy*dy);
@@ -1699,15 +1699,15 @@ function setActive(i){
   if(i>=0){for(let j=0;j<6;j++)nParts.push({ai:i,p:Math.random()*0.2,s:0.006+Math.random()*0.006,r:2+Math.random()*2,d:1,life:1,extra:true});}
 }
 
-// Mouse/touch
-nC.addEventListener('mousemove',e=>{
+// Mouse/touch — listeners on stage so dossier panels don't block canvas events
+stage.addEventListener('mousemove',e=>{
   const r=nC.getBoundingClientRect();
   const mx=(e.clientX-r.left)*(nW/r.width), my=(e.clientY-r.top)*(nH/r.height);
   const found=findNode(mx,my);
-  nC.style.cursor=found>=0?'pointer':'default';
+  stage.style.cursor=found>=0?'pointer':'default';
   setActive(found);
 });
-nC.addEventListener('mouseleave',()=>{setActive(-1);nC.style.cursor='default';});
+stage.addEventListener('mouseleave',()=>{setActive(-1);stage.style.cursor='default';});
 nC.addEventListener('touchstart',e=>{
   e.preventDefault();
   const t=e.touches[0],r=nC.getBoundingClientRect();
