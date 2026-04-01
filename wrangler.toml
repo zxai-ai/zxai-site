@@ -9,4 +9,4 @@ directory = "src/pages"
 [[d1_databases]]
 binding = "DB"
 database_name = "audit-db"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "f8c6624e-b638-490b-8e51-a89e1180084d"
