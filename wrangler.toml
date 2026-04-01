@@ -1,0 +1,12 @@
+name = "zxai-audit"
+main = "src/workers/pipeline.ts"
+compatibility_date = "2024-06-01"
+
+# Static assets (HTML pages served alongside the Worker)
+[assets]
+directory = "src/pages"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "audit-db"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"

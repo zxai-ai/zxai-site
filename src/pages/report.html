@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Visibility Audit Report | ZxAI</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8f9fa; color: #1a1a2e; line-height: 1.5; }
+    .loading { display: flex; align-items: center; justify-content: center; min-height: 100vh; font-size: 1.1rem; color: #666; }
+    .error { text-align: center; padding: 4rem 2rem; color: #dc2626; }
+    .report { max-width: 800px; margin: 0 auto; padding: 2rem; }
+
+    /* Header */
+    .header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 2px solid #1a1a2e; margin-bottom: 2rem; }
+    .header h1 { font-size: 1.2rem; color: #1a1a2e; }
+    .header .meta { text-align: right; font-size: 0.85rem; color: #666; }
+
+    /* Overall score */
+    .overall { text-align: center; padding: 2rem; margin-bottom: 2rem; background: #1a1a2e; border-radius: 12px; color: #fff; }
+    .overall .score { font-size: 4rem; font-weight: 800; }
+    .overall .label { font-size: 1rem; color: #ccc; margin-top: 0.25rem; }
+    .score-red { color: #f87171; }
+    .score-yellow { color: #fbbf24; }
+    .score-green { color: #4ade80; }
+
+    /* Dimensions */
+    .dimensions { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+    .dim-card { background: #fff; border-radius: 8px; padding: 1.25rem; border: 1px solid #e5e7eb; }
+    .dim-card h3 { font-size: 0.85rem; text-transform: uppercase; color: #666; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .dim-score { font-size: 2rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .dim-summary { font-size: 0.9rem; color: #444; margin-bottom: 0.75rem; }
+    .dim-findings { list-style: none; }
+    .dim-findings li { font-size: 0.85rem; color: #555; padding: 0.2rem 0; padding-left: 1rem; position: relative; }
+    .dim-findings li::before { content: "\2022"; position: absolute; left: 0; color: #999; }
+
+    /* Recommendations */
+    .recs { margin-bottom: 2rem; }
+    .recs h2 { font-size: 1.25rem; margin-bottom: 1rem; }
+    .rec-card { background: #fff; border-radius: 8px; padding: 1.25rem; border: 1px solid #e5e7eb; margin-bottom: 0.75rem; display: flex; gap: 1rem; align-items: flex-start; }
+    .rec-num { background: #1a1a2e; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+    .rec-body h4 { font-size: 1rem; margin-bottom: 0.25rem; }
+    .rec-body p { font-size: 0.9rem; color: #555; }
+    .rec-tags { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+    .tag { font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; background: #f3f4f6; color: #555; }
+    .tag-easy { background: #dcfce7; color: #166534; }
+    .tag-medium { background: #fef3c7; color: #92400e; }
+    .tag-hard { background: #fecaca; color: #991b1b; }
+
+    /* CTA */
+    .cta { text-align: center; padding: 2rem; background: #1a1a2e; border-radius: 12px; color: #fff; margin-bottom: 2rem; }
+    .cta h2 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .cta p { color: #ccc; margin-bottom: 1rem; font-size: 0.95rem; }
+    .cta a { display: inline-block; padding: 0.75rem 2rem; background: #4ade80; color: #1a1a2e; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 1rem; }
+    .cta a:hover { background: #22c55e; }
+
+    /* Footer */
+    .footer { text-align: center; padding: 1rem; color: #999; font-size: 0.8rem; }
+    .footer button { background: none; border: 1px solid #ccc; padding: 0.4rem 1rem; border-radius: 4px; cursor: pointer; color: #666; font-size: 0.8rem; margin-top: 0.5rem; }
+
+    @media print {
+      body { background: #fff; }
+      .cta, .footer button { display: none; }
+      .report { padding: 0; }
+      .dim-card, .rec-card { break-inside: avoid; }
+    }
+
+    @media (max-width: 600px) {
+      .dimensions { grid-template-columns: 1fr; }
+      .report { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="loading">Loading your report...</div>
+
+  <script>
+    (async function () {
+      const app = document.getElementById('app');
+      const pathParts = window.location.pathname.split('/');
+      const orderId = pathParts[pathParts.length - 1];
+
+      if (!orderId) {
+        app.className = 'error';
+        app.textContent = 'No report ID found in URL.';
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/report/${orderId}`);
+        const data = await res.json();
+
+        if (data.error) {
+          app.className = 'error';
+          app.textContent = 'Report not found.';
+          return;
+        }
+
+        if (!data.report) {
+          app.className = 'loading';
+          app.innerHTML = `Your report is still being built. Current status: <strong>${data.status}</strong>. Refresh in a moment.`;
+          return;
+        }
+
+        renderReport(data.report);
+      } catch (err) {
+        app.className = 'error';
+        app.textContent = 'Failed to load report. Please try again.';
+      }
+    })();
+
+    function scoreColor(score) {
+      if (score < 40) return 'score-red';
+      if (score <= 70) return 'score-yellow';
+      return 'score-green';
+    }
+
+    function renderReport(r) {
+      const app = document.getElementById('app');
+      app.className = '';
+
+      const dims = [
+        { key: 'seo', label: 'SEO Health' },
+        { key: 'geo_ai', label: 'GEO / AI Visibility' },
+        { key: 'local', label: 'Local Presence' },
+        { key: 'content', label: 'Content Quality' },
+        { key: 'competitor_gap', label: 'Competitor Gap' },
+      ];
+
+      app.innerHTML = `
+        <div class="report">
+          <div class="header">
+            <div>
+              <h1>AI Visibility Audit</h1>
+              <div style="font-size:0.9rem;color:#444;margin-top:0.25rem;">${esc(r.practice_name)}</div>
+            </div>
+            <div class="meta">
+              <div>${esc(r.url)}</div>
+              <div>${esc(r.audit_date)}</div>
+            </div>
+          </div>
+
+          <div class="overall">
+            <div class="score ${scoreColor(r.scores.overall)}">${r.scores.overall}</div>
+            <div class="label">Overall AI Visibility Score</div>
+          </div>
+
+          <div class="dimensions">
+            ${dims.map(d => {
+              const s = r.scores[d.key];
+              return `<div class="dim-card">
+                <h3>${d.label}</h3>
+                <div class="dim-score ${scoreColor(s.score)}">${s.score}</div>
+                <div class="dim-summary">${esc(s.summary)}</div>
+                <ul class="dim-findings">
+                  ${s.findings.map(f => `<li>${esc(f)}</li>`).join('')}
+                </ul>
+              </div>`;
+            }).join('')}
+          </div>
+
+          <div class="recs">
+            <h2>Recommendations</h2>
+            ${r.recommendations.map((rec, i) => `
+              <div class="rec-card">
+                <div class="rec-num">${i + 1}</div>
+                <div class="rec-body">
+                  <h4>${esc(rec.action)}</h4>
+                  <p>${esc(rec.impact)}</p>
+                  <div class="rec-tags">
+                    <span class="tag tag-${rec.difficulty}">${rec.difficulty}</span>
+                    <span class="tag">${esc(rec.dimension)}</span>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="cta">
+            <h2>Want us to fix this?</h2>
+            <p>We help medical practices get found by patients and AI systems alike.</p>
+            <a href="/book.html">Book a free consultation</a>
+          </div>
+
+          <div class="footer">
+            Generated by ZxAI
+            <br>
+            <button onclick="window.print()">Print / Save as PDF</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function esc(str) {
+      const el = document.createElement('span');
+      el.textContent = str || '';
+      return el.innerHTML;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["order_id", "url", "practice_name", "audit_date", "scores", "recommendations"],
+  "properties": {
+    "order_id": { "type": "string" },
+    "url": { "type": "string" },
+    "practice_name": { "type": "string" },
+    "audit_date": { "type": "string" },
+    "scores": {
+      "type": "object",
+      "required": ["overall", "seo", "geo_ai", "local", "content", "competitor_gap"],
+      "properties": {
+        "overall": { "type": "number", "minimum": 0, "maximum": 100 },
+        "seo": { "$ref": "#/definitions/dimensionScore" },
+        "geo_ai": { "$ref": "#/definitions/dimensionScore" },
+        "local": { "$ref": "#/definitions/dimensionScore" },
+        "content": { "$ref": "#/definitions/dimensionScore" },
+        "competitor_gap": { "$ref": "#/definitions/dimensionScore" }
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 5,
+      "items": { "$ref": "#/definitions/recommendation" }
+    }
+  },
+  "definitions": {
+    "dimensionScore": {
+      "type": "object",
+      "required": ["score", "summary", "findings"],
+      "properties": {
+        "score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "summary": { "type": "string" },
+        "findings": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "maxItems": 5
+        }
+      }
+    },
+    "recommendation": {
+      "type": "object",
+      "required": ["action", "impact", "difficulty", "dimension"],
+      "properties": {
+        "action": { "type": "string" },
+        "impact": { "type": "string" },
+        "difficulty": { "type": "string", "enum": ["easy", "medium", "hard"] },
+        "dimension": { "type": "string" }
+      }
+    }
+  }
+}
