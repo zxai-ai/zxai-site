@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZxAI — Nine AI Agents Built for Medical Practices</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --hero-bg:        #060B18;
+      --bg-alt:         #F7F8FA;
+      --bg-surface:     #0d1526;
+      --bg-card:        #111827;
+      --white:          #FFFFFF;
+      --text-primary:   #0B0B0B;
+      --text-secondary: #64748B;
+      --text-tertiary:  #94A3B8;
+      --border:         #E2E8F0;
+      --border-dark:    rgba(255,255,255,0.08);
+      --cyan:    #06B6D4;
+      --sky:     #0EA5E9;
+      --indigo:  #6366F1;
+      --violet:  #8B5CF6;
+      --purple:  #A855F7;
+      --pink:    #EC4899;
+      --teal:    #14B8A6;
+      --rose:    #F43F5E;
+      --amber:   #F59E0B;
+      --gradient: linear-gradient(135deg, #06B6D4, #6366F1);
+      --shadow-sm:    0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md:    0 8px 32px rgba(0,0,0,0.12);
+      --shadow-brand: 0 8px 32px rgba(6,182,212,0.25);
+      --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 20px; --r-pill: 100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--hero-bg);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,11,24,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-dark);
+      padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo svg { height: 22px; width: auto; }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-link {
+      font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.45);
+      padding: 6px 14px; border-radius: var(--r-sm); text-decoration: none;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-link:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.06); }
+    .nav-cta {
+      background: var(--gradient); color: white; font-size: 13px; font-weight: 600;
+      padding: 8px 20px; border-radius: var(--r-sm); text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-brand); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; overflow: hidden;
+      padding: 100px 48px 80px;
+      background: var(--hero-bg);
+    }
+    .hero-bg-orbs {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .orb {
+      position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.18;
+    }
+    .orb-1 { width: 600px; height: 600px; background: #06B6D4; top: -200px; left: -100px; }
+    .orb-2 { width: 500px; height: 500px; background: #6366F1; top: -100px; right: -100px; }
+    .orb-3 { width: 300px; height: 300px; background: #8B5CF6; bottom: -100px; left: 40%; }
+
+    .hero-inner { max-width: 960px; margin: 0 auto; position: relative; z-index: 1; text-align: center; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--cyan); margin-bottom: 28px;
+      background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.2);
+      padding: 6px 16px; border-radius: var(--r-pill);
+    }
+    .eyebrow-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--cyan);
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;box-shadow:0 0 6px var(--cyan);} 50%{opacity:0.4;box-shadow:none;} }
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 64px); font-weight: 300; letter-spacing: -0.03em;
+      line-height: 1.06; color: white; margin-bottom: 24px;
+    }
+    .hero h1 strong { font-weight: 600; }
+    .hero h1 .gradient-text {
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 18px; line-height: 1.7; color: rgba(255,255,255,0.55);
+      max-width: 640px; margin: 0 auto 40px;
+    }
+    .hero-sub strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+    .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 16px 36px; background: var(--gradient);
+      color: white; border: none; border-radius: var(--r-sm);
+      font-size: 15px; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: all 0.25s; text-decoration: none;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(6,182,212,0.3); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 16px 36px; background: transparent;
+      color: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--r-sm); font-size: 15px; font-weight: 500;
+      font-family: inherit; cursor: pointer; transition: all 0.25s; text-decoration: none;
+    }
+    .btn-secondary:hover { color: white; border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.04); }
+
+    /* ── HERO STATS ── */
+    .hero-stats {
+      display: flex; justify-content: center; gap: 0;
+      margin-top: 72px; border-top: 1px solid var(--border-dark);
+      padding-top: 48px;
+    }
+    .hero-stat {
+      flex: 1; max-width: 200px; text-align: center;
+      padding: 0 24px;
+      border-right: 1px solid var(--border-dark);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .stat-num {
+      font-size: 36px; font-weight: 700; letter-spacing: -0.04em;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; line-height: 1; margin-bottom: 8px;
+    }
+    .stat-label { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.4; }
+
+    /* ── SECTION SHARED ── */
+    .section { padding: 96px 48px; }
+    .section-inner { max-width: 1120px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--cyan); margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 3vw, 42px); font-weight: 300; letter-spacing: -0.03em;
+      color: white; margin-bottom: 16px; line-height: 1.15;
+    }
+    .section-title strong { font-weight: 600; }
+    .section-desc {
+      font-size: 17px; line-height: 1.7; color: rgba(255,255,255,0.5);
+      max-width: 600px;
+    }
+    .section-header { margin-bottom: 56px; }
+
+    /* ── LIGHT SECTION ── */
+    .section-light {
+      background: var(--white); color: var(--text-primary);
+      padding: 96px 48px;
+    }
+    .section-light .section-title { color: var(--text-primary); }
+    .section-light .section-desc { color: var(--text-secondary); }
+    .section-light .section-eyebrow { color: var(--cyan); }
+
+    /* ── AGENT GRID ── */
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) { .agents-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .agents-grid { grid-template-columns: 1fr; } }
+
+    .agent-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--r-xl);
+      padding: 28px;
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .agent-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--agent-color);
+      opacity: 0.7;
+      transition: opacity 0.25s;
+    }
+    .agent-card:hover {
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-2px);
+    }
+    .agent-card:hover::before { opacity: 1; }
+    .agent-card.active {
+      border-color: var(--agent-color);
+      background: rgba(255,255,255,0.06);
+    }
+    .agent-card.active::before { opacity: 1; }
+
+    .agent-card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+    .agent-icon {
+      width: 44px; height: 44px; border-radius: var(--r-md);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+      position: relative; overflow: hidden;
+    }
+    .agent-icon::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--agent-color);
+      opacity: 0.12;
+    }
+    .agent-num {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--agent-color); margin-bottom: 4px;
+    }
+    .agent-name { font-size: 17px; font-weight: 600; color: white; line-height: 1.2; }
+    .agent-tagline { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.5; margin-bottom: 20px; }
+    .agent-metrics { display: flex; flex-direction: column; gap: 8px; }
+    .agent-metric {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 12.5px; color: rgba(255,255,255,0.55);
+    }
+    .agent-metric::before {
+      content: '';
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--agent-color); flex-shrink: 0; opacity: 0.8;
+    }
+    .agent-metric strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+    /* ── AGENT DETAIL PANEL ── */
+    .agent-detail {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r-xl);
+      padding: 40px;
+      margin-top: 24px;
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+    .agent-detail.visible { display: block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }
+
+    .detail-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 24px; margin-bottom: 32px;
+    }
+    .detail-header-left { flex: 1; }
+    .detail-badge {
+      display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--agent-color);
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      padding: 4px 12px; border-radius: var(--r-pill); margin-bottom: 12px;
+    }
+    .detail-title { font-size: 28px; font-weight: 600; color: white; margin-bottom: 8px; }
+    .detail-sub { font-size: 16px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .detail-close {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      width: 36px; height: 36px; border-radius: 50%; color: rgba(255,255,255,0.4);
+      font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background 0.2s, color 0.2s; line-height: 1;
+    }
+    .detail-close:hover { background: rgba(255,255,255,0.1); color: white; }
+
+    .detail-body { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    @media (max-width: 700px) { .detail-body { grid-template-columns: 1fr; } }
+
+    .detail-col-title {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--agent-color); margin-bottom: 16px;
+    }
+    .detail-feature {
+      display: flex; align-items: flex-start; gap: 12px;
+      margin-bottom: 14px;
+    }
+    .detail-feature-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--agent-color); flex-shrink: 0; margin-top: 7px;
+    }
+    .detail-feature-text { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+    .detail-feature-text strong { color: rgba(255,255,255,0.9); font-weight: 500; }
+
+    .detail-dashboard {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r-lg);
+      padding: 20px;
+      margin-top: 24px;
+    }
+    .dashboard-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .dashboard-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .dashboard-live {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--agent-color);
+    }
+    .dashboard-live::before {
+      content: ''; width: 5px; height: 5px; border-radius: 50%;
+      background: var(--agent-color);
+      animation: blink 2s ease-in-out infinite;
+    }
+    .dashboard-content {
+      font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7;
+    }
+    .dashboard-content strong { color: rgba(255,255,255,0.88); font-weight: 500; }
+    .dashboard-content .highlight { color: var(--agent-color); font-weight: 600; }
+    .dashboard-action {
+      display: inline-block; margin-top: 10px;
+      font-size: 12px; font-weight: 600; color: var(--agent-color);
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      padding: 5px 14px; border-radius: var(--r-pill); cursor: pointer;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .flow-steps { display: flex; flex-direction: column; gap: 0; margin-top: 48px; }
+    .flow-step {
+      display: flex; gap: 24px; padding: 28px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .flow-step:last-child { border-bottom: none; }
+    .flow-step-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--gradient); color: white;
+      font-size: 15px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .flow-step-body { flex: 1; }
+    .flow-step-title { font-size: 16px; font-weight: 600; color: white; margin-bottom: 6px; }
+    .flow-step-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.65; }
+
+    /* ── ROI SECTION ── */
+    .roi-section { background: var(--bg-surface); padding: 96px 48px; }
+    .roi-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: start;
+    }
+    @media (max-width: 800px) { .roi-grid { grid-template-columns: 1fr; } }
+
+    .roi-cards { display: flex; flex-direction: column; gap: 16px; }
+    .roi-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r-lg);
+      padding: 24px;
+      display: flex; align-items: flex-start; gap: 16px;
+    }
+    .roi-card-icon {
+      width: 44px; height: 44px; border-radius: var(--r-md);
+      background: rgba(6,182,212,0.1); color: var(--cyan);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .roi-card-num {
+      font-size: 28px; font-weight: 700; letter-spacing: -0.04em;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; line-height: 1; margin-bottom: 4px;
+    }
+    .roi-card-label { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+    .roi-card-note { font-size: 12px; color: rgba(255,255,255,0.25); margin-top: 4px; }
+
+    .roi-table {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+    }
+    .roi-table-header {
+      background: rgba(6,182,212,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 16px 24px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--cyan);
+    }
+    .roi-table-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 14px;
+    }
+    .roi-table-row:last-child { border-bottom: none; }
+    .roi-table-agent { color: rgba(255,255,255,0.65); }
+    .roi-table-value {
+      font-weight: 600; text-align: right;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .roi-table-total {
+      background: rgba(6,182,212,0.08);
+      border-top: 1px solid rgba(6,182,212,0.2);
+    }
+    .roi-table-total .roi-table-agent { color: white; font-weight: 600; }
+    .roi-table-total .roi-table-value { font-size: 18px; }
+
+    /* ── COMPLIANCE ── */
+    .compliance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 700px) { .compliance-grid { grid-template-columns: 1fr 1fr; } }
+
+    .compliance-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r-lg);
+      padding: 24px;
+    }
+    .compliance-icon { font-size: 28px; margin-bottom: 12px; }
+    .compliance-title { font-size: 15px; font-weight: 600; color: white; margin-bottom: 8px; }
+    .compliance-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 800px) { .testimonials-grid { grid-template-columns: 1fr; } }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--r-xl);
+      padding: 32px;
+    }
+    .testimonial-quote {
+      font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.75);
+      line-height: 1.7; margin-bottom: 24px;
+      font-style: italic;
+    }
+    .testimonial-quote::before { content: '\201C'; }
+    .testimonial-quote::after  { content: '\201D'; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--gradient);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; color: white; flex-shrink: 0;
+    }
+    .testimonial-name { font-size: 14px; font-weight: 600; color: white; }
+    .testimonial-role { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+    .stars { color: var(--amber); font-size: 13px; margin-bottom: 16px; letter-spacing: 2px; }
+
+    /* ── INTEGRATION LOGOS ── */
+    .integrations-row {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 40px;
+    }
+    .integration-pill {
+      font-size: 13px; font-weight: 500;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.5);
+      padding: 8px 20px; border-radius: var(--r-pill);
+    }
+
+    /* ── PLATFORM OVERVIEW ── */
+    .platform-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+    @media (max-width: 800px) { .platform-cards { grid-template-columns: 1fr 1fr; } }
+    .platform-card {
+      background: var(--white);
+      border-radius: var(--r-xl);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    .platform-card-icon { font-size: 24px; margin-bottom: 16px; }
+    .platform-card-title { font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+    .platform-card-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: var(--hero-bg);
+      padding: 96px 48px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-section .orb-1 { opacity: 0.12; }
+    .cta-section .orb-2 { opacity: 0.10; }
+    .cta-content { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+    .cta-title {
+      font-size: clamp(28px, 4vw, 48px); font-weight: 300; letter-spacing: -0.03em;
+      color: white; line-height: 1.1; margin-bottom: 20px;
+    }
+    .cta-title strong { font-weight: 600; }
+    .cta-sub {
+      font-size: 17px; color: rgba(255,255,255,0.45); margin-bottom: 40px; line-height: 1.7;
+    }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-note { font-size: 13px; color: rgba(255,255,255,0.25); margin-top: 20px; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: rgba(0,0,0,0.4);
+      border-top: 1px solid var(--border-dark);
+      padding: 40px 48px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo svg { height: 20px; width: auto; opacity: 0.6; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-link { font-size: 12px; color: rgba(255,255,255,0.25); text-decoration: none; }
+    .footer-link:hover { color: rgba(255,255,255,0.5); }
+
+    /* ── AGENT ORBIT VISUALIZATION ── */
+    .orbit-container {
+      display: flex; justify-content: center; align-items: center;
+      padding: 48px 0; margin-bottom: 24px;
+    }
+    .orbit-svg { width: min(520px, 100%); height: auto; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg" style="color:#fff">
+      <g fill="currentColor">
+        <path fill-rule="evenodd" d="M176 94A86 86 0 1 1 176 266A86 86 0 1 1 176 94ZM176 108A72 72 0 1 0 176 252A72 72 0 1 0 176 108ZM212 122L226 131L179 237L165 228L212 122Z"/>
+      </g>
+      <g fill="currentColor">
+        <path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/>
+        <path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/>
+        <path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/>
+        <path d="M800 116H819V244H800V116Z"/>
+      </g>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a href="#agents" class="nav-link">Agents</a>
+    <a href="#how-it-works" class="nav-link">How It Works</a>
+    <a href="#roi" class="nav-link">ROI</a>
+    <a href="#security" class="nav-link">Security</a>
+  </div>
+  <a href="#demo" class="nav-cta">Book a Demo →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Purpose-built for medical practices
+    </div>
+    <h1>
+      Nine agents.<br>
+      <strong class="gradient-text">One practice that runs itself.</strong>
+    </h1>
+    <p class="hero-sub">
+      ZxAI installs nine specialized AI agents into your practice — each one trained for a specific job.
+      <strong>Phones answered. Slots filled. Prior auths submitted. Balances collected. Patients re-engaged.</strong>
+      All without adding headcount.
+    </p>
+    <div class="hero-ctas">
+      <a href="#demo" class="btn-primary">Schedule a 15-Minute Demo</a>
+      <a href="#agents" class="btn-secondary">Explore All 9 Agents</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Call answer rate.<br>24/7, including holidays.</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">&lt;5%</div>
+        <div class="stat-label">No-show rate.<br>Down from 15–25%.</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">15 min</div>
+        <div class="stat-label">Prior auth turnaround.<br>Down from 3–5 hours.</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">$980K+</div>
+        <div class="stat-label">Estimated Year 1 value.<br>10-physician practice.</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">10 days</div>
+        <div class="stat-label">Time to go live.<br>No IT project needed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENTS SECTION -->
+<section class="section" id="agents">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">The Nine Agents</div>
+      <h2 class="section-title">Every role your practice needs.<br><strong>Already filled.</strong></h2>
+      <p class="section-desc">Each agent is trained for one job and does it better than a human hire — without sick days, turnover, or training cycles.</p>
+    </div>
+
+    <div class="agents-grid" id="agents-grid">
+
+      <!-- Agent 01 -->
+      <div class="agent-card" style="--agent-color:#06B6D4" onclick="toggleAgent(this,'detail-01')">
+        <div class="agent-card-header">
+          <div class="agent-icon">📞</div>
+          <div>
+            <div class="agent-num">Agent 01</div>
+            <div class="agent-name">Front Desk Agent</div>
+          </div>
+        </div>
+        <div class="agent-tagline">Answers every call. Never misses a patient.</div>
+        <div class="agent-metrics">
+          <div class="agent-metric"><strong>100%</strong>&nbsp;call answer rate, 24/7</div>
+          <div class="agent-metric">Answers within <strong>2 rings</strong></div>
+          <div class="agent-metric">Books directly into <strong>your EHR</strong></div>
+          <div class="agent-metric">Frees staff <strong>8–12 hrs/week</strong></div>
+        </div>
+      </div>
+
+      <!-- Agent 02 -->
+      <div class="agent-card" style="--agent-color:#0EA5E9" onclick="toggleAgent(this,'detail-02')">
+        <div class="agent-card-header">
+          <div class="agent-icon">📅</div>
+          <div>
+            <div class="agent-num">Agent 02</div>
+            <div class="agent-name">Scheduling Agent</div>
+          </div>
+        </div>
+        <div class="agent-tagline">Fills every slot. Kills the no-show.</div>
+        <div class="agent-metrics">
+          <div class="agent-metric">No-shows <strong>&lt;5%</strong> (down from 15–25%)</div>
+          <div class="agent-metric">Reminders at <strong>48 hrs and 2 hrs</strong> out</div>
+          <div class="agent-metric">Waitlist filled <strong>automatically</strong></div>
+          <div class="agent-metric"><strong>Zero</strong> manual reminder calls</div>
+        </div>
+      </div>
+
+      <!-- Agent 03 -->
+      <div class="agent-card" style="--agent-color:#6366F1" onclick="toggleAgent(this,'detail-03')">
+        <div class="agent-card-header">
+          <div class="agent-icon">📋</div>
+          <div>
+            <div class="agent-num">Agent 03</div>
+            <div class="agent-name">Prior Auth Agent</div>
+          </div>
+        </div>
+        <div class="agent-tagline">Submits every authorization. Automatically.</div>
+        <div class="agent-metrics">
+          <div class="agent-metric">Turnaround: <strong>3–5 hrs → 15 min</strong></div>
+          <div class="agent-metric">Detects orders <strong>as you place them</strong></div>
+          <div class="agent-metric">Submits to payer portals <strong>via API</strong></div>
+          <div class="agent-metric">Staff handles <strong>exceptions only</strong></div>
+        </div>
+      </div>
+
+      <!-- Agent 04 -->
+      <div class="agent-card" style="--agent-color:#8B5CF6" onclick="toggleAgent(this,'detail-04')">
+        <div class="agent-card-header">
+          <div class="agent-icon">💳</div>
+          <div>
+            <div class="agent-num">Agent 04</div>
+            <div class="agent-name">Revenue Recovery Agent</div>
+          </div>
+        </div>
+        <div class="agent-tagline">Collects patient balances. No awkward calls.</div>
+        <div class="agent-metrics">
+          <div class="agent-metric">Collection rate up <strong>20–40%</strong></div>
+          <div class="agent-metric">A/R scanned <strong>daily at 6am</strong></div>
+          <div class="agent-metric">Secure payment link in <strong>every SMS</strong></div>
+          <div class="agent-metric">60+ day accounts <strong>flagged for staff</strong></div>
+        </div>
+      </div>
+
+      <!-- Agent 05 -->
+      <div class="agent-card" style="--agent-color:#A855F7" onclick="toggleAgent(this,'detail-05')">
+        <div class="agent-card-header">
+          <div class="agent-icon">🔄</div>
+          <div>
+            <div class="agent-num">Agent 05</div>
+            <div class="agent-name">Reactivation Agent</div>
+          </div>
+        </div>
+        <div class="agent-tagline">Re-engages patients who drifted away.</div>
+        <div class="agent-metrics">
+          <div class="agent-metric">Targets patients <strong>inactive 12+ months</strong></div>
+          <div class="agent-metric"><strong>9 bookings</strong> per 62 outreach messages</div>
+          <div class="agent-metric">Est. revenue: <strong>$2,700 per campaign</strong></div>
+          <div class="agent-metric"><strong>Zero</strong> advertising cost</div>
+        </div>
+      </div>
+
+      <!-- Agent 06 -->
+      <div class="agent-card" style="--agent-color:#EC4899" onclick="toggleAgent(this,'detail-06')">
+        <div class="agent-card-header">
+          <div class="agent-icon">🩺</div>
+          <div>
+            <div class="agent-num">Agent 06</div>
+            <div class="agent-name">Retention Agent</div>
+          </div>
+        </div>
+        <div class="agent-tagline">Catches patients before they slip through.</div>
+        <div class="agent-metrics">
+          <div class="agent-metric">Queries EHR for <strong>care gaps daily</strong></div>
+          <div class="agent-metric"><strong>6 appointments</strong> per 15 outreach messages</div>
+          <div class="agent-metric">Improves <strong>HEDIS scores</strong> & quality metrics</div>
+          <div class="agent-metric">Supports <strong>value-based contracts</strong></div>
+        </div>
+      </div>
+
+      <!-- Agent 07 -->
+      <div class="agent-card" style="--agent-color:#14B8A6" onclick="toggleAgent(this,'detail-07')">
+        <div class="agent-card-header">
+          <div class="agent-icon">⭐</div>
+          <div>
+            <div class="agent-num">Agent 07</div>
+            <div class="agent-name">Reputation Agent</div>
+          </div>
+        </div>
+        <div class="agent-tagline">Fills your Google profile with 5-star reviews.</div>
+        <div class="agent-metrics">
+          <div class="agent-metric"><strong>12+ Google reviews</strong> per week</div>
+          <div class="agent-metric">Average rating <strong>4.8 stars</strong></div>
+          <div class="agent-metric">Negative feedback <strong>intercepted privately</strong></div>
+          <div class="agent-metric">More reviews = <strong>higher local search rank</strong></div>
+        </div>
+      </div>
+
+      <!-- Agent 08 -->
+      <div class="agent-card" style="--agent-color:#F43F5E" onclick="toggleAgent(this,'detail-08')">
+        <div class="agent-card-header">
+          <div class="agent-icon">📣</div>
+          <div>
+            <div class="agent-num">Agent 08</div>
+            <div class="agent-name">Marketing Agent</div>
+          </div>
+        </div>
+        <div class="agent-tagline">Publishes content every week. No hire needed.</div>
+        <div class="agent-metrics">
+          <div class="agent-metric"><strong>4 posts/week</strong> across 3 platforms</div>
+          <div class="agent-metric">Saves <strong>$45K–$65K/yr</strong> vs. marketing hire</div>
+          <div class="agent-metric">Branded images from <strong>DALL-E 3</strong></div>
+          <div class="agent-metric">Runs on <strong>autopilot</strong> or with your input</div>
+        </div>
+      </div>
+
+      <!-- Agent 09 -->
+      <div class="agent-card" style="--agent-color:#F59E0B" onclick="toggleAgent(this,'detail-09')">
+        <div class="agent-card-header">
+          <div class="agent-icon">🌐</div>
+          <div>
+            <div class="agent-num">Agent 09</div>
+            <div class="agent-name">Web / SEO Agent</div>
+          </div>
+        </div>
+        <div class="agent-tagline">Keeps your website ranking higher every month.</div>
+        <div class="agent-metrics">
+          <div class="agent-metric">Site health score: <strong>94/100</strong></div>
+          <div class="agent-metric">Broken links <strong>fixed automatically</strong></div>
+          <div class="agent-metric">Local keyword rankings <strong>tracked weekly</strong></div>
+          <div class="agent-metric">Google Business Profile <strong>monitored</strong></div>
+        </div>
+      </div>
+
+    </div><!-- /agents-grid -->
+
+    <!-- DETAIL PANELS -->
+
+    <!-- Detail 01 -->
+    <div class="agent-detail" id="detail-01" style="--agent-color:#06B6D4">
+      <div class="detail-header">
+        <div class="detail-header-left">
+          <div class="detail-badge">Agent 01 — Front Desk</div>
+          <div class="detail-title">Answers Every Call. Never Misses a Patient.</div>
+          <div class="detail-sub">76% of patients who hit your voicemail call a competitor instead. The Front Desk Agent eliminates that number permanently.</div>
+        </div>
+        <button class="detail-close" onclick="closeDetail('detail-01')">×</button>
+      </div>
+      <div class="detail-body">
+        <div>
+          <div class="detail-col-title">What It Does</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Picks up within 2 rings, 24/7</strong> — including evenings, weekends, and holidays. No voicemail. No missed calls.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Greets returning patients by name</strong>, recalls their provider, and routes accordingly based on EHR history.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Books appointments directly into your EHR</strong> — real-time availability, no double-bookings, confirmation SMS sent instantly.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Captures new patient intake</strong> — name, DOB, insurance, chief complaint — directly into your new-patient workflow.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Handles FAQs</strong> for hours, directions, parking, insurance accepted, and prescription refills.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Transfers intelligently</strong> — only when a call requires clinical judgment or complex problem-solving. Staff gets context pre-loaded, never a blind transfer.</div></div>
+        </div>
+        <div>
+          <div class="detail-col-title">Outcomes for Your Practice</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>$21,600–$64,800 additional annual revenue</strong> from after-hours and overflow calls that previously went to voicemail.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>8–12 hours/week freed per MA or front-desk staff member</strong> for clinical support and in-office care.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>$10,400–$14,300 in annual labor savings</strong> (at $25/hr burdened cost for 8–11 hours/week).</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>8–12% no-show reduction</strong> from instant confirmation SMS sent at time of booking.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text">Works with <strong>Epic, Athena, NextGen, eClinicalWorks</strong>, and other major EHR platforms.</div></div>
+          <div class="detail-dashboard">
+            <div class="dashboard-header">
+              <span class="dashboard-title">Today's Summary</span>
+              <span class="dashboard-live">Live</span>
+            </div>
+            <div class="dashboard-content">
+              <strong>3 calls handled today.</strong> <span class="highlight">2 new appointments booked.</span> 1 call transferred to nurse (patient had urgent question about medication).
+            </div>
+            <span class="dashboard-action">View call log →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail 02 -->
+    <div class="agent-detail" id="detail-02" style="--agent-color:#0EA5E9">
+      <div class="detail-header">
+        <div class="detail-header-left">
+          <div class="detail-badge">Agent 02 — Scheduling</div>
+          <div class="detail-title">Fills Every Slot. Kills the No-Show.</div>
+          <div class="detail-sub">A 15% no-show rate on 100 appointments per week costs your practice $27,000–$45,000 per year in lost revenue. This agent eliminates that.</div>
+        </div>
+        <button class="detail-close" onclick="closeDetail('detail-02')">×</button>
+      </div>
+      <div class="detail-body">
+        <div>
+          <div class="detail-col-title">What It Does</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Sends reminders at 48 hours and 2 hours</strong> before every appointment via SMS and email — automatically, every single visit.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Follows up on unconfirmed appointments</strong> — if a patient doesn't confirm, the agent sends a secondary nudge before the practice even opens.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Maintains a live waitlist</strong> — when a cancellation occurs, the next patient on the list is automatically texted and offered the slot.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Fills cancelled slots within minutes</strong>, not hours, without any staff involvement.</div></div>
+        </div>
+        <div>
+          <div class="detail-col-title">Outcomes for Your Practice</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>No-show rate drops from 15–25% to under 5%</strong> — recovering $27K–$45K in annual revenue for a 100-appointment/week practice.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Zero manual reminder calls</strong> — staff no longer spends 2–3 hours per day on outbound confirmation calls.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Cancellation slots filled automatically</strong> — a previously empty 30-minute slot becomes $150–$400 in recovered revenue.</div></div>
+          <div class="detail-dashboard">
+            <div class="dashboard-header">
+              <span class="dashboard-title">Tomorrow's Schedule</span>
+              <span class="dashboard-live">Live</span>
+            </div>
+            <div class="dashboard-content">
+              <strong>18 appointments tomorrow.</strong> <span class="highlight">15 confirmed.</span> 2 unconfirmed — follow-up sent. 1 slot opened from cancellation — <span class="highlight">waitlist patient offered and accepted.</span>
+            </div>
+            <span class="dashboard-action">View schedule →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail 03 -->
+    <div class="agent-detail" id="detail-03" style="--agent-color:#6366F1">
+      <div class="detail-header">
+        <div class="detail-header-left">
+          <div class="detail-badge">Agent 03 — Prior Auth</div>
+          <div class="detail-title">Submits Every Authorization. Automatically.</div>
+          <div class="detail-sub">Prior auth is the #1 source of physician burnout and delayed care. Your team orders the procedure. This agent handles everything after that.</div>
+        </div>
+        <button class="detail-close" onclick="closeDetail('detail-03')">×</button>
+      </div>
+      <div class="detail-body">
+        <div>
+          <div class="detail-col-title">What It Does</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Detects new orders in your EHR</strong> that require prior authorization — the moment you place them.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Pulls payer-specific clinical criteria</strong> and matches your documentation automatically.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Submits to insurance portals</strong> via API or structured fax — no phone calls, no portal logins, no fax machines.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Monitors status in real time</strong> — approved, denied, or pending additional info.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Alerts staff only on exceptions</strong> — denials, requests for additional clinical info, or urgent timelines.</div></div>
+        </div>
+        <div>
+          <div class="detail-col-title">Outcomes for Your Practice</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Processing time drops from 3–5 hours to under 15 minutes</strong> per authorization.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Staff handles exceptions only</strong> — not routine submissions. Reclaim 15–25 hours per week per billing/admin FTE.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Fewer delayed procedures</strong> and reduced patient drop-off due to prior auth friction.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Denial rate reduces</strong> as submissions include complete documentation on the first pass.</div></div>
+          <div class="detail-dashboard">
+            <div class="dashboard-header">
+              <span class="dashboard-title">Prior Auth Status</span>
+              <span class="dashboard-live">Live</span>
+            </div>
+            <div class="dashboard-content">
+              <strong>3 prior auths active.</strong> Mrs. Johnson (MRI) — <span class="highlight">Approved.</span> Mr. Lee (PT referral) — Pending Day 2 of 5. Ms. Torres (sleep study) — <span style="color:#F59E0B">Additional info needed.</span>
+            </div>
+            <span class="dashboard-action">Click to respond →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail 04 -->
+    <div class="agent-detail" id="detail-04" style="--agent-color:#8B5CF6">
+      <div class="detail-header">
+        <div class="detail-header-left">
+          <div class="detail-badge">Agent 04 — Revenue Recovery</div>
+          <div class="detail-title">Collects Patient Balances. No Awkward Calls.</div>
+          <div class="detail-sub">Patient-pay A/R is the most labor-intensive and emotionally draining part of your billing cycle. This agent handles the entire sequence, so your staff never has to make a collection call.</div>
+        </div>
+        <button class="detail-close" onclick="closeDetail('detail-04')">×</button>
+      </div>
+      <div class="detail-body">
+        <div>
+          <div class="detail-col-title">What It Does</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Scans A/R daily at 6am</strong> — identifies every patient balance that appeared or changed overnight.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Sends SMS payment reminders on Day 1, 7, 14, and 30</strong> after a balance appears — each with a secure online payment link.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Tracks payments in real time</strong> — the moment a patient pays online, the agent updates A/R and removes them from the sequence.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Escalates persistent non-payers</strong> to a clean flagged list for staff — not a 40-page aging report.</div></div>
+        </div>
+        <div>
+          <div class="detail-col-title">Outcomes for Your Practice</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Patient-pay collection rate improves 20–40%</strong> — a $500K patient-pay A/R becomes $600K–$700K collected annually.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Days in A/R for patient balances drops</strong> — faster cash flow without adding billing staff.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Staff reviews one actionable list</strong> instead of working a full aging report. Focus time on accounts with real recovery potential.</div></div>
+          <div class="detail-dashboard">
+            <div class="dashboard-header">
+              <span class="dashboard-title">A/R Summary — This Week</span>
+              <span class="dashboard-live">Live</span>
+            </div>
+            <div class="dashboard-content">
+              <strong>$12,400 in outstanding balances.</strong> <span class="highlight">$2,100 collected this week (17 patients).</span> 4 accounts flagged for manual follow-up (60+ days).
+            </div>
+            <span class="dashboard-action">View accounts →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail 05 -->
+    <div class="agent-detail" id="detail-05" style="--agent-color:#A855F7">
+      <div class="detail-header">
+        <div class="detail-header-left">
+          <div class="detail-badge">Agent 05 — Reactivation</div>
+          <div class="detail-title">Re-Engages Patients Who Drifted Away.</div>
+          <div class="detail-sub">Your existing patient panel is your most valuable untapped revenue source. Every inactive patient is revenue you've already earned the right to — they just need a reason to come back.</div>
+        </div>
+        <button class="detail-close" onclick="closeDetail('detail-05')">×</button>
+      </div>
+      <div class="detail-body">
+        <div>
+          <div class="detail-col-title">What It Does</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Identifies every patient inactive for 12+ months</strong> from your EHR — automatically, with no manual list-building.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Drafts personalized SMS outreach</strong> referencing the patient's last visit type, their provider's name, and a relevant care reason.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Sends in controlled batches</strong> — sized to your scheduling capacity, so you're never overwhelmed with same-day booking requests.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Captures responses and books appointments directly</strong> — no staff follow-up needed for interested patients.</div></div>
+        </div>
+        <div>
+          <div class="detail-col-title">Outcomes for Your Practice</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Pure margin revenue with zero acquisition cost</strong> — no advertising spend, no referral fees, no new marketing effort.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>$2,700+ per campaign</strong> from a single outreach batch of 62 patients. Scale to monthly cadence for consistent pipeline.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Higher LTV per patient</strong> — reactivated patients who return tend to stay active longer than cold-acquired patients.</div></div>
+          <div class="detail-dashboard">
+            <div class="dashboard-header">
+              <span class="dashboard-title">Reactivation Campaign</span>
+              <span class="dashboard-live">Live</span>
+            </div>
+            <div class="dashboard-content">
+              <strong>62 patients contacted.</strong> <span class="highlight">9 booked appointments.</span> 14 responded with interest — following up. 39 no response. <span class="highlight">Est. revenue from new bookings: $2,700.</span>
+            </div>
+            <span class="dashboard-action">View campaign →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail 06 -->
+    <div class="agent-detail" id="detail-06" style="--agent-color:#EC4899">
+      <div class="detail-header">
+        <div class="detail-header-left">
+          <div class="detail-badge">Agent 06 — Retention</div>
+          <div class="detail-title">Catches Patients Before They Slip Through.</div>
+          <div class="detail-sub">Patients overdue for preventive care don't call you. They either forget, delay, or see whoever markets to them first. The Retention Agent finds them before that happens.</div>
+        </div>
+        <button class="detail-close" onclick="closeDetail('detail-06')">×</button>
+      </div>
+      <div class="detail-body">
+        <div>
+          <div class="detail-col-title">What It Does</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Queries the EHR daily</strong> for patients overdue on annual physicals, chronic disease follow-ups, screenings, and vaccines.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Sends proactive outreach</strong> to schedule them in — personalized to the specific care gap and their provider relationship.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Books appointments directly</strong> from patient responses — no manual scheduling step required.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Tracks patient responses</strong> — booked, declined, or no response — and notes them in the EHR for care continuity.</div></div>
+        </div>
+        <div>
+          <div class="detail-col-title">Outcomes for Your Practice</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Preventive visit revenue captured</strong> from patients who would otherwise go unseen for 18–24 months.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Improved HEDIS scores and quality metrics</strong> — directly impacts value-based care bonuses and contract performance.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Demonstrated proactive care</strong> drives patient loyalty — patients who receive proactive outreach have significantly higher retention rates.</div></div>
+          <div class="detail-dashboard">
+            <div class="dashboard-header">
+              <span class="dashboard-title">Care Gap Report</span>
+              <span class="dashboard-live">Live</span>
+            </div>
+            <div class="dashboard-content">
+              <strong>28 patients overdue for annual physical.</strong> 15 outreach messages sent. <span class="highlight">6 appointments booked.</span> 4 patients declined — noted in record.
+            </div>
+            <span class="dashboard-action">View care gaps →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail 07 -->
+    <div class="agent-detail" id="detail-07" style="--agent-color:#14B8A6">
+      <div class="detail-header">
+        <div class="detail-header-left">
+          <div class="detail-badge">Agent 07 — Reputation</div>
+          <div class="detail-title">Fills Your Google Profile With 5-Star Reviews.</div>
+          <div class="detail-sub">84% of patients choose a provider based on online reviews. One star improvement on Google increases new patient volume by 5–9%. This agent makes it automatic.</div>
+        </div>
+        <button class="detail-close" onclick="closeDetail('detail-07')">×</button>
+      </div>
+      <div class="detail-body">
+        <div>
+          <div class="detail-col-title">What It Does</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Sends a satisfaction check via SMS 2 hours after every appointment</strong> — a simple 1–5 rating, nothing more.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Happy patients (4–5 stars) receive an immediate Google review request</strong> with a direct link — one tap to post.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Neutral and negative responses are routed to your practice manager</strong> for a personal follow-up — never pushed to a public review.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Google Business Profile monitoring</strong> — tracks your rating trajectory and alerts you when new reviews post.</div></div>
+        </div>
+        <div>
+          <div class="detail-col-title">Outcomes for Your Practice</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>12–18 new Google reviews per week</strong> from a practice seeing 60–80 patients daily.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Google rating climbs 0.3–0.7 stars within 90 days</strong> — moving from 3.9 to 4.5 doubles new patient inquiry volume from search.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Negative feedback handled privately</strong> — resolve issues before they become 1-star public posts.</div></div>
+          <div class="detail-dashboard">
+            <div class="dashboard-header">
+              <span class="dashboard-title">This Week's Review Activity</span>
+              <span class="dashboard-live">Live</span>
+            </div>
+            <div class="dashboard-content">
+              <strong>34 review requests sent.</strong> <span class="highlight">12 Google reviews posted (avg. 4.8 ★).</span> 2 neutral responses flagged for manager follow-up.
+            </div>
+            <span class="dashboard-action">View reviews →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail 08 -->
+    <div class="agent-detail" id="detail-08" style="--agent-color:#F43F5E">
+      <div class="detail-header">
+        <div class="detail-header-left">
+          <div class="detail-badge">Agent 08 — Marketing</div>
+          <div class="detail-title">Publishes Every Week. No Marketing Hire Needed.</div>
+          <div class="detail-sub">A marketing coordinator costs $45,000–$65,000 per year. This agent delivers consistent, specialty-specific content across three platforms every single week — for a fraction of the cost.</div>
+        </div>
+        <button class="detail-close" onclick="closeDetail('detail-08')">×</button>
+      </div>
+      <div class="detail-body">
+        <div>
+          <div class="detail-col-title">What It Does</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Writes platform-specific captions</strong> — concise for Instagram, professional for LinkedIn, warm for Facebook — using your practice's voice.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Generates branded images via DALL-E 3</strong> — tailored to your specialty and color palette. No stock photos.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Schedules and publishes to Facebook, Instagram, and LinkedIn</strong> automatically at optimal engagement times.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Runs on one sentence from you — or full autopilot</strong> from a pre-built content calendar.</div></div>
+        </div>
+        <div>
+          <div class="detail-col-title">Outcomes for Your Practice</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Saves $45,000–$65,000/year</strong> vs. hiring a marketing coordinator — plus no recruiting, no onboarding, no turnover.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Consistent 52-week publishing cadence</strong> — no content droughts, no missed weeks during busy seasons.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Patient education content builds trust</strong> — patients who engage with your content are more likely to book and stay.</div></div>
+          <div class="detail-dashboard">
+            <div class="dashboard-header">
+              <span class="dashboard-title">This Week's Content</span>
+              <span class="dashboard-live">Live</span>
+            </div>
+            <div class="dashboard-content">
+              <strong>4 posts published.</strong> Top performer: flu shot reminder — <span class="highlight">94 likes, 12 shares, 3 DMs asking to schedule.</span> Next post scheduled for Thursday 10am.
+            </div>
+            <span class="dashboard-action">View content calendar →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail 09 -->
+    <div class="agent-detail" id="detail-09" style="--agent-color:#F59E0B">
+      <div class="detail-header">
+        <div class="detail-header-left">
+          <div class="detail-badge">Agent 09 — Web / SEO</div>
+          <div class="detail-title">Keeps Your Website Ranking Higher Every Month.</div>
+          <div class="detail-sub">75% of patients never scroll past the first page of Google results. Moving from position #5 to position #2 doubles your click-through rate. This agent makes that climb compounding.</div>
+        </div>
+        <button class="detail-close" onclick="closeDetail('detail-09')">×</button>
+      </div>
+      <div class="detail-body">
+        <div>
+          <div class="detail-col-title">What It Does</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Runs a weekly site crawl</strong> — checking for broken links, slow pages, missing alt text, and schema markup errors.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Tracks local keyword rankings via DataForSEO</strong> — your specialty + city combinations, monitored weekly.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Monitors your Google Business Profile</strong> for completeness, accuracy, and outdated information.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Auto-fixes what it can</strong> — broken links, metadata gaps, image alt text. Flags what requires a human.</div></div>
+        </div>
+        <div>
+          <div class="detail-col-title">Outcomes for Your Practice</div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Local search ranking improves measurably within 60–90 days</strong> for target specialty keywords.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Each ranking improvement compounds</strong> — higher position → more clicks → more reviews → higher authority → higher position.</div></div>
+          <div class="detail-feature"><div class="detail-feature-dot"></div><div class="detail-feature-text"><strong>Google Business Profile maintained</strong> — outdated hours, missing services, or unanswered reviews are flagged and resolved before they cost you patients.</div></div>
+          <div class="detail-dashboard">
+            <div class="dashboard-header">
+              <span class="dashboard-title">Site Health Report</span>
+              <span class="dashboard-live">Live</span>
+            </div>
+            <div class="dashboard-content">
+              Site health: <span class="highlight">94/100.</span> 2 broken links fixed automatically. Google Business Profile: last updated 3 months ago. Top keyword opportunity: 'cardiologist near [city]' — <span class="highlight">currently #14, can reach top 5 with one content page.</span>
+            </div>
+            <span class="dashboard-action">Run SEO audit →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-light" id="how-it-works">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-title" style="color:var(--text-primary)">Live in <strong>10 days.</strong><br>No IT project required.</h2>
+      <p class="section-desc" style="color:var(--text-secondary)">ZxAI connects to your existing EHR, phone system, and billing platform. Your team gets one hour of walkthrough. That's it.</p>
+    </div>
+    <div class="platform-cards">
+      <div class="platform-card">
+        <div class="platform-card-icon">🔌</div>
+        <div class="platform-card-title">Day 1–3: Connect</div>
+        <div class="platform-card-desc">We connect ZxAI to your EHR, phone number, and billing system via read/write API. No new software for your team to learn.</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-card-icon">⚙️</div>
+        <div class="platform-card-title">Day 4–7: Configure</div>
+        <div class="platform-card-desc">We configure each agent to match your practice — your providers, your schedule templates, your payer mix, your brand voice.</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-card-icon">🧪</div>
+        <div class="platform-card-title">Day 8–9: Test</div>
+        <div class="platform-card-desc">We run a full simulation — test calls, test bookings, test auth submissions. You review. We adjust. No surprises at go-live.</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-card-icon">✅</div>
+        <div class="platform-card-title">Day 10: Go Live</div>
+        <div class="platform-card-desc">All agents go live simultaneously. Your staff gets one 60-minute walkthrough of the dashboard. Then they walk away from the phone.</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-card-icon">📊</div>
+        <div class="platform-card-title">Ongoing: Learn</div>
+        <div class="platform-card-desc">Every interaction trains the agents. Each week they become more accurate, more personalized, and more effective at your specific practice.</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-card-icon">🤝</div>
+        <div class="platform-card-title">Always: Supported</div>
+        <div class="platform-card-desc">A dedicated ZxAI practice success manager is assigned to your account. Monthly check-ins. Same-day response to any concern.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section class="roi-section" id="roi">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Return on Investment</div>
+      <h2 class="section-title">What nine agents deliver<br>to a <strong>10-physician practice.</strong></h2>
+      <p class="section-desc">Conservative estimates based on a 10-physician group practice with 80–100 appointments per day and a $500K annual patient-pay A/R.</p>
+    </div>
+
+    <div class="roi-grid">
+      <div class="roi-cards">
+        <div class="roi-card">
+          <div class="roi-card-icon">📞</div>
+          <div>
+            <div class="roi-card-num">$64,800</div>
+            <div class="roi-card-label">Recovered new patient revenue (Front Desk Agent)</div>
+            <div class="roi-card-note">18 additional new patients/month × $300/visit avg.</div>
+          </div>
+        </div>
+        <div class="roi-card">
+          <div class="roi-card-icon">📅</div>
+          <div>
+            <div class="roi-card-num">$45,000</div>
+            <div class="roi-card-label">Recovered no-show revenue (Scheduling Agent)</div>
+            <div class="roi-card-note">No-shows reduced from 18% to 4%, 100 appts/day.</div>
+          </div>
+        </div>
+        <div class="roi-card">
+          <div class="roi-card-icon">💳</div>
+          <div>
+            <div class="roi-card-num">$150,000</div>
+            <div class="roi-card-label">Additional patient-pay collections (Revenue Recovery)</div>
+            <div class="roi-card-note">30% collection improvement on $500K patient A/R.</div>
+          </div>
+        </div>
+        <div class="roi-card">
+          <div class="roi-card-icon">🔄</div>
+          <div>
+            <div class="roi-card-num">$32,400</div>
+            <div class="roi-card-label">Reactivation + Retention campaigns (Agents 05 & 06)</div>
+            <div class="roi-card-note">Combined monthly campaigns, 10 physicians.</div>
+          </div>
+        </div>
+        <div class="roi-card">
+          <div class="roi-card-icon">👥</div>
+          <div>
+            <div class="roi-card-num">$186,000</div>
+            <div class="roi-card-label">Labor savings (all 9 agents combined)</div>
+            <div class="roi-card-note">Equivalent of 3–4 FTEs replaced or redeployed to care.</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="roi-table">
+          <div class="roi-table-header">Year 1 Value Summary — 10 Physician Practice</div>
+          <div class="roi-table-row">
+            <span class="roi-table-agent">📞 Front Desk Agent</span>
+            <span class="roi-table-value">+$64,800</span>
+          </div>
+          <div class="roi-table-row">
+            <span class="roi-table-agent">📅 Scheduling Agent</span>
+            <span class="roi-table-value">+$45,000</span>
+          </div>
+          <div class="roi-table-row">
+            <span class="roi-table-agent">📋 Prior Auth Agent</span>
+            <span class="roi-table-value">+$62,400 labor</span>
+          </div>
+          <div class="roi-table-row">
+            <span class="roi-table-agent">💳 Revenue Recovery</span>
+            <span class="roi-table-value">+$150,000</span>
+          </div>
+          <div class="roi-table-row">
+            <span class="roi-table-agent">🔄 Reactivation Agent</span>
+            <span class="roi-table-value">+$21,600</span>
+          </div>
+          <div class="roi-table-row">
+            <span class="roi-table-agent">🩺 Retention Agent</span>
+            <span class="roi-table-value">+$18,000</span>
+          </div>
+          <div class="roi-table-row">
+            <span class="roi-table-agent">⭐ Reputation Agent</span>
+            <span class="roi-table-value">+$36,000 new pts</span>
+          </div>
+          <div class="roi-table-row">
+            <span class="roi-table-agent">📣 Marketing Agent</span>
+            <span class="roi-table-value">+$55,000 savings</span>
+          </div>
+          <div class="roi-table-row">
+            <span class="roi-table-agent">🌐 Web / SEO Agent</span>
+            <span class="roi-table-value">+$28,800 new pts</span>
+          </div>
+          <div class="roi-table-row roi-table-total">
+            <span class="roi-table-agent">Total Year 1 Value</span>
+            <span class="roi-table-value">~$481,600</span>
+          </div>
+        </div>
+        <p style="font-size:12px;color:rgba(255,255,255,0.25);margin-top:12px;line-height:1.6;">Conservative estimates. Actual results vary by practice size, specialty, payer mix, and geographic market. ZxAI provides practice-specific modeling during the sales process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">From the Practices</div>
+      <h2 class="section-title">What physicians and administrators<br><strong>say after 90 days.</strong></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-quote">We had two front desk staff spending their entire day on the phone. Within three weeks of going live, both of them were redeployed to care coordination. Our call answer rate went from around 70% to 100%. We have not missed a call since.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">DK</div>
+          <div>
+            <div class="testimonial-name">Dr. K., MD</div>
+            <div class="testimonial-role">Internal Medicine, 4-Physician Group Practice</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-quote">Prior auth used to take my billing team 3–4 hours every day. With ZxAI, they handle maybe 20 minutes of exceptions. The agent does everything else — submission, follow-up, status monitoring. We have not had a single auth-related procedure delay in two months.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">RM</div>
+          <div>
+            <div class="testimonial-name">R. Martinez, Practice Administrator</div>
+            <div class="testimonial-role">Multi-Specialty Group, 12 Providers</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-quote">I was skeptical about AI in our practice. But the first month, the Revenue Recovery Agent collected $8,400 in outstanding balances that had been sitting on our aging report for weeks. No staff involvement. Patients just paid when they got the text. That sold me on the whole platform.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SL</div>
+          <div>
+            <div class="testimonial-name">Dr. L., DO</div>
+            <div class="testimonial-role">Family Medicine, Independent Practice</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section class="section-light" id="security">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-title" style="color:var(--text-primary)">Your data stays<br><strong>in your building.</strong></h2>
+      <p class="section-desc" style="color:var(--text-secondary)">ZxAI agents run inside your own infrastructure, under your credentials. Patient data never touches our servers. We provide the AI and the workflows. You own the data layer.</p>
+    </div>
+    <div class="compliance-grid">
+      <div class="compliance-card" style="background:var(--bg-alt);border-color:var(--border);">
+        <div class="compliance-icon">🏛️</div>
+        <div class="compliance-title" style="color:var(--text-primary)">Runs In Your Infrastructure</div>
+        <div class="compliance-desc" style="color:var(--text-secondary)">Every agent deploys inside your own cloud environment, using your credentials and your systems. ZxAI never receives, stores, or transmits your patient data.</div>
+      </div>
+      <div class="compliance-card" style="background:var(--bg-alt);border-color:var(--border);">
+        <div class="compliance-icon">🔒</div>
+        <div class="compliance-title" style="color:var(--text-primary)">Your Credentials, Your Control</div>
+        <div class="compliance-desc" style="color:var(--text-secondary)">Agents authenticate using your existing EHR and system logins. You control access. You can revoke at any time. Nothing is shared with third parties.</div>
+      </div>
+      <div class="compliance-card" style="background:var(--bg-alt);border-color:var(--border);">
+        <div class="compliance-icon">🛡️</div>
+        <div class="compliance-title" style="color:var(--text-primary)">No Data Leaves Your Systems</div>
+        <div class="compliance-desc" style="color:var(--text-secondary)">All data stays inside your existing environment. Call recordings, patient records, and communication history remain in your infrastructure, not ours.</div>
+      </div>
+      <div class="compliance-card" style="background:var(--bg-alt);border-color:var(--border);">
+        <div class="compliance-icon">🔗</div>
+        <div class="compliance-title" style="color:var(--text-primary)">No New Software to Manage</div>
+        <div class="compliance-desc" style="color:var(--text-secondary)">ZxAI integrates directly into what you already run. No new platform to learn, no migration, no retraining your team. The AI works in your systems.</div>
+      </div>
+      <div class="compliance-card" style="background:var(--bg-alt);border-color:var(--border);">
+        <div class="compliance-icon">📋</div>
+        <div class="compliance-title" style="color:var(--text-primary)">TCPA Compliant Outreach</div>
+        <div class="compliance-desc" style="color:var(--text-secondary)">All outbound SMS communications are TCPA-compliant. Patient opt-out is honored instantly and permanently across all agents.</div>
+      </div>
+      <div class="compliance-card" style="background:var(--bg-alt);border-color:var(--border);">
+        <div class="compliance-icon">🔍</div>
+        <div class="compliance-title" style="color:var(--text-primary)">Full Audit Trail</div>
+        <div class="compliance-desc" style="color:var(--text-secondary)">Every agent action is logged with timestamps, systems accessed, and outcomes produced. Complete activity record available to your team at any time.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;">
+      <p style="font-size:14px;font-weight:600;color:var(--text-secondary);margin-bottom:20px;text-transform:uppercase;letter-spacing:0.08em;font-size:12px;">Integrates with your existing systems</p>
+      <div class="integrations-row" style="justify-content:flex-start;">
+        <span class="integration-pill" style="background:var(--white);border-color:var(--border);color:var(--text-secondary);">Epic</span>
+        <span class="integration-pill" style="background:var(--white);border-color:var(--border);color:var(--text-secondary);">Athena Health</span>
+        <span class="integration-pill" style="background:var(--white);border-color:var(--border);color:var(--text-secondary);">NextGen</span>
+        <span class="integration-pill" style="background:var(--white);border-color:var(--border);color:var(--text-secondary);">eClinicalWorks</span>
+        <span class="integration-pill" style="background:var(--white);border-color:var(--border);color:var(--text-secondary);">Meditech</span>
+        <span class="integration-pill" style="background:var(--white);border-color:var(--border);color:var(--text-secondary);">Kareo</span>
+        <span class="integration-pill" style="background:var(--white);border-color:var(--border);color:var(--text-secondary);">DrChrono</span>
+        <span class="integration-pill" style="background:var(--white);border-color:var(--border);color:var(--text-secondary);">Office Ally</span>
+        <span class="integration-pill" style="background:var(--white);border-color:var(--border);color:var(--text-secondary);">Google Business</span>
+        <span class="integration-pill" style="background:var(--white);border-color:var(--border);color:var(--text-secondary);">DataForSEO</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="demo">
+  <div class="hero-bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+  <div class="cta-content">
+    <div class="hero-eyebrow" style="margin: 0 auto 28px;">
+      <span class="eyebrow-dot"></span>
+      No commitment required
+    </div>
+    <h2 class="cta-title">
+      See all nine agents<br>
+      <strong>working in your practice.</strong>
+    </h2>
+    <p class="cta-sub">
+      In 15 minutes, we'll show you exactly which agents apply to your practice, what they'll do on Day 1, and what a conservative Year 1 ROI looks like with your numbers.
+    </p>
+    <div class="cta-buttons">
+      <a href="mailto:am@zxai.ai?subject=ZxAI%20Demo%20Request" class="btn-primary">Schedule a 15-Minute Demo</a>
+      <a href="mailto:am@zxai.ai?subject=ZxAI%20Pricing%20Inquiry" class="btn-secondary">Request Pricing</a>
+    </div>
+    <p class="cta-note">Live in 10 days · HIPAA-compliant · No long-term contract required</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">
+    <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg" style="color:#fff">
+      <g fill="currentColor">
+        <path fill-rule="evenodd" d="M176 94A86 86 0 1 1 176 266A86 86 0 1 1 176 94ZM176 108A72 72 0 1 0 176 252A72 72 0 1 0 176 108ZM212 122L226 131L179 237L165 228L212 122Z"/>
+      </g>
+      <g fill="currentColor">
+        <path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/>
+        <path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/>
+        <path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/>
+        <path d="M800 116H819V244H800V116Z"/>
+      </g>
+    </svg>
+  </div>
+  <div class="footer-copy">© 2026 ZxAI. HIPAA-compliant AI for medical practices. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#" class="footer-link">Privacy</a>
+    <a href="#" class="footer-link">Terms</a>
+    <a href="#" class="footer-link">Security</a>
+    <a href="mailto:am@zxai.ai" class="footer-link">am@zxai.ai</a>
+  </div>
+</footer>
+
+<script>
+  let activeCard = null;
+  let activeDetail = null;
+
+  function toggleAgent(card, detailId) {
+    const detail = document.getElementById(detailId);
+
+    // If clicking same card — close it
+    if (activeDetail === detailId) {
+      detail.classList.remove('visible');
+      card.classList.remove('active');
+      activeCard = null;
+      activeDetail = null;
+      return;
+    }
+
+    // Close any open panel
+    if (activeDetail) {
+      document.getElementById(activeDetail).classList.remove('visible');
+    }
+    if (activeCard) {
+      activeCard.classList.remove('active');
+    }
+
+    // Position detail panel right after the row of the clicked card
+    const agentsGrid = document.getElementById('agents-grid');
+    const cards = Array.from(agentsGrid.querySelectorAll('.agent-card'));
+    const cardIndex = cards.indexOf(card);
+
+    // Find which row the card is in (3 columns)
+    const colCount = 3;
+    const rowEnd = Math.ceil((cardIndex + 1) / colCount) * colCount - 1;
+    const rowEndCard = cards[Math.min(rowEnd, cards.length - 1)];
+
+    // Move detail panel to after the row
+    rowEndCard.after(detail);
+
+    // Open new panel
+    detail.classList.add('visible');
+    card.classList.add('active');
+    activeCard = card;
+    activeDetail = detailId;
+
+    // Smooth scroll to panel
+    setTimeout(() => {
+      detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 50);
+  }
+
+  function closeDetail(detailId) {
+    const detail = document.getElementById(detailId);
+    detail.classList.remove('visible');
+    if (activeCard) activeCard.classList.remove('active');
+    activeCard = null;
+    activeDetail = null;
+  }
+
+  // Animate stat numbers on scroll
+  function animateValue(el, start, end, duration, suffix) {
+    let startTime = null;
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(eased * (end - start) + start);
+      el.textContent = (suffix === '%' || suffix === ' min' || suffix === ' days')
+        ? (current === 100 ? '100' : (current < 10 ? '&lt;' + current : current)) + suffix
+        : suffix === '$980K+' ? '$' + current + 'K+'
+        : el.textContent;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Intersection observer for hero stats
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.agent-card, .roi-card, .compliance-card, .testimonial-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
