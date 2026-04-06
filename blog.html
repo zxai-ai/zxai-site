@@ -60,6 +60,7 @@
     }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
     .nav-logo svg { height: 36px; width: auto; color: var(--text-primary); }
+    @media (max-width: 768px) { .nav-logo svg { height: 28px; } }
     .nav-right { display: flex; align-items: center; gap: 36px; }
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-link { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.01em; transition: color 0.2s; }
@@ -412,12 +413,8 @@
 
   <!-- NAV -->
   <nav class="nav">
-    <a href="/" class="nav-logo">
-      <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="1.5" fill="none"/>
-        <line x1="23.5" y1="9" x2="16.5" y2="31" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        <text x="42" y="26" font-family="Inter, sans-serif" font-size="18" font-weight="300" letter-spacing="-0.04em" fill="currentColor">ZxAI</text>
-      </svg>
+    <a href="/" class="nav-logo" aria-label="ZxAI home">
+      <svg viewBox="0 0 1280 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="currentColor"><path fill-rule="evenodd" d="M176 94A86 86 0 1 1 176 266A86 86 0 1 1 176 94ZM176 108A72 72 0 1 0 176 252A72 72 0 1 0 176 108ZM212 122L226 131L179 237L165 228L212 122Z"/></g><g fill="currentColor"><path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/><path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/><path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/><path d="M800 116H819V244H800V116Z"/></g></svg>
     </a>
     <div class="nav-right">
       <ul class="nav-links">
