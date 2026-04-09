@@ -38,8 +38,8 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZxAI: AI Agents for Medical Practices | Scheduling, Billing &amp; Patient Outreach</title>
-  <meta name="description" content="ZxAI installs AI agents into private medical practices that handle scheduling, billing, prior auth, and patient outreach. Works inside your existing EHR. Live in 2–4 weeks.">
+  <title>ZxAI — AI Agents for Independent Medical Practices</title>
+  <meta name="description" content="ZxAI deploys AI agents for private medical practices — scheduling, billing, prior auth, and patient outreach. Works in your EHR. Live in 2–4 weeks.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://zxai.ai/">
 
@@ -201,6 +201,86 @@
             }
           }
         ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Additional Schema: Breadcrumb, Person, HowTo, SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://zxai.ai/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://zxai.ai/"
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://zxai.ai/#founder",
+        "name": "Anthony Mesa",
+        "jobTitle": "Founder",
+        "worksFor": { "@id": "https://zxai.ai/#organization" },
+        "url": "https://zxai.ai",
+        "sameAs": [
+          "https://www.linkedin.com/in/anthonymesa"
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://zxai.ai/#howto",
+        "name": "How to Deploy AI Agents for Your Medical Practice",
+        "description": "ZxAI deploys AI agents into your existing medical practice in three steps with first results in one week.",
+        "totalTime": "P14D",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Book an Intro Call",
+            "text": "Schedule a 15-minute call. We assess your practice workflows and confirm we can deliver a clear ROI before you sign anything."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "We Configure Your Agents",
+            "text": "ZxAI connects to your EHR via FHIR API or HL7 feed and configures agents to your specific workflows — scheduling, billing, prior auth, and outreach."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Go Live in 10 Days",
+            "text": "Your AI agents go live. Staff receives one hour of training. First results — answered calls, booked appointments, submitted prior auths — appear within the first week."
+          }
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://zxai.ai/#software",
+        "name": "ZxAI AI Agent Platform",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "AI agent platform for independent medical practices. Automates scheduling, billing, prior authorization, patient outreach, revenue recovery, and more. EHR-integrated. HIPAA compliant.",
+        "url": "https://zxai.ai",
+        "offers": {
+          "@type": "Offer",
+          "price": "1500",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "1500",
+            "priceCurrency": "USD",
+            "unitText": "MONTH"
+          }
+        },
+        "provider": { "@id": "https://zxai.ai/#organization" }
       }
     ]
   }
