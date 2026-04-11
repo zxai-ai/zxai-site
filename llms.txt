@@ -39,9 +39,9 @@ Independent and private medical practices lose significant revenue and time to m
 
 Athena Health, Epic, eClinicalWorks, Kareo, Modernizing Medicine, DrChrono. FHIR API and HL7 feed support.
 
-## Compliance
+## Compliance and HIPAA Architecture
 
-HIPAA compliant. All vendors have signed BAAs. Patient data is encrypted in transit and at rest and never leaves the practice's systems.
+ZxAI agents run inside the practice's own cloud infrastructure, under the practice's own credentials. Patient data never leaves the practice's environment and never touches ZxAI's servers. ZxAI is not a Business Associate under HIPAA. No BAA is required. This is a foundational architectural difference from SaaS competitors who pull patient data into their own systems and become Business Associates by definition. ZxAI provides the AI logic and trained workflows. The practice owns and controls the data layer entirely.
 
 ## Target Customers
 
