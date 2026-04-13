@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Which AI Tools for Medical Practices Require a Business Associate Agreement? | ZxAI</title>
+  <meta name="description" content="Every major AI vendor for medical practices is a Business Associate under HIPAA. Here's which ones require a BAA, what that means for your practice, and the one architecture that doesn't.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zxai.ai/blog/healthcare-ai-baa-requirement">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://zxai.ai/blog/healthcare-ai-baa-requirement">
+  <meta property="og:site_name" content="ZxAI">
+  <meta property="og:title" content="Which AI Tools for Medical Practices Require a Business Associate Agreement?">
+  <meta property="og:description" content="Every major AI vendor for medical practices is a Business Associate under HIPAA. Here's which ones require a BAA, what that means for your practice, and the one architecture that doesn't.">
+  <meta property="og:image" content="https://zxai.ai/og-image.png">
+  <meta property="article:published_time" content="2026-04-13T00:00:00Z">
+  <meta property="article:author" content="Anthony Mesa">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Which AI Tools for Medical Practices Require a Business Associate Agreement?">
+  <meta name="twitter:description" content="Most AI vendors for medical practices are Business Associates under HIPAA. Here's which ones require a BAA and why.">
+  <meta name="twitter:image" content="https://zxai.ai/og-image.png">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "headline": "Which AI Tools for Medical Practices Require a Business Associate Agreement?",
+        "description": "Every major AI vendor for medical practices is a Business Associate under HIPAA. Here's which ones require a BAA, what that means for your practice, and the one architecture that doesn't.",
+        "url": "https://zxai.ai/blog/healthcare-ai-baa-requirement",
+        "image": "https://zxai.ai/og-image.png",
+        "datePublished": "2026-04-13T00:00:00Z",
+        "dateModified": "2026-04-13T00:00:00Z",
+        "author": {
+          "@type": "Person",
+          "name": "Anthony Mesa",
+          "url": "https://www.linkedin.com/in/amesa123/",
+          "jobTitle": "Founder",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "ZxAI",
+            "url": "https://zxai.ai"
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "ZxAI",
+          "url": "https://zxai.ai",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://zxai.ai/og-image.png"
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://zxai.ai/blog/healthcare-ai-baa-requirement"
+        },
+        "keywords": ["healthcare AI BAA requirement", "AI vendor HIPAA compliance", "Business Associate Agreement medical practice", "does AI vendor need a BAA", "HIPAA Business Associate", "medical practice AI tools"]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is a Business Associate Agreement (BAA) in healthcare?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A Business Associate Agreement is a contract between a healthcare practice and a vendor who handles Protected Health Information on the practice's behalf. It defines how the vendor can use that data, what security standards they must meet, and what happens if there is a breach. HIPAA requires a signed BAA with any vendor that qualifies as a Business Associate."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does every AI vendor for medical practices require a BAA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most do. Any AI vendor whose product processes or stores patient data on their own servers is a Business Associate under HIPAA and requires a BAA. Vendors whose AI runs inside the practice's own infrastructure, using the practice's own systems, may not qualify as Business Associates and may not require a BAA."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if I use an AI tool without a BAA when one is required?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Operating without a required BAA is a HIPAA violation. Penalties range from $100 to $50,000 per violation, depending on the level of negligence, with annual caps up to $1.9 million per violation category. Both the practice and the vendor may be subject to penalties."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I negotiate the terms of a BAA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. BAAs are negotiable. Key areas where practices often negotiate include breach notification timelines, data deletion procedures, subcontractor disclosures, and liability allocation. An attorney familiar with HIPAA should review any BAA before you sign."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I know if a vendor is actually a Business Associate?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ask where your patient data lives during normal product operation. If the answer is their servers, their cloud, or their infrastructure, they are a Business Associate. If their product runs entirely within your own environment using your own infrastructure, they may not be."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is ZxAI a Business Associate?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. ZxAI's AI staff run inside the practice's own cloud infrastructure, using the practice's own credentials. Patient data does not move to ZxAI's servers. Under HIPAA's definition, ZxAI is not receiving, maintaining, or transmitting PHI and is not a Business Associate. No BAA is required."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23060B18'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%2306B6D4' stroke-width='1.5'/%3E%3Cline x1='19' y1='9' x2='13' y2='23' stroke='%2306B6D4' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --hero-bg: #060B18;
+      --white: #FFFFFF;
+      --bg-alt: #F7F8FA;
+      --text-primary: #0B0B0B;
+      --text-secondary: #64748B;
+      --border: #E2E8F0;
+      --cyan: #06B6D4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-primary);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 48px; height: 80px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo svg { height: 36px; width: auto; color: var(--text-primary); }
+    @media (max-width: 768px) { .nav-logo svg { height: 28px; } }
+    .nav-right { display: flex; align-items: center; gap: 36px; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-link { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.01em; transition: color 0.2s; }
+    .nav-link:hover, .nav-link.active { color: var(--text-primary); }
+    .nav-cta { background: var(--text-primary); color: var(--white); border: none; padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+    .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    /* ── ARTICLE HERO ── */
+    .article-hero {
+      background: var(--hero-bg);
+      padding: 140px 48px 80px;
+    }
+    .article-hero-inner { max-width: 800px; margin: 0 auto; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.4);
+      text-decoration: none; margin-bottom: 32px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: rgba(255,255,255,0.7); }
+    .back-link svg { width: 14px; height: 14px; }
+    .article-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+    .article-tag {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--cyan); background: rgba(6,182,212,0.12);
+      padding: 5px 12px; border-radius: 20px;
+    }
+    .article-date { font-size: 13px; color: rgba(255,255,255,0.4); }
+    .article-read-time { font-size: 13px; color: rgba(255,255,255,0.4); }
+    .article-sep { color: rgba(255,255,255,0.2); }
+    .article-headline {
+      font-size: clamp(28px, 4vw, 52px); font-weight: 300;
+      color: var(--white); line-height: 1.1;
+      letter-spacing: -0.03em; margin-bottom: 16px;
+    }
+    .article-headline strong { font-weight: 700; }
+    .article-deck {
+      font-size: 18px; line-height: 1.65;
+      color: rgba(255,255,255,0.5); max-width: 680px;
+    }
+
+    .article-body-wrap { padding: 72px 48px 120px; }
+    .article-body { max-width: 720px; margin: 0 auto; }
+
+    /* ── PROSE ── */
+    .article-body p {
+      font-size: 17px; line-height: 1.8; color: #1a1a1a; margin-bottom: 24px;
+    }
+    .article-body h2 {
+      font-size: clamp(22px, 2.5vw, 30px); font-weight: 600;
+      color: var(--text-primary); letter-spacing: -0.02em;
+      line-height: 1.25; margin-top: 60px; margin-bottom: 20px;
+      padding-top: 60px; border-top: 1px solid var(--border);
+    }
+    .article-body h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+    .article-body h3 {
+      font-size: 19px; font-weight: 600; color: var(--text-primary);
+      letter-spacing: -0.01em; margin-top: 48px; margin-bottom: 16px;
+    }
+    .article-body strong { font-weight: 600; color: var(--text-primary); }
+    .article-body hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+    .callout {
+      background: var(--bg-alt); border-left: 3px solid var(--cyan);
+      border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 28px 0;
+    }
+    .callout p { margin-bottom: 0; font-size: 15px; color: var(--text-secondary); }
+    .callout p + p { margin-top: 12px; }
+    .callout-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 8px; display: block;
+    }
+
+    /* ── VENDOR TABLE ── */
+    .vendor-table-wrap {
+      overflow-x: auto; margin: 36px 0;
+      border-radius: 12px; border: 1px solid var(--border);
+    }
+    .vendor-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 14px;
+    }
+    .vendor-table th {
+      background: var(--hero-bg); color: rgba(255,255,255,0.6);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 14px 20px; text-align: left;
+      white-space: nowrap;
+    }
+    .vendor-table td {
+      padding: 14px 20px; border-bottom: 1px solid var(--border);
+      vertical-align: middle; color: #1a1a1a; line-height: 1.5;
+    }
+    .vendor-table tr:last-child td { border-bottom: none; }
+    .vendor-table tr:hover td { background: var(--bg-alt); }
+    .vendor-table tr.highlight td { background: rgba(6,182,212,0.04); }
+    .baa-yes {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; color: #DC2626;
+      background: rgba(220,38,38,0.08); padding: 3px 10px; border-radius: 20px;
+    }
+    .baa-no {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; color: #059669;
+      background: rgba(5,150,105,0.08); padding: 3px 10px; border-radius: 20px;
+    }
+
+    /* ── QUESTION LIST ── */
+    .question-list { margin: 0 0 32px; }
+    .question-item {
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+    }
+    .question-item:last-child { border-bottom: none; }
+    .question-num {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 8px;
+    }
+    .question-item h3 {
+      font-size: 16px; font-weight: 600; color: var(--text-primary);
+      margin-bottom: 8px; margin-top: 0;
+    }
+    .question-item p {
+      font-size: 15px; color: var(--text-secondary); margin-bottom: 0; line-height: 1.7;
+    }
+
+    /* ── FAQ SECTION ── */
+    .faq-section { margin-top: 64px; }
+    .faq-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 32px;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border); padding: 28px 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h3 {
+      font-size: 17px; font-weight: 600; color: var(--text-primary);
+      letter-spacing: -0.01em; margin-bottom: 12px; margin-top: 0;
+      line-height: 1.4;
+    }
+    .faq-item p {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.75; margin-bottom: 0;
+    }
+
+    /* ── ARTICLE CTA ── */
+    .article-cta {
+      background: var(--hero-bg); border-radius: 16px;
+      padding: 48px; margin-top: 72px; text-align: center;
+    }
+    .article-cta h3 {
+      font-size: 22px; font-weight: 600; color: var(--white);
+      letter-spacing: -0.02em; margin-bottom: 12px; margin-top: 0;
+    }
+    .article-cta p { font-size: 16px; color: rgba(255,255,255,0.5); margin-bottom: 28px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--cyan); color: #060B18;
+      padding: 14px 28px; border-radius: 8px;
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--hero-bg); padding: 48px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.6); }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .article-hero { padding: 120px 24px 60px; }
+      .article-body-wrap { padding: 48px 24px 80px; }
+      .footer { padding: 40px 24px; }
+      .article-cta { padding: 32px 24px; }
+      .vendor-table th, .vendor-table td { padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="/" class="nav-logo" aria-label="ZxAI home">
+      <svg viewBox="0 0 1280 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="currentColor"><path fill-rule="evenodd" d="M176 94A86 86 0 1 1 176 266A86 86 0 1 1 176 94ZM176 108A72 72 0 1 0 176 252A72 72 0 1 0 176 108ZM212 122L226 131L179 237L165 228L212 122Z"/></g><g fill="currentColor"><path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/><path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/><path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/><path d="M800 116H819V244H800V116Z"/></g></svg>
+    </a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="/" class="nav-link">How It Works</a></li>
+        <li><a href="/" class="nav-link">Who We Serve</a></li>
+        <li><a href="/blog" class="nav-link active">Blog</a></li>
+      </ul>
+      <a href="https://calendly.com/zxai/intro" class="nav-cta" target="_blank" rel="noopener">Book 15 Minutes</a>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HERO -->
+  <div class="article-hero">
+    <div class="article-hero-inner">
+
+      <a href="/blog" class="back-link">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="7" x2="2" y2="7"/><polyline points="6,11 2,7 6,3"/>
+        </svg>
+        All posts
+      </a>
+
+      <div class="article-meta">
+        <span class="article-tag">HIPAA &amp; Compliance</span>
+        <span class="article-sep">|</span>
+        <span class="article-date">April 13, 2026</span>
+        <span class="article-sep">|</span>
+        <span class="article-read-time">8 min read</span>
+        <span class="article-sep">|</span>
+        <span class="article-date">By <a href="https://www.linkedin.com/in/amesa123/" style="color:rgba(255,255,255,0.6); text-decoration:none;" target="_blank" rel="author noopener">Anthony Mesa</a></span>
+      </div>
+
+      <h1 class="article-headline">Which AI Tools for Medical Practices<br><strong>Require a Business Associate Agreement?</strong></h1>
+      <p class="article-deck">Most AI vendors for independent practices pull your patient data into their own servers. That makes them Business Associates under HIPAA. Here's which ones require a BAA, what signing actually commits you to, and the one architecture that avoids the conversation entirely.</p>
+
+    </div>
+  </div>
+
+  <div class="article-body-wrap">
+    <article class="article-body">
+
+      <div class="callout">
+        <span class="callout-label">Direct Answer</span>
+        <p>Any AI vendor that creates, receives, maintains, or transmits your patient data on your behalf is a Business Associate under HIPAA. That means most AI tools for medical practices require a BAA. Podium, Zenoti, Klara, Weave, Luma, and Solutionreach all pull patient data into their own servers. Each one is a Business Associate. Each one requires a signed agreement. One architecture avoids this entirely: AI that runs inside your own infrastructure, not the vendor's. Your data never leaves. No BAA required.</p>
+      </div>
+
+      <p>Most practice owners find out about Business Associate Agreements at the wrong time. A vendor asks them to sign one, they forward it to their attorney, and two weeks later they're still waiting.</p>
+
+      <p>Understanding which AI vendors require a BAA before you start evaluating them saves time and changes how you think about the entire market.</p>
+
+      <h2>What Makes a Vendor a Business Associate</h2>
+
+      <p>Under HIPAA, a Business Associate is any organization that creates, receives, maintains, or transmits Protected Health Information (PHI) on behalf of a covered entity.</p>
+
+      <p>The covered entity is your practice. You are responsible for patient data under HIPAA. Any vendor you work with that handles that data inherits a portion of that responsibility. You formalize it with a Business Associate Agreement.</p>
+
+      <p>The BAA sets out what the vendor can do with your patient data, how they protect it, what happens if there's a breach, and what their liability is if something goes wrong.</p>
+
+      <p>This is not bureaucratic paperwork. It is the legal document that defines who is responsible for your patients' data when it leaves your building.</p>
+
+      <h2>The Architecture Question</h2>
+
+      <p>Whether a vendor is a Business Associate comes down to one question: where does the patient data live?</p>
+
+      <p>If a vendor pulls your patient data into their own servers to run their product, they are a Business Associate. Your data lives in their environment, on their infrastructure, under their control. A BAA is required.</p>
+
+      <p>If a vendor's product runs inside your own infrastructure, using your own systems, and your patient data never leaves your environment, the vendor is not receiving or maintaining PHI. A BAA is not required.</p>
+
+      <p>This is an architectural difference. It is not a privacy policy choice or a marketing claim. It is determined by how the product is built.</p>
+
+      <h2>Which AI Vendors Require a BAA</h2>
+
+      <p>Here is a breakdown of the major AI vendors in the independent practice and med spa market, organized by BAA requirement:</p>
+
+      <div class="vendor-table-wrap">
+        <table class="vendor-table">
+          <thead>
+            <tr>
+              <th>Vendor</th>
+              <th>Category</th>
+              <th>Data Handling</th>
+              <th>BAA Required</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Podium Avery</strong></td>
+              <td>AI communication / reviews</td>
+              <td>Patient data processed on Podium servers</td>
+              <td><span class="baa-yes">Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>Zenoti AI</strong></td>
+              <td>Practice management platform</td>
+              <td>Patient data stored in Zenoti cloud</td>
+              <td><span class="baa-yes">Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>Klara</strong></td>
+              <td>Patient communication</td>
+              <td>Messages processed on Klara servers</td>
+              <td><span class="baa-yes">Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>Weave</strong></td>
+              <td>Communication platform</td>
+              <td>Patient data on Weave infrastructure</td>
+              <td><span class="baa-yes">Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>Luma Health</strong></td>
+              <td>Patient engagement</td>
+              <td>Patient data processed on Luma servers</td>
+              <td><span class="baa-yes">Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>Solutionreach</strong></td>
+              <td>Patient engagement</td>
+              <td>Patient data on Solutionreach servers</td>
+              <td><span class="baa-yes">Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>NexHealth</strong></td>
+              <td>Patient engagement</td>
+              <td>Patient data on NexHealth infrastructure</td>
+              <td><span class="baa-yes">Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>Mindbody</strong></td>
+              <td>Booking platform</td>
+              <td>Patient data in Mindbody cloud</td>
+              <td><span class="baa-yes">Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>Vagaro</strong></td>
+              <td>Booking / CRM</td>
+              <td>Patient data on Vagaro servers</td>
+              <td><span class="baa-yes">Yes</span></td>
+            </tr>
+            <tr class="highlight">
+              <td><strong>ZxAI</strong></td>
+              <td>AI staff</td>
+              <td>Runs inside practice's own infrastructure</td>
+              <td><span class="baa-no">No</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <span class="callout-label">Important note</span>
+        <p>"BAA required" does not mean the vendor is irresponsible or insecure. Most of these vendors take data security seriously. The BAA requirement is a function of their architecture, not their intentions. Your practice is still taking on risk when you sign a BAA, because you are acknowledging that a third party has access to your patients' information.</p>
+      </div>
+
+      <h2>What Signing a BAA Actually Means for Your Practice</h2>
+
+      <p>When you sign a BAA, you are doing a few things at once.</p>
+
+      <p>First, you are acknowledging that the vendor has access to your patient data and is handling it on your behalf. If that vendor experiences a breach, your practice may have reporting obligations. Your patients may need to be notified.</p>
+
+      <p>Second, you are accepting that if the vendor violates the agreement and PHI is exposed, your practice may share in the liability, depending on how the breach is categorized and whether you exercised appropriate due diligence in selecting the vendor.</p>
+
+      <p>Third, you are agreeing to monitor the vendor's compliance, at least in principle. Most small practices never actually do this, which is itself a compliance gap.</p>
+
+      <p>None of this means you should avoid every vendor that requires a BAA. Most of the vendors in the table above have strong security practices, and a well-negotiated BAA can adequately protect your practice. What it does mean is that signing a BAA is not a formality. It carries real obligations on both sides.</p>
+
+      <h2>Five Questions to Ask Before You Sign</h2>
+
+      <p>If a vendor requires a BAA, these are the questions your attorney should be asking before you sign:</p>
+
+      <div class="question-list">
+        <div class="question-item">
+          <div class="question-num">Question 1</div>
+          <h3>Where specifically does my patient data live?</h3>
+          <p>What cloud provider, what region, what data center? This is a factual question with a specific answer. "Secure cloud infrastructure" is not an answer.</p>
+        </div>
+        <div class="question-item">
+          <div class="question-num">Question 2</div>
+          <h3>Who at your company has access to patient data?</h3>
+          <p>Ask for a list of roles, not just a policy statement. Customer support, engineering, and third-party processors all matter.</p>
+        </div>
+        <div class="question-item">
+          <div class="question-num">Question 3</div>
+          <h3>What is your breach notification timeline?</h3>
+          <p>HIPAA requires notification within 60 days of discovery. Ask what their internal timeline is and how they have handled past incidents.</p>
+        </div>
+        <div class="question-item">
+          <div class="question-num">Question 4</div>
+          <h3>What happens to my data if we stop working together?</h3>
+          <p>Ask for specific data deletion timelines and a written confirmation process. Vague answers are a flag.</p>
+        </div>
+        <div class="question-item">
+          <div class="question-num">Question 5</div>
+          <h3>Have you had any reportable breaches in the past three years?</h3>
+          <p>You can look this up on the HHS breach portal, but asking directly and watching the response tells you something.</p>
+        </div>
+      </div>
+
+      <h2>The Alternative Architecture</h2>
+
+      <p>One way to avoid BAA requirements entirely is to use AI that runs inside your own infrastructure, not a vendor's cloud.</p>
+
+      <p>This is how ZxAI is built. ZxAI's AI staff members are deployed inside the practice's own cloud environment, using the practice's own credentials. They authenticate against the practice's systems directly. Patient data never moves to ZxAI's servers because ZxAI does not have servers that receive it.</p>
+
+      <p>Under HIPAA's definition, ZxAI is not creating, receiving, maintaining, or transmitting PHI. The practice's systems are doing that. ZxAI is the logic running inside those systems.</p>
+
+      <p>This is not the right architecture for every practice. It requires that you already have, or are willing to set up, the infrastructure for the AI to run in. But for practices where data control and compliance posture matter, it eliminates the BAA conversation entirely.</p>
+
+      <h2>What to Do With This Information</h2>
+
+      <p>If you are evaluating AI vendors for your practice, start with the architecture question before you get into features or pricing.</p>
+
+      <p>Ask each vendor: does your product run on your servers, or mine?</p>
+
+      <p>If the answer is theirs, ask to see their BAA before your next conversation. Have your attorney review it. Understand what you are agreeing to before you agree to it.</p>
+
+      <p>If the answer is yours, verify it. Ask them to explain, in plain language, where your patient data lives during normal operations, during support interactions, and during billing.</p>
+
+      <p>The vendors who answer these questions directly are the ones worth talking to further. The vendors who cannot give a clear answer to where your data lives are the ones to watch closely.</p>
+
+      <!-- AUTHOR BIO -->
+      <div style="border-top: 1px solid var(--border); padding-top: 32px; margin-top: 56px; margin-bottom: 56px;">
+        <p style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px;">Anthony Mesa</p>
+        <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0;">
+          Founder of ZxAI. Building AI staff for independent medical practices in Texas.
+          <a href="https://www.linkedin.com/in/amesa123/" style="color: var(--cyan); text-decoration: none;" target="_blank" rel="author noopener">LinkedIn</a>
+        </p>
+      </div>
+
+      <!-- FAQ SECTION -->
+      <div class="faq-section">
+        <div class="faq-label">Frequently Asked Questions</div>
+
+        <div class="faq-item">
+          <h3>What is a Business Associate Agreement (BAA) in healthcare?</h3>
+          <p>A Business Associate Agreement is a contract between a healthcare practice and a vendor who handles Protected Health Information on the practice's behalf. It defines how the vendor can use that data, what security standards they must meet, and what happens if there is a breach. HIPAA requires a signed BAA with any vendor that qualifies as a Business Associate.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Does every AI vendor for medical practices require a BAA?</h3>
+          <p>Most do. Any AI vendor whose product processes or stores patient data on their own servers is a Business Associate under HIPAA and requires a BAA. Vendors whose AI runs inside the practice's own infrastructure, using the practice's own systems, may not qualify as Business Associates and may not require a BAA.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What happens if I use an AI tool without a BAA when one is required?</h3>
+          <p>Operating without a required BAA is a HIPAA violation. Penalties range from $100 to $50,000 per violation, depending on the level of negligence, with annual caps up to $1.9 million per violation category. Both the practice and the vendor may be subject to penalties.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I negotiate the terms of a BAA?</h3>
+          <p>Yes. BAAs are negotiable. Key areas where practices often negotiate include breach notification timelines, data deletion procedures, subcontractor disclosures, and liability allocation. An attorney familiar with HIPAA should review any BAA before you sign.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How do I know if a vendor is actually a Business Associate?</h3>
+          <p>Ask where your patient data lives during normal product operation. If the answer is their servers, their cloud, or their infrastructure, they are a Business Associate. If their product runs entirely within your own environment using your own infrastructure, they may not be.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Is ZxAI a Business Associate?</h3>
+          <p>No. ZxAI's AI staff run inside the practice's own cloud infrastructure, using the practice's own credentials. Patient data does not move to ZxAI's servers. Under HIPAA's definition, ZxAI is not receiving, maintaining, or transmitting PHI and is not a Business Associate. No BAA is required.</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="article-cta">
+        <h3>Want to see how AI staff works without the BAA?</h3>
+        <p>We'll walk you through how ZxAI deploys inside your existing systems, under your credentials, with no data leaving your environment. 15 minutes.</p>
+        <a href="https://calendly.com/zxai/intro" class="btn-primary" target="_blank" rel="noopener">
+          Book 15 minutes
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/>
+          </svg>
+        </a>
+      </div>
+
+    </article>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-copy">&copy; 2026 ZxAI. All rights reserved.</div>
+    <ul class="footer-links">
+      <li><a href="/privacy-policy.html">Privacy</a></li>
+      <li><a href="/terms-of-service.html">Terms</a></li>
+      <li><a href="mailto:hello@zxai.ai">hello@zxai.ai</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>
