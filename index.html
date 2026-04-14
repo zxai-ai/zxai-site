@@ -12,46 +12,34 @@
       }
     })();
   </script>
-  <!-- GTM + GA4 + Apollo: dataLayer init inline, scripts deferred until after load -->
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-M43D9XD2');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Apollo Website Tracker -->
+  <script>function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+  o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+  o.onload=function(){window.trackingFunctions.onLoad({appId:"66329e231cdfa001c74ed838"})},
+  document.head.appendChild(o)}initApollo();</script>
+  <!-- End Apollo Website Tracker -->
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2TJ8X70VZT"></script>
   <script>
-    // Initialize dataLayer immediately so no events are lost
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-2TJ8X70VZT');
-
-    // Defer all third-party script loads until after page paint
-    window.addEventListener('load', function() {
-      // Google Tag Manager
-      var gtmScript = document.createElement('script');
-      gtmScript.async = true;
-      gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-M43D9XD2';
-      document.head.appendChild(gtmScript);
-
-      // Google Analytics
-      var gaScript = document.createElement('script');
-      gaScript.async = true;
-      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-2TJ8X70VZT';
-      document.head.appendChild(gaScript);
-
-      // Apollo Website Tracker
-      var apolloId = Math.random().toString(36).substring(7);
-      var apolloScript = document.createElement('script');
-      apolloScript.src = 'https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=' + apolloId;
-      apolloScript.async = true;
-      apolloScript.defer = true;
-      apolloScript.onload = function() {
-        window.trackingFunctions.onLoad({appId: '66329e231cdfa001c74ed838'});
-      };
-      document.head.appendChild(apolloScript);
-    });
   </script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZxAI — AI Agents for Independent Medical Practices</title>
-  <meta name="description" content="ZxAI deploys AI agents for private medical practices — scheduling, billing, prior auth, and patient outreach. Works in your EHR. Live in 2–4 weeks.">
+  <title>ZxAI: AI Staff for Medical Practices | Prior Auth, No-Shows &amp; Patient Recovery</title>
+  <meta name="description" content="ZxAI deploys AI staff inside your existing systems to handle prior auth, no-shows, and lapsed patient recovery. No new software. No BAA. Live in 2–4 weeks.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://zxai.ai/">
 
@@ -59,15 +47,15 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zxai.ai/">
   <meta property="og:site_name" content="ZxAI">
-  <meta property="og:title" content="ZxAI: AI Agents for Medical Practices">
-  <meta property="og:description" content="AI agents that handle scheduling, billing, prior auth, and patient outreach, inside your existing EHR. No new software. No new hires. Live in 2–4 weeks.">
+  <meta property="og:title" content="ZxAI: AI Staff for Medical Practices">
+  <meta property="og:description" content="AI staff that handle prior auth, no-shows, and lapsed patient recovery, inside your existing systems. No new software. No BAA. Live in 2–4 weeks.">
   <meta property="og:image" content="https://zxai.ai/og-image.png">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@zxai_ai">
-  <meta name="twitter:title" content="ZxAI: AI Agents for Medical Practices">
-  <meta name="twitter:description" content="AI agents that handle scheduling, billing, prior auth, and patient outreach, inside your existing EHR. Live in 2–4 weeks.">
+  <meta name="twitter:title" content="ZxAI: AI Staff for Medical Practices">
+  <meta name="twitter:description" content="AI staff that handle prior auth, no-shows, and lapsed patient recovery, inside your existing systems. No BAA. Live in 2–4 weeks.">
   <meta name="twitter:image" content="https://zxai.ai/og-image.png">
 
   <!-- Favicon -->
@@ -87,9 +75,6 @@
         "foundingDate": "2026",
         "description": "ZxAI installs AI agents into private medical practices that automate scheduling, billing, prior authorization, patient outreach, and revenue recovery. Runs inside your own systems. EHR-integrated. Live in 2–4 weeks.",
         "areaServed": "US",
-        "sameAs": [
-          "https://www.linkedin.com/company/zxai/"
-        ],
         "knowsAbout": [
           "AI agents for healthcare",
           "Medical practice automation",
@@ -221,87 +206,6 @@
   }
   </script>
 
-  <!-- Additional Schema: Breadcrumb, Person, HowTo, SoftwareApplication -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        "@id": "https://zxai.ai/#breadcrumb",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://zxai.ai/"
-          }
-        ]
-      },
-      {
-        "@type": "Person",
-        "@id": "https://zxai.ai/#founder",
-        "name": "Anthony Mesa",
-        "jobTitle": "Founder",
-        "worksFor": { "@id": "https://zxai.ai/#organization" },
-        "url": "https://zxai.ai",
-        "sameAs": [
-          "https://www.linkedin.com/in/anthonymesa",
-          "https://www.linkedin.com/company/zxai/"
-        ]
-      },
-      {
-        "@type": "HowTo",
-        "@id": "https://zxai.ai/#howto",
-        "name": "How to Deploy AI Agents for Your Medical Practice",
-        "description": "ZxAI deploys AI agents into your existing medical practice in three steps with first results in one week.",
-        "totalTime": "P14D",
-        "step": [
-          {
-            "@type": "HowToStep",
-            "position": 1,
-            "name": "Book an Intro Call",
-            "text": "Schedule a 15-minute call. We assess your practice workflows and confirm we can deliver a clear ROI before you sign anything."
-          },
-          {
-            "@type": "HowToStep",
-            "position": 2,
-            "name": "We Configure Your Agents",
-            "text": "ZxAI connects to your EHR via FHIR API or HL7 feed and configures agents to your specific workflows — scheduling, billing, prior auth, and outreach."
-          },
-          {
-            "@type": "HowToStep",
-            "position": 3,
-            "name": "Go Live in 10 Days",
-            "text": "Your AI agents go live. Staff receives one hour of training. First results — answered calls, booked appointments, submitted prior auths — appear within the first week."
-          }
-        ]
-      },
-      {
-        "@type": "SoftwareApplication",
-        "@id": "https://zxai.ai/#software",
-        "name": "ZxAI AI Agent Platform",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web",
-        "description": "AI agent platform for independent medical practices. Automates scheduling, billing, prior authorization, patient outreach, revenue recovery, and more. EHR-integrated. HIPAA compliant.",
-        "url": "https://zxai.ai",
-        "offers": {
-          "@type": "Offer",
-          "price": "1500",
-          "priceCurrency": "USD",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "1500",
-            "priceCurrency": "USD",
-            "unitText": "MONTH"
-          }
-        },
-        "provider": { "@id": "https://zxai.ai/#organization" }
-      }
-    ]
-  }
-  </script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
@@ -370,6 +274,16 @@
     .hero-headline strong { font-weight: 600; }
     .hero-body { font-size: 18px; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 520px; margin-bottom: 40px; font-weight: 400; animation: fadeUp 0.8s ease-out 0.4s both; }
     .hero-guarantee { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 16px; letter-spacing: 0.02em; animation: fadeUp 0.8s ease-out 0.7s both; }
+
+    /* ── ICP TOGGLE ── */
+    .icp-toggle { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; animation: fadeUp 0.8s ease-out 0.1s both; }
+    .icp-btn { padding: 8px 18px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.18); background: transparent; color: rgba(255,255,255,0.45); font-size: 13px; font-weight: 500; font-family: inherit; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .icp-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.4); }
+    .icp-btn.active { background: rgba(6,182,212,0.12); border-color: var(--cyan); color: var(--white); }
+    .hero-stat { display: inline-flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 16px; margin-bottom: 24px; animation: fadeUp 0.8s ease-out 0.15s both; }
+    .hero-stat-num { font-size: 20px; font-weight: 700; color: var(--cyan); letter-spacing: -0.03em; white-space: nowrap; }
+    .hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+    .hero-headline, .hero-body { transition: opacity 0.15s ease; }
     .hero-ctas { display: flex; gap: 16px; animation: fadeUp 0.8s ease-out 0.6s both; }
     .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: linear-gradient(135deg, var(--cyan), var(--indigo)); color: var(--white); border: none; border-radius: 10px; font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.25s; text-decoration: none; }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(6,182,212,0.3); }
@@ -980,13 +894,22 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-content">
-        <h1 class="hero-headline">Your medical practice,<br><strong>fully staffed with AI.</strong></h1>
-        <p class="hero-body">We install AI agents into your medical practice that handle scheduling, billing, follow-ups, and patient outreach. They work inside your existing systems. No new software. No new hires. Just outcomes.</p>
+        <div class="icp-toggle" role="tablist" aria-label="Select your practice type">
+          <button class="icp-btn active" data-icp="functional" role="tab" aria-selected="true">Functional Medicine</button>
+          <button class="icp-btn" data-icp="medspa" role="tab" aria-selected="false">Med Spa</button>
+          <button class="icp-btn" data-icp="concierge" role="tab" aria-selected="false">Concierge Medicine</button>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" id="hero-stat-num">4.6 hrs</span>
+          <span class="hero-stat-label" id="hero-stat-label">lost per physician per week<br>to prior auth alone</span>
+        </div>
+        <h1 class="hero-headline" id="hero-headline">Your physicians spend 4.6 hours<br><strong>a week on prior auth.</strong></h1>
+        <p class="hero-body" id="hero-body">That's a full patient day, every week, going to hold music and denial forms. ZxAI deploys an AI Practice Administrator inside your systems to work the queue daily. Your physicians stay in exam rooms.</p>
         <div class="hero-ctas">
           <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="btn-primary" target="_blank" rel="noopener noreferrer">Hire your AI staff <span aria-hidden="true">&rarr;</span></a>
-          <a href="#agents" class="btn-secondary">Meet the agents</a>
+          <a href="#agents" class="btn-secondary">Meet the AI staff</a>
         </div>
-        <p class="hero-guarantee">We only take on practices we're confident we can help &nbsp;·&nbsp; Live in 2–4 weeks &nbsp;·&nbsp; No new software</p>
+        <p class="hero-guarantee">We only take on practices we're confident we can help &nbsp;·&nbsp; Live in 2–4 weeks &nbsp;·&nbsp; No BAA required</p>
       </div>
       <div class="hero-canvas-wrap" aria-hidden="true">
         <canvas id="heroCanvas"></canvas>
@@ -1252,11 +1175,6 @@
       <div class="compare-savings-bar reveal">
         <span class="compare-savings-text"><strong>You save $229K per year</strong> and get better coverage than any team of humans can provide.</span>
         <span class="compare-savings-num">$229K saved</span>
-      </div>
-      <div class="reveal" style="margin-top: 32px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;">
-        <a href="/compare/ai-vs-front-desk-staff.html" style="font-size: 14px; color: rgba(6,182,212,0.85); text-decoration: none; font-weight: 500;">AI vs. front desk staff →</a>
-        <a href="/compare/ai-vs-answering-services.html" style="font-size: 14px; color: rgba(6,182,212,0.85); text-decoration: none; font-weight: 500;">AI vs. answering services →</a>
-        <a href="/compare/ai-vs-doing-nothing.html" style="font-size: 14px; color: rgba(6,182,212,0.85); text-decoration: none; font-weight: 500;">AI vs. doing nothing →</a>
       </div>
     </div>
   </section>
@@ -2190,6 +2108,61 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 
   // Initialize monthly
   setPricingPeriod('monthly');
+})();
+
+// ── ICP TOGGLE ────────────────────────────────────────────────────────────────
+(function() {
+  var icpData = {
+    functional: {
+      statNum: '4.6 hrs',
+      statLabel: 'lost per physician per week<br>to prior auth alone',
+      headline: 'Your physicians spend 4.6 hours<br><strong>a week on prior auth.</strong>',
+      body: "That's a full patient day, every week, going to hold music and denial forms. ZxAI deploys an AI Practice Administrator inside your systems to work the queue daily. Your physicians stay in exam rooms."
+    },
+    medspa: {
+      statNum: '35%',
+      statLabel: 'of your patient panel<br>hasn\'t booked in 12+ months',
+      headline: '35% of your patient panel has gone quiet.<br><strong>$150K is sitting in a list you already own.</strong>',
+      body: "They didn't leave because they were unhappy. Nobody followed up. ZxAI deploys AI staff inside your systems to re-engage them with outreach timed to each patient's treatment cycle. No acquisition cost. Revenue you already earned."
+    },
+    concierge: {
+      statNum: '76%',
+      statLabel: 'of calls go to voicemail<br>at competing practices',
+      headline: 'Your members pay $400/month.<br><strong>They\'re canceling because no one calls back.</strong>',
+      body: "They don't cancel because of the care. They cancel because nobody answered. ZxAI deploys an AI Member Concierge inside your systems to handle every touchpoint between visits, 24/7."
+    }
+  };
+
+  var headline = document.getElementById('hero-headline');
+  var body = document.getElementById('hero-body');
+  var statNum = document.getElementById('hero-stat-num');
+  var statLabel = document.getElementById('hero-stat-label');
+
+  document.querySelectorAll('.icp-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.icp-btn').forEach(function(b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      var icp = btn.dataset.icp;
+      var data = icpData[icp];
+
+      headline.style.opacity = '0';
+      body.style.opacity = '0';
+
+      setTimeout(function() {
+        headline.innerHTML = data.headline;
+        body.textContent = data.body;
+        statNum.textContent = data.statNum;
+        statLabel.innerHTML = data.statLabel;
+        headline.style.opacity = '1';
+        body.style.opacity = '1';
+      }, 150);
+    });
+  });
 })();
 </script>
 
