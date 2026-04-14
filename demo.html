@@ -209,7 +209,7 @@
     </button>
     <button class="nav-btn" data-section="activity" onclick="switchSection('activity')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
-      Agent Activity
+      AI Staff Activity
     </button>
     <button class="nav-btn" data-section="operations" onclick="switchSection('operations')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -233,12 +233,12 @@
   <!-- DASHBOARD -->
   <div class="section active" id="sec-dashboard">
     <div class="eyebrow">ROI Dashboard</div>
-    <div class="section-title">What your agents are making you right now</div>
+    <div class="section-title">What your AI staff is making you right now</div>
     <div class="grid-4" id="kpiGrid"></div>
     <div class="grid-3">
       <div class="card"><div class="card-body">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-          <div><div class="chart-title">Revenue Impact</div><div class="chart-subtitle">Monthly revenue before and after ZxAI agents</div></div>
+          <div><div class="chart-title">Revenue Impact</div><div class="chart-subtitle">Monthly revenue before and after ZxAI AI staff</div></div>
           <div class="chart-legend"><span><span class="chart-legend-dot" style="background:#CBD5E1"></span>Before</span><span><span class="chart-legend-dot" id="legendDot"></span>With ZxAI</span></div>
         </div>
         <canvas id="revenueChart" height="220"></canvas>
@@ -253,7 +253,7 @@
 
   <!-- ACTIVITY -->
   <div class="section" id="sec-activity">
-    <div class="eyebrow">Agent Activity</div>
+    <div class="eyebrow">AI Staff Activity</div>
     <div class="section-title">Watch your AI staff work in real time</div>
     <div class="stats-row" id="activityStats"></div>
     <div class="grid-agent">
@@ -271,7 +271,7 @@
   <!-- OPERATIONS -->
   <div class="section" id="sec-operations">
     <div class="eyebrow">Operations</div>
-    <div class="section-title">See exactly what your agents are doing</div>
+    <div class="section-title">See exactly what your AI staff is doing</div>
     <div class="grid-2">
       <div class="card"><div class="card-body">
         <div class="chart-title">Task Throughput Today</div>
@@ -288,13 +288,13 @@
       </div></div>
     </div>
     <div class="card"><div class="card-body">
-      <div class="chart-title" style="margin-bottom:16px">Agent Performance</div>
+      <div class="chart-title" style="margin-bottom:16px">AI Staff Performance</div>
       <table class="perf-table" id="perfTable"><thead><tr>
-        <th>Agent</th><th>Status</th><th class="text-right">Queue</th><th class="text-right">Completed</th><th class="text-right">Success Rate</th><th class="text-right">Avg Response</th>
+        <th>Staff Member</th><th>Status</th><th class="text-right">Queue</th><th class="text-right">Completed</th><th class="text-right">Success Rate</th><th class="text-right">Avg Response</th>
       </tr></thead><tbody></tbody></table>
     </div></div>
     <div class="health-bar">
-      <div><div style="font-size:16px;font-weight:700;color:white">System Health</div><div style="font-size:13px;color:rgba(255,255,255,0.45);margin-top:4px">All agents running normally. No errors in the last 24 hours.</div></div>
+      <div><div style="font-size:16px;font-weight:700;color:white">System Health</div><div style="font-size:13px;color:rgba(255,255,255,0.45);margin-top:4px">All AI staff running normally. No errors in the last 24 hours.</div></div>
       <div class="health-stats">
         <div class="health-stat"><div class="health-stat-value" style="color:var(--teal)">99.9%</div><div class="health-stat-label">Uptime</div></div>
         <div class="health-stat"><div class="health-stat-value" style="color:var(--teal)">0</div><div class="health-stat-label">Errors (24h)</div></div>
@@ -335,7 +335,7 @@ const DATA = {
     quickMath: [
       { label: "Members retained (8.3% improvement)", value: "+$18,400", neg: false },
       { label: "Staff time recovered (22 hrs/wk)", value: "+$4,400", neg: false },
-      { label: "ZxAI agent cost", value: "-$3,000", neg: true },
+      { label: "ZxAI monthly cost", value: "-$3,000", neg: true },
       { label: "Net monthly ROI", value: "+$19,800", neg: false, bold: true }
     ],
     feed: [
@@ -384,7 +384,7 @@ const DATA = {
     quickMath: [
       { label: "Revenue from freed physician time", value: "+$15,200", neg: false },
       { label: "Improved auth approval rate", value: "+$6,800", neg: false },
-      { label: "ZxAI agent cost", value: "-$3,000", neg: true },
+      { label: "ZxAI monthly cost", value: "-$3,000", neg: true },
       { label: "Net monthly ROI", value: "+$19,000", neg: false, bold: true }
     ],
     feed: [
@@ -434,7 +434,7 @@ const DATA = {
       { label: "No-show recovery revenue", value: "+$8,200", neg: false },
       { label: "Lapsed patient reactivation", value: "+$15,700", neg: false },
       { label: "Follow-up booking conversions", value: "+$5,800", neg: false },
-      { label: "ZxAI agent cost", value: "-$3,000", neg: true },
+      { label: "ZxAI monthly cost", value: "-$3,000", neg: true },
       { label: "Net monthly ROI", value: "+$26,700", neg: false, bold: true }
     ],
     feed: [
@@ -607,7 +607,7 @@ function render() {
     <div class="ba-panel" style="border:2px solid #99F6E4">
       <div class="ba-header" style="background:linear-gradient(135deg,#F0FDFA,#CCFBF1)">
         <div class="ba-header-icon" style="background:#99F6E4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#14B8A6" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-        <div><div style="font-weight:700;color:#115E59">After ZxAI</div><div style="font-size:11px;color:#14B8A6">AI agents doing the work so your team does not have to</div></div>
+        <div><div style="font-weight:700;color:#115E59">After ZxAI</div><div style="font-size:11px;color:#14B8A6">AI staff doing the work so your team does not have to</div></div>
       </div>
       <div class="ba-rows">${d.after.map(a => `<div class="ba-row"><span class="ba-metric">${a.m}</span><span class="ba-badge badge-${a.s}">${a.v}</span></div>`).join('')}</div>
       <div class="ba-footer" style="background:#F0FDFA;color:#115E59;border-top:1px solid #99F6E4">Staff focused on patients. Revenue recovered. Nothing falls through.</div>
