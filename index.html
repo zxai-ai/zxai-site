@@ -275,15 +275,6 @@
     .hero-body { font-size: 18px; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 520px; margin-bottom: 40px; font-weight: 400; animation: fadeUp 0.8s ease-out 0.4s both; }
     .hero-guarantee { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 16px; letter-spacing: 0.02em; animation: fadeUp 0.8s ease-out 0.7s both; }
 
-    /* ── ICP TOGGLE ── */
-    .icp-toggle { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; animation: fadeUp 0.8s ease-out 0.1s both; }
-    .icp-btn { padding: 8px 18px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.18); background: transparent; color: rgba(255,255,255,0.45); font-size: 13px; font-weight: 500; font-family: inherit; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-    .icp-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.4); }
-    .icp-btn.active { background: rgba(6,182,212,0.12); border-color: var(--cyan); color: var(--white); }
-    .hero-stat { display: inline-flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 16px; margin-bottom: 24px; animation: fadeUp 0.8s ease-out 0.15s both; }
-    .hero-stat-num { font-size: 20px; font-weight: 700; color: var(--cyan); letter-spacing: -0.03em; white-space: nowrap; }
-    .hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
-    .hero-headline, .hero-body { transition: opacity 0.15s ease; }
     .hero-ctas { display: flex; gap: 16px; animation: fadeUp 0.8s ease-out 0.6s both; }
     .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: linear-gradient(135deg, var(--cyan), var(--indigo)); color: var(--white); border: none; border-radius: 10px; font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.25s; text-decoration: none; }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(6,182,212,0.3); }
@@ -894,17 +885,8 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-content">
-        <div class="icp-toggle" role="tablist" aria-label="Select your practice type">
-          <button class="icp-btn active" data-icp="functional" role="tab" aria-selected="true">Functional Medicine</button>
-          <button class="icp-btn" data-icp="medspa" role="tab" aria-selected="false">Med Spa</button>
-          <button class="icp-btn" data-icp="concierge" role="tab" aria-selected="false">Concierge Medicine</button>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num" id="hero-stat-num">4.6 hrs</span>
-          <span class="hero-stat-label" id="hero-stat-label">lost per physician per week<br>to prior auth alone</span>
-        </div>
-        <h1 class="hero-headline" id="hero-headline">Your physicians spend 4.6 hours<br><strong>a week on prior auth.</strong></h1>
-        <p class="hero-body" id="hero-body">That's a full patient day, every week, going to hold music and denial forms. ZxAI deploys an AI Practice Administrator inside your systems to work the queue daily. Your physicians stay in exam rooms.</p>
+        <h1 class="hero-headline">Your practice is losing revenue<br><strong>to work AI staff can do.</strong></h1>
+        <p class="hero-body">Prior auth queues. Lapsed patient lists. Unanswered callbacks. ZxAI deploys AI staff inside your existing systems to handle all of it. 24/7. No new software. No BAA.</p>
         <div class="hero-ctas">
           <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="btn-primary" target="_blank" rel="noopener noreferrer">Hire your AI staff <span aria-hidden="true">&rarr;</span></a>
           <a href="#agents" class="btn-secondary">Meet the AI staff</a>
@@ -2110,60 +2092,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   setPricingPeriod('monthly');
 })();
 
-// ── ICP TOGGLE ────────────────────────────────────────────────────────────────
-(function() {
-  var icpData = {
-    functional: {
-      statNum: '4.6 hrs',
-      statLabel: 'lost per physician per week<br>to prior auth alone',
-      headline: 'Your physicians spend 4.6 hours<br><strong>a week on prior auth.</strong>',
-      body: "That's a full patient day, every week, going to hold music and denial forms. ZxAI deploys an AI Practice Administrator inside your systems to work the queue daily. Your physicians stay in exam rooms."
-    },
-    medspa: {
-      statNum: '35%',
-      statLabel: 'of your patient panel<br>hasn\'t booked in 12+ months',
-      headline: '35% of your patient panel has gone quiet.<br><strong>$150K is sitting in a list you already own.</strong>',
-      body: "They didn't leave because they were unhappy. Nobody followed up. ZxAI deploys AI staff inside your systems to re-engage them with outreach timed to each patient's treatment cycle. No acquisition cost. Revenue you already earned."
-    },
-    concierge: {
-      statNum: '76%',
-      statLabel: 'of calls go to voicemail<br>at competing practices',
-      headline: 'Your members pay $400/month.<br><strong>They\'re canceling because no one calls back.</strong>',
-      body: "They don't cancel because of the care. They cancel because nobody answered. ZxAI deploys an AI Member Concierge inside your systems to handle every touchpoint between visits, 24/7."
-    }
-  };
-
-  var headline = document.getElementById('hero-headline');
-  var body = document.getElementById('hero-body');
-  var statNum = document.getElementById('hero-stat-num');
-  var statLabel = document.getElementById('hero-stat-label');
-
-  document.querySelectorAll('.icp-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.icp-btn').forEach(function(b) {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-
-      var icp = btn.dataset.icp;
-      var data = icpData[icp];
-
-      headline.style.opacity = '0';
-      body.style.opacity = '0';
-
-      setTimeout(function() {
-        headline.innerHTML = data.headline;
-        body.textContent = data.body;
-        statNum.textContent = data.statNum;
-        statLabel.innerHTML = data.statLabel;
-        headline.style.opacity = '1';
-        body.style.opacity = '1';
-      }, 150);
-    });
-  });
-})();
 </script>
 
 </body>
