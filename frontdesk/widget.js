@@ -33,9 +33,15 @@ export function mountFrontDeskWidget(el, opts = {}) {
     }
   });
 
-  ui.textSend.addEventListener("click", () => {
+  ui.textSend.addEventListener("click", async () => {
     const text = ui.textInput.value.trim();
     if (!text) return;
+    // If no connection yet, start a text-only session (no mic).
+    if (!state.client?.connected) {
+      await startCall({ textOnly: true });
+      // Wait briefly for setup to complete before sending.
+      await new Promise((r) => setTimeout(r, 1500));
+    }
     if (!state.client?.connected) return;
     addLine("user", text);
     state.client.sendTextMessage(text);
@@ -50,7 +56,8 @@ export function mountFrontDeskWidget(el, opts = {}) {
     ui.textInput.focus();
   });
 
-  async function startCall() {
+  async function startCall(opts = {}) {
+    const { textOnly = false } = opts;
     try {
       ui.setStatus("connecting");
       ui.setPrimary({ label: "Connecting...", busy: true });
@@ -75,6 +82,11 @@ export function mountFrontDeskWidget(el, opts = {}) {
       state.client.inputAudioTranscription = true;
       state.client.outputAudioTranscription = true;
 
+      // In text-only mode, request TEXT responses instead of AUDIO.
+      if (textOnly) {
+        state.client.responseModalities = ["TEXT"];
+      }
+
       const availabilityTool = new CheckAvailabilityTool(onToolEvent);
       const bookTool = new BookConsultTool(availabilityTool, onToolEvent);
       state.client.addFunction(availabilityTool);
@@ -87,11 +99,13 @@ export function mountFrontDeskWidget(el, opts = {}) {
 
       state.client.connect();
 
-      // 3. audio
+      // 3. audio (skip mic in text-only mode, still init player for playback)
       state.player = new AudioPlayer();
       await state.player.init();
-      state.streamer = new AudioStreamer(state.client);
-      await state.streamer.start();
+      if (!textOnly) {
+        state.streamer = new AudioStreamer(state.client);
+        await state.streamer.start();
+      }
 
       // 4. timers
       state.active = true;
