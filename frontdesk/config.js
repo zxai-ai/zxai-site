@@ -2,6 +2,10 @@
 // System prompt is the single source of truth for persona + guardrails.
 
 export const KATIE_CONFIG = {
+  // Worker API base. Use relative path for local dev, absolute for prod.
+  apiBase: window.location.hostname === "localhost"
+    ? "/api/front-desk"
+    : "https://zxai-audit.vzxb9kqjkq.workers.dev/api/front-desk",
   // Per the build spec. Verify the latest live-capable model name at build time.
   model: "gemini-3.1-flash-live-preview",
   voice: "Zephyr",

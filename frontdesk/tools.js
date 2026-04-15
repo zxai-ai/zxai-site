@@ -3,8 +3,9 @@
 // even though Gemini only knows slot_id.
 
 import { FunctionCallDefinition } from "./gemini-live.js";
+import { KATIE_CONFIG } from "./config.js";
 
-const API_BASE = "/api/front-desk";
+const API_BASE = KATIE_CONFIG.apiBase;
 
 export class CheckAvailabilityTool extends FunctionCallDefinition {
   constructor(onToolEvent) {

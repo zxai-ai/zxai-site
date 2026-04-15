@@ -56,7 +56,7 @@ export function mountFrontDeskWidget(el, opts = {}) {
       ui.setPrimary({ label: "Connecting...", busy: true });
 
       // 1. token
-      const r = await fetch("/api/front-desk/token", {
+      const r = await fetch(KATIE_CONFIG.apiBase + "/token", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({}),
