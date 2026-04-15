@@ -46,10 +46,23 @@ export default {
       return checkout.fetch(request, env);
     }
 
+    // Route: Front Desk demo (Katie) - token mint, tools, OAuth helper
+    if (url.pathname.startsWith("/api/front-desk/")) {
+      const { handleFrontDesk } = await import("./frontdesk");
+      return handleFrontDesk(request, env);
+    }
+
     // Static pages are served by wrangler assets (src/pages/).
     // /report/:id needs to serve report.html for client-side routing.
     if (url.pathname.startsWith("/report/")) {
       return env.ASSETS.fetch(new Request(new URL("/report.html", url.origin)));
+    }
+
+    // Clean URL: /demo/front-desk -> /demo/front-desk.html
+    if (url.pathname === "/demo/front-desk") {
+      return env.ASSETS.fetch(
+        new Request(new URL("/demo/front-desk.html", url.origin))
+      );
     }
 
     // All other paths fall through to static assets (index.html, confirmation.html, etc.)

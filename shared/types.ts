@@ -9,6 +9,17 @@ export interface Env {
   GOOGLE_PLACES_API_KEY: string;
   ANTHROPIC_API_KEY: string;
   RESEND_API_KEY: string;
+
+  // Front Desk demo (Katie)
+  GEMINI_API_KEY: string;
+  TURNSTILE_SECRET: string;
+  GOOGLE_OAUTH_CLIENT_ID: string;
+  GOOGLE_OAUTH_CLIENT_SECRET: string;
+  GOOGLE_OAUTH_REFRESH_TOKEN: string;
+  DEMO_ENABLED: string; // "true" | "false"
+  DEMO_DAILY_MINT_CAP: string; // e.g. "400"
+  DEMO_CALENDAR_ID: string; // usually "primary" or "am@zxai.ai"
+  DEMO_OWNER_NAME: string; // "Anthony Mesa"
 }
 
 export interface Order {

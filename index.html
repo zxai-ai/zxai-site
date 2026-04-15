@@ -1515,7 +1515,24 @@
       .hero { grid-template-rows: 20% 80%; }
       .hero-h1 { margin-bottom: var(--s-3); }
     }
+
+    /* Katie hero widget companion */
+    .hero-katie {
+      align-self: start;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      animation: fadeIn 1.2s ease-out 0.3s both;
+    }
+    .hero-katie-caption {
+      font-size: 12px;
+      color: var(--c-text-3, rgba(255,255,255,0.5));
+      text-align: center;
+      max-width: 360px;
+      margin: 0 auto;
+    }
   </style>
+  <link rel="stylesheet" href="/frontdesk/widget.css">
 </head>
 <body>
 
@@ -1604,22 +1621,9 @@
             </div>
           </div>
 
-          <aside class="hero-dock reveal" aria-hidden="true">
-            <div class="hero-dock-head">
-              <span>Staff status</span>
-              <span class="live-tag">9 online</span>
-            </div>
-            <ul class="hero-dock-list">
-              <li class="hero-dock-row" style="--accent: var(--a-01)"><span class="dock-dot"></span><span class="dock-num">01</span><span class="dock-name">Front Desk</span><span class="dock-state">3 in queue</span></li>
-              <li class="hero-dock-row" style="--accent: var(--a-02)"><span class="dock-dot"></span><span class="dock-num">02</span><span class="dock-name">Scheduling</span><span class="dock-state">12 slots</span></li>
-              <li class="hero-dock-row" style="--accent: var(--a-03)"><span class="dock-dot"></span><span class="dock-num">03</span><span class="dock-name">Prior Auth</span><span class="dock-state">Day 3</span></li>
-              <li class="hero-dock-row" style="--accent: var(--a-04)"><span class="dock-dot"></span><span class="dock-num">04</span><span class="dock-name">Recovery</span><span class="dock-state">$47K</span></li>
-              <li class="hero-dock-row" style="--accent: var(--a-05)"><span class="dock-dot"></span><span class="dock-num">05</span><span class="dock-name">Reactivation</span><span class="dock-state">90+ days</span></li>
-              <li class="hero-dock-row" style="--accent: var(--a-06)"><span class="dock-dot"></span><span class="dock-num">06</span><span class="dock-name">Retention</span><span class="dock-state">6 wk</span></li>
-              <li class="hero-dock-row" style="--accent: var(--a-07)"><span class="dock-dot"></span><span class="dock-num">07</span><span class="dock-name">Reputation</span><span class="dock-state">4.9 avg</span></li>
-              <li class="hero-dock-row" style="--accent: var(--a-08)"><span class="dock-dot"></span><span class="dock-num">08</span><span class="dock-name">Marketing</span><span class="dock-state">Weekly</span></li>
-              <li class="hero-dock-row" style="--accent: var(--a-09)"><span class="dock-dot"></span><span class="dock-num">09</span><span class="dock-name">Web / SEO</span><span class="dock-state">Top 3</span></li>
-            </ul>
+          <aside class="hero-katie reveal" aria-label="Talk to Katie, ZxAI's front desk">
+            <div id="fd-hero-mount"></div>
+            <p class="hero-katie-caption">Talk to our own AI front desk. Same tech we install in practices.</p>
           </aside>
         </div>
       </div>
@@ -2621,6 +2625,12 @@
       m.addEventListener('click', function(){ set('m'); });
       a.addEventListener('click', function(){ set('a'); });
     })();
+  </script>
+
+  <script type="module">
+    import { mountFrontDeskWidget } from "/frontdesk/widget.js";
+    const el = document.getElementById("fd-hero-mount");
+    if (el) mountFrontDeskWidget(el, { variant: "compact" });
   </script>
 
 </body>

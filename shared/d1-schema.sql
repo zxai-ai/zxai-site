@@ -23,3 +23,31 @@ CREATE TABLE IF NOT EXISTS reports (
 );
 
 CREATE INDEX idx_orders_status ON orders(status);
+
+-- Front Desk demo bookings (Katie)
+CREATE TABLE IF NOT EXISTS demo_bookings (
+  id TEXT PRIMARY KEY,
+  created_at TEXT DEFAULT (datetime('now')),
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  company TEXT NOT NULL,
+  role TEXT,
+  email TEXT NOT NULL,
+  phone TEXT,
+  slot_iso TEXT NOT NULL,
+  slot_label TEXT NOT NULL,
+  calendar_event_id TEXT,
+  ip_hash TEXT,
+  user_agent TEXT
+);
+
+-- Front Desk demo token mint counter (for daily cap + rate limit)
+CREATE TABLE IF NOT EXISTS demo_token_mints (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  minted_at TEXT DEFAULT (datetime('now')),
+  ip_hash TEXT NOT NULL,
+  day TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_demo_token_mints_day ON demo_token_mints(day);
+CREATE INDEX IF NOT EXISTS idx_demo_token_mints_ip_day ON demo_token_mints(ip_hash, day);
