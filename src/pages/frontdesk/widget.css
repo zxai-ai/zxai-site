@@ -1,8 +1,8 @@
 /* Katie Front Desk widget. Uses ZxAI brand tokens; scoped to .fd-root. */
 
 .fd-root {
-  --fd-bg: rgba(10, 15, 28, 0.7);
-  --fd-border: rgba(255, 255, 255, 0.08);
+  --fd-bg: rgba(10, 15, 28, 0.85);
+  --fd-border: rgba(255, 255, 255, 0.10);
   --fd-text: #fff;
   --fd-text-dim: rgba(255, 255, 255, 0.55);
   --fd-cyan: #06B6D4;
@@ -17,39 +17,40 @@
   background: var(--fd-bg);
   border: 1px solid var(--fd-border);
   border-radius: 20px;
-  padding: 20px;
+  padding: 28px 24px;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(6,182,212,0.06);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
   width: 100%;
-  max-width: 440px;
+  max-width: 480px;
 }
 
 .fd-variant-full .fd-card {
   max-width: 640px;
-  padding: 28px;
+  padding: 32px 28px;
 }
 
 .fd-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .fd-avatar {
   position: relative;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
 }
 .fd-avatar-ring {
   position: absolute;
   inset: 0;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--fd-cyan), var(--fd-indigo));
-  opacity: 0.8;
+  opacity: 0.85;
 }
 .fd-avatar-dot {
   position: absolute;
@@ -72,8 +73,8 @@
 }
 
 .fd-title { flex: 1; min-width: 0; }
-.fd-name { font-weight: 600; font-size: 15px; letter-spacing: -0.01em; }
-.fd-role { font-size: 12px; color: var(--fd-text-dim); }
+.fd-name { font-weight: 700; font-size: 17px; letter-spacing: -0.01em; }
+.fd-role { font-size: 13px; color: var(--fd-cyan); font-weight: 500; margin-top: 1px; }
 
 .fd-status-pill {
   font-size: 11px;
@@ -84,20 +85,28 @@
   background: rgba(255,255,255,0.06);
   padding: 4px 10px;
   border-radius: 100px;
+  flex-shrink: 0;
+}
+
+.fd-desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
 }
 
 .fd-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   width: 100%;
-  padding: 14px 16px;
+  padding: 16px 20px;
   border-radius: 14px;
   border: none;
   cursor: pointer;
   font-family: inherit;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   color: #fff;
   background: linear-gradient(135deg, var(--fd-cyan), var(--fd-indigo));
@@ -119,7 +128,16 @@
   border: 1px solid var(--fd-border);
 }
 
-.fd-text-row { display: flex; justify-content: flex-end; }
+.fd-text-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fd-mode-hint {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.04em;
+}
 .fd-text-toggle {
   font-family: inherit;
   font-size: 12px;
@@ -145,7 +163,7 @@
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--fd-border);
   color: #fff;
-  padding: 10px 12px;
+  padding: 12px 14px;
   border-radius: 10px;
   font-family: inherit;
   font-size: 14px;
@@ -154,7 +172,7 @@
 .fd-text-input:focus { border-color: var(--fd-cyan); }
 
 .fd-text-send {
-  padding: 10px 16px;
+  padding: 12px 18px;
   border-radius: 10px;
   border: none;
   cursor: pointer;
@@ -210,12 +228,14 @@
   font-size: 11px;
   color: var(--fd-text-dim);
   padding-top: 4px;
+  border-top: 1px solid rgba(255,255,255,0.05);
 }
 .fd-disclose {
   background: transparent;
   border: none;
   color: var(--fd-text-dim);
   font-family: inherit;
+  font-size: 11px;
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 3px;

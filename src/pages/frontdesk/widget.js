@@ -56,7 +56,7 @@ export function mountFrontDeskWidget(el, opts = {}) {
       ui.setPrimary({ label: "Connecting...", busy: true });
 
       // 1. token
-      const r = await fetch("/api/front-desk/token", {
+      const r = await fetch(KATIE_CONFIG.apiBase + "/token", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({}),
@@ -216,25 +216,27 @@ function renderShell(el, variant) {
         </div>
         <div class="fd-title">
           <div class="fd-name">Katie</div>
-          <div class="fd-role">ZxAI front desk</div>
+          <div class="fd-role">Ask me anything about AI staff</div>
         </div>
         <div class="fd-status-pill" role="status" aria-live="polite">Ready</div>
       </div>
-      <button class="fd-primary" type="button" aria-label="Start call with Katie">
+      <p class="fd-desc">Learn what AI staff do for practices like yours. Or book 15 minutes with Anthony.</p>
+      <button class="fd-primary" type="button" aria-label="Ask Katie a question about ZxAI">
         <svg class="fd-mic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19v3"/><path d="M8 22h8"/><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/></svg>
-        <span class="fd-primary-label">Talk to Katie</span>
+        <span class="fd-primary-label">Ask Katie a question</span>
       </button>
       <div class="fd-banner" hidden></div>
       <div class="fd-text-row">
+        <span class="fd-mode-hint">Voice or text</span>
         <button class="fd-text-toggle" type="button">Type instead</button>
       </div>
       <div class="fd-text-input-row">
-        <input class="fd-text-input" type="text" placeholder="Type a message and hit enter" />
+        <input class="fd-text-input" type="text" placeholder="Type a question about AI staff..." />
         <button class="fd-text-send" type="button">Send</button>
       </div>
       <div class="fd-transcript" aria-live="polite"></div>
       <div class="fd-footer">
-        <span>Live demo · AI voice</span>
+        <span>Live AI voice</span>
         <button class="fd-disclose" type="button">Privacy</button>
       </div>
     </div>
