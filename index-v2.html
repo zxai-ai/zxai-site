@@ -1,0 +1,2627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- www -> apex redirect: must be first to avoid rendering www at all -->
+  <script>
+    (function(){
+      var h = window.location.hostname;
+      if (h === 'www.zxai.ai') {
+        window.location.replace(
+          window.location.href.replace('://www.zxai.ai', '://zxai.ai')
+        );
+      }
+    })();
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-M43D9XD2');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Apollo Website Tracker -->
+  <script>function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+  o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+  o.onload=function(){window.trackingFunctions.onLoad({appId:"66329e231cdfa001c74ed838"})},
+  document.head.appendChild(o)}initApollo();</script>
+  <!-- End Apollo Website Tracker -->
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2TJ8X70VZT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2TJ8X70VZT');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZxAI: AI Staff for Concierge, Functional Medicine &amp; Med Spa Practices</title>
+  <meta name="description" content="ZxAI deploys AI staff inside your existing systems to handle prior auth, no-shows, and lapsed patient recovery. No new software. No BAA.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zxai.ai/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zxai.ai/">
+  <meta property="og:site_name" content="ZxAI">
+  <meta property="og:title" content="ZxAI: AI Staff for Medical Practices">
+  <meta property="og:description" content="AI staff that handle prior auth, no-shows, and lapsed patient recovery, inside your existing systems. No new software. No BAA.">
+  <meta property="og:image" content="https://zxai.ai/og-image.png">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@zxai_ai">
+  <meta name="twitter:title" content="ZxAI: AI Staff for Medical Practices">
+  <meta name="twitter:description" content="AI staff that handle prior auth, no-shows, and lapsed patient recovery, inside your existing systems. No BAA.">
+  <meta name="twitter:image" content="https://zxai.ai/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23060B18'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%2306B6D4' stroke-width='1.5'/%3E%3Cline x1='19' y1='9' x2='13' y2='23' stroke='%2306B6D4' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://zxai.ai/#organization",
+        "name": "ZxAI",
+        "url": "https://zxai.ai",
+        "email": "hello@zxai.ai",
+        "foundingDate": "2026",
+        "description": "ZxAI deploys AI staff for private medical practices to automate scheduling, billing, prior authorization, patient outreach, and revenue recovery. Runs inside your own systems. EHR-integrated.",
+        "areaServed": "US",
+        "knowsAbout": [
+          "AI staff for healthcare",
+          "Medical practice automation",
+          "Healthcare AI automation",
+          "EHR integration",
+          "Prior authorization automation",
+          "Medical billing AI",
+          "Patient outreach automation",
+          "Healthcare revenue recovery"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://zxai.ai/#website",
+        "url": "https://zxai.ai",
+        "name": "ZxAI",
+        "publisher": { "@id": "https://zxai.ai/#organization" }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://zxai.ai/#service",
+        "name": "AI Staff Platform for Medical Practices",
+        "provider": { "@id": "https://zxai.ai/#organization" },
+        "serviceType": "AI Automation for Healthcare",
+        "description": "Done-for-you AI staff for private medical practices covering front desk answering, appointment scheduling, prior authorization, revenue recovery, patient reactivation, retention, reputation management, marketing, and web/SEO.",
+        "areaServed": "US",
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Private Medical Practices"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "ZxAI AI Staff Plans",
+          "itemListElement": [
+            { "@type": "Offer", "name": "Single AI Staff Member", "price": "1500", "priceCurrency": "USD", "description": "One AI staff member for your medical practice: front desk, scheduling, billing, or any single workflow." },
+            { "@type": "Offer", "name": "3-Member Bundle", "price": "3997", "priceCurrency": "USD", "description": "Three AI staff members for medical practices at $1,332 per member per month." },
+            { "@type": "Offer", "name": "6-Member Bundle", "price": "6997", "priceCurrency": "USD", "description": "Six AI staff members for medical practices at $1,166 per member per month." },
+            { "@type": "Offer", "name": "Full Platform: 9 AI Staff", "price": "9997", "priceCurrency": "USD", "description": "Complete AI staff for your medical practice. All 9 members, pricing locked for life." }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://zxai.ai/#faq",
+        "mainEntity": [
+          { "@type": "Question", "name": "How does ZxAI handle patient data?", "acceptedAnswer": { "@type": "Answer", "text": "Your ZxAI AI staff run inside your own infrastructure, under your credentials. Patient data never touches ZxAI's servers. The AI works in your systems, not ours. Your data stays yours." } },
+          { "@type": "Question", "name": "Will ZxAI AI staff work with my EHR?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. ZxAI connects to Athena Health, Epic, eClinicalWorks, Kareo, Modernizing Medicine, DrChrono, and others via FHIR API or secure HL7 feed. If your EHR is not listed, contact us. We have not encountered one we could not integrate." } },
+          { "@type": "Question", "name": "How long does it take to set up AI staff for my medical practice?", "acceptedAnswer": { "@type": "Answer", "text": "The main variable is EHR vendor credentialing. Processing times vary by system. Once API credentials are issued, we launch in 2 to 4 weeks. Your staff receives one hour of walkthrough training. That is it." } },
+          { "@type": "Question", "name": "Will my patients know they are talking to an AI?", "acceptedAnswer": { "@type": "Answer", "text": "Your AI staff have fully customizable names, voices, and personalities. ZxAI requires all practices to notify patients that automated AI systems are used in their operations. This is a contractual requirement and consistent with applicable law. Most practices introduce their AI staff with a custom name and patients respond well to the transparency. What patients care about is that their call gets answered promptly." } },
+          { "@type": "Question", "name": "What if my practice does not see results from AI staff?", "acceptedAnswer": { "@type": "Answer", "text": "We only take on practices we are confident we can help. If we do not think we can deliver a clear return, we will tell you before you sign anything. Ask us what our performance commitment looks like on an intro call." } },
+          { "@type": "Question", "name": "Do we need to change how we operate to use ZxAI?", "acceptedAnswer": { "@type": "Answer", "text": "No. Your ZxAI AI staff work inside your existing systems. Your staff keeps using the same EHR, phone system, and processes. They check a dashboard instead of manually handling what the AI staff now automate." } },
+          { "@type": "Question", "name": "What are the contract terms for ZxAI?", "acceptedAnswer": { "@type": "Answer", "text": "Month-to-month on monthly plans. Annual plans are prepaid with pricing locked for life. No long-term commitments required to get started." } }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    /* ══════════════════════════════════════════════════════════════════════
+       ZxAI ·· GOLDEN RATIO DESIGN SYSTEM  (phi = 1.618033988...)
+       Every token, spacing unit, and layout grid is derived from phi.
+       Type: 0.618  0.764  1.000  1.272  1.618  2.618  4.236  6.854 rem
+       Space: 0.382  0.618  1.000  1.618  2.618  4.236  6.854  11.09 rem
+       Grid splits: 61.8 / 38.2
+    ══════════════════════════════════════════════════════════════════════ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* phi constants */
+      --phi: 1.618;
+      --phi-inv: 0.618;
+      --phi-2: 2.618;
+      --phi-3: 4.236;
+      --phi-4: 6.854;
+
+      /* color tokens */
+      --c-bg: #000000;
+      --c-bg-2: #0A0A0A;
+      --c-bg-3: #141414;
+      --c-line: rgba(255,255,255,0.08);
+      --c-line-2: rgba(255,255,255,0.14);
+      --c-text: rgba(255,255,255,0.94);
+      --c-text-2: rgba(255,255,255,0.62);
+      --c-text-3: rgba(255,255,255,0.55);
+      --c-accent: #06B6D4;
+      --c-accent-2: #22D3EE;
+      --c-accent-soft: rgba(6,182,212,0.12);
+      --c-accent-line: rgba(6,182,212,0.32);
+
+      /* secondary display accent (cream) */
+      --c-cream: #EDE6D3;
+      --c-cream-2: #F4EEDD;
+      --c-cream-soft: rgba(237,230,211,0.06);
+      --c-cream-line: rgba(237,230,211,0.22);
+
+      /* agent accent palette (carry over from current site) */
+      --a-01: #06B6D4;  /* cyan */
+      --a-02: #0EA5E9;  /* sky */
+      --a-03: #6366F1;  /* indigo */
+      --a-04: #8B5CF6;  /* violet */
+      --a-05: #A855F7;  /* purple */
+      --a-06: #EC4899;  /* pink */
+      --a-07: #14B8A6;  /* teal */
+      --a-08: #F43F5E;  /* rose */
+      --a-09: #F59E0B;  /* amber */
+
+      /* type scale (rem) */
+      --t-xs:   0.618rem;
+      --t-sm:   0.764rem;
+      --t-base: 1rem;
+      --t-md:   1.272rem;
+      --t-lg:   1.618rem;
+      --t-xl:   2.618rem;
+      --t-2xl:  4.236rem;
+      --t-3xl:  6.854rem;
+
+      /* fluid display sizes */
+      --fs-display: clamp(2.618rem, 8vw, 6.854rem);
+      --fs-h1:      clamp(2.618rem, 6.5vw, 5.2rem);
+      --fs-h2:      clamp(1.618rem, 4.236vw, 4.236rem);
+      --fs-h3:      clamp(1.272rem, 2.618vw, 1.618rem);
+      --fs-lead:    clamp(1rem, 1.4vw, 1.272rem);
+      --fs-body:    1rem;
+      --fs-small:   0.875rem;
+      --fs-label:   0.764rem;
+
+      /* spacing scale */
+      --s-1: 0.382rem;
+      --s-2: 0.618rem;
+      --s-3: 1rem;
+      --s-4: 1.618rem;
+      --s-5: 2.618rem;
+      --s-6: 4.236rem;
+      --s-7: 6.854rem;
+      --s-8: 11.09rem;
+
+      /* container */
+      --container: 1618px;
+
+      /* motion */
+      --ease: cubic-bezier(0.16, 1, 0.32, 1);
+      --dur-reveal: 600ms;
+      --dur-hover: 240ms;
+
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-display: 'Instrument Serif', 'Iowan Old Style', 'Palatino', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      background: var(--c-bg);
+      color: var(--c-text);
+      font-family: var(--font);
+      font-size: var(--fs-body);
+      line-height: 1.618;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--c-accent);
+      outline-offset: 3px;
+    }
+    img, svg { display: block; max-width: 100%; }
+    button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+
+    .wrap {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding-inline: clamp(1.272rem, 4vw, 2.618rem);
+    }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+      white-space: nowrap; border: 0;
+    }
+    .skip-nav {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--c-accent); color: var(--c-bg);
+      padding: var(--s-2) var(--s-4); font-weight: 700;
+      z-index: 9999;
+    }
+    .skip-nav:focus { left: var(--s-3); top: var(--s-3); }
+
+    /* reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity var(--dur-reveal) var(--ease), transform var(--dur-reveal) var(--ease); }
+    .reveal.is-in { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal.is-in { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ─── NAV ─── */
+    .nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 100;
+      height: 72px;
+      display: flex; align-items: center;
+      transition: background var(--dur-hover) var(--ease), backdrop-filter var(--dur-hover) var(--ease), border-color var(--dur-hover) var(--ease);
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled {
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom-color: var(--c-line);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); width: 100%; }
+    .nav-logo { display: inline-flex; color: var(--c-text); }
+    .nav-logo svg { height: 42px; width: auto; color: currentColor; }
+    .nav-links { display: flex; align-items: center; gap: var(--s-5); list-style: none; }
+    .nav-link {
+      display: inline-flex; align-items: center;
+      padding: 1rem 0;
+      font-size: var(--fs-label);
+      font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--c-text-2);
+      transition: color var(--dur-hover) var(--ease);
+    }
+    .nav-link:hover { color: var(--c-accent); }
+    .nav-link.is-active {
+      color: var(--c-accent);
+      position: relative;
+    }
+    .nav-link.is-active::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      bottom: 0.764rem;
+      height: 1px;
+      background: var(--c-accent);
+    }
+    .nav-right { display: flex; align-items: center; gap: var(--s-4); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: var(--s-2);
+      background: var(--c-accent); color: var(--c-bg);
+      padding: 0.75rem 1.272rem;
+      font-size: var(--fs-label); font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: transform var(--dur-hover) var(--ease), background var(--dur-hover) var(--ease);
+    }
+    .nav-cta:hover { background: var(--c-accent-2); transform: translateY(-1px); }
+
+    .nav-burger {
+      display: none;
+      width: 44px; height: 44px;
+      align-items: center; justify-content: center;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--c-text);
+      position: relative;
+    }
+    .nav-burger span::before,
+    .nav-burger span::after {
+      content: ''; position: absolute; left: 0; width: 22px; height: 1.5px; background: var(--c-text);
+    }
+    .nav-burger span::before { top: -7px; }
+    .nav-burger span::after  { top: 7px; }
+
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: var(--c-bg);
+      display: none;
+      flex-direction: column;
+      padding: var(--s-7) var(--s-5) var(--s-5);
+    }
+    .nav-overlay.open { display: flex; }
+    .nav-overlay-close {
+      position: absolute; top: var(--s-4); right: var(--s-4);
+      font-size: var(--t-lg);
+    }
+    .nav-overlay-links { display: flex; flex-direction: column; gap: var(--s-4); list-style: none; margin-top: var(--s-5); }
+    .nav-overlay-link { font-size: var(--t-lg); font-weight: 300; letter-spacing: -0.02em; color: var(--c-text); }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      border-top: 1px solid var(--c-line);
+      padding: var(--s-5) 0 var(--s-4);
+      background: var(--c-bg);
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 61.8fr 38.2fr;
+      gap: var(--s-5); align-items: center;
+    }
+    .footer-left { display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+    .footer-logo svg { height: 22px; color: var(--c-text-2); }
+    .footer-copy { font-size: var(--fs-small); color: var(--c-text-3); }
+    .footer-right { display: flex; align-items: center; justify-content: flex-end; gap: var(--s-4); flex-wrap: wrap; }
+    .footer-link { display: inline-flex; align-items: center; padding: 0.618rem 0; font-size: var(--fs-small); color: var(--c-text-2); transition: color var(--dur-hover) var(--ease); }
+    .footer-link:hover { color: var(--c-accent); }
+    .footer-phi-badge {
+      font-size: var(--t-xs); font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--c-accent);
+      padding: 0.382rem 0.618rem;
+      border: 1px solid var(--c-accent-line);
+    }
+    .footer-disclaimer {
+      margin-top: var(--s-4);
+      padding-top: var(--s-4);
+      border-top: 1px solid var(--c-line);
+      font-size: var(--fs-small); color: var(--c-text-3);
+      line-height: 1.618;
+      max-width: 80ch;
+    }
+
+    /* ─── SECTION COMMONS ─── */
+    section { padding-block: var(--s-7) var(--s-6); position: relative; }
+    @media (min-width: 1024px) { section { padding-block: var(--s-8) var(--s-7); } }
+
+    .sec-label {
+      display: flex; align-items: center; gap: var(--s-3);
+      margin-bottom: var(--s-5);
+      padding-bottom: var(--s-3);
+      border-bottom: 1px solid var(--c-line);
+    }
+    .sec-num { font-size: var(--fs-label); font-weight: 800; color: var(--c-accent); letter-spacing: 0.12em; }
+    .sec-name { font-size: var(--fs-label); font-weight: 600; color: var(--c-text-3); letter-spacing: 0.18em; text-transform: uppercase; }
+    .sec-phi {
+      margin-left: auto;
+      font-size: var(--t-xs); font-weight: 600;
+      color: var(--c-accent); letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 0.382rem 0.618rem;
+      border: 1px solid var(--c-accent-line);
+    }
+    .sec-h {
+      font-size: var(--fs-h2);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--c-text);
+      max-width: 22ch;
+    }
+    .sec-h strong { font-weight: 600; }
+    .sec-h em { font-style: normal; color: var(--c-accent); font-weight: 600; }
+    .sec-sub {
+      font-size: var(--fs-lead);
+      color: var(--c-text-2);
+      line-height: 1.618;
+      max-width: 55ch;
+      margin-top: var(--s-3);
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex; align-items: center; gap: var(--s-2);
+      font-size: var(--fs-label); font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.9rem 1.618rem;
+      transition: transform var(--dur-hover) var(--ease), background var(--dur-hover) var(--ease), color var(--dur-hover) var(--ease), border-color var(--dur-hover) var(--ease);
+    }
+    .btn-primary { background: var(--c-accent); color: var(--c-bg); }
+    .btn-primary:hover { background: var(--c-accent-2); transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--c-text); border: 1px solid var(--c-line-2); }
+    .btn-ghost:hover { border-color: var(--c-accent); color: var(--c-accent); }
+
+    /* link-style cta: cyan underline */
+    .link-cta {
+      display: inline-flex; align-items: baseline; gap: 0.382rem;
+      color: var(--c-accent);
+      font-size: var(--fs-lead); font-weight: 600;
+      border-bottom: 1px solid var(--c-accent);
+      padding-bottom: 0.236rem;
+      transition: color var(--dur-hover) var(--ease), border-color var(--dur-hover) var(--ease);
+    }
+    .link-cta:hover { color: var(--c-accent-2); border-bottom-width: 2px; }
+
+    /* ═══════════════════ HERO ═══════════════════ */
+    .hero {
+      min-height: 100svh;
+      position: relative; overflow: hidden;
+      display: grid;
+      grid-template-rows: 38.2% 61.8%;
+      padding-top: clamp(4.236rem, 10vw, 7rem);
+    }
+    .hero .wrap { grid-row: 2 / 3; align-self: end; position: relative; z-index: 2; }
+
+    .phi-motif {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      opacity: 0.18;
+    }
+    .phi-motif svg { width: 100%; height: 100%; }
+
+    /* Hero spotlight: single thin beam from the top, rather than fog blobs */
+    .hero-glow {
+      position: absolute; inset: 0 0 auto 0;
+      height: 38.2vh;
+      background: linear-gradient(180deg, rgba(6,182,212,0.08) 0%, transparent 100%);
+      pointer-events: none; z-index: 0;
+    }
+    .hero-glow-warm { display: none; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: var(--s-2);
+      margin-bottom: var(--s-4);
+      font-size: var(--fs-label);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      flex-wrap: wrap;
+      max-width: 100%;
+    }
+    .hero-eyebrow .brand { color: var(--c-accent); font-weight: 800; }
+    .hero-eyebrow .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--c-text-3); }
+    .hero-eyebrow .sub { color: var(--c-text-3); font-weight: 500; }
+
+    .hero-body {
+      display: grid;
+      grid-template-columns: 61.8fr 38.2fr;
+      gap: var(--s-6);
+      align-items: end;
+    }
+    /* ─── HERO DOCK: live AI staff status panel ─── */
+    .hero-dock {
+      border: 1px solid var(--c-line);
+      background: rgba(255,255,255,0.015);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .hero-dock-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.764rem 1rem;
+      border-bottom: 1px solid var(--c-line);
+      font-size: var(--t-xs);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--c-text-3);
+    }
+    .hero-dock-head .live-tag {
+      display: inline-flex; align-items: center; gap: 0.382rem;
+      color: var(--c-accent);
+      font-weight: 700;
+    }
+    .hero-dock-head .live-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--c-accent);
+      box-shadow: 0 0 0 0 var(--c-accent);
+      animation: dockHeadPulse 2.4s ease-in-out infinite;
+    }
+    @keyframes dockHeadPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(6,182,212,0.55); }
+      50% { box-shadow: 0 0 0 5px rgba(6,182,212,0); }
+    }
+    .hero-dock-list { list-style: none; margin: 0; padding: 0; }
+    .hero-dock-row {
+      display: grid;
+      grid-template-columns: 10px auto 1fr auto;
+      align-items: center;
+      gap: 0.618rem;
+      padding: 0.5rem 1rem;
+      font-size: var(--fs-small);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background var(--dur-hover) var(--ease);
+    }
+    .hero-dock-row:last-child { border-bottom: none; }
+    .hero-dock-row:hover { background: rgba(255,255,255,0.03); }
+    .hero-dock-row .dock-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: dockPulse 2.8s ease-in-out infinite;
+    }
+    @keyframes dockPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+    .hero-dock-row .dock-num {
+      font-family: var(--font-display);
+      font-size: 0.95rem; font-style: italic;
+      color: var(--c-text-3);
+      line-height: 1;
+    }
+    .hero-dock-row .dock-name {
+      color: var(--c-text);
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+    .hero-dock-row .dock-state {
+      color: var(--c-text-3);
+      font-size: var(--t-xs);
+      letter-spacing: 0.06em;
+      text-align: right;
+    }
+    /* stagger pulse offsets across the 9 rows */
+    .hero-dock-row:nth-child(1) .dock-dot { animation-delay: 0s; }
+    .hero-dock-row:nth-child(2) .dock-dot { animation-delay: 0.32s; }
+    .hero-dock-row:nth-child(3) .dock-dot { animation-delay: 0.64s; }
+    .hero-dock-row:nth-child(4) .dock-dot { animation-delay: 0.96s; }
+    .hero-dock-row:nth-child(5) .dock-dot { animation-delay: 1.28s; }
+    .hero-dock-row:nth-child(6) .dock-dot { animation-delay: 1.6s; }
+    .hero-dock-row:nth-child(7) .dock-dot { animation-delay: 1.92s; }
+    .hero-dock-row:nth-child(8) .dock-dot { animation-delay: 2.24s; }
+    .hero-dock-row:nth-child(9) .dock-dot { animation-delay: 2.56s; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-dock *, .hero-dock *::before, .hero-dock *::after { animation: none !important; }
+    }
+    .hero-h1 {
+      font-size: var(--fs-display);
+      font-weight: 200;
+      line-height: 1;
+      letter-spacing: -0.025em;
+      max-width: 18ch;
+      margin-bottom: var(--s-4);
+      color: var(--c-text);
+    }
+    .hero-h1 strong { font-weight: 700; }
+    .hero-h1 em { font-style: normal; color: var(--c-accent); font-weight: 700; }
+
+    .hero-lead {
+      font-size: var(--fs-lead);
+      color: var(--c-text-2);
+      max-width: 52ch;
+      line-height: 1.618;
+      margin-bottom: var(--s-5);
+    }
+    .hero-actions { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; }
+    .hero-guarantee {
+      margin-top: var(--s-4);
+      font-size: var(--fs-small); color: var(--c-text-3);
+      letter-spacing: 0.02em;
+    }
+    /* risk-removal badges under CTA */
+    .hero-badges { display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; margin-top: var(--s-4); }
+    .hero-badge { display: inline-flex; align-items: center; gap: var(--s-2); font-size: var(--fs-label); font-weight: 500; color: var(--c-text-3); letter-spacing: 0.08em; line-height: 1.4; }
+    .hero-badge::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--c-accent); flex-shrink: 0; }
+
+    /* hero stats column on the 38.2 side */
+    .hero-stats {
+      display: flex; flex-direction: column;
+      border-left: 1px solid var(--c-line);
+      padding-left: var(--s-4);
+    }
+    .hstat { padding: var(--s-3) 0; border-bottom: 1px solid var(--c-line); }
+    .hstat:first-child { padding-top: 0; }
+    .hstat:last-child { border-bottom: none; }
+    .hstat-num { font-family: var(--font-display); font-size: var(--t-xl); font-style: italic; font-weight: 400; line-height: 1; letter-spacing: -0.01em; color: var(--c-cream); }
+    .hstat-num sup { font-size: 0.618em; color: var(--c-accent); font-weight: 700; vertical-align: super; }
+    .hstat-label {
+      font-size: var(--fs-label); color: var(--c-text-3);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      margin-top: var(--s-1);
+    }
+
+    /* ═══════════════════ PHI LEDGER ═══════════════════ */
+    .phi-ledger {
+      display: grid;
+      grid-template-columns: 61.8fr 38.2fr;
+      border-top: 1px solid var(--c-line);
+      border-bottom: 1px solid var(--c-line);
+    }
+    .phi-ledger-cell {
+      padding: 0.9rem 0;
+      font-size: var(--t-xs);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--c-text-3);
+    }
+    .phi-ledger-cell.major {
+      padding-left: clamp(1.272rem, 4vw, 2.618rem);
+      border-right: 1px solid var(--c-line);
+      color: var(--c-accent); font-weight: 700;
+    }
+    .phi-ledger-cell.minor {
+      padding-left: var(--s-4);
+      padding-right: clamp(1.272rem, 4vw, 2.618rem);
+      text-align: right;
+    }
+
+    /* ═══════════════════ PROOF STRIP ═══════════════════ */
+    .proof {
+      border-bottom: 1px solid var(--c-line);
+      padding-block: var(--s-6);
+    }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--c-line);
+    }
+    .proof-cell {
+      aspect-ratio: 1.618 / 1;
+      padding: var(--s-4);
+      border-right: 1px solid var(--c-line);
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: background var(--dur-hover) var(--ease);
+    }
+    .proof-cell:last-child { border-right: none; }
+    .proof-cell:hover { background: rgba(255,255,255,0.03); }
+    .proof-num { font-family: var(--font-display); font-size: var(--t-2xl); font-style: italic; font-weight: 400; color: var(--c-cream); line-height: 1; letter-spacing: -0.02em; }
+    .proof-label { font-size: var(--fs-small); color: var(--c-text-2); line-height: 1.5; }
+    .proof-source { font-size: var(--t-xs); color: var(--c-text-3); letter-spacing: 0.08em; text-transform: uppercase; }
+    .proof-ehr {
+      margin-top: var(--s-5);
+      display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap;
+      padding-top: var(--s-4);
+      border-top: 1px solid var(--c-line);
+    }
+    .proof-ehr-label { font-size: var(--fs-label); color: var(--c-text-3); letter-spacing: 0.18em; text-transform: uppercase; }
+    .proof-pill {
+      font-size: var(--fs-small); font-weight: 500;
+      color: var(--c-text-2);
+      border: 1px solid var(--c-line-2);
+      padding: 0.382rem 0.764rem;
+    }
+
+    /* ═══════════════════ PROBLEM + TRACKS ═══════════════════ */
+    .problem { border-top: 1px solid var(--c-line); }
+    .problem-grid {
+      display: grid; grid-template-columns: 61.8fr 38.2fr;
+      gap: var(--s-6); align-items: start;
+    }
+    .problem-left .sec-h { margin-bottom: var(--s-4); }
+    .problem-lead { font-size: var(--fs-lead); color: var(--c-text-2); line-height: 1.618; max-width: 52ch; }
+    .problem-lead + .problem-lead { margin-top: var(--s-3); }
+    .problem-cards { display: flex; flex-direction: column; }
+    .p-card {
+      aspect-ratio: 1.618 / 1;
+      padding: var(--s-4);
+      border: 1px solid var(--c-line);
+      border-top: none;
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: background var(--dur-hover) var(--ease), border-color var(--dur-hover) var(--ease);
+    }
+    .p-card:first-child { border-top: 1px solid var(--c-line); }
+    .p-card:hover { background: rgba(255,255,255,0.03); border-color: var(--c-accent-line); }
+    .p-top { display: flex; align-items: center; justify-content: space-between; }
+    .p-tag {
+      font-size: var(--t-xs); font-weight: 800;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--c-bg); background: var(--c-accent);
+      padding: 0.236rem 0.618rem;
+    }
+    .p-num {
+      font-family: var(--font-display);
+      font-size: var(--t-xl); font-style: italic; font-weight: 400;
+      color: var(--c-accent); line-height: 1; letter-spacing: -0.01em;
+    }
+    .p-num span { font-family: var(--font); font-size: 0.382em; font-weight: 500; font-style: normal; color: var(--c-text-3); letter-spacing: 0.02em; }
+    .p-title { font-size: var(--t-md); font-weight: 600; margin-bottom: var(--s-1); line-height: 1.25; }
+    .p-desc { font-size: var(--fs-small); color: var(--c-text-2); line-height: 1.618; }
+
+    /* ═══════════════════ 9 AI STAFF (alternating rows) ═══════════════════ */
+    .staff { border-top: 1px solid var(--c-line); background: #050505; }
+
+    .staff-head {
+      display: grid; grid-template-columns: 61.8fr 38.2fr;
+      gap: var(--s-5); align-items: end; margin-bottom: var(--s-5);
+    }
+
+    .staff-row {
+      border-top: 1px solid var(--c-line);
+      padding-block: clamp(2.618rem, 5vw, 4.236rem);
+      display: grid; grid-template-columns: 61.8fr 38.2fr;
+      gap: var(--s-6); align-items: center;
+    }
+    .staff-row.flip { grid-template-columns: 38.2fr 61.8fr; }
+    .staff-row.flip .staff-meta { order: 2; }
+    .staff-row.flip .staff-vis { order: 1; }
+
+    .staff-meta { max-width: 62ch; }
+    .staff-num {
+      font-family: var(--font-display);
+      font-size: var(--t-3xl);
+      font-style: italic;
+      font-weight: 400; line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--c-cream);
+      opacity: 0.3;
+      margin-bottom: var(--s-3);
+      display: block;
+    }
+    .staff-tags { display: flex; align-items: center; gap: var(--s-3); margin-bottom: var(--s-2); flex-wrap: wrap; }
+    .staff-role-tag {
+      font-size: var(--fs-label); font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent, var(--c-accent));
+    }
+    .staff-track-tag {
+      font-size: var(--t-xs); font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--c-text-3);
+      border: 1px solid var(--c-line-2);
+      padding: 0.236rem 0.618rem;
+    }
+    .staff-name {
+      font-size: var(--fs-h2);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--c-text);
+      margin-bottom: var(--s-3);
+    }
+    .staff-name strong { font-weight: 600; color: var(--accent, var(--c-text)); }
+    .staff-desc {
+      font-size: var(--fs-lead);
+      color: var(--c-text-2);
+      line-height: 1.618;
+      margin-bottom: var(--s-4);
+    }
+    .staff-outcomes {
+      list-style: none;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-3);
+      padding-top: var(--s-3);
+      border-top: 1px solid var(--c-line);
+    }
+    .staff-outcome {
+      font-size: var(--fs-small); color: var(--c-text-2);
+      display: flex; align-items: flex-start; gap: var(--s-2);
+    }
+    .staff-outcome::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent, var(--c-accent));
+      margin-top: 0.6rem; flex-shrink: 0;
+    }
+
+    .staff-vis {
+      aspect-ratio: 1.618 / 1;
+      position: relative;
+      border: 1px solid var(--c-line);
+      background: var(--c-bg-2);
+      overflow: hidden;
+    }
+    /* Per-role accent runs as a 2px hairline at the top, not a glow */
+    .staff-vis::before {
+      content: '';
+      position: absolute; inset: 0 0 auto 0; height: 1px;
+      background: var(--accent, var(--c-accent));
+      opacity: 0.6;
+    }
+    .staff-vis-inner {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: var(--s-4);
+      z-index: 1;
+    }
+    .staff-vis-top { display: flex; align-items: center; justify-content: space-between; }
+    .staff-vis-status {
+      display: inline-flex; align-items: center; gap: 0.382rem;
+      font-size: var(--t-xs); font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--c-text-3);
+    }
+    .staff-vis-status::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent, var(--c-accent));
+      box-shadow: 0 0 8px var(--accent, var(--c-accent));
+    }
+    .staff-vis-phi {
+      font-size: var(--t-xs); font-weight: 700;
+      color: var(--c-text-3); letter-spacing: 0.18em;
+    }
+    /* Role-specific visualizations replacing the generic icon slot */
+    .sv {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      flex: 1;
+      padding: var(--s-3) 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sv *, .sv *::before, .sv *::after { animation: none !important; }
+    }
+
+    /* 01 Front Desk: call queue waveform */
+    .sv-01 { gap: 5%; align-items: flex-end; height: 48%; width: 58%; }
+    .sv-01 .sv-bar { width: 8%; background: var(--accent); transform-origin: bottom; animation: sv01 1.8s var(--ease) infinite; }
+    .sv-01 .sv-bar:nth-child(1) { height: 38%; animation-delay: 0s; }
+    .sv-01 .sv-bar:nth-child(2) { height: 64%; animation-delay: 0.15s; }
+    .sv-01 .sv-bar:nth-child(3) { height: 92%; animation-delay: 0.3s; }
+    .sv-01 .sv-bar:nth-child(4) { height: 54%; animation-delay: 0.45s; }
+    .sv-01 .sv-bar:nth-child(5) { height: 28%; animation-delay: 0.6s; }
+    @keyframes sv01 { 0%, 100% { transform: scaleY(1); opacity: 0.85; } 50% { transform: scaleY(1.38); opacity: 1; } }
+
+    /* 02 Scheduling: calendar grid */
+    .sv-02 { display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(3, 1.8rem); gap: 0.382rem; width: 60%; align-items: stretch; justify-items: stretch; }
+    .sv-02 span { border: 1px solid var(--c-line-2); }
+    .sv-02 span.f { background: var(--accent); border-color: var(--accent); animation: sv02 3.4s ease-in-out infinite; }
+    .sv-02 span:nth-child(1).f { animation-delay: 0s; }
+    .sv-02 span:nth-child(4).f { animation-delay: 0.25s; }
+    .sv-02 span:nth-child(7).f { animation-delay: 0.5s; }
+    .sv-02 span:nth-child(10).f { animation-delay: 0.75s; }
+    .sv-02 span:nth-child(12).f { animation-delay: 1s; }
+    .sv-02 span:nth-child(15).f { animation-delay: 1.25s; }
+    .sv-02 span:nth-child(17).f { animation-delay: 1.5s; }
+    @keyframes sv02 { 0%, 100% { opacity: 1; } 50% { opacity: 0.32; } }
+
+    /* 03 Prior Auth: document with approval stamp */
+    .sv-03 { width: 44%; height: 70%; flex-direction: column; gap: 8%; padding: 7%; border: 1px solid var(--c-line-2); background: var(--c-bg-3); align-items: stretch; justify-content: flex-start; }
+    .sv-03 .sv-line { height: 1.5px; background: var(--c-line-2); }
+    .sv-03 .sv-line:nth-of-type(2) { width: 80%; }
+    .sv-03 .sv-line:nth-of-type(3) { width: 90%; }
+    .sv-03 .sv-line:nth-of-type(4) { width: 70%; }
+    .sv-03 .sv-stamp { margin-top: auto; margin-left: auto; padding: 0.3rem 0.6rem; border: 1.5px solid var(--accent); color: var(--accent); font-size: 0.5rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; animation: sv03 2.6s ease-out infinite; }
+    @keyframes sv03 { 0%, 55% { transform: scale(1); opacity: 0.85; } 65% { transform: scale(1.15) rotate(-3deg); opacity: 1; } 100% { transform: scale(1) rotate(-3deg); opacity: 0.85; } }
+
+    /* 04 Revenue Recovery: A/R buckets shrinking */
+    .sv-04 { width: 68%; height: 58%; flex-direction: column; gap: 9%; align-items: stretch; justify-content: center; }
+    .sv-04 .sv-bucket { height: 14%; background: var(--accent); transform-origin: left center; animation: sv04 4.2s ease-in-out infinite; }
+    .sv-04 .sv-bucket:nth-child(1) { animation-delay: 0s; }
+    .sv-04 .sv-bucket:nth-child(2) { animation-delay: 0.3s; }
+    .sv-04 .sv-bucket:nth-child(3) { animation-delay: 0.6s; }
+    .sv-04 .sv-bucket:nth-child(4) { animation-delay: 0.9s; }
+    @keyframes sv04 { 0% { transform: scaleX(0.92); opacity: 0.9; } 50% { transform: scaleX(0.25); opacity: 0.4; } 100% { transform: scaleX(0.92); opacity: 0.9; } }
+
+    /* 05 Reactivation: dormant dot to active dot */
+    .sv-05 { width: 72%; height: 32%; justify-content: space-between; }
+    .sv-05 .sv-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; border: 1.5px solid var(--accent); box-sizing: border-box; }
+    .sv-05 .sv-dot-a { opacity: 0.4; }
+    .sv-05 .sv-dot-b { background: var(--accent); animation: sv05 2.4s ease-in-out infinite; }
+    @keyframes sv05 { 0%, 100% { box-shadow: 0 0 0 0 var(--accent); } 50% { box-shadow: 0 0 0 8px rgba(168,85,247,0); } }
+    .sv-05 .sv-arc { flex: 1; height: 100%; margin: 0 8px; }
+    .sv-05 .sv-arc path { fill: none; stroke: var(--accent); stroke-width: 1.2; stroke-dasharray: 4 4; opacity: 0.55; }
+
+    /* 06 Retention: timeline pulse */
+    .sv-06 { width: 72%; height: 36%; flex-direction: column; justify-content: center; }
+    .sv-06 .sv-track { position: relative; width: 100%; height: 1.5px; background: var(--c-line-2); }
+    .sv-06 .sv-tick { position: absolute; top: -5px; width: 1.5px; height: 12px; background: var(--c-line-2); }
+    .sv-06 .sv-tick:nth-of-type(1) { left: 16%; }
+    .sv-06 .sv-tick:nth-of-type(2) { left: 38%; }
+    .sv-06 .sv-tick:nth-of-type(3) { left: 62%; }
+    .sv-06 .sv-tick:nth-of-type(4) { left: 84%; }
+    .sv-06 .sv-pulse { position: absolute; top: -4px; left: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: sv06 5s linear infinite; }
+    @keyframes sv06 { 0% { left: -2%; opacity: 0.4; } 20%, 80% { opacity: 1; } 100% { left: 100%; opacity: 0.4; } }
+
+    /* 07 Reputation: star cascade */
+    .sv-07 { gap: 3%; }
+    .sv-07 .sv-star { color: var(--accent); font-size: clamp(20px, 3vw, 34px); opacity: 0; animation: sv07 3.2s ease-out infinite; }
+    .sv-07 .sv-star:nth-child(1) { animation-delay: 0s; }
+    .sv-07 .sv-star:nth-child(2) { animation-delay: 0.22s; }
+    .sv-07 .sv-star:nth-child(3) { animation-delay: 0.44s; }
+    .sv-07 .sv-star:nth-child(4) { animation-delay: 0.66s; }
+    .sv-07 .sv-star:nth-child(5) { animation-delay: 0.88s; }
+    @keyframes sv07 { 0% { opacity: 0; transform: scale(0.7); } 20%, 85% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(0.95); } }
+
+    /* 08 Marketing: stacked content cards */
+    .sv-08 { position: relative; width: 60%; height: 64%; }
+    .sv-08 .sv-post { position: absolute; top: 50%; left: 50%; width: 48%; aspect-ratio: 1 / 1.272; border: 1px solid var(--accent); background: var(--c-bg-3); animation: sv08 4s ease-in-out infinite; }
+    .sv-08 .sv-post:nth-child(1) { transform: translate(-95%, -45%) rotate(-8deg); animation-delay: 0s; }
+    .sv-08 .sv-post:nth-child(2) { transform: translate(-50%, -50%) rotate(0deg); animation-delay: 0.4s; z-index: 2; background: var(--c-bg-2); }
+    .sv-08 .sv-post:nth-child(3) { transform: translate(-5%, -55%) rotate(8deg); animation-delay: 0.8s; }
+    @keyframes sv08 { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+
+    /* 09 Web/SEO: ranked citations with highlighted AI answer */
+    .sv-09 { width: 68%; height: 62%; flex-direction: column; gap: 6%; align-items: stretch; justify-content: center; }
+    .sv-09 .sv-rank { height: 14%; background: var(--c-line-2); }
+    .sv-09 .sv-rank:nth-child(1) { width: 90%; }
+    .sv-09 .sv-rank:nth-child(2) { width: 70%; }
+    .sv-09 .sv-rank:nth-child(3) { width: 100%; background: var(--accent); animation: sv09 2.6s ease-in-out infinite; }
+    .sv-09 .sv-rank:nth-child(4) { width: 65%; }
+    @keyframes sv09 { 0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0); filter: brightness(1); } 50% { box-shadow: 0 0 16px 2px rgba(245,158,11,0.35); filter: brightness(1.15); } }
+    .staff-vis-stat {
+      border-top: 1px solid var(--c-line);
+      padding-top: var(--s-3);
+      display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-3);
+    }
+    .staff-vis-stat-num { font-family: var(--font-display); font-size: var(--t-xl); font-style: italic; font-weight: 400; color: var(--accent, var(--c-accent)); line-height: 1; letter-spacing: -0.01em; }
+    .staff-vis-stat-label { font-size: var(--t-xs); color: var(--c-text-3); letter-spacing: 0.14em; text-transform: uppercase; text-align: right; max-width: 18ch; line-height: 1.4; }
+
+    /* ═══════════════════ ARCHITECTURE ═══════════════════ */
+    .architecture { border-top: 1px solid var(--c-line); position: relative; overflow: hidden; }
+    .arch-grid {
+      display: grid; grid-template-columns: 38.2fr 61.8fr;
+      gap: var(--s-6); align-items: center; position: relative; z-index: 1;
+    }
+    .arch-points { display: flex; flex-direction: column; gap: var(--s-4); margin-top: var(--s-4); }
+    .arch-point { padding-left: var(--s-3); border-left: 2px solid var(--c-accent); }
+    .arch-point h4 { font-size: var(--fs-body); font-weight: 700; margin-bottom: var(--s-1); color: var(--c-text); }
+    .arch-point p { font-size: var(--fs-small); color: var(--c-text-2); line-height: 1.618; }
+
+    .arch-vis {
+      border: 1px solid var(--c-line);
+      background: rgba(255,255,255,0.02);
+      padding: var(--s-5);
+      display: flex; flex-direction: column; gap: var(--s-3);
+    }
+    .arch-box { border: 1px solid var(--c-line); padding: var(--s-3) var(--s-4); }
+    .arch-box.live { border-color: var(--c-accent); background: rgba(6,182,212,0.04); }
+    .arch-box-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--s-2); }
+    .arch-box-lbl {
+      font-size: var(--fs-label); font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--c-text-3);
+    }
+    .arch-box.live .arch-box-lbl { color: var(--c-accent); }
+    .arch-badge {
+      font-size: var(--t-xs); font-weight: 800;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      background: var(--c-accent); color: var(--c-bg);
+      padding: 0.236rem 0.618rem;
+    }
+    .arch-chips { display: flex; flex-wrap: wrap; gap: var(--s-1); margin-top: var(--s-2); }
+    .chip { font-size: var(--t-xs); font-weight: 500; border: 1px solid var(--c-line); color: var(--c-text-2); background: rgba(255,255,255,0.03); padding: 0.236rem 0.618rem; }
+    .chip.lit { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-bg); font-weight: 700; }
+    .arch-flow {
+      padding: var(--s-3) var(--s-4);
+      border: 1px solid var(--c-line); background: rgba(255,255,255,0.02);
+      font-size: var(--fs-small); color: var(--c-text-2);
+      text-align: center; line-height: 1.618;
+    }
+    .arch-flow strong { color: var(--c-accent); }
+    /* ZxAI logic-layer module breakdown */
+    .arch-modules {
+      display: flex; flex-direction: column;
+      gap: 0;
+      margin-top: var(--s-3);
+    }
+    .arch-module {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--s-3);
+      padding: var(--s-3) 0;
+      border-top: 1px solid var(--c-line);
+    }
+    .arch-module:first-child { border-top: none; padding-top: 0; }
+    .arch-module:last-child { padding-bottom: 0; }
+    .arch-module-icon {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--c-accent);
+      box-shadow: 0 0 8px rgba(6,182,212,0.45);
+      margin-top: 0.5rem;
+      flex-shrink: 0;
+    }
+    .arch-module-name {
+      font-size: var(--fs-body); font-weight: 700;
+      color: var(--c-text);
+      margin-bottom: 0.236rem;
+      letter-spacing: -0.005em;
+    }
+    .arch-module-name .lite {
+      font-weight: 400; color: var(--c-text-3);
+      font-size: 0.85em;
+      letter-spacing: 0.06em;
+    }
+    .arch-module-desc {
+      font-size: var(--fs-small);
+      color: var(--c-text-2);
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════ HOW IT WORKS (horizontal timeline) ═══════════════════ */
+    .how { border-top: 1px solid var(--c-line); background: #080A0F; }
+    .how-timeline { position: relative; margin-top: var(--s-5); }
+    /* cyan progress line threads through the 3 stops */
+    .how-line {
+      position: absolute;
+      top: 3rem;
+      left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--c-accent-line) 0%, var(--c-accent) 50%, var(--c-accent-line) 100%);
+      opacity: 0.55;
+      pointer-events: none;
+    }
+    .how-stops {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-6);
+      position: relative;
+      z-index: 1;
+    }
+    .how-stop { display: flex; flex-direction: column; gap: var(--s-3); }
+    /* marker anchors the dot/number on the line */
+    .how-marker {
+      display: flex; align-items: center; gap: var(--s-3);
+      height: 6rem;
+    }
+    .how-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--c-accent);
+      box-shadow: 0 0 0 4px #080A0F, 0 0 14px rgba(6,182,212,0.6);
+      flex-shrink: 0;
+    }
+    .how-num {
+      font-family: var(--font-display);
+      font-size: var(--t-2xl); font-style: italic; font-weight: 400;
+      color: var(--c-cream); opacity: 0.55; line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .how-duration {
+      align-self: flex-start;
+      font-size: var(--t-xs); font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--c-accent);
+      padding: 0.382rem 0.764rem;
+      border: 1px solid var(--c-accent-line);
+    }
+    /* mini-viz container */
+    .how-vis {
+      height: 4.236rem;
+      border-top: 1px solid var(--c-line);
+      border-bottom: 1px solid var(--c-line);
+      padding: var(--s-3) 0;
+      display: flex;
+      margin: var(--s-2) 0;
+    }
+    /* 01 audit: checklist */
+    .how-vis-01 { flex-direction: column; justify-content: center; gap: 0.5rem; }
+    .how-vis-01 .hv-line {
+      display: flex; align-items: center; gap: 0.618rem;
+      font-size: var(--fs-small);
+      color: var(--c-text-2);
+      opacity: 0;
+      animation: hv01 4.5s ease-out infinite;
+    }
+    .how-vis-01 .hv-line::before {
+      content: '\2713';
+      color: var(--c-cream);
+      font-weight: 700;
+      font-size: 0.9rem;
+      width: 1rem;
+    }
+    .how-vis-01 .hv-line:nth-child(1) { animation-delay: 0s; }
+    .how-vis-01 .hv-line:nth-child(2) { animation-delay: 0.4s; }
+    .how-vis-01 .hv-line:nth-child(3) { animation-delay: 0.8s; }
+    @keyframes hv01 { 0% { opacity: 0; transform: translateX(-4px); } 15%, 88% { opacity: 1; transform: translateX(0); } 100% { opacity: 0.3; } }
+    /* 02 setup: connecting nodes */
+    .how-vis-02 { align-items: center; justify-content: space-between; padding-inline: 0.382rem; }
+    .how-vis-02 .hv-node {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 1.5px solid var(--c-cream);
+      background: transparent;
+      flex-shrink: 0;
+    }
+    .how-vis-02 .hv-wire {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--c-cream), transparent);
+      opacity: 0.5;
+      animation: hv02 3.2s ease-in-out infinite;
+    }
+    .how-vis-02 .hv-wire:nth-of-type(2) { animation-delay: 0.8s; }
+    @keyframes hv02 { 0%, 100% { opacity: 0.28; } 50% { opacity: 0.85; } }
+    /* 03 live: traveling pulse */
+    .how-vis-03 { align-items: center; }
+    .how-vis-03 .hv-track {
+      width: 100%; height: 1.5px;
+      background: var(--c-line-2);
+      position: relative;
+    }
+    .how-vis-03 .hv-pulse {
+      position: absolute;
+      top: -4px; left: 0;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--c-cream);
+      box-shadow: 0 0 12px var(--c-cream);
+      animation: hv03 3.4s linear infinite;
+    }
+    @keyframes hv03 { 0% { left: -4%; opacity: 0.4; } 20%, 80% { opacity: 1; } 100% { left: 100%; opacity: 0.4; } }
+    @media (prefers-reduced-motion: reduce) {
+      .how-vis *, .how-vis *::before, .how-vis *::after { animation: none !important; opacity: 1 !important; }
+    }
+    .how-title { font-size: var(--t-md); font-weight: 600; color: var(--c-text); }
+    .how-desc { font-size: var(--fs-small); color: var(--c-text-2); line-height: 1.618; }
+    .how-split {
+      margin-top: var(--s-2);
+      padding-top: var(--s-3);
+      border-top: 1px solid var(--c-line);
+      display: flex; flex-direction: column; gap: var(--s-2);
+    }
+    .how-hand {
+      display: flex; gap: var(--s-3);
+      font-size: var(--fs-small);
+      line-height: 1.5;
+    }
+    .how-hand-lbl {
+      flex-shrink: 0;
+      width: 3.2rem;
+      font-size: var(--t-xs); font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--c-accent);
+      padding-top: 0.1rem;
+    }
+    .how-hand-copy {
+      color: var(--c-text-2);
+      flex: 1;
+    }
+
+    /* ═══════════════════ NUMBERS / ROI ═══════════════════ */
+    .numbers { border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line); background: #080A0F; }
+
+    /* Horizontal comparison bar chart */
+    .roi-bars {
+      margin-top: var(--s-5);
+      display: flex; flex-direction: column;
+      gap: var(--s-5);
+    }
+    .roi-bar-row { display: flex; flex-direction: column; gap: var(--s-3); }
+    .roi-bar-meta { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-3); }
+    .roi-bar-label {
+      font-size: var(--fs-label); font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--c-text-3);
+    }
+    .roi-bar-amount {
+      font-family: var(--font-display);
+      font-size: var(--t-2xl);
+      font-style: italic; font-weight: 400;
+      color: var(--c-cream);
+      letter-spacing: -0.02em; line-height: 1;
+    }
+    .roi-bar-amount.is-zxai { color: var(--c-accent); }
+    .roi-bar-unit {
+      font-family: var(--font);
+      font-size: 0.382em;
+      color: var(--c-text-3);
+      font-style: normal; font-weight: 500;
+      letter-spacing: 0;
+      margin-left: 0.236rem;
+    }
+    .roi-bar-track {
+      width: 100%; height: 0.764rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--c-line);
+    }
+    .roi-bar-fill {
+      height: 100%;
+      width: var(--w, 0%);
+      transform-origin: left center;
+      transform: scaleX(0);
+      animation: roiBar 1.4s cubic-bezier(0.16, 1, 0.32, 1) 0.3s forwards;
+    }
+    .roi-bar-fill-trad { background: var(--c-cream); }
+    .roi-bar-fill-zxai { background: var(--c-accent); animation-delay: 0.6s; }
+    @keyframes roiBar { to { transform: scaleX(1); } }
+    @media (prefers-reduced-motion: reduce) {
+      .roi-bar-fill { transform: scaleX(1); animation: none; }
+    }
+    /* Savings callout integrated below the bars */
+    .roi-savings {
+      margin-top: var(--s-3);
+      padding: var(--s-4) var(--s-5);
+      border-left: 3px solid var(--c-accent);
+      background: var(--c-accent-soft);
+      display: flex; align-items: baseline; gap: var(--s-3); flex-wrap: wrap;
+    }
+    .roi-savings-label {
+      font-size: var(--fs-label); font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--c-accent);
+    }
+    .roi-savings-amount {
+      font-family: var(--font-display);
+      font-size: var(--t-2xl);
+      font-style: italic; font-weight: 400;
+      color: var(--c-cream);
+      letter-spacing: -0.02em; line-height: 1;
+    }
+    .roi-savings-period {
+      font-size: var(--fs-small);
+      color: var(--c-text-2);
+      margin-left: auto;
+    }
+
+    /* compare */
+    .compare { border-top: 1px solid var(--c-line); }
+    .compare-grid {
+      display: grid; grid-template-columns: 61.8fr 38.2fr;
+      gap: 0;
+      border: 1px solid var(--c-line);
+      margin-top: var(--s-5);
+    }
+    .compare-col { padding: var(--s-5); border-right: 1px solid var(--c-line); }
+    .compare-col:last-child { border-right: none; }
+    .compare-col.zxai { background: rgba(6,182,212,0.04); }
+    .compare-head { font-size: var(--fs-label); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-text-3); margin-bottom: var(--s-4); padding-bottom: var(--s-3); border-bottom: 1px solid var(--c-line); }
+    .compare-col.zxai .compare-head { color: var(--c-accent); }
+    .compare-row { display: flex; align-items: center; justify-content: space-between; padding: 0.764rem 0; border-bottom: 1px solid var(--c-line); gap: var(--s-3); }
+    .compare-row:last-of-type { border-bottom: none; }
+    .compare-item { font-size: var(--fs-small); color: var(--c-text-2); }
+    .compare-cost { font-size: var(--fs-small); font-weight: 700; color: var(--c-text); letter-spacing: -0.01em; }
+    .compare-foot { margin-top: var(--s-3); padding-top: var(--s-3); border-top: 1px solid var(--c-line-2); display: flex; align-items: baseline; justify-content: space-between; }
+    .compare-total-label { font-size: var(--fs-label); color: var(--c-text-3); letter-spacing: 0.14em; text-transform: uppercase; }
+    .compare-total-num { font-family: var(--font-display); font-size: var(--t-xl); font-style: italic; font-weight: 400; color: var(--c-cream); letter-spacing: -0.01em; line-height: 1; }
+    .compare-col.zxai .compare-total-num { color: var(--c-accent); }
+    .compare-savings {
+      margin-top: var(--s-4);
+      padding: var(--s-4);
+      border: 1px solid var(--c-accent-line);
+      background: var(--c-accent-soft);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: var(--s-4); flex-wrap: wrap;
+    }
+    .compare-savings-text { font-size: var(--fs-body); color: var(--c-text); max-width: 50ch; line-height: 1.618; }
+    .compare-savings-text strong { color: var(--c-accent); }
+    .compare-savings-num { font-family: var(--font-display); font-size: var(--t-2xl); font-style: italic; font-weight: 400; color: var(--c-cream); letter-spacing: -0.02em; line-height: 1; }
+
+    /* ═══════════════════ PRICING (cream light-mode inversion) ═══════════════════ */
+    .pricing {
+      background: #F4EEDD;
+      color: rgba(6,11,24,0.92);
+      /* token overrides: everything inside this section recolors automatically */
+      --c-bg: #F4EEDD;
+      --c-bg-2: #EDE6D3;
+      --c-bg-3: #E8DFCA;
+      --c-text: rgba(6,11,24,0.92);
+      --c-text-2: rgba(6,11,24,0.60);
+      --c-text-3: rgba(6,11,24,0.62);  /* bumped from 0.38 to pass AA on cream */
+      --c-line: rgba(6,11,24,0.10);
+      --c-line-2: rgba(6,11,24,0.22);
+      --c-cream: #060B18;  /* display numbers flip to navy italic on cream */
+      --c-accent-soft: rgba(6,182,212,0.14);
+      --c-accent-line: rgba(6,182,212,0.52);
+    }
+    /* cream scope: cyan accent text fails contrast on cream — switch to navy for label-weight text */
+    .pricing .sec-num,
+    .pricing .sec-phi {
+      color: var(--c-text-2);
+      border-color: var(--c-line-2);
+    }
+    .pricing .pricing-tier { color: var(--c-text-2); }
+    .pricing-head { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: var(--s-5); }
+    .pricing-head .sec-h { max-width: 26ch; }
+    .pricing-head .sec-sub { margin-inline: auto; }
+    .pricing-toggle {
+      margin-top: var(--s-4);
+      display: inline-flex; align-items: center;
+      border: 1px solid var(--c-line-2);
+      padding: 0.236rem;
+    }
+    .pricing-toggle-btn {
+      font-size: var(--fs-label); font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.618rem 1.272rem;
+      color: var(--c-text-2);
+      transition: background var(--dur-hover) var(--ease), color var(--dur-hover) var(--ease);
+    }
+    .pricing-toggle-btn.active { background: var(--c-accent); color: var(--c-bg); }
+    .save-chip {
+      font-size: var(--t-xs); font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-left: 0.382rem;
+      padding: 0.1rem 0.382rem;
+      background: rgba(6,182,212,0.2); color: var(--c-accent);
+    }
+    .pricing-toggle-btn.active .save-chip { background: rgba(6,11,24,0.3); color: var(--c-bg); }
+
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--c-line);
+    }
+    .pricing-card {
+      padding: var(--s-5) var(--s-4);
+      border-right: 1px solid var(--c-line);
+      display: flex; flex-direction: column;
+      position: relative;
+      transition: background var(--dur-hover) var(--ease);
+    }
+    .pricing-card:last-child { border-right: none; }
+    .pricing-card:hover { background: rgba(255,255,255,0.03); }
+    .pricing-card.popular {
+      background: rgba(6,182,212,0.04);
+    }
+    .pricing-card.featured {
+      background: var(--c-bg-3);
+    }
+
+    /* cream section: card treatments */
+    .pricing .pricing-card:hover { background: rgba(6,11,24,0.03); }
+    .pricing .pricing-card.popular {
+      background: #EDE6D3;
+      border: 1px solid var(--c-accent);
+      box-shadow: 0 20px 44px -18px rgba(6,182,212,0.4);
+      z-index: 2;
+      position: relative;
+    }
+    .pricing .pricing-card.popular:hover {
+      background: #EDE6D3;
+      box-shadow: 0 24px 52px -16px rgba(6,182,212,0.48);
+    }
+    /* cyan top-edge highlight strip on popular card */
+    .pricing .pricing-card.popular::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: -1px; right: -1px;
+      height: 3px;
+      background: var(--c-accent);
+    }
+    .pricing .pricing-card.featured {
+      /* re-invert to dark navy card sitting in the cream spread */
+      background: #060B18;
+      color: rgba(255,255,255,0.94);
+      --c-bg: #060B18;
+      --c-bg-2: #0B1224;
+      --c-bg-3: #111A33;
+      --c-text: rgba(255,255,255,0.94);
+      --c-text-2: rgba(255,255,255,0.62);
+      --c-text-3: rgba(255,255,255,0.55);
+      --c-line: rgba(255,255,255,0.10);
+      --c-line-2: rgba(255,255,255,0.20);
+      --c-cream: #EDE6D3;
+    }
+    .pricing .pricing-card.featured:hover { background: #0B1224; }
+    /* buttons on cream: ensure readable text */
+    .pricing .pricing-card:not(.featured) .pricing-btn:not(.primary) {
+      color: var(--c-text);
+      border-color: var(--c-line-2);
+    }
+    .pricing .pricing-card:not(.featured) .pricing-btn:not(.primary):hover {
+      background: var(--c-accent);
+      color: #fff;
+      border-color: var(--c-accent);
+    }
+    /* toggle in cream scope */
+    .pricing .pricing-toggle { border-color: var(--c-line-2); }
+    .pricing .pricing-toggle-btn.active { background: var(--c-accent); color: #060B18; }
+    .pricing .save-chip { background: rgba(6,182,212,0.18); color: var(--c-accent); }
+    .pricing .pricing-toggle-btn.active .save-chip { background: rgba(255,255,255,0.24); color: #fff; }
+    .pricing-badge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--c-accent); color: #060B18;
+      font-size: var(--t-xs); font-weight: 800;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 0.5rem 0.9rem;
+      box-shadow: 0 6px 18px -4px rgba(6,182,212,0.5);
+      white-space: nowrap;
+    }
+    .pricing-tier {
+      font-size: var(--fs-label); font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--c-accent);
+      margin-bottom: var(--s-2);
+    }
+    .pricing-name { font-size: var(--t-md); font-weight: 600; color: var(--c-text); margin-bottom: var(--s-2); }
+    .pricing-tagline { font-size: var(--fs-small); color: var(--c-text-2); line-height: 1.5; margin-bottom: var(--s-4); min-height: 3em; }
+    .pricing-amount { display: flex; align-items: baseline; gap: 0.236rem; margin-bottom: var(--s-1); }
+    .pricing-dollar { font-size: var(--t-md); font-weight: 600; color: var(--c-text-2); }
+    .pricing-price { font-size: var(--t-xl); font-weight: 700; color: var(--c-cream); letter-spacing: -0.03em; line-height: 1; }
+    .pricing-per { font-size: var(--fs-small); color: var(--c-text-3); }
+    .pricing-per-agent { font-size: var(--fs-small); color: var(--c-text-3); min-height: 1.2em; }
+    .pricing-savings { font-size: var(--t-xs); font-weight: 700; color: var(--c-accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--s-3); min-height: 1em; }
+    .pricing-divider { border: none; border-top: 1px solid var(--c-line); margin: var(--s-3) 0; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: var(--s-2); margin-bottom: var(--s-4); flex: 1; }
+    .pricing-feature { font-size: var(--fs-small); color: var(--c-text-2); display: flex; align-items: flex-start; gap: var(--s-2); line-height: 1.5; }
+    .pricing-check { color: var(--c-accent); font-weight: 700; flex-shrink: 0; }
+    .pricing-btn {
+      text-align: center;
+      padding: 0.9rem 1rem;
+      font-size: var(--fs-label); font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--c-accent);
+      border: 1px solid var(--c-accent-line);
+      transition: background var(--dur-hover) var(--ease), color var(--dur-hover) var(--ease), border-color var(--dur-hover) var(--ease);
+    }
+    .pricing-btn:hover { background: var(--c-accent-soft); border-color: var(--c-accent); }
+    .pricing-btn.primary { background: var(--c-accent); color: #060B18; }
+    .pricing-btn.primary:hover { background: var(--c-accent-2); color: #060B18; }
+    .pricing-btn.dark { background: var(--c-bg); color: var(--c-accent); border-color: var(--c-accent); }
+    .pricing-btn.dark:hover { background: var(--c-accent); color: var(--c-bg); }
+    .pricing-footnote { text-align: center; margin-top: var(--s-4); font-size: var(--fs-small); color: var(--c-text-3); line-height: 1.618; max-width: 70ch; margin-inline: auto; }
+
+    /* ═══════════════════ FAQ ═══════════════════ */
+    .faq { border-top: 1px solid var(--c-line); }
+    .faq-grid { display: grid; grid-template-columns: 38.2fr 61.8fr; gap: var(--s-6); align-items: start; }
+    .faq-list { border-top: 1px solid var(--c-line); }
+    .faq-item { border-bottom: 1px solid var(--c-line); }
+    .faq-q {
+      width: 100%;
+      display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+      padding: var(--s-4) 0;
+      text-align: left;
+      font-size: var(--fs-lead); font-weight: 500;
+      color: var(--c-text);
+      transition: color var(--dur-hover) var(--ease);
+    }
+    .faq-q:hover { color: var(--c-accent); }
+    .faq-q[aria-expanded="true"] { color: var(--c-accent); }
+    .faq-icon { font-size: var(--t-lg); font-weight: 200; color: var(--c-text-2); transition: transform var(--dur-hover) var(--ease); }
+    .faq-q[aria-expanded="true"] .faq-icon { transform: rotate(45deg); color: var(--c-accent); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 400ms var(--ease); }
+    .faq-q[aria-expanded="true"] + .faq-a { max-height: 800px; }
+    .faq-a-inner { padding: 0 0 var(--s-4); font-size: var(--fs-body); color: var(--c-text-2); line-height: 1.618; max-width: 70ch; }
+
+    /* ═══════════════════ CTA ═══════════════════ */
+    .cta { border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line); padding-block: var(--s-7); text-align: center; position: relative; overflow: hidden; background: var(--c-bg); }
+    .cta-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: var(--s-4); }
+    .cta h2 { font-size: var(--fs-h2); font-weight: 300; line-height: 1.05; letter-spacing: -0.02em; max-width: 22ch; margin-inline: auto; }
+    .cta h2 strong { font-weight: 600; color: var(--c-accent); }
+    .cta-sub { font-size: var(--fs-lead); color: var(--c-text-2); max-width: 50ch; margin-inline: auto; }
+    .cta-reassurance { font-size: var(--fs-small); color: var(--c-text-3); }
+
+    /* ═══════════════════ RESPONSIVE ═══════════════════ */
+    @media (max-width: 1279px) {
+      .wrap { padding-inline: var(--s-4); }
+    }
+    @media (max-width: 1023px) {
+      .nav-links, .nav-right .nav-cta { display: none; }
+      .nav-burger { display: inline-flex; }
+      .hero-body,
+      .problem-grid,
+      .staff-head,
+      .staff-row,
+      .staff-row.flip,
+      .arch-grid,
+      .faq-grid,
+      .footer-grid { grid-template-columns: 1fr; }
+      .staff-row.flip .staff-meta,
+      .staff-row.flip .staff-vis { order: unset; }
+      .hero-dock { margin-top: var(--s-4); }
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-card:nth-child(2) { border-right: none; }
+      .pricing-card:nth-child(1),
+      .pricing-card:nth-child(2) { border-bottom: 1px solid var(--c-line); }
+      .how-stops { grid-template-columns: 1fr; gap: var(--s-5); }
+      .how-line { display: none; }
+      .how-marker { height: auto; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .compare-col { border-right: none; border-bottom: 1px solid var(--c-line); }
+      .compare-col:last-child { border-bottom: none; }
+      .proof-grid { grid-template-columns: repeat(2, 1fr); }
+      .proof-cell:nth-child(2) { border-right: none; }
+      .proof-cell:nth-child(1), .proof-cell:nth-child(2) { border-bottom: 1px solid var(--c-line); }
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+      .num-item:nth-child(2) { border-right: none; }
+      .num-item:nth-child(1), .num-item:nth-child(2) { border-bottom: 1px solid var(--c-line); }
+      .staff-outcomes { grid-template-columns: 1fr; }
+      .footer-right { justify-content: flex-start; }
+    }
+    @media (max-width: 639px) {
+      :root { --fs-display: clamp(2rem, 9vw, 3.2rem); }
+      .wrap { padding-inline: var(--s-3); }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card { border-right: none !important; border-bottom: 1px solid var(--c-line); }
+      .pricing-card:last-child { border-bottom: none; }
+      .proof-grid, .numbers-grid { grid-template-columns: 1fr; }
+      .proof-cell, .num-item { border-right: none !important; border-bottom: 1px solid var(--c-line); aspect-ratio: auto; padding: var(--s-4); gap: var(--s-3); }
+      .proof-cell:last-child, .num-item:last-child { border-bottom: none; }
+      .p-card { aspect-ratio: auto; min-height: 180px; }
+      .staff-vis { aspect-ratio: 1.272 / 1; }
+      .hero { grid-template-rows: 20% 80%; }
+      .hero-h1 { margin-bottom: var(--s-3); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M43D9XD2"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main" class="skip-nav">Skip to main content</a>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a href="#" class="nav-logo" aria-label="ZxAI, back to top">
+        <svg viewBox="320 104 510 156" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><g fill="currentColor"><path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/><path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/><path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/><path d="M800 116H819V244H800V116Z"/></g></svg>
+      </a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#staff" class="nav-link">AI Staff</a></li>
+          <li><a href="#how" class="nav-link">How it works</a></li>
+          <li><a href="#roi" class="nav-link">ROI</a></li>
+          <li><a href="#pricing" class="nav-link">Pricing</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="/blog.html" class="nav-link">Blog</a></li>
+        </ul>
+        <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="nav-cta" target="_blank" rel="noopener noreferrer">Book 15 min</a>
+        <button class="nav-burger" aria-label="Open menu" id="navBurger"><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- NAV OVERLAY (mobile) -->
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <button class="nav-overlay-close" aria-label="Close menu" id="navOverlayClose">Close</button>
+    <ul class="nav-overlay-links">
+      <li><a href="#staff" class="nav-overlay-link">AI Staff</a></li>
+      <li><a href="#how" class="nav-overlay-link">How it works</a></li>
+      <li><a href="#roi" class="nav-overlay-link">ROI</a></li>
+      <li><a href="#pricing" class="nav-overlay-link">Pricing</a></li>
+      <li><a href="#faq" class="nav-overlay-link">FAQ</a></li>
+      <li><a href="/blog.html" class="nav-overlay-link">Blog</a></li>
+      <li><a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="nav-overlay-link" target="_blank" rel="noopener noreferrer" style="color: var(--c-accent)">Book 15 min</a></li>
+    </ul>
+  </div>
+
+  <main id="main">
+
+    <!-- ═══════════════════ 01 · HERO ═══════════════════ -->
+    <section class="hero" aria-label="Hero">
+      <div class="phi-motif" aria-hidden="true">
+        <svg viewBox="0 0 1618 1000" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <style>
+              .gr { fill: none; stroke: rgba(6,182,212,0.25); stroke-width: 0.5; }
+              .gs { fill: none; stroke: rgba(6,182,212,0.35); stroke-width: 0.75; }
+            </style>
+          </defs>
+          <rect class="gr" x="0" y="0" width="1618" height="1000"/>
+          <rect class="gr" x="0" y="0" width="1000" height="1000"/>
+          <rect class="gr" x="1000" y="0" width="618" height="618"/>
+          <rect class="gr" x="1000" y="618" width="382" height="382"/>
+          <rect class="gr" x="1382" y="618" width="236" height="236"/>
+          <rect class="gr" x="1382" y="854" width="146" height="146"/>
+          <path class="gs" d="M 0 1000 A 1000 1000 0 0 1 1000 0"/>
+          <path class="gs" d="M 1000 0 A 618 618 0 0 1 1618 618"/>
+          <path class="gs" d="M 1618 618 A 382 382 0 0 1 1236 1000"/>
+          <path class="gs" d="M 1236 1000 A 236 236 0 0 1 1000 764"/>
+          <path class="gs" d="M 1000 764 A 146 146 0 0 1 1146 618"/>
+        </svg>
+      </div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-glow-warm" aria-hidden="true"></div>
+
+      <div class="wrap">
+        <div class="hero-body">
+          <div class="hero-content">
+            <h1 class="hero-h1 reveal">ZxAI puts AI staff on every revenue gap and <em>operations leakage you've been missing.</em></h1>
+            <p class="hero-lead reveal">ZxAI works inside your existing systems and launches in weeks. No workflow disruption, no new software, no BAA required. We only take on practices we're confident we can help.</p>
+            <div class="hero-actions reveal">
+              <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Book 15 min &rarr;</a>
+              <a href="#staff" class="btn btn-ghost">Meet the AI staff</a>
+            </div>
+            <div class="hero-badges reveal">
+              <span class="hero-badge">HIPAA compliant &nbsp;&middot;&nbsp; No BAA required</span>
+              <span class="hero-badge">Live in weeks &nbsp;&middot;&nbsp; No new software</span>
+              <span class="hero-badge">We only take on practices we can help</span>
+            </div>
+          </div>
+
+          <aside class="hero-dock reveal" aria-hidden="true">
+            <div class="hero-dock-head">
+              <span>Staff status</span>
+              <span class="live-tag">9 online</span>
+            </div>
+            <ul class="hero-dock-list">
+              <li class="hero-dock-row" style="--accent: var(--a-01)"><span class="dock-dot"></span><span class="dock-num">01</span><span class="dock-name">Front Desk</span><span class="dock-state">3 in queue</span></li>
+              <li class="hero-dock-row" style="--accent: var(--a-02)"><span class="dock-dot"></span><span class="dock-num">02</span><span class="dock-name">Scheduling</span><span class="dock-state">12 slots</span></li>
+              <li class="hero-dock-row" style="--accent: var(--a-03)"><span class="dock-dot"></span><span class="dock-num">03</span><span class="dock-name">Prior Auth</span><span class="dock-state">Day 3</span></li>
+              <li class="hero-dock-row" style="--accent: var(--a-04)"><span class="dock-dot"></span><span class="dock-num">04</span><span class="dock-name">Recovery</span><span class="dock-state">$47K</span></li>
+              <li class="hero-dock-row" style="--accent: var(--a-05)"><span class="dock-dot"></span><span class="dock-num">05</span><span class="dock-name">Reactivation</span><span class="dock-state">90+ days</span></li>
+              <li class="hero-dock-row" style="--accent: var(--a-06)"><span class="dock-dot"></span><span class="dock-num">06</span><span class="dock-name">Retention</span><span class="dock-state">6 wk</span></li>
+              <li class="hero-dock-row" style="--accent: var(--a-07)"><span class="dock-dot"></span><span class="dock-num">07</span><span class="dock-name">Reputation</span><span class="dock-state">4.9 avg</span></li>
+              <li class="hero-dock-row" style="--accent: var(--a-08)"><span class="dock-dot"></span><span class="dock-num">08</span><span class="dock-name">Marketing</span><span class="dock-state">Weekly</span></li>
+              <li class="hero-dock-row" style="--accent: var(--a-09)"><span class="dock-dot"></span><span class="dock-num">09</span><span class="dock-name">Web / SEO</span><span class="dock-state">Top 3</span></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── φ LEDGER ─── -->
+    <div class="wrap">
+      <div class="phi-ledger" aria-hidden="true">
+        <div class="phi-ledger-cell major">&phi; &middot; 0.618 &middot; revenue recovered</div>
+        <div class="phi-ledger-cell minor">0.382 &middot; overhead removed</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ 02 · PROOF STRIP ═══════════════════ -->
+    <section class="proof" aria-label="Proof stats">
+      <div class="wrap">
+        <div class="sec-label reveal">
+          <span class="sec-num">02</span>
+          <span class="sec-name">The baseline</span>
+          <span class="sec-phi">&phi; &middot; 1.618 : 1</span>
+        </div>
+        <div class="proof-grid reveal">
+          <div class="proof-cell">
+            <div class="proof-num">76%</div>
+            <div>
+              <div class="proof-label">of patients who hit your voicemail call a competitor instead</div>
+            </div>
+            <div class="proof-source">Accenture Health</div>
+          </div>
+          <div class="proof-cell">
+            <div class="proof-num">4.6 hrs</div>
+            <div>
+              <div class="proof-label">lost per physician per week to prior auth alone</div>
+            </div>
+            <div class="proof-source">AMA 2024</div>
+          </div>
+          <div class="proof-cell">
+            <div class="proof-num">18%</div>
+            <div>
+              <div class="proof-label">of scheduled patients may not show up, each one lost revenue</div>
+            </div>
+            <div class="proof-source">MGMA Benchmarks</div>
+          </div>
+          <div class="proof-cell">
+            <div class="proof-num">35%</div>
+            <div>
+              <div class="proof-label">of your active panel has not booked in 12+ months</div>
+            </div>
+            <div class="proof-source">MGMA Benchmarks</div>
+          </div>
+        </div>
+        <div class="proof-ehr reveal">
+          <span class="proof-ehr-label">Works with</span>
+          <span class="proof-pill">Athena Health</span>
+          <span class="proof-pill">Epic</span>
+          <span class="proof-pill">eClinicalWorks</span>
+          <span class="proof-pill">Kareo</span>
+          <span class="proof-pill">Modernizing Medicine</span>
+          <span class="proof-pill">DrChrono</span>
+          <span class="proof-pill">+ your phone system</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 03 · PROBLEM + TRACKS ═══════════════════ -->
+    <section class="problem" aria-labelledby="problem-h">
+      <div class="wrap">
+        <div class="sec-label reveal">
+          <span class="sec-num">03</span>
+          <span class="sec-name">The problem</span>
+          <span class="sec-phi">&phi; &middot; 61.8 / 38.2</span>
+        </div>
+        <div class="problem-grid">
+          <div class="problem-left reveal">
+            <h2 id="problem-h" class="sec-h">Independent practices are running at <em>a fraction of their capacity.</em></h2>
+            <p class="problem-lead" style="margin-top: var(--s-4)">Your best people, physicians, injectors, coordinators, front desk staff, spend enormous time on work that does not require their judgment. Prior authorizations. Follow-up calls. No-show recovery. Lapsed patient outreach.</p>
+            <p class="problem-lead">All of it is information processing. Predictable, repeatable, rule-based. It does not need a human brain, but it consumes them anyway because nothing else is doing it.</p>
+          </div>
+          <div class="problem-cards reveal">
+            <div class="p-card">
+              <div class="p-top">
+                <span class="p-tag">Concierge</span>
+                <div class="p-num">$300<span>/mo member</span></div>
+              </div>
+              <div>
+                <h3 class="p-title">Member churn tied to communication gaps.</h3>
+                <p class="p-desc">Missed calls and slow callbacks make $300 to $500 per month members feel like regular patients. They cancel without saying why.</p>
+              </div>
+            </div>
+            <div class="p-card">
+              <div class="p-top">
+                <span class="p-tag" style="background: var(--a-03); color: #fff">Functional</span>
+                <div class="p-num" style="color: var(--a-03)">4.6<span>hrs/wk</span></div>
+              </div>
+              <div>
+                <h3 class="p-title">Physicians doing $20/hour work with a $400/hour brain.</h3>
+                <p class="p-desc">Six to ten hours a week on prior auths. That is one to two full patient days a week going to hold music.</p>
+              </div>
+            </div>
+            <div class="p-card">
+              <div class="p-top">
+                <span class="p-tag" style="background: var(--a-06); color: #fff">Med Spa</span>
+                <div class="p-num" style="color: var(--a-06)">$150K<span>+ dormant</span></div>
+              </div>
+              <div>
+                <h3 class="p-title">Revenue already earned walking out the door.</h3>
+                <p class="p-desc">No-shows not followed up, lapsed patients never re-engaged. Revenue sitting dormant in lists you already own.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 04 · 9 AI STAFF ═══════════════════ -->
+    <section class="staff" id="staff" aria-labelledby="staff-h">
+      <div class="wrap">
+        <div class="sec-label reveal">
+          <span class="sec-num">04</span>
+          <span class="sec-name">The AI staff</span>
+          <span class="sec-phi">9 roles &middot; 3 tracks</span>
+        </div>
+        <div class="staff-head reveal">
+          <h2 id="staff-h" class="sec-h">Meet your <em>AI staff.</em></h2>
+          <p class="sec-sub">Nine roles. Each runs inside your own infrastructure, under your credentials. You hire the ones you need. Single member, bundle, or full platform.</p>
+        </div>
+
+        <!-- 01 Front Desk -->
+        <article class="staff-row" style="--accent: var(--a-01); --accent-soft: rgba(6,182,212,0.16); --accent-line: rgba(6,182,212,0.36)">
+          <div class="staff-meta reveal">
+            <span class="staff-num">01</span>
+            <div class="staff-tags">
+              <span class="staff-role-tag">Front Desk Agent</span>
+              <span class="staff-track-tag">All practices</span>
+            </div>
+            <h3 class="staff-name">Answers every call, 24/7. <strong>Books consults directly into your schedule.</strong></h3>
+            <p class="staff-desc">Pre-qualifies new patients, handles inbound messages and forms, and books straight into your calendar. Never misses a call. Never goes on lunch.</p>
+            <ul class="staff-outcomes">
+              <li class="staff-outcome">Zero missed calls across 24 hours</li>
+              <li class="staff-outcome">Faster new-patient intake</li>
+              <li class="staff-outcome">Handles your existing phone system</li>
+            </ul>
+          </div>
+          <div class="staff-vis reveal" aria-hidden="true">
+            <div class="staff-vis-inner">
+              <div class="staff-vis-top">
+                <span class="staff-vis-status">Online</span>
+                <span class="staff-vis-phi">3 in queue</span>
+              </div>
+              <div class="sv sv-01">
+                <span class="sv-bar"></span>
+                <span class="sv-bar"></span>
+                <span class="sv-bar"></span>
+                <span class="sv-bar"></span>
+                <span class="sv-bar"></span>
+              </div>
+              <div class="staff-vis-stat">
+                <span class="staff-vis-stat-num">76%</span>
+                <span class="staff-vis-stat-label">Voicemail calls recovered</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 02 Scheduling -->
+        <article class="staff-row flip" style="--accent: var(--a-02); --accent-soft: rgba(14,165,233,0.16); --accent-line: rgba(14,165,233,0.36)">
+          <div class="staff-vis reveal" aria-hidden="true">
+            <div class="staff-vis-inner">
+              <div class="staff-vis-top">
+                <span class="staff-vis-status">Online</span>
+                <span class="staff-vis-phi">12 slots open</span>
+              </div>
+              <div class="sv sv-02">
+                <span class="f"></span><span></span><span></span><span class="f"></span><span></span><span></span>
+                <span class="f"></span><span></span><span></span><span class="f"></span><span></span><span class="f"></span>
+                <span></span><span></span><span class="f"></span><span></span><span class="f"></span><span></span>
+              </div>
+              <div class="staff-vis-stat">
+                <span class="staff-vis-stat-num">18 &rarr; 6%</span>
+                <span class="staff-vis-stat-label">No-show rate, typical</span>
+              </div>
+            </div>
+          </div>
+          <div class="staff-meta reveal">
+            <span class="staff-num">02</span>
+            <div class="staff-tags">
+              <span class="staff-role-tag">Scheduling Agent</span>
+              <span class="staff-track-tag">All practices</span>
+            </div>
+            <h3 class="staff-name">Identifies high-risk no-shows. <strong>Backfills cancellations same day.</strong></h3>
+            <p class="staff-desc">Escalates outreach before the slot is lost. Cancellations auto-filled from your waitlist the same day. Your schedule stays full.</p>
+            <ul class="staff-outcomes">
+              <li class="staff-outcome">Lower no-show rate</li>
+              <li class="staff-outcome">Same-day backfill</li>
+              <li class="staff-outcome">Waitlist runs itself</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 03 Prior Auth -->
+        <article class="staff-row" style="--accent: var(--a-03); --accent-soft: rgba(99,102,241,0.16); --accent-line: rgba(99,102,241,0.36)">
+          <div class="staff-meta reveal">
+            <span class="staff-num">03</span>
+            <div class="staff-tags">
+              <span class="staff-role-tag">Prior Auth Agent</span>
+              <span class="staff-track-tag">Insurance-billing</span>
+            </div>
+            <h3 class="staff-name">Prepares and routes prior auths at scheduling. <strong>11 days becomes 2 to 3.</strong></h3>
+            <p class="staff-desc">Staff approves. Your agent handles everything else. No hold music. No paperwork queue. Turnaround drops dramatically.</p>
+            <ul class="staff-outcomes">
+              <li class="staff-outcome">Faster approvals</li>
+              <li class="staff-outcome">Fewer denials</li>
+              <li class="staff-outcome">Less staff time</li>
+            </ul>
+          </div>
+          <div class="staff-vis reveal" aria-hidden="true">
+            <div class="staff-vis-inner">
+              <div class="staff-vis-top">
+                <span class="staff-vis-status">Online</span>
+                <span class="staff-vis-phi">Day 3</span>
+              </div>
+              <div class="sv sv-03">
+                <span class="sv-line"></span>
+                <span class="sv-line"></span>
+                <span class="sv-line"></span>
+                <span class="sv-line"></span>
+                <span class="sv-stamp">Approved</span>
+              </div>
+              <div class="staff-vis-stat">
+                <span class="staff-vis-stat-num">11 &rarr; 3 days</span>
+                <span class="staff-vis-stat-label">Average turnaround</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 04 Revenue Recovery -->
+        <article class="staff-row flip" style="--accent: var(--a-04); --accent-soft: rgba(139,92,246,0.16); --accent-line: rgba(139,92,246,0.36)">
+          <div class="staff-vis reveal" aria-hidden="true">
+            <div class="staff-vis-inner">
+              <div class="staff-vis-top">
+                <span class="staff-vis-status">Online</span>
+                <span class="staff-vis-phi">$47K recovered</span>
+              </div>
+              <div class="sv sv-04">
+                <span class="sv-bucket"></span>
+                <span class="sv-bucket"></span>
+                <span class="sv-bucket"></span>
+                <span class="sv-bucket"></span>
+              </div>
+              <div class="staff-vis-stat">
+                <span class="staff-vis-stat-num">A/R</span>
+                <span class="staff-vis-stat-label">Worked continuously</span>
+              </div>
+            </div>
+          </div>
+          <div class="staff-meta reveal">
+            <span class="staff-num">04</span>
+            <div class="staff-tags">
+              <span class="staff-role-tag">Revenue Recovery Agent</span>
+              <span class="staff-track-tag">Insurance-billing</span>
+            </div>
+            <h3 class="staff-name">Tracks stalled claims, aging A/R, and underpayments. <strong>Keeps pushing until it moves.</strong></h3>
+            <p class="staff-desc">Your biller reviews the package. Your agent builds it and follows up. Revenue that would otherwise be written off, recovered.</p>
+            <ul class="staff-outcomes">
+              <li class="staff-outcome">Fewer write-offs</li>
+              <li class="staff-outcome">Faster collections</li>
+              <li class="staff-outcome">Higher realized revenue</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 05 Reactivation -->
+        <article class="staff-row" style="--accent: var(--a-05); --accent-soft: rgba(168,85,247,0.16); --accent-line: rgba(168,85,247,0.36)">
+          <div class="staff-meta reveal">
+            <span class="staff-num">05</span>
+            <div class="staff-tags">
+              <span class="staff-role-tag">Reactivation Agent</span>
+              <span class="staff-track-tag">All practices</span>
+            </div>
+            <h3 class="staff-name">Re-engages every patient inactive 90+ days. <strong>Zero acquisition cost.</strong></h3>
+            <p class="staff-desc">Personalized outreach based on the treatment or protocol they did not rebook. Works your existing database. Turns dormant records into booked revenue.</p>
+            <ul class="staff-outcomes">
+              <li class="staff-outcome">More returning patients</li>
+              <li class="staff-outcome">Higher lifetime value</li>
+              <li class="staff-outcome">No new ad spend</li>
+            </ul>
+          </div>
+          <div class="staff-vis reveal" aria-hidden="true">
+            <div class="staff-vis-inner">
+              <div class="staff-vis-top">
+                <span class="staff-vis-status">Online</span>
+                <span class="staff-vis-phi">90+ days</span>
+              </div>
+              <div class="sv sv-05">
+                <span class="sv-dot sv-dot-a"></span>
+                <svg class="sv-arc" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M 2 30 Q 50 -10 98 30" /></svg>
+                <span class="sv-dot sv-dot-b"></span>
+              </div>
+              <div class="staff-vis-stat">
+                <span class="staff-vis-stat-num">$150K+</span>
+                <span class="staff-vis-stat-label">Dormant revenue addressable</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 06 Retention -->
+        <article class="staff-row flip" style="--accent: var(--a-06); --accent-soft: rgba(236,72,153,0.16); --accent-line: rgba(236,72,153,0.36)">
+          <div class="staff-vis reveal" aria-hidden="true">
+            <div class="staff-vis-inner">
+              <div class="staff-vis-top">
+                <span class="staff-vis-status">Online</span>
+                <span class="staff-vis-phi">6 wk window</span>
+              </div>
+              <div class="sv sv-06">
+                <div class="sv-track">
+                  <span class="sv-tick"></span>
+                  <span class="sv-tick"></span>
+                  <span class="sv-tick"></span>
+                  <span class="sv-tick"></span>
+                  <span class="sv-pulse"></span>
+                </div>
+              </div>
+              <div class="staff-vis-stat">
+                <span class="staff-vis-stat-num">Auto</span>
+                <span class="staff-vis-stat-label">Timed to rebooking window</span>
+              </div>
+            </div>
+          </div>
+          <div class="staff-meta reveal">
+            <span class="staff-num">06</span>
+            <div class="staff-tags">
+              <span class="staff-role-tag">Retention Agent</span>
+              <span class="staff-track-tag">All practices</span>
+            </div>
+            <h3 class="staff-name">Personalized follow-ups, timed to <strong>each patient's rebooking window.</strong></h3>
+            <p class="staff-desc">Sends the right message at the right interval for each procedure or protocol. Runs seasonal campaigns from your service menu. No staff input needed.</p>
+            <ul class="staff-outcomes">
+              <li class="staff-outcome">Higher rebooking rates</li>
+              <li class="staff-outcome">Fewer lapsed patients</li>
+              <li class="staff-outcome">More revenue per patient</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 07 Reputation -->
+        <article class="staff-row" style="--accent: var(--a-07); --accent-soft: rgba(20,184,166,0.16); --accent-line: rgba(20,184,166,0.36)">
+          <div class="staff-meta reveal">
+            <span class="staff-num">07</span>
+            <div class="staff-tags">
+              <span class="staff-role-tag">Reputation Agent</span>
+              <span class="staff-track-tag">All practices</span>
+            </div>
+            <h3 class="staff-name">Asks for reviews at peak satisfaction. <strong>Responds to every one.</strong></h3>
+            <p class="staff-desc">Detects the right moment to request a review. Replies to every inbound rating, positive or negative, at scale. Your star average climbs quietly.</p>
+            <ul class="staff-outcomes">
+              <li class="staff-outcome">More reviews, faster</li>
+              <li class="staff-outcome">Zero negative reviews ignored</li>
+              <li class="staff-outcome">Ranking lift in local search</li>
+            </ul>
+          </div>
+          <div class="staff-vis reveal" aria-hidden="true">
+            <div class="staff-vis-inner">
+              <div class="staff-vis-top">
+                <span class="staff-vis-status">Online</span>
+                <span class="staff-vis-phi">4.9 avg</span>
+              </div>
+              <div class="sv sv-07">
+                <span class="sv-star">&#9733;</span>
+                <span class="sv-star">&#9733;</span>
+                <span class="sv-star">&#9733;</span>
+                <span class="sv-star">&#9733;</span>
+                <span class="sv-star">&#9733;</span>
+              </div>
+              <div class="staff-vis-stat">
+                <span class="staff-vis-stat-num">5/5</span>
+                <span class="staff-vis-stat-label">Every review, responded to</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 08 Marketing -->
+        <article class="staff-row flip" style="--accent: var(--a-08); --accent-soft: rgba(244,63,94,0.16); --accent-line: rgba(244,63,94,0.36)">
+          <div class="staff-vis reveal" aria-hidden="true">
+            <div class="staff-vis-inner">
+              <div class="staff-vis-top">
+                <span class="staff-vis-status">Online</span>
+                <span class="staff-vis-phi">Weekly</span>
+              </div>
+              <div class="sv sv-08">
+                <span class="sv-post"></span>
+                <span class="sv-post"></span>
+                <span class="sv-post"></span>
+              </div>
+              <div class="staff-vis-stat">
+                <span class="staff-vis-stat-num">Daily</span>
+                <span class="staff-vis-stat-label">Calibrated to your voice</span>
+              </div>
+            </div>
+          </div>
+          <div class="staff-meta reveal">
+            <span class="staff-num">08</span>
+            <div class="staff-tags">
+              <span class="staff-role-tag">Marketing Agent</span>
+              <span class="staff-track-tag">All practices</span>
+            </div>
+            <h3 class="staff-name">Produces posts, short-form video scripts, and newsletter content. <strong>Calibrated to your specialty.</strong></h3>
+            <p class="staff-desc">Writes in your voice, not a generic one. Runs the calendar. Your team reviews and publishes. The pipeline never dries up.</p>
+            <ul class="staff-outcomes">
+              <li class="staff-outcome">Consistent weekly output</li>
+              <li class="staff-outcome">Specialty-aware copy</li>
+              <li class="staff-outcome">Scheduled across channels</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 09 Web / SEO -->
+        <article class="staff-row" style="--accent: var(--a-09); --accent-soft: rgba(245,158,11,0.16); --accent-line: rgba(245,158,11,0.36)">
+          <div class="staff-meta reveal">
+            <span class="staff-num">09</span>
+            <div class="staff-tags">
+              <span class="staff-role-tag">Web / SEO Agent</span>
+              <span class="staff-track-tag">All practices</span>
+            </div>
+            <h3 class="staff-name">Optimizes your web presence across <strong>search, AI answer engines, voice, and LLM citations.</strong></h3>
+            <p class="staff-desc">70% of patients now use AI to research doctors. Your practice needs to show up in the places they actually look. This role handles all of it.</p>
+            <ul class="staff-outcomes">
+              <li class="staff-outcome">Rank in traditional search</li>
+              <li class="staff-outcome">Get cited by ChatGPT and Perplexity</li>
+              <li class="staff-outcome">Voice assistant ready</li>
+            </ul>
+          </div>
+          <div class="staff-vis reveal" aria-hidden="true">
+            <div class="staff-vis-inner">
+              <div class="staff-vis-top">
+                <span class="staff-vis-status">Online</span>
+                <span class="staff-vis-phi">AI answer, top 3</span>
+              </div>
+              <div class="sv sv-09">
+                <span class="sv-rank"></span>
+                <span class="sv-rank"></span>
+                <span class="sv-rank"></span>
+                <span class="sv-rank"></span>
+              </div>
+              <div class="staff-vis-stat">
+                <span class="staff-vis-stat-num">70%</span>
+                <span class="staff-vis-stat-label">Patients research via AI</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 05 · ARCHITECTURE ═══════════════════ -->
+    <section class="architecture" aria-labelledby="arch-h">
+      <div class="wrap">
+        <div class="sec-label reveal">
+          <span class="sec-num">05</span>
+          <span class="sec-name">The architecture</span>
+          <span class="sec-phi">&phi; &middot; 38.2 / 61.8</span>
+        </div>
+        <div class="arch-grid">
+          <div class="arch-left reveal">
+            <h2 id="arch-h" class="sec-h">Your data never <em>leaves your building.</em></h2>
+            <p class="sec-sub">Every AI company you talk to is asking you to hand them your patients' data. We do not. Our AI works in your system, under your login, and your data never touches our servers.</p>
+            <div class="arch-points">
+              <div class="arch-point">
+                <h4>ZxAI provides the brain.</h4>
+                <p>The AI model, the trained workflows, the job logic. That is what you hire.</p>
+              </div>
+              <div class="arch-point">
+                <h4>Your practice owns the data.</h4>
+                <p>Patient records, EHR history, communication. All of it stays in your environment under your credentials.</p>
+              </div>
+              <div class="arch-point">
+                <h4>No BAA. No shared liability.</h4>
+                <p>Because PHI never touches our systems, we are not a Business Associate. Nothing to sign. Nothing to inherit.</p>
+              </div>
+            </div>
+          </div>
+          <div class="arch-vis reveal" aria-hidden="true">
+            <div class="arch-box live">
+              <div class="arch-box-top">
+                <span class="arch-box-lbl">Your practice cloud</span>
+                <span class="arch-badge">Live</span>
+              </div>
+              <div class="arch-chips">
+                <span class="chip lit">EHR</span>
+                <span class="chip lit">Phone</span>
+                <span class="chip lit">Billing</span>
+                <span class="chip lit">PHI</span>
+                <span class="chip lit">Credentials</span>
+              </div>
+            </div>
+            <div class="arch-flow">
+              <strong>API calls only.</strong> &nbsp;Zero PHI crosses the boundary.
+            </div>
+            <div class="arch-box">
+              <div class="arch-box-top">
+                <span class="arch-box-lbl">ZxAI</span>
+                <span class="arch-badge" style="background: transparent; border: 1px solid var(--c-line-2); color: var(--c-text-2)">Logic layer</span>
+              </div>
+              <div class="arch-modules">
+                <div class="arch-module">
+                  <span class="arch-module-icon" aria-hidden="true"></span>
+                  <div>
+                    <div class="arch-module-name">LLM model <span class="lite">&middot; reasoning engine</span></div>
+                    <div class="arch-module-desc">Frontier reasoning called via API. Bring your own model (Claude, GPT-4, or your existing deployment), or use ours. Pick whichever fits your compliance and procurement needs.</div>
+                  </div>
+                </div>
+                <div class="arch-module">
+                  <span class="arch-module-icon" aria-hidden="true"></span>
+                  <div>
+                    <div class="arch-module-name">Job logic <span class="lite">&middot; per role</span></div>
+                    <div class="arch-module-desc">Each AI staff role has its own decision tree, escalation rules, and outcome definitions. Front Desk acts differently from Prior Auth.</div>
+                  </div>
+                </div>
+                <div class="arch-module">
+                  <span class="arch-module-icon" aria-hidden="true"></span>
+                  <div>
+                    <div class="arch-module-name">Agent workflows <span class="lite">&middot; multi-step chains</span></div>
+                    <div class="arch-module-desc">Multi-step automated processes that span your EHR, phone, and billing systems. Trigger-driven, with branching logic and defined outcome states. No human in the loop until escalation.</div>
+                  </div>
+                </div>
+                <div class="arch-module">
+                  <span class="arch-module-icon" aria-hidden="true"></span>
+                  <div>
+                    <div class="arch-module-name">Security &amp; guardrails <span class="lite">&middot; compliance</span></div>
+                    <div class="arch-module-desc">PHI never crosses the boundary. Every action logged. Hard limits per role. Fail-safe escalation to your team on edge cases.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 06 · HOW IT WORKS ═══════════════════ -->
+    <section class="how" id="how" aria-labelledby="how-h">
+      <div class="wrap">
+        <div class="sec-label reveal">
+          <span class="sec-num">06</span>
+          <span class="sec-name">How it works</span>
+          <span class="sec-phi">Three steps &middot; one week</span>
+        </div>
+        <div class="staff-head reveal">
+          <h2 id="how-h" class="sec-h">Three steps. <em>First results in one week.</em></h2>
+          <p class="sec-sub">No dashboards to configure. No migration. Your AI staff goes to work inside the systems you already run.</p>
+        </div>
+        <div class="how-timeline reveal">
+          <div class="how-line" aria-hidden="true"></div>
+          <div class="how-stops">
+            <div class="how-stop">
+              <div class="how-marker">
+                <span class="how-dot" aria-hidden="true"></span>
+                <span class="how-num">01</span>
+              </div>
+              <span class="how-duration">1 hour call</span>
+              <div class="how-vis how-vis-01" aria-hidden="true">
+                <span class="hv-line">Systems audit</span>
+                <span class="hv-line">Workflow map</span>
+                <span class="hv-line">Gap analysis</span>
+              </div>
+              <h3 class="how-title">We audit your practice</h3>
+              <p class="how-desc">We review your systems, patient flow, and where work falls through the cracks. Every practice is different.</p>
+              <div class="how-split">
+                <div class="how-hand"><span class="how-hand-lbl">You</span><span class="how-hand-copy">Share your systems and pain points on a call.</span></div>
+                <div class="how-hand"><span class="how-hand-lbl">ZxAI</span><span class="how-hand-copy">Map your workflows and propose the right staff.</span></div>
+              </div>
+            </div>
+
+            <div class="how-stop">
+              <div class="how-marker">
+                <span class="how-dot" aria-hidden="true"></span>
+                <span class="how-num">02</span>
+              </div>
+              <span class="how-duration">2 to 4 weeks</span>
+              <div class="how-vis how-vis-02" aria-hidden="true">
+                <span class="hv-node"></span>
+                <span class="hv-wire"></span>
+                <span class="hv-node"></span>
+                <span class="hv-wire"></span>
+                <span class="hv-node"></span>
+              </div>
+              <h3 class="how-title">We set up your AI staff</h3>
+              <p class="how-desc">Each staff member connects to your EMR, phone, and billing systems. No data migration. No new logins for your team.</p>
+              <div class="how-split">
+                <div class="how-hand"><span class="how-hand-lbl">You</span><span class="how-hand-copy">Issue EHR credentials once. One hour of training.</span></div>
+                <div class="how-hand"><span class="how-hand-lbl">ZxAI</span><span class="how-hand-copy">Build, connect, and test every workflow end-to-end.</span></div>
+              </div>
+            </div>
+
+            <div class="how-stop">
+              <div class="how-marker">
+                <span class="how-dot" aria-hidden="true"></span>
+                <span class="how-num">03</span>
+              </div>
+              <span class="how-duration">Ongoing</span>
+              <div class="how-vis how-vis-03" aria-hidden="true">
+                <div class="hv-track">
+                  <span class="hv-pulse"></span>
+                </div>
+              </div>
+              <h3 class="how-title">They go to work</h3>
+              <p class="how-desc">Your AI staff operates 24/7. You get a dashboard to see what they are doing. Most practices see measurable results within the first week.</p>
+              <div class="how-split">
+                <div class="how-hand"><span class="how-hand-lbl">You</span><span class="how-hand-copy">Check the dashboard. Approve what needs approval.</span></div>
+                <div class="how-hand"><span class="how-hand-lbl">ZxAI</span><span class="how-hand-copy">Work the queues. Escalate what humans should handle.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 07 · NUMBERS / ROI ═══════════════════ -->
+    <section class="numbers" id="roi" aria-labelledby="roi-h">
+      <div class="wrap">
+        <div class="sec-label reveal">
+          <span class="sec-num">07</span>
+          <span class="sec-name">The numbers</span>
+          <span class="sec-phi">&phi; &middot; 1.618 : 1</span>
+        </div>
+        <div class="staff-head reveal">
+          <h2 id="roi-h" class="sec-h">Hiring people to do this <em>is the expensive option.</em></h2>
+          <p class="sec-sub">A traditional full desk, prior auth, and scheduling stack runs about $349K per year before benefits. AI staff across all nine roles runs $120K with 24/7 coverage.</p>
+        </div>
+        <div class="roi-bars reveal" aria-label="Annual cost comparison">
+          <div class="roi-bar-row">
+            <div class="roi-bar-meta">
+              <span class="roi-bar-label">Traditional staffing</span>
+              <span class="roi-bar-amount">$349K<span class="roi-bar-unit">/yr</span></span>
+            </div>
+            <div class="roi-bar-track">
+              <div class="roi-bar-fill roi-bar-fill-trad" style="--w: 100%"></div>
+            </div>
+          </div>
+          <div class="roi-bar-row">
+            <div class="roi-bar-meta">
+              <span class="roi-bar-label">ZxAI full platform</span>
+              <span class="roi-bar-amount is-zxai">$120K<span class="roi-bar-unit">/yr</span></span>
+            </div>
+            <div class="roi-bar-track">
+              <div class="roi-bar-fill roi-bar-fill-zxai" style="--w: 34.4%"></div>
+            </div>
+          </div>
+          <div class="roi-savings">
+            <span class="roi-savings-label">You save</span>
+            <span class="roi-savings-amount">$229K</span>
+            <span class="roi-savings-period">per year &middot; 24/7 coverage no human team can match</span>
+          </div>
+        </div>
+
+        <div class="compare-grid reveal">
+          <div class="compare-col">
+            <div class="compare-head">Traditional staffing</div>
+            <div class="compare-row"><span class="compare-item">Front desk (3 FTEs, 24/7 coverage)</span><span class="compare-cost">$145K/yr</span></div>
+            <div class="compare-row"><span class="compare-item">Prior auth coordinator</span><span class="compare-cost">$72K/yr</span></div>
+            <div class="compare-row"><span class="compare-item">Scheduling coordinator</span><span class="compare-cost">$62K/yr</span></div>
+            <div class="compare-row"><span class="compare-item">Benefits and payroll tax</span><span class="compare-cost">$42K/yr</span></div>
+            <div class="compare-row"><span class="compare-item">Recruiting and turnover</span><span class="compare-cost">$28K/yr</span></div>
+            <div class="compare-row"><span class="compare-item">Coverage: 40 hrs/wk only</span><span class="compare-cost" style="color: rgba(244,63,94,0.8)">capped</span></div>
+            <div class="compare-foot">
+              <span class="compare-total-label">Total per year</span>
+              <span class="compare-total-num">$349K</span>
+            </div>
+          </div>
+          <div class="compare-col zxai">
+            <div class="compare-head">ZxAI full platform</div>
+            <div class="compare-row"><span class="compare-item">All 9 AI staff members, configured</span><span class="compare-cost">$120K/yr</span></div>
+            <div class="compare-row"><span class="compare-item">Prior auth, automated</span><span class="compare-cost">included</span></div>
+            <div class="compare-row"><span class="compare-item">Scheduling and reminders</span><span class="compare-cost">included</span></div>
+            <div class="compare-row"><span class="compare-item">No benefits, no payroll tax</span><span class="compare-cost">$0</span></div>
+            <div class="compare-row"><span class="compare-item">No recruiting, no turnover</span><span class="compare-cost">$0</span></div>
+            <div class="compare-row"><span class="compare-item">Coverage: 24/7, 365 days</span><span class="compare-cost">included</span></div>
+            <div class="compare-foot">
+              <span class="compare-total-label">Total per year</span>
+              <span class="compare-total-num">$120K</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 08 · PRICING ═══════════════════ -->
+    <section class="pricing" id="pricing" aria-labelledby="pricing-h">
+      <div class="wrap">
+        <div class="sec-label reveal">
+          <span class="sec-num">08</span>
+          <span class="sec-name">Pricing</span>
+          <span class="sec-phi">One to nine &middot; &phi;</span>
+        </div>
+        <div class="pricing-head reveal">
+          <h2 id="pricing-h" class="sec-h" style="text-align:center; margin-inline:auto">Start with one AI staff member. <em>Scale to nine.</em></h2>
+          <p class="sec-sub">Every AI staff member is a standalone revenue or savings driver. Pick the ones that fit your practice now. Add more any time.</p>
+          <div class="pricing-toggle" role="group" aria-label="Billing period">
+            <button class="pricing-toggle-btn active" id="btn-monthly" aria-pressed="true">Monthly</button>
+            <button class="pricing-toggle-btn" id="btn-annual" aria-pressed="false">Annual <span class="save-chip">Save 10%</span></button>
+          </div>
+        </div>
+        <div class="pricing-grid reveal">
+          <div class="pricing-card">
+            <div class="pricing-tier">Single AI Staff</div>
+            <div class="pricing-name">Per member</div>
+            <div class="pricing-tagline">Start with your biggest problem. Add more when you are ready.</div>
+            <div class="pricing-amount">
+              <span class="pricing-dollar">$</span>
+              <span class="pricing-price" data-m="1,500" data-a="1,350">1,500</span>
+              <span class="pricing-per">/mo</span>
+            </div>
+            <div class="pricing-per-agent">&nbsp;</div>
+            <div class="pricing-savings">&nbsp;</div>
+            <hr class="pricing-divider">
+            <ul class="pricing-features">
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>1 AI staff member, fully configured</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>EHR and systems integration</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>Real-time dashboard access</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>Monthly performance report</li>
+            </ul>
+            <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="pricing-btn" target="_blank" rel="noopener noreferrer">Hire your first AI staff</a>
+          </div>
+          <div class="pricing-card">
+            <div class="pricing-tier">3-Member Bundle</div>
+            <div class="pricing-name">Starter pack</div>
+            <div class="pricing-tagline">Cover your three highest-impact workflows from day one.</div>
+            <div class="pricing-amount">
+              <span class="pricing-dollar">$</span>
+              <span class="pricing-price" data-m="3,997" data-a="3,597">3,997</span>
+              <span class="pricing-per">/mo</span>
+            </div>
+            <div class="pricing-per-agent">$1,332/member</div>
+            <div class="pricing-savings">Save 11% vs. per-member</div>
+            <hr class="pricing-divider">
+            <ul class="pricing-features">
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>3 AI staff members, fully configured</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>EHR and systems integration</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>Real-time dashboard access</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>Monthly performance report</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>Priority onboarding (48 hrs)</li>
+            </ul>
+            <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="pricing-btn" target="_blank" rel="noopener noreferrer">Hire 3 AI staff</a>
+          </div>
+          <div class="pricing-card popular">
+            <div class="pricing-badge">Most popular</div>
+            <div class="pricing-tier">6-Member Bundle</div>
+            <div class="pricing-name">Growth pack</div>
+            <div class="pricing-tagline">The setup most practices need to fully stabilize operations and grow.</div>
+            <div class="pricing-amount">
+              <span class="pricing-dollar">$</span>
+              <span class="pricing-price" data-m="6,997" data-a="6,297">6,997</span>
+              <span class="pricing-per">/mo</span>
+            </div>
+            <div class="pricing-per-agent">$1,166/member</div>
+            <div class="pricing-savings">Save 22% vs. per-member</div>
+            <hr class="pricing-divider">
+            <ul class="pricing-features">
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>6 AI staff members, fully configured</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>EHR and systems integration</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>Real-time dashboard access</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>Monthly performance report</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>Priority onboarding (48 hrs)</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>Quarterly strategy review</li>
+            </ul>
+            <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="pricing-btn primary" target="_blank" rel="noopener noreferrer">Hire 6 AI staff</a>
+          </div>
+          <div class="pricing-card featured">
+            <div class="pricing-tier">Full platform</div>
+            <div class="pricing-name">Full AI staff</div>
+            <div class="pricing-tagline">Your practice, fully staffed. Every revenue leak plugged. Every workflow covered.</div>
+            <div class="pricing-amount">
+              <span class="pricing-dollar">$</span>
+              <span class="pricing-price" data-m="9,997" data-a="8,997">9,997</span>
+              <span class="pricing-per">/mo</span>
+            </div>
+            <div class="pricing-per-agent">$1,111/member</div>
+            <div class="pricing-savings">Save 26% vs. per-member</div>
+            <hr class="pricing-divider">
+            <ul class="pricing-features">
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>All 9 AI staff members, configured</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>Full systems integration</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>Real-time dashboard access</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>Monthly performance report</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>Concierge onboarding (24 hrs)</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>Quarterly strategy review</li>
+              <li class="pricing-feature"><span class="pricing-check">&#10003;</span>We are paid on results. Ask us what that means.</li>
+            </ul>
+            <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="pricing-btn dark" target="_blank" rel="noopener noreferrer">Hire all 9 AI staff</a>
+          </div>
+        </div>
+        <p class="pricing-footnote reveal">Annual plans billed upfront (10% off any tier). Multi-location pricing available. All AI staff run inside your own infrastructure, under your credentials.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 09 · FAQ ═══════════════════ -->
+    <section class="faq" id="faq" aria-labelledby="faq-h">
+      <div class="wrap">
+        <div class="sec-label reveal">
+          <span class="sec-num">09</span>
+          <span class="sec-name">FAQ</span>
+          <span class="sec-phi">38.2 / 61.8</span>
+        </div>
+        <div class="faq-grid">
+          <div class="reveal">
+            <h2 id="faq-h" class="sec-h">Questions we hear <em>before every call.</em></h2>
+            <p class="sec-sub">Straight answers. If we cannot help, we will tell you on the intro call.</p>
+          </div>
+          <div class="faq-list reveal">
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" aria-controls="faq-a-1"><span>What happens to our patient data?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+              <div class="faq-a" id="faq-a-1" role="region"><div class="faq-a-inner">It stays in your systems. Your ZxAI AI staff run inside your own infrastructure, using your credentials. Nothing leaves your environment. We provide the AI and the workflows. You own the data layer.</div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" aria-controls="faq-a-2"><span>Will it work with my EHR?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+              <div class="faq-a" id="faq-a-2" role="region"><div class="faq-a-inner">Yes. We connect to Athena Health, Epic, eClinicalWorks, Kareo, Modernizing Medicine, DrChrono, and others via FHIR API or secure HL7 feed. If yours is not listed, ask us. We have not met one we could not work with.</div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" aria-controls="faq-a-3"><span>How long does setup take?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+              <div class="faq-a" id="faq-a-3" role="region"><div class="faq-a-inner">The main variable is EHR vendor credentialing. Processing times vary by system. Once API credentials are issued, we launch in 2 to 4 weeks. Your staff gets one hour of walkthrough. That is it.</div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" aria-controls="faq-a-4"><span>Will my patients know they are talking to AI?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+              <div class="faq-a" id="faq-a-4" role="region"><div class="faq-a-inner">Your AI staff have fully customizable names, voices, and personalities. We require all practices to notify patients that automated AI systems are used in their operations. This is a contractual requirement and consistent with applicable law. Most practices introduce their AI staff with a friendly custom name and patients respond well to the transparency. What patients actually care about is that their call gets answered promptly.</div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" aria-controls="faq-a-5"><span>What if we do not see results?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+              <div class="faq-a" id="faq-a-5" role="region"><div class="faq-a-inner">We only take on practices we are confident we can help. If we do not think we can deliver a clear return, we will tell you before you sign anything. We are paid on results. What that means for your practice is something we cover on every intro call.</div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" aria-controls="faq-a-6"><span>Do we need to change anything about how we operate?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+              <div class="faq-a" id="faq-a-6" role="region"><div class="faq-a-inner">No. Your AI staff works inside your existing systems. Your team keeps using the same EHR, the same phone system, the same processes. They just check a dashboard instead of manually doing the work the AI staff now handles.</div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" aria-controls="faq-a-7"><span>What are the contract terms?</span><span class="faq-icon" aria-hidden="true">+</span></button>
+              <div class="faq-a" id="faq-a-7" role="region"><div class="faq-a-inner">Month-to-month on monthly plans. Annual plans are prepaid and locked in with no cancellation mid-term, but pricing is locked for life. No long-term commitments required to get started.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 10 · CTA ═══════════════════ -->
+    <section class="cta" id="contact" aria-labelledby="cta-h">
+      <div class="wrap">
+        <div class="cta-inner reveal">
+          <span class="sec-phi">Hire your staff</span>
+          <h2 id="cta-h">Ready to <strong>hire your AI staff?</strong></h2>
+          <p class="cta-sub">Book a 15-minute call. We will show you exactly which AI staff fit your practice and what the first week looks like.</p>
+          <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="link-cta" target="_blank" rel="noopener noreferrer">Book 15 minutes &rarr;</a>
+          <p class="cta-reassurance">We respond within 1 business day. The call is 15 minutes. No sales pressure.</p>
+        </div>
+      </div>
+    </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-left">
+          <a href="#" class="footer-logo" aria-label="ZxAI, back to top">
+            <svg viewBox="0 0 1280 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="currentColor"><path fill-rule="evenodd" d="M176 94A86 86 0 1 1 176 266A86 86 0 1 1 176 94ZM176 108A72 72 0 1 0 176 252A72 72 0 1 0 176 108ZM212 122L226 131L179 237L165 228L212 122Z"/></g><g fill="currentColor"><path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/><path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/><path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/><path d="M800 116H819V244H800V116Z"/></g></svg>
+          </a>
+          <span class="footer-copy">&copy; 2026 ZxAI</span>
+        </div>
+        <div class="footer-right">
+          <a href="privacy-policy.html" class="footer-link">Privacy</a>
+          <a href="terms-of-service.html" class="footer-link">Terms</a>
+          <a href="mailto:hello@zxai.ai" class="footer-link">hello@zxai.ai</a>
+          <span class="footer-phi-badge">Designed on &phi; &middot; 1.618</span>
+        </div>
+      </div>
+      <p class="footer-disclaimer">ZxAI automates administrative and operational workflows only. Not a clinical decision support tool, diagnostic system, or medical device. Individual results vary.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll state
+    (function(){
+      var nav = document.getElementById('nav');
+      function onScroll(){
+        if (window.scrollY > 12) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    // Mobile nav overlay
+    (function(){
+      var burger = document.getElementById('navBurger');
+      var overlay = document.getElementById('navOverlay');
+      var close = document.getElementById('navOverlayClose');
+      if (!burger || !overlay) return;
+      function open(){
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden','false');
+        // move focus into the overlay so keyboard users land in the right place
+        if (close) close.focus();
+      }
+      function shut(){
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden','true');
+        // return focus to the trigger
+        burger.focus();
+      }
+      burger.addEventListener('click', open);
+      close.addEventListener('click', shut);
+      overlay.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', shut); });
+      // Esc closes the overlay
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && overlay.classList.contains('open')) shut();
+      });
+    })();
+
+    // Reveal on scroll
+    (function(){
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e, i){
+          if (e.isIntersecting) {
+            setTimeout(function(){ e.target.classList.add('is-in'); }, (i % 6) * 80);
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+    })();
+
+    // FAQ accordion
+    (function(){
+      document.querySelectorAll('.faq-q').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var open = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+        });
+      });
+    })();
+
+    // Active nav indicator: which section is in view?
+    (function(){
+      if (!('IntersectionObserver' in window)) return;
+      var navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+      if (!navLinks.length) return;
+      var linkMap = {};
+      navLinks.forEach(function(link){
+        var id = link.getAttribute('href').slice(1);
+        if (id) linkMap[id] = link;
+      });
+      var ids = Object.keys(linkMap);
+      if (!ids.length) return;
+      var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+      var visible = {};
+      function setActive(){
+        // Pick the id whose section is highest in the viewport among visible entries
+        var best = null, bestTop = Infinity;
+        sections.forEach(function(s){
+          if (!visible[s.id]) return;
+          var rect = s.getBoundingClientRect();
+          if (rect.top < bestTop) { bestTop = rect.top; best = s.id; }
+        });
+        navLinks.forEach(function(l){
+          l.classList.remove('is-active');
+          l.removeAttribute('aria-current');
+        });
+        if (best && linkMap[best]) {
+          linkMap[best].classList.add('is-active');
+          linkMap[best].setAttribute('aria-current', 'location');
+        }
+      }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          visible[e.target.id] = e.isIntersecting;
+        });
+        setActive();
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+      sections.forEach(function(s){ io.observe(s); });
+    })();
+
+    // Pricing monthly / annual toggle
+    (function(){
+      var m = document.getElementById('btn-monthly');
+      var a = document.getElementById('btn-annual');
+      if (!m || !a) return;
+      function set(which){
+        m.classList.toggle('active', which === 'm');
+        a.classList.toggle('active', which === 'a');
+        m.setAttribute('aria-pressed', which === 'm' ? 'true' : 'false');
+        a.setAttribute('aria-pressed', which === 'a' ? 'true' : 'false');
+        document.querySelectorAll('.pricing-price').forEach(function(el){
+          el.textContent = which === 'a' ? el.dataset.a : el.dataset.m;
+        });
+      }
+      m.addEventListener('click', function(){ set('m'); });
+      a.addEventListener('click', function(){ set('a'); });
+    })();
+  </script>
+
+</body>
+</html>

@@ -28,10 +28,7 @@
       "@type": "Organization",
       "name": "ZxAI",
       "url": "https://zxai.ai",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://zxai.ai/og-image.png"
-      }
+      "logo": { "@type": "ImageObject", "url": "https://zxai.ai/og-image.png" }
     },
     "blogPost": [
       {
@@ -45,545 +42,419 @@
         "@type": "BlogPosting",
         "headline": "What 4.6 Hours a Week of Prior Auth Is Actually Costing Your Practice",
         "url": "https://zxai.ai/blog/prior-auth-cost",
-        "datePublished": "2026-04-09T00:00:00Z",
-        "author": { "@type": "Person", "name": "Anthony Mesa" }
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "$150K Sitting in Your Lapsed Patient List",
-        "url": "https://zxai.ai/blog/lapsed-patient-revenue",
-        "datePublished": "2026-04-11T00:00:00Z",
-        "author": { "@type": "Person", "name": "Anthony Mesa" }
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "Which AI Tools for Medical Practices Require a Business Associate Agreement?",
-        "url": "https://zxai.ai/blog/healthcare-ai-baa-requirement",
-        "datePublished": "2026-04-13T00:00:00Z",
+        "datePublished": "2026-04-03T00:00:00Z",
         "author": { "@type": "Person", "name": "Anthony Mesa" }
       }
     ]
   }
   </script>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23060B18'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%2306B6D4' stroke-width='1.5'/%3E%3Cline x1='19' y1='9' x2='13' y2='23' stroke='%2306B6D4' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
   <style>
+    /* ═══════════════════════════════════════
+       ZxAI Blog (v2, shipped with homepage redesign 2026-04-16)
+       Shares token system with index-v2.html / index.html
+    ═══════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --hero-bg: #060B18;
-      --white: #FFFFFF;
-      --bg-alt: #F7F8FA;
-      --text-primary: #0B0B0B;
-      --text-secondary: #64748B;
-      --text-tertiary: #6B7280;
-      --border: #E2E8F0;
-      --cyan: #06B6D4;
-      --indigo: #6366F1;
+      --phi: 1.618; --phi-inv: 0.618;
+      --c-bg: #000000;
+      --c-bg-2: #0A0A0A;
+      --c-bg-3: #141414;
+      --c-line: rgba(255,255,255,0.08);
+      --c-line-2: rgba(255,255,255,0.14);
+      --c-text: rgba(255,255,255,0.94);
+      --c-text-2: rgba(255,255,255,0.62);
+      --c-text-3: rgba(255,255,255,0.55);
+      --c-accent: #06B6D4;
+      --c-accent-2: #22D3EE;
+      --c-accent-soft: rgba(6,182,212,0.12);
+      --c-accent-line: rgba(6,182,212,0.32);
+      --c-cream: #EDE6D3;
+      --t-xs: 0.618rem; --t-sm: 0.764rem; --t-base: 1rem; --t-md: 1.272rem;
+      --t-lg: 1.618rem; --t-xl: 2.618rem; --t-2xl: 4.236rem; --t-3xl: 6.854rem;
+      --fs-display: clamp(2.618rem, 6.5vw, 5.2rem);
+      --fs-h2: clamp(1.618rem, 3vw, 2.618rem);
+      --fs-h3: clamp(1.272rem, 2vw, 1.618rem);
+      --fs-lead: clamp(1rem, 1.4vw, 1.272rem);
+      --fs-body: 1rem;
+      --fs-small: 0.875rem;
+      --fs-label: 0.764rem;
+      --s-1: 0.382rem; --s-2: 0.618rem; --s-3: 1rem; --s-4: 1.618rem;
+      --s-5: 2.618rem; --s-6: 4.236rem; --s-7: 6.854rem; --s-8: 11.09rem;
+      --container: 1618px;
+      --ease: cubic-bezier(0.16, 1, 0.32, 1);
+      --dur-reveal: 600ms;
+      --dur-hover: 240ms;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-display: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
     }
-
-    html { scroll-behavior: smooth; }
-
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--text-primary);
-      background: var(--white);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
+      background: var(--c-bg); color: var(--c-text);
+      font-family: var(--font); font-size: var(--fs-body);
+      line-height: 1.618; overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--c-accent); outline-offset: 3px;
+    }
+    svg { display: block; max-width: 100%; }
+    .wrap { max-width: var(--container); margin: 0 auto; padding-inline: clamp(1.272rem, 4vw, 2.618rem); }
+    .skip-nav {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--c-accent); color: var(--c-bg);
+      padding: var(--s-2) var(--s-4); font-weight: 700; z-index: 9999;
+    }
+    .skip-nav:focus { left: var(--s-3); top: var(--s-3); }
+
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity var(--dur-reveal) var(--ease), transform var(--dur-reveal) var(--ease); }
+    .reveal.is-in { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal.is-in { opacity: 1; transform: none; transition: none; }
     }
 
-    /* ── NAV ── */
+    /* ─── NAV (matches homepage) ─── */
     .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 0 48px; height: 80px;
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 1px 0 var(--border);
+      position: fixed; inset: 0 0 auto 0; z-index: 100;
+      height: 72px; display: flex; align-items: center;
+      transition: background var(--dur-hover) var(--ease), backdrop-filter var(--dur-hover) var(--ease), border-color var(--dur-hover) var(--ease);
+      border-bottom: 1px solid transparent;
     }
-    .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    .nav-logo svg { height: 36px; width: auto; color: var(--text-primary); }
-    @media (max-width: 768px) { .nav-logo svg { height: 28px; } }
-    .nav-right { display: flex; align-items: center; gap: 36px; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-link { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.01em; transition: color 0.2s; }
-    .nav-link:hover, .nav-link.active { color: var(--text-primary); }
-    .nav-cta { background: var(--text-primary); color: var(--white); border: none; padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.2s; text-decoration: none; }
-    .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+    .nav.scrolled {
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom-color: var(--c-line);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); width: 100%; }
+    .nav-logo { display: inline-flex; color: var(--c-text); }
+    .nav-logo svg { height: 42px; width: auto; color: currentColor; }
+    .nav-links { display: flex; align-items: center; gap: var(--s-5); list-style: none; }
+    .nav-link {
+      display: inline-flex; align-items: center; padding: 1rem 0;
+      font-size: var(--fs-label); font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--c-text-2);
+      transition: color var(--dur-hover) var(--ease);
+      position: relative;
+    }
+    .nav-link:hover { color: var(--c-accent); }
+    .nav-link[aria-current] { color: var(--c-accent); }
+    .nav-link[aria-current]::after {
+      content: ''; position: absolute; left: 0; right: 0;
+      bottom: 0.764rem; height: 1px; background: var(--c-accent);
+    }
+    .nav-right { display: flex; align-items: center; gap: var(--s-4); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: var(--s-2);
+      background: var(--c-accent); color: var(--c-bg);
+      padding: 0.75rem 1.272rem;
+      font-size: var(--fs-label); font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: transform var(--dur-hover) var(--ease), background var(--dur-hover) var(--ease);
+    }
+    .nav-cta:hover { background: var(--c-accent-2); transform: translateY(-1px); }
+    .nav-burger { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; }
+    .nav-burger span { display: block; width: 22px; height: 1.5px; background: var(--c-text); position: relative; }
+    .nav-burger span::before, .nav-burger span::after { content: ''; position: absolute; left: 0; width: 22px; height: 1.5px; background: var(--c-text); }
+    .nav-burger span::before { top: -7px; }
+    .nav-burger span::after { top: 7px; }
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: var(--c-bg);
+      display: none; flex-direction: column;
+      padding: var(--s-7) var(--s-5) var(--s-5);
+    }
+    .nav-overlay.open { display: flex; }
+    .nav-overlay-close { position: absolute; top: var(--s-4); right: var(--s-4); font-size: var(--t-lg); background: none; border: none; color: var(--c-text); cursor: pointer; }
+    .nav-overlay-links { display: flex; flex-direction: column; gap: var(--s-4); list-style: none; margin-top: var(--s-5); }
+    .nav-overlay-link { font-size: var(--t-lg); font-weight: 300; letter-spacing: -0.02em; color: var(--c-text); }
 
-    /* ── PAGE HERO ── */
-    .page-hero {
-      background: var(--hero-bg);
-      padding: 140px 48px 80px;
+    /* ─── PAGE HERO ─── */
+    .page-hero { padding: clamp(7rem, 14vh, 10rem) 0 var(--s-6); position: relative; overflow: hidden; }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0 0 auto 0; height: 38.2vh;
+      background: linear-gradient(180deg, rgba(6,182,212,0.08) 0%, transparent 100%);
+      pointer-events: none;
     }
-    .page-hero-inner { max-width: 800px; margin: 0 auto; }
-    .page-label { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cyan); margin-bottom: 20px; }
-    .page-headline {
-      font-size: clamp(32px, 4vw, 52px);
-      font-weight: 300;
-      color: var(--white);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 20px;
+    .page-hero .wrap { position: relative; z-index: 1; }
+    .page-eyebrow {
+      display: inline-flex; align-items: center; gap: var(--s-2);
+      margin-bottom: var(--s-4);
+      font-size: var(--fs-label); letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--c-accent); font-weight: 700;
     }
-    .page-sub {
-      font-size: 17px;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.5);
-      max-width: 560px;
+    .page-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--c-accent); box-shadow: 0 0 8px rgba(6,182,212,0.6); }
+    .page-h1 {
+      font-size: var(--fs-display); font-weight: 200;
+      line-height: 1; letter-spacing: -0.025em;
+      max-width: 20ch; margin-bottom: var(--s-4);
     }
+    .page-h1 em { font-style: normal; color: var(--c-accent); font-weight: 700; }
+    .page-sub { font-size: var(--fs-lead); color: var(--c-text-2); line-height: 1.618; max-width: 60ch; }
 
-    /* ── BLOG LIST ── */
-    .blog-section {
-      padding: 80px 48px 120px;
-    }
-    .blog-inner { max-width: 1100px; margin: 0 auto; }
+    /* ─── BLOG GRID ─── */
+    .blog-section { padding: var(--s-6) 0 var(--s-8); border-top: 1px solid var(--c-line); margin-top: var(--s-6); }
+    .blog-section-head { display: flex; align-items: center; gap: var(--s-3); margin-bottom: var(--s-5); padding-bottom: var(--s-3); border-bottom: 1px solid var(--c-line); }
+    .blog-section-num { font-size: var(--fs-label); font-weight: 800; color: var(--c-accent); letter-spacing: 0.12em; }
+    .blog-section-name { font-size: var(--fs-label); font-weight: 600; color: var(--c-text-3); letter-spacing: 0.18em; text-transform: uppercase; }
+    .blog-section-count { margin-left: auto; font-size: var(--t-xs); font-weight: 600; color: var(--c-text-3); letter-spacing: 0.18em; text-transform: uppercase; border: 1px solid var(--c-line-2); padding: 0.382rem 0.618rem; }
 
-    .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 32px;
-    }
-
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: var(--s-4); }
     .blog-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: box-shadow 0.2s, transform 0.2s;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
+      position: relative;
+      display: flex; flex-direction: column;
+      padding: var(--s-5) var(--s-4);
+      background: var(--c-bg-2);
+      border: 1px solid var(--c-line);
+      transition: background var(--dur-hover) var(--ease), border-color var(--dur-hover) var(--ease), transform var(--dur-hover) var(--ease);
     }
     .blog-card:hover {
-      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
-      transform: translateY(-3px);
+      background: var(--c-bg-3);
+      border-color: var(--c-accent-line);
+      transform: translateY(-2px);
     }
-    .blog-card-tag-bar {
-      height: 4px;
-      background: linear-gradient(90deg, var(--cyan), var(--indigo));
+    .blog-card::before {
+      content: ''; position: absolute; top: -1px; left: -1px; right: -1px; height: 3px;
+      background: var(--accent, var(--c-accent));
     }
-    .blog-card-body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
-    .blog-card-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .blog-card-meta { display: flex; align-items: baseline; gap: var(--s-3); margin-bottom: var(--s-3); flex-wrap: wrap; }
     .blog-card-tag {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      background: rgba(6,182,212,0.08);
-      padding: 4px 10px;
-      border-radius: 20px;
+      font-size: var(--fs-label); font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent, var(--c-accent));
     }
     .blog-card-date {
-      font-size: 12px;
-      color: var(--text-tertiary);
+      font-family: var(--font-display); font-style: italic;
+      color: var(--c-cream);
+      font-size: var(--t-md); line-height: 1;
     }
     .blog-card-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text-primary);
-      line-height: 1.35;
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
+      font-size: var(--t-md); font-weight: 600; color: var(--c-text);
+      line-height: 1.25; letter-spacing: -0.015em;
+      margin-bottom: var(--s-3); max-width: 30ch;
     }
-    .blog-card-excerpt {
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--text-secondary);
-      flex: 1;
-      margin-bottom: 20px;
-    }
+    .blog-card-excerpt { font-size: var(--fs-small); color: var(--c-text-2); line-height: 1.618; margin-bottom: var(--s-4); flex: 1; }
     .blog-card-read {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-primary);
-      transition: gap 0.2s;
+      display: inline-flex; align-items: center; gap: 0.382rem;
+      font-size: var(--fs-label); font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--c-accent);
+      padding-top: var(--s-3); border-top: 1px solid var(--c-line);
     }
-    .blog-card:hover .blog-card-read { gap: 10px; }
-    .blog-card-read svg { width: 14px; height: 14px; }
+    .blog-card:hover .blog-card-read { color: var(--c-accent-2); }
+    .blog-card-read svg { width: 12px; height: 12px; }
+    .blog-card.is-soon {
+      pointer-events: none; opacity: 0.55;
+    }
+    .blog-card.is-soon::before { background: var(--c-line-2); }
+    .blog-card.is-soon .blog-card-tag { color: var(--c-text-3); }
+    .blog-card.is-soon .blog-card-read { color: var(--c-text-3); }
 
-    /* ── ARTICLE PAGE ── */
-    .article-hero {
-      background: var(--hero-bg);
-      padding: 140px 48px 80px;
+    /* ─── FOOTER (matches homepage) ─── */
+    .footer { border-top: 1px solid var(--c-line); padding: var(--s-5) 0 var(--s-4); background: var(--c-bg); }
+    .footer-grid { display: grid; grid-template-columns: 61.8fr 38.2fr; gap: var(--s-5); align-items: center; }
+    .footer-left { display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+    .footer-logo svg { height: 22px; color: var(--c-text-2); }
+    .footer-copy { font-size: var(--fs-small); color: var(--c-text-3); }
+    .footer-right { display: flex; align-items: center; justify-content: flex-end; gap: var(--s-4); flex-wrap: wrap; }
+    .footer-link {
+      display: inline-flex; align-items: center; padding: 0.618rem 0;
+      font-size: var(--fs-small); color: var(--c-text-2);
+      transition: color var(--dur-hover) var(--ease);
     }
-    .article-hero-inner { max-width: 800px; margin: 0 auto; }
-    .article-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
-    .article-tag {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      background: rgba(6,182,212,0.12);
-      padding: 5px 12px;
-      border-radius: 20px;
+    .footer-link:hover { color: var(--c-accent); }
+    .footer-phi-badge {
+      font-size: var(--t-xs); font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--c-accent);
+      padding: 0.382rem 0.618rem;
+      border: 1px solid var(--c-accent-line);
     }
-    .article-date { font-size: 13px; color: rgba(255,255,255,0.4); }
-    .article-read-time { font-size: 13px; color: rgba(255,255,255,0.4); }
-    .article-sep { color: rgba(255,255,255,0.2); }
-    .article-headline {
-      font-size: clamp(28px, 4vw, 52px);
-      font-weight: 300;
-      color: var(--white);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
-    }
-    .article-headline strong { font-weight: 700; }
-    .article-deck {
-      font-size: 18px;
-      line-height: 1.65;
-      color: rgba(255,255,255,0.5);
-      max-width: 680px;
+    .footer-disclaimer {
+      margin-top: var(--s-4); padding-top: var(--s-4);
+      border-top: 1px solid var(--c-line);
+      font-size: var(--fs-small); color: var(--c-text-3);
+      line-height: 1.618; max-width: 80ch;
     }
 
-    .article-body-wrap {
-      padding: 72px 48px 120px;
+    /* responsive */
+    @media (max-width: 1023px) {
+      .nav-links, .nav-right .nav-cta { display: none; }
+      .nav-burger { display: inline-flex; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-right { justify-content: flex-start; }
     }
-    .article-body {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    /* ── PROSE STYLES ── */
-    .article-body p {
-      font-size: 17px;
-      line-height: 1.8;
-      color: #1a1a1a;
-      margin-bottom: 24px;
-    }
-    .article-body h2 {
-      font-size: clamp(22px, 2.5vw, 30px);
-      font-weight: 600;
-      color: var(--text-primary);
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-      margin-top: 60px;
-      margin-bottom: 20px;
-      padding-top: 60px;
-      border-top: 1px solid var(--border);
-    }
-    .article-body h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
-    .article-body h3 {
-      font-size: 19px;
-      font-weight: 600;
-      color: var(--text-primary);
-      letter-spacing: -0.01em;
-      margin-top: 48px;
-      margin-bottom: 16px;
-    }
-    .article-body strong {
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-    .article-body hr {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 48px 0;
-    }
-
-    /* Friction point number labels */
-    .friction-label {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 8px;
-    }
-
-    /* Callout box */
-    .callout {
-      background: var(--bg-alt);
-      border-left: 3px solid var(--cyan);
-      border-radius: 0 12px 12px 0;
-      padding: 20px 24px;
-      margin: 28px 0;
-    }
-    .callout p {
-      margin-bottom: 0;
-      font-size: 15px;
-      color: var(--text-secondary);
-    }
-    .callout-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    /* Numbered checklist */
-    .checklist { list-style: none; counter-reset: checklist; margin: 0 0 32px; }
-    .checklist li {
-      counter-increment: checklist;
-      display: flex;
-      gap: 20px;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 16px;
-      line-height: 1.7;
-      color: #1a1a1a;
-    }
-    .checklist li:last-child { border-bottom: none; }
-    .checklist li::before {
-      content: counter(checklist);
-      flex-shrink: 0;
-      width: 28px;
-      height: 28px;
-      background: linear-gradient(135deg, var(--cyan), var(--indigo));
-      color: white;
-      font-size: 12px;
-      font-weight: 700;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2px;
-    }
-    .checklist li strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 15px;
-    }
-
-    /* Stat callout */
-    .stat-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 16px;
-      margin: 36px 0;
-    }
-    .stat-box {
-      background: var(--hero-bg);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-    }
-    .stat-box .stat-num {
-      font-size: 28px;
-      font-weight: 300;
-      color: var(--white);
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .stat-box .stat-num span { color: var(--cyan); }
-    .stat-box .stat-desc {
-      font-size: 11px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.45);
-      letter-spacing: 0.02em;
-      line-height: 1.4;
-    }
-
-    /* CTA block */
-    .article-cta {
-      background: var(--hero-bg);
-      border-radius: 20px;
-      padding: 48px;
-      margin-top: 64px;
-      text-align: center;
-    }
-    .article-cta h3 {
-      font-size: 24px;
-      font-weight: 300;
-      color: var(--white);
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-      margin-top: 0;
-    }
-    .article-cta p {
-      font-size: 15px;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 28px;
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 32px;
-      background: linear-gradient(135deg, var(--cyan), var(--indigo));
-      color: var(--white); border: none; border-radius: 10px;
-      font-size: 15px; font-weight: 600; font-family: inherit;
-      cursor: pointer; transition: all 0.25s; text-decoration: none;
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(6,182,212,0.3); }
-
-    /* Back link */
-    .back-link {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.5);
-      text-decoration: none; margin-bottom: 40px;
-      transition: color 0.2s;
-    }
-    .back-link:hover { color: var(--white); }
-    .back-link svg { width: 14px; height: 14px; }
-
-    /* Footer */
-    .footer {
-      background: var(--hero-bg);
-      padding: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 24px;
-    }
-    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); }
-    .footer-links { display: flex; gap: 24px; list-style: none; }
-    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: rgba(255,255,255,0.7); }
-
-    @media (max-width: 768px) {
-      .nav { padding: 0 24px; }
-      .nav-links { display: none; }
-      .page-hero, .article-hero { padding: 120px 24px 60px; }
-      .blog-section, .article-body-wrap { padding: 48px 24px 80px; }
-      .footer { padding: 40px 24px; }
-      .article-cta { padding: 32px 24px; }
-      .stat-row { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 639px) {
+      .blog-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
+  <a href="#main" class="skip-nav">Skip to main content</a>
+
   <!-- NAV -->
-  <nav class="nav">
-    <a href="/" class="nav-logo" aria-label="ZxAI home">
-      <svg viewBox="0 0 1280 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="currentColor"><path fill-rule="evenodd" d="M176 94A86 86 0 1 1 176 266A86 86 0 1 1 176 94ZM176 108A72 72 0 1 0 176 252A72 72 0 1 0 176 108ZM212 122L226 131L179 237L165 228L212 122Z"/></g><g fill="currentColor"><path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/><path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/><path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/><path d="M800 116H819V244H800V116Z"/></g></svg>
-    </a>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="/" class="nav-link">How It Works</a></li>
-        <li><a href="/" class="nav-link">Who We Serve</a></li>
-        <li><a href="/blog.html" class="nav-link active">Blog</a></li>
-      </ul>
-      <a href="https://calendly.com/zxai/intro" class="nav-cta" target="_blank" rel="noopener">Book 15 Minutes</a>
+  <nav class="nav" id="nav" aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a href="/" class="nav-logo" aria-label="ZxAI, home">
+        <svg viewBox="320 104 510 156" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><g fill="currentColor"><path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/><path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/><path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/><path d="M800 116H819V244H800V116Z"/></g></svg>
+      </a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="/#staff" class="nav-link">AI Staff</a></li>
+          <li><a href="/#how" class="nav-link">How it works</a></li>
+          <li><a href="/#roi" class="nav-link">ROI</a></li>
+          <li><a href="/#pricing" class="nav-link">Pricing</a></li>
+          <li><a href="/#faq" class="nav-link">FAQ</a></li>
+          <li><a href="/blog.html" class="nav-link" aria-current="page">Blog</a></li>
+        </ul>
+        <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="nav-cta" target="_blank" rel="noopener noreferrer">Book 15 min</a>
+        <button class="nav-burger" aria-label="Open menu" id="navBurger"><span></span></button>
+      </div>
     </div>
   </nav>
 
-  <!-- ══════════════════════════════════════════════
-       BLOG LIST PAGE
-  ══════════════════════════════════════════════ -->
-  <div id="blog-list">
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <button class="nav-overlay-close" aria-label="Close menu" id="navOverlayClose">Close</button>
+    <ul class="nav-overlay-links">
+      <li><a href="/#staff" class="nav-overlay-link">AI Staff</a></li>
+      <li><a href="/#how" class="nav-overlay-link">How it works</a></li>
+      <li><a href="/#roi" class="nav-overlay-link">ROI</a></li>
+      <li><a href="/#pricing" class="nav-overlay-link">Pricing</a></li>
+      <li><a href="/#faq" class="nav-overlay-link">FAQ</a></li>
+      <li><a href="/blog.html" class="nav-overlay-link" aria-current="page">Blog</a></li>
+      <li><a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="nav-overlay-link" target="_blank" rel="noopener noreferrer" style="color: var(--c-accent)">Book 15 min</a></li>
+    </ul>
+  </div>
 
-    <div class="page-hero">
-      <div class="page-hero-inner">
-        <div class="page-label">From the field</div>
-        <h1 class="page-headline">No hype. Just what's<br>actually working.</h1>
-        <p class="page-sub">Practical reads for independent practices and med spas on AI implementation, patient retention, revenue recovery, and running a tighter operation.</p>
+  <main id="main">
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="wrap">
+        <div class="page-eyebrow reveal">From the field</div>
+        <h1 class="page-h1 reveal">No hype. <em>Just what's actually working.</em></h1>
+        <p class="page-sub reveal">Practical reads for independent practices and med spas on AI implementation, patient retention, revenue recovery, and running a tighter operation.</p>
       </div>
-    </div>
+    </section>
 
+    <!-- BLOG GRID -->
     <section class="blog-section">
-      <div class="blog-inner">
-        <div class="blog-grid">
+      <div class="wrap">
+        <div class="blog-section-head reveal">
+          <span class="blog-section-num">01</span>
+          <span class="blog-section-name">Recent posts</span>
+          <span class="blog-section-count">2 live &middot; 1 soon</span>
+        </div>
 
-          <!-- POST 1 -->
-          <a href="/blog/your-ai-isnt-the-problem" class="blog-card">
-            <div class="blog-card-tag-bar"></div>
-            <div class="blog-card-body">
-              <div class="blog-card-meta">
-                <span class="blog-card-tag">AI Implementation</span>
-                <span class="blog-card-date">April 2026</span>
-              </div>
-              <div class="blog-card-title">Your AI Isn't the Problem. Your Business Is.</div>
-              <div class="blog-card-excerpt">85% of AI initiatives fail to deliver measurable results. It's not the technology. Here's the 10-point audit every practice should run before buying another AI tool.</div>
-              <div class="blog-card-read">
-                Read article
-                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/>
-                </svg>
-              </div>
+        <div class="blog-grid reveal">
+
+          <a href="/blog/your-ai-isnt-the-problem" class="blog-card" style="--accent: var(--c-accent)">
+            <div class="blog-card-meta">
+              <span class="blog-card-tag">AI Implementation</span>
+              <span class="blog-card-date">April 2026</span>
             </div>
+            <div class="blog-card-title">Your AI Isn't the Problem. Your Business Is.</div>
+            <p class="blog-card-excerpt">85% of AI initiatives fail to deliver measurable results. It's not the technology. Here's the 10-point audit every practice should run before buying another AI tool.</p>
+            <span class="blog-card-read">
+              Read article
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
+            </span>
           </a>
 
-          <a href="/blog/prior-auth-cost" class="blog-card">
-            <div class="blog-card-tag-bar"></div>
-            <div class="blog-card-body">
-              <div class="blog-card-meta">
-                <span class="blog-card-tag">Prior Authorization</span>
-                <span class="blog-card-date">April 2026</span>
-              </div>
-              <div class="blog-card-title">What 4.6 Hours a Week of Prior Auth Is Actually Costing Your Practice</div>
-              <div class="blog-card-excerpt">The AMA puts the number at $68,274 per physician per year. Most practices treat prior auth as a frustrating fact of life. It isn't. Here's the math.</div>
-              <div class="blog-card-read">
-                Read article
-                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/>
-                </svg>
-              </div>
+          <a href="/blog/prior-auth-cost" class="blog-card" style="--accent: #6366F1">
+            <div class="blog-card-meta">
+              <span class="blog-card-tag">Prior Authorization</span>
+              <span class="blog-card-date">April 2026</span>
             </div>
+            <div class="blog-card-title">What 4.6 Hours a Week of Prior Auth Is Actually Costing Your Practice</div>
+            <p class="blog-card-excerpt">The AMA puts the number at $68,274 per physician per year. Most practices treat prior auth as a frustrating fact of life. It isn't. Here's the math.</p>
+            <span class="blog-card-read">
+              Read article
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
+            </span>
           </a>
 
-          <a href="/blog/lapsed-patient-revenue" class="blog-card">
-            <div class="blog-card-tag-bar"></div>
-            <div class="blog-card-body">
-              <div class="blog-card-meta">
-                <span class="blog-card-tag">Patient Retention</span>
-                <span class="blog-card-date">April 2026</span>
-              </div>
-              <div class="blog-card-title">$150K Sitting in Your Lapsed Patient List</div>
-              <div class="blog-card-excerpt">35% of your patient panel has gone quiet. Most practices don't know it. Here's how to find the money and get it back.</div>
-              <div class="blog-card-read">
-                Read article
-                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/>
-                </svg>
-              </div>
+          <div class="blog-card is-soon" style="--accent: #EC4899" aria-disabled="true">
+            <div class="blog-card-meta">
+              <span class="blog-card-tag">Med Spa</span>
+              <span class="blog-card-date">Coming soon</span>
             </div>
-          </a>
-
-          <!-- POST 4 -->
-          <a href="/blog/healthcare-ai-baa-requirement" class="blog-card">
-            <div class="blog-card-tag-bar"></div>
-            <div class="blog-card-body">
-              <div class="blog-card-meta">
-                <span class="blog-card-tag">HIPAA &amp; Compliance</span>
-                <span class="blog-card-date">April 2026</span>
-              </div>
-              <div class="blog-card-title">Which AI Tools for Medical Practices Require a Business Associate Agreement?</div>
-              <div class="blog-card-excerpt">Most AI vendors pull your patient data into their own servers, making them Business Associates under HIPAA. Here's who requires a BAA and the one architecture that doesn't.</div>
-              <div class="blog-card-read">
-                Read article
-                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/>
-                </svg>
-              </div>
-            </div>
-          </a>
+            <div class="blog-card-title">$150K Sitting in Your Lapsed Patient List</div>
+            <p class="blog-card-excerpt">35% of your patient panel has gone quiet. Most practices don't know it. Here's how to find the money and get it back.</p>
+            <span class="blog-card-read">Soon</span>
+          </div>
 
         </div>
       </div>
     </section>
 
-  </div>
-
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-copy">&copy; 2026 ZxAI. All rights reserved.</div>
-    <ul class="footer-links">
-      <li><a href="/privacy-policy.html">Privacy</a></li>
-      <li><a href="/terms-of-service.html">Terms</a></li>
-      <li><a href="mailto:hello@zxai.ai">hello@zxai.ai</a></li>
-    </ul>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-left">
+          <a href="/" class="footer-logo" aria-label="ZxAI, home">
+            <svg viewBox="320 104 510 156" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="currentColor"><path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/><path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/><path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/><path d="M800 116H819V244H800V116Z"/></g></svg>
+          </a>
+          <span class="footer-copy">&copy; 2026 ZxAI</span>
+        </div>
+        <div class="footer-right">
+          <a href="/privacy-policy.html" class="footer-link">Privacy</a>
+          <a href="/terms-of-service.html" class="footer-link">Terms</a>
+          <a href="mailto:hello@zxai.ai" class="footer-link">hello@zxai.ai</a>
+          <span class="footer-phi-badge">Designed on &phi; &middot; 1.618</span>
+        </div>
+      </div>
+      <p class="footer-disclaimer">ZxAI automates administrative and operational workflows only. Not a clinical decision support tool, diagnostic system, or medical device. Individual results vary.</p>
+    </div>
   </footer>
 
+  <script>
+    (function(){
+      var nav = document.getElementById('nav');
+      function onScroll(){ if (window.scrollY > 12) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+    (function(){
+      var burger = document.getElementById('navBurger');
+      var overlay = document.getElementById('navOverlay');
+      var close = document.getElementById('navOverlayClose');
+      if (!burger || !overlay) return;
+      function open(){ overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); if (close) close.focus(); }
+      function shut(){ overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); burger.focus(); }
+      burger.addEventListener('click', open);
+      close.addEventListener('click', shut);
+      overlay.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', shut); });
+      document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && overlay.classList.contains('open')) shut(); });
+    })();
+    (function(){
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e, i){
+          if (e.isIntersecting) {
+            setTimeout(function(){ e.target.classList.add('is-in'); }, (i % 6) * 80);
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+    })();
+  </script>
 
 </body>
 </html>

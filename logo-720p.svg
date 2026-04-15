@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <!-- Ambient center glow -->
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="42%">
+      <stop offset="0%"   stop-color="#06B6D4" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Top-edge spotlight (matches hero-glow in site) -->
+    <linearGradient id="topGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#06B6D4" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Soft halo behind wordmark -->
+    <filter id="halo" x="-60%" y="-120%" width="220%" height="340%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="28" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- ── Background ── -->
+  <rect width="1280" height="720" fill="#000000"/>
+
+  <!-- ── Top spotlight ── -->
+  <rect width="1280" height="380" fill="url(#topGlow)"/>
+
+  <!-- ── Center ambient glow ── -->
+  <rect width="1280" height="720" fill="url(#centerGlow)"/>
+
+  <!-- ── Phi motif grid (golden-ratio rectangles + spiral arcs) ──
+       Built on the 540 × 334 golden rectangle framing the wordmark,
+       centered at (640, 360). Stroke kept at ~5% opacity for subtlety. -->
+  <g fill="none" stroke="#06B6D4" stroke-width="0.6" opacity="0.09">
+    <!-- Outer golden rectangle  540 × 333.7, centered at (640, 360) -->
+    <rect x="370" y="193.15" width="540" height="333.7"/>
+
+    <!-- Left square  333.7 × 333.7 (long side = height) -->
+    <rect x="370" y="193.15" width="333.7" height="333.7"/>
+
+    <!-- Top-right small rect  206.3 × 206.3 -->
+    <rect x="703.7" y="193.15" width="206.3" height="206.3"/>
+
+    <!-- Bottom-right tiny rect  206.3 × 127.4 -->
+    <rect x="703.7" y="399.45" width="127.4" height="127.4"/>
+
+    <!-- Spiral arcs (quarter circles in each nested chamber) -->
+    <!-- Arc 1: radius 333.7, center (703.7, 526.85) — sweeps left square -->
+    <path d="M 370 526.85 A 333.7 333.7 0 0 1 703.7 193.15"/>
+    <!-- Arc 2: radius 206.3, center (703.7, 399.45) — sweeps top-right rect -->
+    <path d="M 703.7 193.15 A 206.3 206.3 0 0 1 910 399.45"/>
+    <!-- Arc 3: radius 127.4, center (831.1, 399.45) — sweeps bottom-right rect -->
+    <path d="M 910 399.45 A 127.4 127.4 0 0 1 831.1 526.85"/>
+  </g>
+
+  <!-- ── Wordmark halo (cyan glow layer) ── -->
+  <g transform="translate(5.6, 161.2) scale(1.1043)" fill="#06B6D4" opacity="0.18" filter="url(#halo)">
+    <path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/>
+    <path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/>
+    <path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/>
+    <path d="M800 116H819V244H800V116Z"/>
+  </g>
+
+  <!-- ── Wordmark (white, centered at 640 × 360) ──
+       Path bounding box: x 330–819 (489px), y 116–244 (128px)
+       Scale 1.1043 → rendered 540 × 141px
+       transform = translate(5.6, 161.2) scale(1.1043) -->
+  <g transform="translate(5.6, 161.2) scale(1.1043)" fill="#ffffff">
+    <path d="M330 116H474V132H359L461 132L359 228H480V244H330V228L433 132H330V116Z"/>
+    <path d="M504 155H523L555 195L587 155H606L566 206L609 244H589L555 199L521 244H501L544 206L504 155Z"/>
+    <path d="M632 244L690 116H714L772 244H745L732 215H672L659 244H632ZM679 199H725L702 146L679 199Z"/>
+    <path d="M800 116H819V244H800V116Z"/>
+  </g>
+
+  <!-- ── Accent rule below wordmark ── -->
+  <line x1="580" y1="458" x2="700" y2="458"
+        stroke="#06B6D4" stroke-width="1" opacity="0.45"/>
+
+  <!-- ── Tagline ── -->
+  <text
+    x="640" y="486"
+    font-family="Inter, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif"
+    font-size="12" font-weight="500"
+    letter-spacing="4"
+    text-anchor="middle"
+    fill="rgba(255,255,255,0.32)">AI STAFF FOR MEDICAL PRACTICES</text>
+
+</svg>
