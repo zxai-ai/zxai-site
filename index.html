@@ -1767,24 +1767,8 @@
               <li class="staff-outcome">Handles your existing phone system</li>
             </ul>
           </div>
-          <div class="staff-vis reveal" aria-hidden="true">
-            <div class="staff-vis-inner">
-              <div class="staff-vis-top">
-                <span class="staff-vis-status">Online</span>
-                <span class="staff-vis-phi">3 in queue</span>
-              </div>
-              <div class="sv sv-01">
-                <span class="sv-bar"></span>
-                <span class="sv-bar"></span>
-                <span class="sv-bar"></span>
-                <span class="sv-bar"></span>
-                <span class="sv-bar"></span>
-              </div>
-              <div class="staff-vis-stat">
-                <span class="staff-vis-stat-num">76%</span>
-                <span class="staff-vis-stat-label">Voicemail calls recovered</span>
-              </div>
-            </div>
+          <div class="staff-vis reveal" aria-label="Try the Front Desk Agent">
+            <div id="fd-staff-mount"></div>
           </div>
         </article>
 
@@ -2629,8 +2613,10 @@
 
   <script type="module">
     import { mountFrontDeskWidget } from "/frontdesk/widget.js";
-    const el = document.getElementById("fd-hero-mount");
-    if (el) mountFrontDeskWidget(el, { variant: "compact" });
+    const hero = document.getElementById("fd-hero-mount");
+    if (hero) mountFrontDeskWidget(hero, { variant: "compact" });
+    const staff = document.getElementById("fd-staff-mount");
+    if (staff) mountFrontDeskWidget(staff, { variant: "compact" });
   </script>
 
 </body>
