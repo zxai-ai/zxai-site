@@ -1517,8 +1517,18 @@
     }
 
     /* Strip the box from the Front Desk agent vis when Katie is mounted */
-    .staff-vis-katie { background: none; border: none; aspect-ratio: auto; overflow: visible; }
+    /* Katie widget in the staff #01 slot: keep the phi container, strip the box chrome */
+    .staff-vis-katie {
+      background: none;
+      border: none;
+      overflow: visible;
+      /* Keep aspect-ratio: 1.618/1 from .staff-vis so the row height matches other staff rows */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .staff-vis-katie::before { display: none; }
+    .staff-vis-katie .fd-root { position: relative; width: 100%; max-width: 440px; }
 
     /* Katie hero widget companion (38.2fr column, phi-aligned) */
     .hero-katie {
