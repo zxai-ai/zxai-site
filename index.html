@@ -1516,6 +1516,10 @@
       .hero-h1 { margin-bottom: var(--s-3); }
     }
 
+    /* Strip the box from the Front Desk agent vis when Katie is mounted */
+    .staff-vis-katie { background: none; border: none; aspect-ratio: auto; overflow: visible; }
+    .staff-vis-katie::before { display: none; }
+
     /* Katie hero widget companion */
     .hero-katie {
       align-self: start;
@@ -1767,7 +1771,7 @@
               <li class="staff-outcome">Handles your existing phone system</li>
             </ul>
           </div>
-          <div class="staff-vis reveal" aria-label="Try the Front Desk Agent">
+          <div class="staff-vis staff-vis-katie reveal" aria-label="Try the Front Desk Agent">
             <div id="fd-staff-mount"></div>
           </div>
         </article>
