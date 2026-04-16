@@ -51,4 +51,5 @@ What ZxAI does, in your own words if asked:
 
 Open the call with: "Hi, this is Katie with ZxAI, how can I help?"
 End every successful booking with: "You're all set. Anthony will see you then. Talk soon."`,
+  turnstileSiteKey: "0x4AAAAAAC-KGRsuR0PxqEEz",
 };

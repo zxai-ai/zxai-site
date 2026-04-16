@@ -2,6 +2,10 @@
 // System prompt is the single source of truth for persona + guardrails.
 
 export const KATIE_CONFIG = {
+  // Worker API base. Use relative path for local dev, absolute for prod.
+  apiBase: window.location.hostname === "localhost"
+    ? "/api/front-desk"
+    : "https://zxai-audit.vzxb9kqjkq.workers.dev/api/front-desk",
   // Per the build spec. Verify the latest live-capable model name at build time.
   model: "gemini-3.1-flash-live-preview",
   voice: "Zephyr",
@@ -47,4 +51,5 @@ What ZxAI does, in your own words if asked:
 
 Open the call with: "Hi, this is Katie with ZxAI, how can I help?"
 End every successful booking with: "You're all set. Anthony will see you then. Talk soon."`,
+  turnstileSiteKey: "0x4AAAAAAC-KGRsuR0PxqEEz",
 };

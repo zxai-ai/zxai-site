@@ -9,6 +9,62 @@ import { GeminiLiveAPI, ResponseType } from "./gemini-live.js";
 import { AudioStreamer, AudioPlayer } from "./audio-io.js";
 import { CheckAvailabilityTool, BookConsultTool } from "./tools.js";
 
+// ---------------------------------------------------------------------------
+// Turnstile: execute a managed challenge and resolve with the token.
+// Reuses the same widget element per mount so we don't create duplicates.
+// ---------------------------------------------------------------------------
+function getTurnstileToken(containerEl) {
+  return new Promise((resolve, reject) => {
+    const sitekey = KATIE_CONFIG.turnstileSiteKey;
+    if (!sitekey) { resolve(""); return; } // Turnstile not configured, skip
+
+    // If Turnstile JS hasn't loaded yet, resolve empty (Worker skips check when no secret).
+    if (typeof window.turnstile === "undefined") { resolve(""); return; }
+
+    // Remove any previous render so we get a fresh token.
+    if (containerEl._tsWidgetId !== undefined) {
+      try { window.turnstile.remove(containerEl._tsWidgetId); } catch (_) {}
+    }
+
+    containerEl._tsWidgetId = window.turnstile.render(containerEl, {
+      sitekey,
+      size: "invisible",
+      execution: "execute",
+      callback: (token) => resolve(token),
+      "error-callback": () => reject(new Error("turnstile_failed")),
+      "expired-callback": () => reject(new Error("turnstile_expired")),
+    });
+    window.turnstile.execute(containerEl._tsWidgetId);
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Prompt injection guard for text input.
+// Strips content that attempts to override the system prompt.
+// ---------------------------------------------------------------------------
+const INJECTION_PATTERNS = [
+  /ignore\s+(all\s+)?(previous|prior|above)\s+instructions?/i,
+  /disregard\s+(all\s+)?(previous|prior|above)/i,
+  /you\s+are\s+now\s+/i,
+  /new\s+system\s+prompt/i,
+  /\[system\]/i,
+  /\(system\)/i,
+  /<\s*system\s*>/i,
+  /act\s+as\s+(if\s+you\s+(are|were)|a\s)/i,
+  /pretend\s+(you\s+(are|were)|to\s+be)/i,
+  /forget\s+(your\s+)?(instructions?|rules?|persona)/i,
+  /jailbreak/i,
+  /DAN\b/,
+];
+
+function sanitizeUserText(raw) {
+  const text = (raw ?? "").trim().slice(0, 500); // hard length cap
+  for (const p of INJECTION_PATTERNS) {
+    if (p.test(text)) return null; // reject entirely
+  }
+  return text;
+}
+
 export function mountFrontDeskWidget(el, opts = {}) {
   const { variant = "compact" } = opts;
 
@@ -34,8 +90,12 @@ export function mountFrontDeskWidget(el, opts = {}) {
   });
 
   ui.textSend.addEventListener("click", async () => {
-    const text = ui.textInput.value.trim();
-    if (!text) return;
+    const raw = ui.textInput.value;
+    const text = sanitizeUserText(raw);
+    if (!text) {
+      if (raw.trim()) ui.setBanner("That message can't be sent.");
+      return;
+    }
     // If no connection yet, start a text-only session (no mic).
     if (!state.client?.connected) {
       await startCall({ textOnly: true });
@@ -62,11 +122,12 @@ export function mountFrontDeskWidget(el, opts = {}) {
       ui.setStatus("connecting");
       ui.setPrimary({ label: "Connecting...", busy: true });
 
-      // 1. token
+      // 1. Turnstile bot check, then mint token
+      const tsToken = await getTurnstileToken(ui.turnstileContainer);
       const r = await fetch(KATIE_CONFIG.apiBase + "/token", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({}),
+        body: JSON.stringify(tsToken ? { turnstile: tsToken } : {}),
       });
       if (!r.ok) {
         const err = await r.json().catch(() => ({ error: "token_failed" }));
@@ -248,6 +309,7 @@ function renderShell(el, variant) {
         <svg class="fd-mic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19v3"/><path d="M8 22h8"/><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/></svg>
         <span class="fd-primary-label">Ask Katie a question</span>
       </button>
+      <div class="fd-turnstile" aria-hidden="true"></div>
       <div class="fd-banner" hidden></div>
       <div class="fd-text-row">
         <span class="fd-mode-hint">Voice or text</span>
@@ -272,6 +334,7 @@ function renderShell(el, variant) {
   const statusDot = el.querySelector(".fd-avatar-dot");
   const transcript = el.querySelector(".fd-transcript");
   const banner = el.querySelector(".fd-banner");
+  const turnstileContainer = el.querySelector(".fd-turnstile");
   const textToggle = el.querySelector(".fd-text-toggle");
   const textInput = el.querySelector(".fd-text-input");
   const textSend = el.querySelector(".fd-text-send");
@@ -334,7 +397,7 @@ function renderShell(el, variant) {
     }
   }
 
-  return { root, primary, primaryLabel, statusPill, textToggle, textInput, textSend, setStatus, setPrimary, setBanner, addLine, updateLine };
+  return { root, primary, primaryLabel, statusPill, turnstileContainer, textToggle, textInput, textSend, setStatus, setPrimary, setBanner, addLine, updateLine };
 }
 
 function friendlyError(msg) {
