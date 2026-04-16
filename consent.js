@@ -9,7 +9,10 @@
   // Config -- update pixel IDs here when new ones are added
   // ---------------------------------------------------------------------------
   var GOOGLE_ADS_ID = "AW-2635997892";
-  var META_PIXEL_ID = ""; // fill in when Meta Pixel ID is available
+  var META_PIXEL_ID = "953177177090685";
+  // Temporary: set to a Meta Test Events code (e.g. "TEST85203") to route events
+  // to Events Manager > Test Events. Set to "" once verification is complete.
+  var META_TEST_EVENT_CODE = "TEST85203";
 
   var CONSENT_COOKIE = "zxai_consent";
   var CONSENT_DAYS   = 365;
@@ -70,7 +73,11 @@
     document,"script","https://connect.facebook.net/en_US/fbevents.js");
     /* eslint-enable */
     window.fbq("init", META_PIXEL_ID);
-    window.fbq("track", "PageView");
+    if (META_TEST_EVENT_CODE) {
+      window.fbq("track", "PageView", {}, { test_event_code: META_TEST_EVENT_CODE });
+    } else {
+      window.fbq("track", "PageView");
+    }
   }
 
   function loadAdvertisingPixels() {

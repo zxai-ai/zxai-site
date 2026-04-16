@@ -58,7 +58,7 @@ Live voice demo using Gemini Live API.
 - `GOOGLE_OAUTH_CLIENT_SECRET` (set)
 - `GOOGLE_OAUTH_REFRESH_TOKEN` (set)
 
-**Status:** Fully live as of 2026-04-15. Voice + text. Calendar OAuth connected. Turnstile wired. Session cookies. Consent banner. Google Ads pixel live. Meta Pixel pending (slot ready in consent.js).
+**Status:** Fully live as of 2026-04-15. Voice + text. Calendar OAuth connected. Turnstile wired. Session cookies. Consent banner. Google Ads pixel live. Meta Pixel live (ID 953177177090685, consent-gated via consent.js).
 
 ## D1 Database
 
