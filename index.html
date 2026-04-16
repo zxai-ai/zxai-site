@@ -74,7 +74,10 @@
         "email": "hello@zxai.ai",
         "foundingDate": "2026",
         "description": "ZxAI deploys AI staff for private medical practices to automate scheduling, billing, prior authorization, patient outreach, and revenue recovery. Runs inside your own systems. EHR-integrated.",
-        "areaServed": "US",
+        "areaServed": [
+          { "@type": "State", "name": "Texas" },
+          { "@type": "Country", "name": "United States" }
+        ],
         "knowsAbout": [
           "AI staff for healthcare",
           "Medical practice automation",
@@ -84,6 +87,38 @@
           "Medical billing AI",
           "Patient outreach automation",
           "Healthcare revenue recovery"
+        ],
+        "founder": { "@id": "https://zxai.ai/about#anthony-mesa" }
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://zxai.ai/#localbusiness",
+        "name": "ZxAI",
+        "url": "https://zxai.ai",
+        "email": "hello@zxai.ai",
+        "description": "ZxAI deploys AI staff for independent medical practices and med spas across Texas. Concierge medicine, functional medicine, and med spa workflows. Runs inside your existing systems.",
+        "image": "https://zxai.ai/og-image.png",
+        "priceRange": "$$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "TX",
+          "addressCountry": "US",
+          "addressLocality": "Dallas-Fort Worth"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Dallas" },
+          { "@type": "City", "name": "Fort Worth" },
+          { "@type": "City", "name": "Austin" },
+          { "@type": "City", "name": "Houston" },
+          { "@type": "City", "name": "San Antonio" },
+          { "@type": "State", "name": "Texas" }
+        ],
+        "knowsAbout": [
+          "AI staff for medical practices",
+          "Concierge medicine automation",
+          "Functional medicine prior authorization",
+          "Med spa patient reactivation",
+          "HIPAA compliant AI without BAA"
         ]
       },
       {
@@ -1571,7 +1606,7 @@
           <li><a href="#roi" class="nav-link">ROI</a></li>
           <li><a href="#pricing" class="nav-link">Pricing</a></li>
           <li><a href="#faq" class="nav-link">FAQ</a></li>
-          <li><a href="/blog.html" class="nav-link">Blog</a></li>
+          <li><a href="/blog" class="nav-link">Blog</a></li>
         </ul>
         <a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="nav-cta" target="_blank" rel="noopener noreferrer">Book 15 min</a>
         <button class="nav-burger" aria-label="Open menu" id="navBurger"><span></span></button>
@@ -1588,7 +1623,7 @@
       <li><a href="#roi" class="nav-overlay-link">ROI</a></li>
       <li><a href="#pricing" class="nav-overlay-link">Pricing</a></li>
       <li><a href="#faq" class="nav-overlay-link">FAQ</a></li>
-      <li><a href="/blog.html" class="nav-overlay-link">Blog</a></li>
+      <li><a href="/blog" class="nav-overlay-link">Blog</a></li>
       <li><a href="https://calendar.app.google/jF4TiJNkzXP8DE8n9" class="nav-overlay-link" target="_blank" rel="noopener noreferrer" style="color: var(--c-accent)">Book 15 min</a></li>
     </ul>
   </div>
