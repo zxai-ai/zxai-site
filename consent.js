@@ -9,10 +9,10 @@
   // Config -- update pixel IDs here when new ones are added
   // ---------------------------------------------------------------------------
   var GOOGLE_ADS_ID = "AW-2635997892";
-  var META_PIXEL_ID = "953177177090685";
-  // Temporary: set to a Meta Test Events code (e.g. "TEST85203") to route events
-  // to Events Manager > Test Events. Set to "" once verification is complete.
-  var META_TEST_EVENT_CODE = "TEST85203";
+  // Meta Pixel is now installed directly in each HTML page's <head> (raw snippet),
+  // not loaded via this consent gate. Leave blank here to avoid double-firing.
+  var META_PIXEL_ID = "";
+  var META_TEST_EVENT_CODE = "";
 
   var CONSENT_COOKIE = "zxai_consent";
   var CONSENT_DAYS   = 365;
