@@ -54,11 +54,11 @@ Live voice demo using Gemini Live API.
 **Secrets (via `wrangler secret put`):**
 - `GEMINI_API_KEY` (set)
 - `TURNSTILE_SECRET` (not set, skipped if empty)
-- `GOOGLE_OAUTH_CLIENT_ID` (not set)
-- `GOOGLE_OAUTH_CLIENT_SECRET` (not set)
-- `GOOGLE_OAUTH_REFRESH_TOKEN` (not set)
+- `GOOGLE_OAUTH_CLIENT_ID` (set)
+- `GOOGLE_OAUTH_CLIENT_SECRET` (set)
+- `GOOGLE_OAUTH_REFRESH_TOKEN` (set)
 
-**Status:** Voice + text working. Calendar booking NOT connected (OAuth pending). Turnstile NOT wired.
+**Status:** Voice + text working. Calendar booking CONNECTED (OAuth live as of 2026-04-15). Turnstile NOT wired.
 
 ## D1 Database
 

@@ -77,6 +77,22 @@ interface WindowResolution {
   label: string;
 }
 
+// Parse a specific time mention like "1pm", "2:30pm", "9am", "13:00" → hour (0-23) or null.
+function parseSpecificHour(text: string): number | null {
+  // "1pm", "2:30pm", "1 pm", "13:00", "9am", "9:30 am"
+  const m = text.match(/\b(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b/) ??
+            text.match(/\b([01]?\d|2[0-3]):(\d{2})\b/);
+  if (!m) return null;
+  let h = Number(m[1]);
+  const ampm = m[3]; // may be undefined for 24h format
+  if (ampm === "pm" && h < 12) h += 12;
+  if (ampm === "am" && h === 12) h = 0;
+  // Clamp to business hours
+  if (h < BUSINESS_START_HOUR) h = BUSINESS_START_HOUR;
+  if (h >= BUSINESS_END_HOUR) h = BUSINESS_END_HOUR - 1;
+  return h;
+}
+
 // Parse a free-text day window into an absolute window. Missing-info defaults to next 7 business days.
 function resolveWindow(raw: string): WindowResolution {
   const text = (raw ?? "").toLowerCase();
@@ -123,14 +139,29 @@ function resolveWindow(raw: string): WindowResolution {
 
   const endDay = new Date(startDay.getTime() + windowDays * 86400000);
 
-  const daypart: DayPart = text.includes("morning")
-    ? "morning"
-    : text.includes("afternoon") || text.includes("evening")
-    ? "afternoon"
-    : "any";
+  // Check for a specific time mention first ("1pm", "2:30pm", "13:00").
+  // If found, anchor the search window to that hour and search 2 hours forward.
+  const specificHour = parseSpecificHour(text);
 
-  const startHour = daypart === "afternoon" ? 12 : BUSINESS_START_HOUR;
-  const endHour = daypart === "morning" ? 12 : BUSINESS_END_HOUR;
+  let startHour: number;
+  let endHour: number;
+  let daypartLabel: string;
+
+  if (specificHour !== null) {
+    startHour = specificHour;
+    // Search from the requested hour to end of business (or +2h if multi-day window)
+    endHour = windowDays === 1 ? BUSINESS_END_HOUR : BUSINESS_END_HOUR;
+    daypartLabel = `around ${specificHour % 12 || 12}${specificHour >= 12 ? "pm" : "am"}`;
+  } else {
+    const daypart: DayPart = text.includes("morning")
+      ? "morning"
+      : text.includes("afternoon") || text.includes("evening")
+      ? "afternoon"
+      : "any";
+    startHour = daypart === "afternoon" ? 12 : BUSINESS_START_HOUR;
+    endHour = daypart === "morning" ? 12 : BUSINESS_END_HOUR;
+    daypartLabel = daypart === "any" ? "" : daypart;
+  }
 
   const startIso = ctIso(
     startDay.getUTCFullYear(),
@@ -147,7 +178,7 @@ function resolveWindow(raw: string): WindowResolution {
     0
   );
 
-  return { startIso, endIso, label: `${labelHint} ${daypart === "any" ? "" : daypart}`.trim() };
+  return { startIso, endIso, label: `${labelHint} ${daypartLabel}`.trim() };
 }
 
 function formatSlotLabel(iso: string): string {

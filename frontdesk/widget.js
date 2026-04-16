@@ -92,7 +92,16 @@ export function mountFrontDeskWidget(el, opts = {}) {
       state.client.addFunction(availabilityTool);
       state.client.addFunction(bookTool);
 
-      state.client.onOpen = () => ui.setStatus("listening");
+      state.client.onOpen = () => {
+        ui.setStatus("listening");
+        // Prompt Katie to deliver her opening line after a short delay so the
+        // audio pipeline is ready before she speaks.
+        setTimeout(() => {
+          if (state.client?.connected) {
+            state.client.sendTextMessage("(system) The caller has connected. Say your opening line now.");
+          }
+        }, 1500);
+      };
       state.client.onClose = () => endCall("connection_closed");
       state.client.onError = () => endCall("error");
       state.client.onReceiveResponse = onResponse;
