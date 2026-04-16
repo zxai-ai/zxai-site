@@ -10,6 +10,19 @@ import { AudioStreamer, AudioPlayer } from "./audio-io.js";
 import { CheckAvailabilityTool, BookConsultTool } from "./tools.js";
 
 // ---------------------------------------------------------------------------
+// Session cookie: one UUID per browser, 7-day expiry, ties calls to bookings.
+// ---------------------------------------------------------------------------
+function getOrCreateSessionId() {
+  const key = "zxai_sid";
+  const existing = document.cookie.split("; ").find((c) => c.startsWith(key + "="));
+  if (existing) return existing.split("=")[1];
+  const id = crypto.randomUUID();
+  const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString();
+  document.cookie = `${key}=${id}; expires=${expires}; path=/; SameSite=Lax`;
+  return id;
+}
+
+// ---------------------------------------------------------------------------
 // Turnstile: execute a managed challenge and resolve with the token.
 // Reuses the same widget element per mount so we don't create duplicates.
 // ---------------------------------------------------------------------------
@@ -69,6 +82,8 @@ export function mountFrontDeskWidget(el, opts = {}) {
   const { variant = "compact" } = opts;
 
   const ui = renderShell(el, variant);
+  const sessionId = getOrCreateSessionId();
+
   const state = {
     client: null,
     streamer: null,
@@ -127,7 +142,11 @@ export function mountFrontDeskWidget(el, opts = {}) {
       const r = await fetch(KATIE_CONFIG.apiBase + "/token", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(tsToken ? { turnstile: tsToken } : {}),
+        body: JSON.stringify({
+          ...(tsToken ? { turnstile: tsToken } : {}),
+          session_id: sessionId,
+          page: window.location.pathname,
+        }),
       });
       if (!r.ok) {
         const err = await r.json().catch(() => ({ error: "token_failed" }));
@@ -150,6 +169,7 @@ export function mountFrontDeskWidget(el, opts = {}) {
 
       const availabilityTool = new CheckAvailabilityTool(onToolEvent);
       const bookTool = new BookConsultTool(availabilityTool, onToolEvent);
+      bookTool.sessionId = sessionId;
       state.client.addFunction(availabilityTool);
       state.client.addFunction(bookTool);
 

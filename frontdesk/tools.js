@@ -79,6 +79,7 @@ export class BookConsultTool extends FunctionCallDefinition {
     );
     this.availabilityTool = availabilityTool;
     this.onToolEvent = onToolEvent;
+    this.sessionId = null; // set by widget after construction
   }
 
   async functionToCall(args) {
@@ -97,6 +98,7 @@ export class BookConsultTool extends FunctionCallDefinition {
       slot_id: slot.id,
       slot_iso: slot.iso,
       slot_end_iso: slot.endIso,
+      session_id: this.sessionId ?? undefined,
       slot_label: slot.label,
     };
     this.onToolEvent?.({ name: this.name, status: "start", args: payload });

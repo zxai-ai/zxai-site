@@ -24,10 +24,26 @@ CREATE TABLE IF NOT EXISTS reports (
 
 CREATE INDEX idx_orders_status ON orders(status);
 
+-- Front Desk demo sessions (one row per browser, created on first call)
+CREATE TABLE IF NOT EXISTS demo_sessions (
+  id TEXT PRIMARY KEY,                          -- UUID set by browser cookie
+  created_at TEXT DEFAULT (datetime('now')),
+  last_seen_at TEXT DEFAULT (datetime('now')),
+  page TEXT,                                    -- page widget was on
+  ip_hash TEXT,
+  user_agent TEXT,
+  call_count INTEGER DEFAULT 1,
+  booked INTEGER DEFAULT 0,                     -- 1 once a booking completes
+  confirmation_id TEXT                          -- set on booking
+);
+
+CREATE INDEX IF NOT EXISTS idx_demo_sessions_created ON demo_sessions(created_at);
+
 -- Front Desk demo bookings (Katie)
 CREATE TABLE IF NOT EXISTS demo_bookings (
   id TEXT PRIMARY KEY,
   created_at TEXT DEFAULT (datetime('now')),
+  session_id TEXT REFERENCES demo_sessions(id), -- ties booking to browser session
   first_name TEXT NOT NULL,
   last_name TEXT NOT NULL,
   company TEXT NOT NULL,

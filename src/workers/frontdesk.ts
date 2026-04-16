@@ -137,6 +137,25 @@ async function handleToken(
     return json({ error: "rate_limited" }, 429, origin);
   }
 
+  // Upsert session record
+  let sessionId: string | null = null;
+  try {
+    const body = (await request.clone().json()) as { session_id?: string; page?: string };
+    sessionId = (body.session_id || "").replace(/[^a-zA-Z0-9\-]/g, "").slice(0, 36) || null;
+    const page = (body.page || "").slice(0, 200);
+    if (sessionId) {
+      await env.DB.prepare(
+        `INSERT INTO demo_sessions (id, page, ip_hash, user_agent, call_count)
+         VALUES (?, ?, ?, ?, 1)
+         ON CONFLICT(id) DO UPDATE SET
+           last_seen_at = datetime('now'),
+           call_count = call_count + 1`
+      )
+        .bind(sessionId, page, ipHash, (request.headers.get("User-Agent") ?? "").slice(0, 300))
+        .run();
+    }
+  } catch { /* non-critical, don't block token mint */ }
+
   // Mint the token
   const minted = await mintEphemeralToken(env.GEMINI_API_KEY, {
     ttlMinutes: 10,
@@ -195,6 +214,7 @@ interface BookConsultBody {
   slot_iso?: string; // the resolver returns it; we persist this
   slot_end_iso?: string;
   slot_label?: string;
+  session_id?: string;
 }
 
 function validEmail(s: string): boolean {
@@ -226,6 +246,7 @@ async function handleBookConsult(
     const slotIso = (body.slot_iso || "").trim();
     const slotEndIso = (body.slot_end_iso || "").trim();
     const slotLabel = (body.slot_label || "").trim().slice(0, 80);
+    const sessionId = (body.session_id || "").replace(/[^a-zA-Z0-9\-]/g, "").slice(0, 36) || null;
 
     if (!firstName || !lastName || !company || !email || !slotIso) {
       return json({ error: "missing_required_fields" }, 400, origin);
@@ -267,12 +288,13 @@ async function handleBookConsult(
 
     await env.DB.prepare(
       `INSERT INTO demo_bookings
-        (id, first_name, last_name, company, role, email, phone,
+        (id, session_id, first_name, last_name, company, role, email, phone,
          slot_iso, slot_label, calendar_event_id, ip_hash, user_agent)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
       .bind(
         id,
+        sessionId,
         firstName,
         lastName,
         company,
@@ -286,6 +308,15 @@ async function handleBookConsult(
         ua.slice(0, 300)
       )
       .run();
+
+    // Mark session as booked
+    if (sessionId) {
+      await env.DB.prepare(
+        `UPDATE demo_sessions SET booked = 1, confirmation_id = ? WHERE id = ?`
+      )
+        .bind(id, sessionId)
+        .run();
+    }
 
     return json(
       {
