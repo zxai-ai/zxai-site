@@ -4,7 +4,7 @@
 // no LLM cost. Pre-rendered TTS audio is NOT swapped; Anthony narrates over it.
 //
 // Usage:
-//   import { initPresenterMode } from "/demo/_shell/presenter.js";
+//   import { initPresenterMode } from "/ai-staff/_shell/presenter.js";
 //   initPresenterMode();  // call as early as possible after DOMContentLoaded
 
 const DEFAULT_PRACTICE_TOKENS = [

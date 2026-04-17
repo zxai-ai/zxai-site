@@ -682,7 +682,7 @@ export const DEMO_UNIVERSE = {
   },
   webSeo: {
     // Web/SEO stays live. Universe only holds fallback copy for outages.
-    fallbackReportUrl: "/demo/web-seo/sample-report.html",
+    fallbackReportUrl: "/ai-staff/web-seo/sample-report.html",
     fallbackCopy: "Your site is big. Book the full audit to get the complete scan.",
   },
 

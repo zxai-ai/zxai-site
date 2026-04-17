@@ -2,14 +2,14 @@
 // completes. Fires demo_completed and cta_clicked analytics events.
 //
 // Usage:
-//   import { renderEndCard } from "/demo/_shell/end-card.js";
+//   import { renderEndCard } from "/ai-staff/_shell/end-card.js";
 //   renderEndCard(containerEl, {
 //     agent: "reactivation",
 //     proofPoint: "That patient is worth $332 on average...",
 //     ctaLabel: "Book 15 minutes with Anthony",
 //     ctaHref: "https://calendar.app.google/jF4TiJNkzXP8DE8n9",
 //     secondaryLabel: "Try another demo",
-//     secondaryHref: "/demo/",
+//     secondaryHref: "/ai-staff/",
 //     onReplay: () => restart(),
 //   });
 

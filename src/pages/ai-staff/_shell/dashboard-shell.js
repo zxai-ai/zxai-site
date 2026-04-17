@@ -3,7 +3,7 @@
 // and end-card mount point.
 //
 // Usage:
-//   import { mountDashboard } from "/demo/_shell/dashboard-shell.js";
+//   import { mountDashboard } from "/ai-staff/_shell/dashboard-shell.js";
 //   const { contentEl, endCardEl, finish } = mountDashboard(rootEl, {
 //     agent: "prior-auth",
 //     title: "Prior Auth Agent",
@@ -56,7 +56,7 @@ export function mountDashboard(root, opts) {
       ctaLabel: endOpts.ctaLabel,
       ctaHref: endOpts.ctaHref,
       secondaryLabel: "Try another agent",
-      secondaryHref: "/demo/",
+      secondaryHref: "/ai-staff/",
       onReplay: onReplay
         ? () => {
             contentEl.hidden = false;

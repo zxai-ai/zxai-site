@@ -9,12 +9,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/demo/_shell/shell.css">
+<link rel="stylesheet" href="/ai-staff/_shell/shell.css">
 <script src="/consent.js" defer></script>
 </head>
 <body class="ds-page ds-root">
   <main class="ds-container">
-    <a href="/demo/" class="ds-back">&larr; Back to demos</a>
+    <a href="/ai-staff/" class="ds-back">&larr; Back to demos</a>
     <div class="ds-eyebrow">Agent #06 &middot; Retention</div>
 
     <div class="demo-voice-layout">
@@ -38,10 +38,10 @@
   </main>
 
   <script type="module">
-    import { initPresenterMode } from "/demo/_shell/presenter.js";
-    import { mountScriptedCall } from "/demo/_shell/call-ui.js";
-    import { renderEndCard } from "/demo/_shell/end-card.js";
-    import { trackEvent } from "/demo/_shell/analytics.js";
+    import { initPresenterMode } from "/ai-staff/_shell/presenter.js";
+    import { mountScriptedCall } from "/ai-staff/_shell/call-ui.js";
+    import { renderEndCard } from "/ai-staff/_shell/end-card.js";
+    import { trackEvent } from "/ai-staff/_shell/analytics.js";
 
     const AGENT = "retention";
     const callEl = document.getElementById("call-mount");
@@ -76,7 +76,7 @@
             proofPoint: ending.proofPoint,
             ctaLabel: "Book 15 minutes with Anthony",
             secondaryLabel: "Try another demo",
-            secondaryHref: "/demo/",
+            secondaryHref: "/ai-staff/",
             onReplay: () => {
               trackEvent(AGENT, "replay");
               startDemo();
@@ -90,7 +90,7 @@
             proofPoint: "Your members pay $300 to $500 a month for this level of attention. Sam makes sure they actually get it, without eating your physician's time.",
             ctaLabel: "Book 15 minutes with Anthony",
             secondaryLabel: "Try another demo",
-            secondaryHref: "/demo/",
+            secondaryHref: "/ai-staff/",
             onReplay: () => startDemo(),
           });
           endCardEl.scrollIntoView({ behavior: "smooth", block: "start" });

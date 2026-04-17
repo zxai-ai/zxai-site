@@ -2,7 +2,7 @@
 // the provided onSkip handler.
 //
 // Usage:
-//   import { mountSkipButton } from "/demo/_shell/skip-button.js";
+//   import { mountSkipButton } from "/ai-staff/_shell/skip-button.js";
 //   mountSkipButton(containerEl, { agent: "prior-auth", onSkip: () => showEndCard() });
 
 import { trackEvent } from "./analytics.js";

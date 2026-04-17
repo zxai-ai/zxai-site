@@ -2,7 +2,7 @@
 // Non-blocking. Silent on failure.
 //
 // Usage:
-//   import { trackEvent } from "/demo/_shell/analytics.js";
+//   import { trackEvent } from "/ai-staff/_shell/analytics.js";
 //   trackEvent("reactivation", "demo_started");
 //   trackEvent("reactivation", "turn_branched", { turn_index: 1, branch_chosen: "Not right now" });
 

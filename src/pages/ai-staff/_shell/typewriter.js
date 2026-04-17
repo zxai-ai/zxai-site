@@ -2,7 +2,7 @@
 // at a natural cadence with slight randomization so it feels like live output.
 //
 // Usage:
-//   import { typeInto } from "/demo/_shell/typewriter.js";
+//   import { typeInto } from "/ai-staff/_shell/typewriter.js";
 //   await typeInto(el, "Hello world", { cps: 45 });
 //
 // Options:

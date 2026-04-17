@@ -5,7 +5,7 @@
 // response buttons per turn. No live LLM calls.
 //
 // Usage:
-//   import { mountScriptedCall } from "/demo/_shell/call-ui.js";
+//   import { mountScriptedCall } from "/ai-staff/_shell/call-ui.js";
 //   mountScriptedCall(containerEl, {
 //     agent: "reactivation",
 //     persona: "Jordan",

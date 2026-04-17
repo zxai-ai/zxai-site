@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meet Your AI Staff · ZxAI Agent Demos</title>
-<meta name="description" content="Try all 9 ZxAI AI staff agents. Front desk, scheduling, prior auth, revenue recovery, reactivation, retention, reputation, marketing, and web/SEO. See what each one actually does.">
-<meta name="robots" content="noindex">
+<title>See Your AI Staff at Work · ZxAI</title>
+<meta name="description" content="See what ZxAI's AI staff actually do at YOUR Practice. Front desk, scheduling, prior auth, revenue recovery, reactivation, retention, reputation, marketing, and web SEO. Talk to one live. Watch the rest work.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/demo/_shell/shell.css">
+<link rel="stylesheet" href="/ai-staff/_shell/shell.css">
 <script src="/consent.js" defer></script>
 </head>
 <body class="ds-page ds-root">
@@ -17,9 +16,9 @@
     <a href="/" class="ds-back">&larr; Back to ZxAI</a>
 
     <header class="ds-hero">
-      <div class="ds-eyebrow">Agent Demos</div>
-      <h1 class="ds-h1">Meet your <em>AI staff.</em></h1>
-      <p class="ds-lead">Try each one. See what they actually do. The front desk demo is live. The other eight are interactive walkthroughs on YOUR Practice's data.</p>
+      <div class="ds-eyebrow">AI Staff at Work</div>
+      <h1 class="ds-h1">See your <em>AI staff</em> at work.</h1>
+      <p class="ds-lead">Nine AI staff members working YOUR Practice. One of them answers the phone live right now. The other eight walk through exactly what they do on your data. Talk to Katie first. Then see the rest.</p>
     </header>
 
     <!-- Katie: distinct, featured "Talk Live" card -->
@@ -53,9 +52,9 @@
   </main>
 
   <script type="module">
-    import { DEMO_UNIVERSE, trackLabel } from "/demo/_shell/universe.js";
-    import { initPresenterMode } from "/demo/_shell/presenter.js";
-    import { trackEvent } from "/demo/_shell/analytics.js";
+    import { DEMO_UNIVERSE, trackLabel } from "/ai-staff/_shell/universe.js";
+    import { initPresenterMode } from "/ai-staff/_shell/presenter.js";
+    import { trackEvent } from "/ai-staff/_shell/analytics.js";
 
     const FORMAT_LABEL = {
       "voice-live":     { label: "Voice \u00b7 Live",   icon: "\u{1F3A4}" },
@@ -83,7 +82,7 @@
       const isBuilt = BUILT.has(agent.slug);
       const card = document.createElement(isBuilt ? "a" : "div");
       card.className = "ds-agent-card" + (isBuilt ? "" : " ds-agent-placeholder");
-      if (isBuilt) card.href = `/demo/${agent.slug}`;
+      if (isBuilt) card.href = `/ai-staff/${agent.slug}`;
       card.style.setProperty("--agent-accent", agent.accent);
       card.dataset.agentCard = agent.slug;
 

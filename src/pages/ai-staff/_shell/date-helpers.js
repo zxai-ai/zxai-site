@@ -2,7 +2,7 @@
 // drifting into the past. Called at render time so dates always feel fresh.
 //
 // Usage:
-//   import { resolveRelativeDate } from "/demo/_shell/date-helpers.js";
+//   import { resolveRelativeDate } from "/ai-staff/_shell/date-helpers.js";
 //   resolveRelativeDate("next-thursday-2pm");  // -> "Thursday, April 23 at 2:00 PM CT"
 
 const WEEKDAY_NAMES = [
