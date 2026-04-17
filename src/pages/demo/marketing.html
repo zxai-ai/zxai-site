@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Agent · ZxAI Agent Demo</title>
+<meta name="description" content="The Marketing AI staff agent watches every signal from your practice, drafts whole campaigns, and schedules them across every channel.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/demo/_shell/shell.css">
+<script src="/consent.js" defer></script>
+<style>
+/* -----------------------------------------------------------------------
+ * Marketing (#08) v2 — command center: signals → campaign fan-out
+ * ----------------------------------------------------------------------- */
+
+/* Marketing demo gets a wider container than the standard ds-container. */
+.demo-mk-wide {
+  max-width: 1440px;
+}
+
+.demo-mk-grid {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 240px;
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 1200px) {
+  .demo-mk-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Column headers ---- */
+.demo-mk-colhead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 0 4px;
+}
+.demo-mk-colhead-label {
+  font-size: 11px;
+  color: var(--ds-text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ---- Signals rail ---- */
+.demo-mk-signals {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.demo-mk-signal {
+  padding: 14px;
+  background: var(--ds-bg-card);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+.demo-mk-signal:hover:not([disabled]) {
+  border-color: var(--ds-accent);
+  background: var(--ds-bg-elevated);
+  transform: translateY(-1px);
+}
+.demo-mk-signal[data-active="true"] {
+  border-color: var(--ds-accent);
+  box-shadow: 0 0 0 1px var(--ds-accent) inset;
+  background: var(--ds-bg-elevated);
+}
+.demo-mk-signal[data-queued="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.demo-mk-signal-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.demo-mk-signal-source {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--ds-text-muted);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.demo-mk-signal-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #000;
+}
+.demo-mk-signal-icon[data-icon="phone"]    { background: #06B6D4; }
+.demo-mk-signal-icon[data-icon="chart"]    { background: #F59E0B; }
+.demo-mk-signal-icon[data-icon="target"]   { background: #F43F5E; }
+.demo-mk-signal-icon[data-icon="star"]     { background: #14B8A6; }
+.demo-mk-signal-icon[data-icon="calendar"] { background: #A855F7; }
+
+.demo-mk-confidence {
+  font-size: 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  padding: 3px 8px;
+  border-radius: 100px;
+  background: rgba(20, 184, 166, 0.14);
+  color: var(--ds-success);
+  font-weight: 600;
+}
+.demo-mk-signal-head {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ds-text);
+}
+.demo-mk-signal-detail {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ds-text-muted);
+}
+.demo-mk-signal-opp {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  padding: 8px;
+  background: rgba(6, 182, 212, 0.06);
+  border-left: 2px solid var(--ds-accent);
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--ds-text);
+}
+.demo-mk-signal-opp::before {
+  content: "\2192";
+  color: var(--ds-accent);
+  font-weight: 600;
+}
+.demo-mk-queued {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ds-text-dim);
+  font-weight: 600;
+}
+
+/* ---- Workspace (center) ---- */
+.demo-mk-workspace {
+  background: var(--ds-bg-elevated);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  padding: 24px;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.demo-mk-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--ds-text-muted);
+  text-align: center;
+  padding: 60px 20px;
+}
+.demo-mk-empty-hint {
+  font-size: 14px;
+}
+.demo-mk-empty-arrow {
+  font-family: var(--ds-font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ds-accent);
+}
+
+.demo-mk-campaign-head {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--ds-border);
+}
+.demo-mk-campaign-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--ds-accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.demo-mk-campaign-eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ds-accent);
+  box-shadow: 0 0 8px var(--ds-accent);
+  animation: demo-mk-pulse 1.2s infinite ease-in-out;
+}
+@keyframes demo-mk-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+.demo-mk-campaign-title {
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--ds-text);
+  margin: 0 0 10px;
+}
+.demo-mk-campaign-pos {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ds-text-muted);
+  margin: 0;
+  max-width: 62ch;
+}
+.demo-mk-voice-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.demo-mk-voice-pill {
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--ds-border);
+  font-size: 11px;
+  color: var(--ds-text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* ---- Channel cards (fan-out) ---- */
+.demo-mk-channels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 12px;
+}
+.demo-mk-channel {
+  padding: 14px;
+  background: var(--ds-bg-card);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 140px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.demo-mk-channel.is-visible { opacity: 1; transform: translateY(0); }
+.demo-mk-channel-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ds-border);
+}
+.demo-mk-channel-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #000;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.demo-mk-channel[data-type="instagram"] .demo-mk-channel-icon { background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737); color: #fff; }
+.demo-mk-channel[data-type="facebook"]  .demo-mk-channel-icon { background: #1877F2; color: #fff; }
+.demo-mk-channel[data-type="email"]     .demo-mk-channel-icon { background: var(--ds-accent); }
+.demo-mk-channel[data-type="blog"]      .demo-mk-channel-icon { background: var(--ds-amber); }
+.demo-mk-channel[data-type="sms"]       .demo-mk-channel-icon { background: var(--ds-success); }
+.demo-mk-channel[data-type="portal"]    .demo-mk-channel-icon { background: #A855F7; color: #fff; }
+
+.demo-mk-channel-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ds-text);
+}
+.demo-mk-channel-schedule {
+  margin-left: auto;
+  font-size: 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--ds-text-dim);
+}
+.demo-mk-channel-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ds-text);
+  white-space: pre-wrap;
+  flex: 1;
+}
+.demo-mk-channel-body[data-drafting="true"]::after {
+  content: "\258D ";
+  color: var(--ds-accent);
+  animation: demo-mk-caret 1s steps(2) infinite;
+}
+@keyframes demo-mk-caret {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
+}
+.demo-mk-channel-meta {
+  font-size: 11px;
+  color: var(--ds-text-dim);
+  padding-top: 6px;
+  border-top: 1px solid var(--ds-border);
+}
+
+/* Per-channel approve footer */
+.demo-mk-channel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--ds-border);
+  margin-top: 4px;
+  min-height: 32px;
+}
+.demo-mk-channel-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ds-text-dim);
+}
+.demo-mk-channel-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ds-text-dim);
+}
+.demo-mk-channel[data-status="drafting"] .demo-mk-channel-status::before {
+  background: var(--ds-amber);
+  animation: demo-mk-blink 1s infinite ease-in-out;
+}
+.demo-mk-channel[data-status="drafting"] .demo-mk-channel-status { color: var(--ds-amber); }
+.demo-mk-channel[data-status="ready"] .demo-mk-channel-status::before { background: var(--ds-accent); }
+.demo-mk-channel[data-status="ready"] .demo-mk-channel-status { color: var(--ds-accent); }
+.demo-mk-channel[data-status="scheduled"] .demo-mk-channel-status::before { background: var(--ds-success); box-shadow: 0 0 6px var(--ds-success); }
+.demo-mk-channel[data-status="scheduled"] .demo-mk-channel-status { color: var(--ds-success); }
+.demo-mk-channel[data-status="scheduled"] {
+  border-color: rgba(20, 184, 166, 0.3);
+  background: linear-gradient(180deg, rgba(20, 184, 166, 0.04), transparent 40%), var(--ds-bg-card);
+}
+@keyframes demo-mk-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+
+.demo-mk-channel-approve {
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: transparent;
+  color: var(--ds-accent);
+  border: 1px solid var(--ds-accent);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.demo-mk-channel-approve:hover {
+  background: var(--ds-accent);
+  color: #000;
+}
+.demo-mk-channel-approve[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: transparent;
+  color: var(--ds-text-dim);
+  border-color: var(--ds-border);
+}
+.demo-mk-channel[data-status="scheduled"] .demo-mk-channel-approve {
+  display: none;
+}
+
+/* Flying approval token: card → calendar day */
+.demo-mk-fly {
+  position: fixed;
+  z-index: 9999;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ds-accent);
+  box-shadow: 0 0 16px var(--ds-accent);
+  pointer-events: none;
+  transition: transform 0.9s cubic-bezier(0.5, -0.1, 0.2, 1.2), opacity 0.2s ease-out 0.7s;
+}
+
+/* Approval progress on the schedule bar */
+.demo-mk-schedule {
+  align-items: center;
+}
+.demo-mk-schedule-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--ds-text-muted);
+}
+.demo-mk-schedule-bar {
+  width: 120px;
+  height: 4px;
+  background: var(--ds-border);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.demo-mk-schedule-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--ds-accent), var(--ds-success));
+  width: 0%;
+  transition: width 0.4s ease;
+}
+.demo-mk-schedule[data-complete="true"] .demo-mk-schedule-progress {
+  color: var(--ds-success);
+  font-weight: 600;
+}
+.demo-mk-channel-subject {
+  font-weight: 600;
+  color: var(--ds-accent);
+  font-size: 13px;
+  margin-bottom: 4px;
+  display: block;
+}
+.demo-mk-channel-blog-outline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.demo-mk-channel-blog-outline li::before {
+  content: "\2022";
+  color: var(--ds-accent);
+  margin-right: 8px;
+}
+
+/* ---- Creative panel ---- */
+.demo-mk-creative {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 14px;
+}
+@media (max-width: 820px) { .demo-mk-creative { grid-template-columns: 1fr; } }
+
+.demo-mk-images {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+@media (max-width: 640px) { .demo-mk-images { grid-template-columns: repeat(2, 1fr); } }
+
+.demo-mk-image {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--ds-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--ds-border);
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.2s ease;
+}
+.demo-mk-image.is-visible { opacity: 1; transform: scale(1); }
+.demo-mk-image[data-state="generating"] {
+  background:
+    linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent),
+    rgba(255, 255, 255, 0.03);
+  background-size: 200% 100%, auto;
+  animation: demo-mk-shimmer 1.4s infinite linear;
+}
+@keyframes demo-mk-shimmer {
+  0%   { background-position: -50% 0, 0 0; }
+  100% { background-position: 150% 0, 0 0; }
+}
+.demo-mk-image-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.3;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+/* Palette-driven backgrounds */
+.demo-mk-image[data-palette="cyan-cream"]  .demo-mk-image-inner { background: linear-gradient(135deg, #06B6D4 0%, #0EA5E9 55%, #F4EEDD 100%); }
+.demo-mk-image[data-palette="warm-cream"]  .demo-mk-image-inner { background: linear-gradient(135deg, #F59E0B 0%, #F43F5E 55%, #F4EEDD 100%); color: #1a0a00; text-shadow: 0 1px 4px rgba(255,255,255,0.3); }
+.demo-mk-image[data-palette="cool-navy"]   .demo-mk-image-inner { background: linear-gradient(135deg, #0EA5E9 0%, #6366F1 55%, #0F172A 100%); }
+.demo-mk-image[data-palette="cyan-ink"]    .demo-mk-image-inner { background: linear-gradient(135deg, #06B6D4 0%, #0F172A 100%); }
+.demo-mk-image[data-palette="cream-ink"]   .demo-mk-image-inner { background: linear-gradient(135deg, #F4EEDD 0%, #06B6D4 55%, #0F172A 100%); color: #0F172A; text-shadow: 0 1px 3px rgba(244, 238, 221, 0.6); }
+.demo-mk-image[data-palette="ink-cyan"]    .demo-mk-image-inner { background: linear-gradient(135deg, #0F172A 0%, #06B6D4 100%); }
+
+.demo-mk-image-style {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 3px 8px;
+  border-radius: 100px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.demo-mk-video {
+  position: relative;
+  aspect-ratio: 9/16;
+  max-height: 360px;
+  border-radius: var(--ds-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--ds-border);
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.demo-mk-video.is-visible { opacity: 1; transform: scale(1); }
+.demo-mk-video-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+}
+.demo-mk-video[data-palette="cyan-cream"]  .demo-mk-video-inner { background: linear-gradient(180deg, #06B6D4, #F4EEDD); color: #0F172A; text-shadow: none; }
+.demo-mk-video[data-palette="cream-ink"]   .demo-mk-video-inner { background: linear-gradient(180deg, #F4EEDD, #06B6D4, #0F172A); }
+.demo-mk-video[data-palette="cyan-ink"]    .demo-mk-video-inner { background: linear-gradient(180deg, #06B6D4, #0F172A); }
+.demo-mk-video-caption {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.demo-mk-video-play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.demo-mk-video-play::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  margin-left: 3px;
+  border-left: 14px solid #000;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+}
+.demo-mk-video-meta {
+  position: absolute;
+  top: 12px; left: 12px;
+  display: flex;
+  gap: 6px;
+}
+.demo-mk-video-chip {
+  padding: 3px 8px;
+  border-radius: 100px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.demo-mk-video-progress {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: var(--ds-bg-card);
+}
+.demo-mk-video-progress[data-hidden="true"] { display: none; }
+.demo-mk-video-progress-label {
+  font-size: 12px;
+  color: var(--ds-text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.demo-mk-video-progress-bar {
+  width: 70%;
+  height: 4px;
+  background: var(--ds-border);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.demo-mk-video-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #F43F5E, #06B6D4);
+  width: 0%;
+  transition: width 0.2s ease;
+}
+
+.demo-mk-section-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--ds-text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.demo-mk-section-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--ds-border);
+}
+
+/* ---- Schedule row ---- */
+.demo-mk-schedule {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 14px;
+  background: var(--ds-bg-card);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.demo-mk-schedule.is-visible { opacity: 1; }
+.demo-mk-schedule-label {
+  font-size: 11px;
+  color: var(--ds-text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-right: auto;
+  align-self: center;
+}
+.demo-mk-approve {
+  padding: 10px 20px;
+  border-radius: 100px;
+  background: var(--ds-accent);
+  color: #000;
+  border: none;
+  font: inherit;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+.demo-mk-approve:hover { background: #22D3EE; }
+.demo-mk-approve-secondary {
+  padding: 10px 18px;
+  border-radius: 100px;
+  background: transparent;
+  color: var(--ds-text);
+  border: 1px solid var(--ds-border-strong);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ---- Brand kit (right rail) ---- */
+.demo-mk-brand {
+  padding: 18px;
+  background: var(--ds-bg-card);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.demo-mk-brand-mark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.demo-mk-brand-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--ds-accent), var(--ds-accent-2));
+  color: #000;
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -0.02em;
+}
+.demo-mk-brand-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ds-text);
+}
+.demo-mk-brand-sub {
+  font-size: 11px;
+  color: var(--ds-text-dim);
+  letter-spacing: 0.02em;
+}
+.demo-mk-brand-block-label {
+  font-size: 10px;
+  color: var(--ds-text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.demo-mk-palette {
+  display: flex;
+  gap: 6px;
+}
+.demo-mk-swatch {
+  flex: 1;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.demo-mk-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.demo-mk-tag {
+  padding: 3px 8px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--ds-border);
+  font-size: 11px;
+  color: var(--ds-text-muted);
+}
+.demo-mk-accounts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.demo-mk-account {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--ds-border);
+  font-size: 12px;
+}
+.demo-mk-account-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--ds-success);
+  box-shadow: 0 0 6px var(--ds-success);
+}
+.demo-mk-account-name { color: var(--ds-text); }
+
+/* ---- Calendar strip ---- */
+.demo-mk-calendar {
+  margin-top: 28px;
+  padding: 18px;
+  background: var(--ds-bg-card);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+}
+.demo-mk-calendar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.demo-mk-calendar-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ds-text);
+}
+.demo-mk-calendar-meta {
+  font-size: 11px;
+  color: var(--ds-text-muted);
+}
+.demo-mk-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  gap: 6px;
+}
+@media (max-width: 820px) {
+  .demo-mk-calendar-grid { grid-template-columns: repeat(7, 1fr); }
+}
+.demo-mk-day {
+  aspect-ratio: 1;
+  background: var(--ds-bg-elevated);
+  border: 1px solid var(--ds-border);
+  border-radius: 6px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 10px;
+}
+.demo-mk-day-num {
+  color: var(--ds-text-dim);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.demo-mk-day-today .demo-mk-day-num { color: var(--ds-accent); font-weight: 700; }
+.demo-mk-day-dots {
+  display: flex;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+.demo-mk-day-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+}
+.demo-mk-day-dot[data-new="true"] {
+  background: var(--ds-accent);
+  box-shadow: 0 0 6px var(--ds-accent);
+  animation: demo-mk-pop 0.6s ease-out;
+}
+@keyframes demo-mk-pop {
+  0%   { transform: scale(0); opacity: 0; }
+  70%  { transform: scale(1.6); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Make days interactive when they hold scheduled content */
+.demo-mk-day[data-has-content="true"] {
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.demo-mk-day[data-has-content="true"]:hover {
+  border-color: var(--ds-accent);
+  background: rgba(6, 182, 212, 0.06);
+}
+
+/* Calendar tooltip (fixed, positioned in JS) */
+.demo-mk-tooltip {
+  position: fixed;
+  z-index: 10000;
+  min-width: 240px;
+  max-width: 320px;
+  padding: 12px 14px;
+  background: var(--ds-bg-card);
+  border: 1px solid var(--ds-border-strong);
+  border-radius: var(--ds-radius-md);
+  box-shadow: var(--ds-shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ds-text);
+}
+.demo-mk-tooltip.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.demo-mk-tooltip-head {
+  font-size: 11px;
+  color: var(--ds-text-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ds-border);
+}
+.demo-mk-tooltip-item {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 4px 0;
+}
+.demo-mk-tooltip-item + .demo-mk-tooltip-item {
+  border-top: 1px solid var(--ds-border);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+.demo-mk-tooltip-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #000;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.demo-mk-tooltip-icon[data-type="instagram"] { background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737); color: #fff; }
+.demo-mk-tooltip-icon[data-type="facebook"]  { background: #1877F2; color: #fff; }
+.demo-mk-tooltip-icon[data-type="email"]     { background: var(--ds-accent); }
+.demo-mk-tooltip-icon[data-type="blog"]      { background: var(--ds-amber); }
+.demo-mk-tooltip-icon[data-type="sms"]       { background: var(--ds-success); }
+.demo-mk-tooltip-icon[data-type="portal"]    { background: #A855F7; color: #fff; }
+
+.demo-mk-tooltip-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.demo-mk-tooltip-channel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ds-text);
+}
+.demo-mk-tooltip-campaign {
+  font-size: 11px;
+  color: var(--ds-text-muted);
+  line-height: 1.4;
+}
+.demo-mk-tooltip-campaign[data-state="new"]::before {
+  content: "New";
+  display: inline-block;
+  margin-right: 6px;
+  padding: 1px 6px;
+  border-radius: 100px;
+  background: rgba(6, 182, 212, 0.14);
+  color: var(--ds-accent);
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  vertical-align: 1px;
+}
+
+/* ---- Platform stats ---- */
+.demo-mk-platform-stats {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+@media (max-width: 720px) { .demo-mk-platform-stats { grid-template-columns: repeat(2, 1fr); } }
+.demo-mk-pstat {
+  padding: 16px;
+  background: var(--ds-bg-card);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+}
+.demo-mk-pstat-value {
+  font-family: var(--ds-font-display);
+  font-style: italic;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--ds-cream);
+  margin-bottom: 6px;
+}
+.demo-mk-pstat-label {
+  font-size: 11px;
+  color: var(--ds-text-muted);
+}
+</style>
+</head>
+<body class="ds-page ds-root">
+  <main class="ds-container demo-mk-wide">
+    <a href="/demo/" class="ds-back">&larr; Back to demos</a>
+    <header class="ds-hero" style="margin-bottom:24px;">
+      <div class="ds-eyebrow">Agent #08 &middot; Marketing</div>
+      <h1 class="ds-h1">Marketing that <em>listens.</em></h1>
+      <p class="ds-lead">The Marketing AI staff watches every signal from YOUR Practice. Calls your AI staff took. Reviews coming in. Search drops. Competitor content. Seasonal windows. Then it drafts entire campaigns before you ask. Click a signal to see.</p>
+    </header>
+
+    <div id="demo-root"></div>
+  </main>
+
+  <script type="module">
+    import { DEMO_UNIVERSE, getAgent } from "/demo/_shell/universe.js";
+    import { initPresenterMode } from "/demo/_shell/presenter.js";
+    import { trackEvent } from "/demo/_shell/analytics.js";
+    import { mountDashboard } from "/demo/_shell/dashboard-shell.js";
+    import { typeInto } from "/demo/_shell/typewriter.js";
+
+    const AGENT = "marketing";
+    const M = DEMO_UNIVERSE.marketing;
+    const agentMeta = getAgent(AGENT);
+    const SOURCE_ICON_LETTER = { phone: "\u260E", chart: "\u25CC", target: "\u25CE", star: "\u2605", calendar: "\u25A3" };
+
+    const { contentEl, finish } = mountDashboard(
+      document.getElementById("demo-root"),
+      {
+        agent: AGENT,
+        title: "Marketing Agent",
+        subtitle: "Signals in. Campaigns out. All six channels, creative included.",
+        onReplay: () => runDemo(),
+        onSkip:   () => showEnding(),
+      }
+    );
+
+    contentEl.innerHTML = `
+      <div class="demo-mk-grid">
+        <div>
+          <div class="demo-mk-colhead">
+            <div class="demo-mk-colhead-label">Signals this week</div>
+            <div class="demo-mk-colhead-label" style="color:var(--ds-accent);">${M.signals.length} live</div>
+          </div>
+          <div class="demo-mk-signals" data-signals></div>
+        </div>
+
+        <div class="demo-mk-workspace" data-workspace>
+          <div class="demo-mk-empty" data-empty>
+            <div class="demo-mk-empty-arrow">&larr;</div>
+            <div class="demo-mk-empty-hint">Click a signal to draft a campaign</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="demo-mk-colhead">
+            <div class="demo-mk-colhead-label">Brand kit</div>
+          </div>
+          <div class="demo-mk-brand">
+            <div class="demo-mk-brand-mark">
+              <div class="demo-mk-brand-logo">${escapeHtml(M.brandKit.logoMark)}</div>
+              <div>
+                <div class="demo-mk-brand-name">YOUR Practice</div>
+                <div class="demo-mk-brand-sub">Family Medicine &middot; Dallas</div>
+              </div>
+            </div>
+            <div>
+              <div class="demo-mk-brand-block-label">Palette</div>
+              <div class="demo-mk-palette">
+                ${M.brandKit.colors.map((c) => `<div class="demo-mk-swatch" style="background:${c.hex}" title="${escapeAttr(c.name)} ${escapeAttr(c.hex)}"></div>`).join("")}
+              </div>
+            </div>
+            <div>
+              <div class="demo-mk-brand-block-label">Voice</div>
+              <div class="demo-mk-tags">
+                ${M.brandKit.voiceTags.map((t) => `<span class="demo-mk-tag">${escapeHtml(t)}</span>`).join("")}
+              </div>
+            </div>
+            <div>
+              <div class="demo-mk-brand-block-label">Connected accounts</div>
+              <div class="demo-mk-accounts">
+                ${M.brandKit.connectedAccounts.map((a) => `
+                  <div class="demo-mk-account">
+                    <span class="demo-mk-account-dot"></span>
+                    <span class="demo-mk-account-name">${escapeHtml(a.name)}</span>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-mk-calendar" data-calendar>
+        <div class="demo-mk-calendar-head">
+          <div class="demo-mk-calendar-title">Next 15 days</div>
+          <div class="demo-mk-calendar-meta" data-calendar-meta>${M.calendar.existingScheduled.filter((e) => e.offset < 15).length} scheduled</div>
+        </div>
+        <div class="demo-mk-calendar-grid" data-calendar-grid></div>
+        <div class="demo-mk-tooltip" data-calendar-tooltip role="tooltip" aria-hidden="true"></div>
+      </div>
+
+      <div class="demo-mk-platform-stats">
+        <div class="demo-mk-pstat">
+          <div class="demo-mk-pstat-value">${M.brandKit.platformStats.signalsActed}</div>
+          <div class="demo-mk-pstat-label">signals acted on this month</div>
+        </div>
+        <div class="demo-mk-pstat">
+          <div class="demo-mk-pstat-value">${M.brandKit.platformStats.piecesPublished}</div>
+          <div class="demo-mk-pstat-label">pieces published</div>
+        </div>
+        <div class="demo-mk-pstat">
+          <div class="demo-mk-pstat-value">${M.brandKit.platformStats.emailCtrPct}%</div>
+          <div class="demo-mk-pstat-label">email CTR</div>
+        </div>
+        <div class="demo-mk-pstat">
+          <div class="demo-mk-pstat-value">+${M.brandKit.platformStats.igImpressionGrowthPct}%</div>
+          <div class="demo-mk-pstat-label">Instagram impressions vs last month</div>
+        </div>
+      </div>
+    `;
+
+    // -- Render signals -------------------------------------------------------
+    const signalsEl = contentEl.querySelector("[data-signals]");
+    M.signals.forEach((s) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "demo-mk-signal";
+      btn.dataset.signalId = s.id;
+      if (s.queued) btn.dataset.queued = "true";
+      btn.innerHTML = `
+        <div class="demo-mk-signal-top">
+          <div class="demo-mk-signal-source">
+            <span class="demo-mk-signal-icon" data-icon="${escapeAttr(s.icon)}">${SOURCE_ICON_LETTER[s.icon] || ""}</span>
+            <span>${escapeHtml(s.source)}</span>
+          </div>
+          ${s.queued
+            ? `<span class="demo-mk-queued">Queued</span>`
+            : `<span class="demo-mk-confidence">${s.confidence}%</span>`
+          }
+        </div>
+        <div class="demo-mk-signal-head">${escapeHtml(s.headline)}</div>
+        <div class="demo-mk-signal-detail">${escapeHtml(s.detail)}</div>
+        <div class="demo-mk-signal-opp">${escapeHtml(s.opportunity)}</div>
+      `;
+      if (!s.queued) {
+        btn.addEventListener("click", () => openSignal(s.id));
+      } else {
+        btn.disabled = true;
+      }
+      signalsEl.appendChild(btn);
+    });
+
+    // -- Render calendar ------------------------------------------------------
+    const calGrid = contentEl.querySelector("[data-calendar-grid]");
+    const calMeta = contentEl.querySelector("[data-calendar-meta]");
+    const calTooltip = contentEl.querySelector("[data-calendar-tooltip]");
+    const calendarDays = [];
+    // Map of offset → array of { channel, campaignLabel, isNew }
+    const dayContent = new Map();
+    for (let i = 0; i < 15; i++) {
+      dayContent.set(i, []);
+      const day = document.createElement("div");
+      day.className = "demo-mk-day";
+      if (i === 0) day.classList.add("demo-mk-day-today");
+      day.innerHTML = `<div class="demo-mk-day-num">${i === 0 ? "Today" : "+" + i}</div><div class="demo-mk-day-dots" data-day-dots></div>`;
+      day.addEventListener("mouseenter", () => showDayTooltip(i, day));
+      day.addEventListener("mouseleave", hideDayTooltip);
+      day.addEventListener("focus", () => showDayTooltip(i, day));
+      day.addEventListener("blur", hideDayTooltip);
+      calGrid.appendChild(day);
+      calendarDays.push(day);
+    }
+    // Populate existing scheduled dots from universe data.
+    M.calendar.existingScheduled.forEach((e) => {
+      if (e.offset < 15) {
+        addDot(e.offset, false, {
+          channel: e.channel,
+          campaignLabel: slugToLabel(e.campaign),
+          isNew: false,
+        });
+      }
+    });
+
+    function addDot(offset, isNew, meta) {
+      const host = calendarDays[offset]?.querySelector("[data-day-dots]");
+      if (!host) return;
+      const dot = document.createElement("span");
+      dot.className = "demo-mk-day-dot";
+      if (isNew) dot.dataset.new = "true";
+      host.appendChild(dot);
+      // Track content on this day so the tooltip can render it.
+      if (meta) {
+        const list = dayContent.get(offset) || [];
+        list.push(meta);
+        dayContent.set(offset, list);
+        calendarDays[offset].dataset.hasContent = "true";
+      }
+    }
+
+    function dayLabel(offset) {
+      if (offset === 0) return "Today";
+      if (offset === 1) return "Tomorrow";
+      const d = new Date();
+      d.setDate(d.getDate() + offset);
+      const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][d.getDay()];
+      const month = d.getMonth() + 1;
+      const day = d.getDate();
+      return `${weekday} ${month}/${day}`;
+    }
+
+    function channelLabel(type) {
+      return { instagram: "Instagram", facebook: "Facebook", email: "Email newsletter", blog: "Blog post", sms: "SMS", portal: "Patient portal" }[type] || type;
+    }
+
+    function slugToLabel(slug) {
+      return String(slug || "")
+        .split(/[-_]/)
+        .map((w) => w ? w[0].toUpperCase() + w.slice(1) : "")
+        .join(" ");
+    }
+
+    function showDayTooltip(offset, dayEl) {
+      const items = dayContent.get(offset) || [];
+      if (!items.length) return;
+      calTooltip.innerHTML = `
+        <div class="demo-mk-tooltip-head">${escapeHtml(dayLabel(offset))} &middot; ${items.length} scheduled</div>
+        ${items.map((it) => `
+          <div class="demo-mk-tooltip-item">
+            <span class="demo-mk-tooltip-icon" data-type="${escapeAttr(it.channel)}">${channelIconLetter(it.channel)}</span>
+            <span class="demo-mk-tooltip-body">
+              <span class="demo-mk-tooltip-channel">${escapeHtml(channelLabel(it.channel))}</span>
+              <span class="demo-mk-tooltip-campaign"${it.isNew ? ' data-state="new"' : ""}>${escapeHtml(it.campaignLabel)}</span>
+            </span>
+          </div>
+        `).join("")}
+      `;
+      // Position above the day; flip below if it would overflow the top.
+      const rect = dayEl.getBoundingClientRect();
+      calTooltip.style.left = Math.max(8, rect.left + rect.width / 2) + "px";
+      calTooltip.style.transform = "translate(-50%, 0)";
+      // Temporarily show to measure height.
+      calTooltip.classList.add("is-visible");
+      calTooltip.setAttribute("aria-hidden", "false");
+      const tipH = calTooltip.offsetHeight;
+      const wantsTop = rect.top - tipH - 10;
+      if (wantsTop > 10) {
+        calTooltip.style.top = wantsTop + "px";
+      } else {
+        calTooltip.style.top = (rect.bottom + 10) + "px";
+      }
+    }
+    function hideDayTooltip() {
+      calTooltip.classList.remove("is-visible");
+      calTooltip.setAttribute("aria-hidden", "true");
+    }
+
+    // -- Signal → campaign logic ---------------------------------------------
+    const workspaceEl = contentEl.querySelector("[data-workspace]");
+    let currentSignalId = null;
+    let runToken = 0;
+    let finished = false;
+    let campaignsOpened = 0;
+
+    function openSignal(signalId) {
+      const signal = M.signals.find((s) => s.id === signalId);
+      if (!signal || !signal.campaignKey) return;
+      const campaign = M.campaigns[signal.campaignKey];
+      if (!campaign) return;
+
+      currentSignalId = signalId;
+      campaignsOpened++;
+      trackEvent(AGENT, "interaction", { action: "open_signal", signal: signalId, campaign: signal.campaignKey });
+
+      // Highlight active signal.
+      signalsEl.querySelectorAll(".demo-mk-signal").forEach((el) => {
+        el.dataset.active = el.dataset.signalId === signalId ? "true" : "false";
+      });
+
+      renderCampaign(signal, campaign);
+    }
+
+    function renderCampaign(signal, campaign) {
+      const myToken = ++runToken;
+      workspaceEl.innerHTML = `
+        <div class="demo-mk-campaign-head">
+          <div class="demo-mk-campaign-eyebrow">Drafting campaign &middot; triggered by ${escapeHtml(signal.source)}</div>
+          <h2 class="demo-mk-campaign-title">${escapeHtml(campaign.headline)}</h2>
+          <p class="demo-mk-campaign-pos">${escapeHtml(campaign.positioning)}</p>
+          <div class="demo-mk-voice-row">
+            ${M.brandKit.voiceTags.map((t) => `<span class="demo-mk-voice-pill">${escapeHtml(t)}</span>`).join("")}
+            <span class="demo-mk-voice-pill" style="color:var(--ds-accent);border-color:var(--ds-accent);">Audience: ${escapeHtml(campaign.audience)}</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="demo-mk-section-label">Channels <span style="color:var(--ds-text-dim);text-transform:none;letter-spacing:0;font-weight:400;">(${campaign.channels.length} drafting in parallel)</span></div>
+          <div class="demo-mk-channels" data-channels></div>
+        </div>
+
+        <div>
+          <div class="demo-mk-section-label">Creative</div>
+          <div class="demo-mk-creative">
+            <div class="demo-mk-images" data-images></div>
+            <div class="demo-mk-video" data-video data-palette="${escapeAttr(campaign.creative.video.palette)}">
+              <div class="demo-mk-video-progress" data-video-progress>
+                <div class="demo-mk-video-progress-label">Generating 15s reel</div>
+                <div class="demo-mk-video-progress-bar"><div class="demo-mk-video-progress-fill" data-video-fill></div></div>
+              </div>
+              <div class="demo-mk-video-inner">
+                <div class="demo-mk-video-meta">
+                  <span class="demo-mk-video-chip">${escapeHtml(campaign.creative.video.duration)}</span>
+                  <span class="demo-mk-video-chip">Reel</span>
+                </div>
+                <div class="demo-mk-video-caption">${escapeHtml(campaign.creative.video.caption)}</div>
+                <div class="demo-mk-video-play" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-mk-schedule" data-schedule>
+          <div class="demo-mk-schedule-label">Ready for approval</div>
+          <div class="demo-mk-schedule-progress" data-schedule-progress>
+            <span data-approved-count>0</span> of ${campaign.channels.length} approved
+            <span class="demo-mk-schedule-bar"><span class="demo-mk-schedule-fill" data-schedule-fill></span></span>
+          </div>
+          <button type="button" class="demo-mk-approve" data-approve>Approve all</button>
+        </div>
+      `;
+
+      const channelsEl = workspaceEl.querySelector("[data-channels]");
+      const imagesEl = workspaceEl.querySelector("[data-images]");
+      const videoEl = workspaceEl.querySelector("[data-video]");
+      const videoProgressEl = workspaceEl.querySelector("[data-video-progress]");
+      const videoFillEl = workspaceEl.querySelector("[data-video-fill]");
+      const scheduleEl = workspaceEl.querySelector("[data-schedule]");
+
+      // Render channel cards (empty shells) with approve footer.
+      campaign.channels.forEach((ch, i) => {
+        const card = document.createElement("div");
+        card.className = "demo-mk-channel";
+        card.dataset.type = ch.type;
+        card.dataset.status = "drafting";
+        card.dataset.channelIndex = String(i);
+        card.innerHTML = `
+          <div class="demo-mk-channel-head">
+            <span class="demo-mk-channel-icon">${channelIconLetter(ch.type)}</span>
+            <span class="demo-mk-channel-label">${escapeHtml(ch.label)}</span>
+            <span class="demo-mk-channel-schedule">${escapeHtml(ch.scheduled)}</span>
+          </div>
+          <div class="demo-mk-channel-body-wrap" data-body-wrap></div>
+          <div class="demo-mk-channel-meta">${escapeHtml(ch.meta)}</div>
+          <div class="demo-mk-channel-footer">
+            <span class="demo-mk-channel-status" data-status-label>Drafting</span>
+            <button type="button" class="demo-mk-channel-approve" data-approve-channel disabled>Approve</button>
+          </div>
+        `;
+        channelsEl.appendChild(card);
+
+        const approveBtn = card.querySelector("[data-approve-channel]");
+        approveBtn.addEventListener("click", () => approveChannel(i, campaign, myToken));
+      });
+
+      // Animate cards in + type bodies in parallel. When each body finishes,
+      // flip its status to "ready" and enable its approve button.
+      const channelCards = channelsEl.querySelectorAll(".demo-mk-channel");
+      campaign.channels.forEach((ch, i) => {
+        setTimeout(async () => {
+          if (myToken !== runToken) return;
+          channelCards[i].classList.add("is-visible");
+          await animateChannelBody(channelCards[i].querySelector("[data-body-wrap]"), ch, myToken);
+          if (myToken !== runToken) return;
+          markChannelReady(channelCards[i]);
+        }, i * 120);
+      });
+
+      // Creative images: start as skeletons, reveal one by one.
+      campaign.creative.images.forEach((img, i) => {
+        const cell = document.createElement("div");
+        cell.className = "demo-mk-image";
+        cell.dataset.state = "generating";
+        cell.dataset.palette = img.palette;
+        cell.innerHTML = `
+          <div class="demo-mk-image-style">${escapeHtml(img.style)}</div>
+          <div class="demo-mk-image-inner" style="opacity:0;">${escapeHtml(img.overlay)}</div>
+        `;
+        imagesEl.appendChild(cell);
+        setTimeout(() => {
+          if (myToken !== runToken) return;
+          cell.classList.add("is-visible");
+          cell.dataset.state = "ready";
+          cell.querySelector(".demo-mk-image-inner").style.opacity = "1";
+        }, 700 + i * 350);
+      });
+
+      // Video generation progress.
+      let vp = 0;
+      const videoTimer = setInterval(() => {
+        if (myToken !== runToken) { clearInterval(videoTimer); return; }
+        vp = Math.min(100, vp + 6 + Math.random() * 4);
+        videoFillEl.style.width = vp + "%";
+        if (vp >= 100) {
+          clearInterval(videoTimer);
+          setTimeout(() => {
+            videoProgressEl.dataset.hidden = "true";
+            videoEl.classList.add("is-visible");
+          }, 200);
+        }
+      }, 120);
+
+      // Show the schedule row as soon as drafting is underway. Dots are only
+      // added to the calendar on approval, not on draft completion.
+      const total = campaign.channels.length * 120 + 900;
+      setTimeout(() => {
+        if (myToken !== runToken) return;
+        scheduleEl.classList.add("is-visible");
+      }, total);
+
+      // Wire "Approve all" to cascade through every unapproved channel.
+      scheduleEl.querySelector("[data-approve]").addEventListener("click", () => {
+        trackEvent(AGENT, "interaction", { action: "approve_all", campaign: signal.campaignKey });
+        approveAll(campaign, myToken);
+      });
+    }
+
+    // ---- Approval + calendar correlation ---------------------------------
+
+    const approvalState = new WeakMap(); // workspace → { approved:Set<number>, campaign, myToken }
+
+    function markChannelReady(card) {
+      card.dataset.status = "ready";
+      const label = card.querySelector("[data-status-label]");
+      const btn = card.querySelector("[data-approve-channel]");
+      if (label) label.textContent = "Ready for review";
+      if (btn) btn.disabled = false;
+    }
+
+    function approveChannel(index, campaign, myToken) {
+      if (myToken !== runToken) return;
+      const channelsEl = workspaceEl.querySelector("[data-channels]");
+      const card = channelsEl.querySelector(`[data-channel-index="${index}"]`);
+      if (!card || card.dataset.status === "scheduled" || card.dataset.status === "drafting") return;
+
+      const ch = campaign.channels[index];
+      card.dataset.status = "scheduled";
+      const label = card.querySelector("[data-status-label]");
+      if (label) label.textContent = `Scheduled \u00b7 ${ch.scheduled}`;
+
+      // Fly a dot from the approve button down to the target calendar day.
+      const offset = inferOffset(ch.scheduled, index);
+      flyToCalendar(card, offset, {
+        channel: ch.type,
+        campaignLabel: campaign.headline,
+      });
+
+      // Update approval progress.
+      updateApprovalProgress(campaign);
+
+      trackEvent(AGENT, "interaction", { action: "approve_channel", channel: ch.type, index });
+
+      // If everything is approved, end the demo after a beat.
+      const allApproved = Array.from(channelsEl.querySelectorAll(".demo-mk-channel"))
+        .every((c) => c.dataset.status === "scheduled");
+      if (allApproved) {
+        setTimeout(() => { if (myToken === runToken) showEnding(); }, 1400);
+      }
+    }
+
+    function approveAll(campaign, myToken) {
+      if (myToken !== runToken) return;
+      const channelsEl = workspaceEl.querySelector("[data-channels]");
+      const cards = Array.from(channelsEl.querySelectorAll(".demo-mk-channel"));
+      let delay = 0;
+      cards.forEach((card, i) => {
+        if (card.dataset.status === "scheduled") return;
+        setTimeout(() => {
+          if (myToken !== runToken) return;
+          // Skip cards still drafting — wait until they're ready.
+          if (card.dataset.status === "drafting") {
+            // Defer until ready.
+            const check = setInterval(() => {
+              if (myToken !== runToken) { clearInterval(check); return; }
+              if (card.dataset.status === "ready") {
+                clearInterval(check);
+                approveChannel(i, campaign, myToken);
+              }
+            }, 120);
+            return;
+          }
+          approveChannel(i, campaign, myToken);
+        }, delay);
+        delay += 280;
+      });
+    }
+
+    function updateApprovalProgress(campaign) {
+      const scheduleEl = workspaceEl.querySelector("[data-schedule]");
+      const channelsEl = workspaceEl.querySelector("[data-channels]");
+      if (!scheduleEl || !channelsEl) return;
+      const approved = channelsEl.querySelectorAll('.demo-mk-channel[data-status="scheduled"]').length;
+      const total = campaign.channels.length;
+      const countEl = scheduleEl.querySelector("[data-approved-count]");
+      const fillEl = scheduleEl.querySelector("[data-schedule-fill]");
+      if (countEl) countEl.textContent = String(approved);
+      if (fillEl) fillEl.style.width = ((approved / total) * 100) + "%";
+      if (approved >= total) {
+        scheduleEl.dataset.complete = "true";
+        const label = scheduleEl.querySelector(".demo-mk-schedule-label");
+        if (label) label.textContent = "All scheduled";
+      }
+    }
+
+    function flyToCalendar(cardEl, calendarOffset, meta) {
+      const clampedOffset = Math.min(calendarOffset, calendarDays.length - 1);
+      const targetDay = calendarDays[clampedOffset];
+      if (!targetDay) return;
+      const cardRect = cardEl.getBoundingClientRect();
+      const targetRect = targetDay.getBoundingClientRect();
+      const startX = cardRect.left + cardRect.width * 0.5 - 7;
+      const startY = cardRect.top + cardRect.height * 0.5 - 7;
+      const endX   = targetRect.left + targetRect.width * 0.5 - 7;
+      const endY   = targetRect.top + targetRect.height * 0.5 - 7;
+
+      const fly = document.createElement("span");
+      fly.className = "demo-mk-fly";
+      fly.style.left = startX + "px";
+      fly.style.top  = startY + "px";
+      document.body.appendChild(fly);
+
+      // Trigger the transition on the next frame so the starting position sticks.
+      requestAnimationFrame(() => {
+        fly.style.transform = `translate(${endX - startX}px, ${endY - startY}px) scale(0.9)`;
+      });
+
+      // On arrival, pop the real calendar dot (with metadata so the tooltip
+      // shows which channel and campaign landed here) and remove the flier.
+      setTimeout(() => {
+        addDot(clampedOffset, true, meta ? { ...meta, isNew: true } : null);
+        const existing = M.calendar.existingScheduled.filter((e) => e.offset < 15).length;
+        const newDots = contentEl.querySelectorAll(".demo-mk-day-dot[data-new='true']").length;
+        calMeta.textContent = `${existing + newDots} scheduled`;
+        fly.style.opacity = "0";
+        setTimeout(() => fly.remove(), 280);
+      }, 820);
+    }
+
+    async function animateChannelBody(host, ch, myToken) {
+      if (ch.type === "email") {
+        host.innerHTML = `
+          <div class="demo-mk-channel-body" data-drafting="true">
+            <span class="demo-mk-channel-subject" data-subject></span>
+            <span data-body></span>
+          </div>
+        `;
+        const body = host.querySelector("[data-drafting]");
+        await typeInto(host.querySelector("[data-subject]"), ch.subject, { cps: 95, jitter: 0.2 });
+        if (myToken !== runToken) return;
+        await typeInto(host.querySelector("[data-body]"), ch.body, { cps: 120, jitter: 0.2 });
+        body.dataset.drafting = "false";
+        return;
+      }
+      if (ch.type === "blog") {
+        host.innerHTML = `
+          <div class="demo-mk-channel-body" data-drafting="true">
+            <span class="demo-mk-channel-subject" data-title></span>
+            <ul class="demo-mk-channel-blog-outline" data-outline></ul>
+          </div>
+        `;
+        const body = host.querySelector("[data-drafting]");
+        await typeInto(host.querySelector("[data-title]"), ch.title, { cps: 95, jitter: 0.15 });
+        if (myToken !== runToken) return;
+        const outlineEl = host.querySelector("[data-outline]");
+        for (const section of ch.outline) {
+          if (myToken !== runToken) return;
+          const li = document.createElement("li");
+          outlineEl.appendChild(li);
+          await typeInto(li, section, { cps: 140, jitter: 0.2 });
+        }
+        body.dataset.drafting = "false";
+        return;
+      }
+      // Default: plain body (instagram, facebook, sms, portal)
+      host.innerHTML = `<div class="demo-mk-channel-body" data-drafting="true"></div>`;
+      const body = host.querySelector("[data-drafting]");
+      await typeInto(body, ch.body, { cps: 100, jitter: 0.2 });
+      if (myToken !== runToken) return;
+      body.dataset.drafting = "false";
+    }
+
+    function scheduleIntoCalendar(channels) {
+      // Crude mapping from "Today" / "Tomorrow" / "Wednesday" labels to calendar offsets.
+      // This is illustrative — we just place dots evenly across the first 10 days.
+      channels.forEach((ch, i) => {
+        const offset = inferOffset(ch.scheduled, i);
+        addDot(offset, true);
+      });
+    }
+    function inferOffset(label, fallbackIndex) {
+      const lower = (label || "").toLowerCase();
+      if (lower.includes("today")) return 0;
+      if (lower.includes("tomorrow")) return 1;
+      if (lower.includes("mon")) return 3;
+      if (lower.includes("tue")) return 4;
+      if (lower.includes("wed")) return 5;
+      if (lower.includes("thu")) return 6;
+      if (lower.includes("fri")) return 7;
+      if (lower.includes("sat")) return 8;
+      if (lower.includes("sun")) return 9;
+      return Math.min(14, 2 + fallbackIndex);
+    }
+
+    function channelIconLetter(type) {
+      return { instagram: "IG", facebook: "FB", email: "@", blog: "B", sms: "SMS", portal: "P" }[type] || "?";
+    }
+
+    function showEnding() {
+      if (finished) return;
+      finished = true;
+      runToken++;
+      finish({
+        proofPoint: "Your marketing coordinator spends 6 hours a week on content and can't touch competitive intel, SEO, or cross-channel creative. This agent does all of it, every day, and routes approvals to one screen.",
+        ctaLabel: "Book 15 minutes with Anthony",
+      });
+    }
+
+    function runDemo() {
+      finished = false;
+      runToken++;
+      campaignsOpened = 0;
+      // Reset workspace and calendar "new" dots.
+      workspaceEl.innerHTML = `
+        <div class="demo-mk-empty">
+          <div class="demo-mk-empty-arrow">&larr;</div>
+          <div class="demo-mk-empty-hint">Click a signal to draft a campaign</div>
+        </div>
+      `;
+      signalsEl.querySelectorAll(".demo-mk-signal").forEach((el) => el.dataset.active = "false");
+      contentEl.querySelectorAll(".demo-mk-day-dot[data-new='true']").forEach((el) => el.remove());
+      calMeta.textContent = `${M.calendar.existingScheduled.filter((e) => e.offset < 15).length} scheduled`;
+    }
+
+    function escapeHtml(s) {
+      return String(s ?? "")
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+    function escapeAttr(s) { return escapeHtml(s); }
+
+    initPresenterMode();
+    trackEvent(AGENT, "demo_started");
+  </script>
+</body>
+</html>

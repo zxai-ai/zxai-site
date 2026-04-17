@@ -1,0 +1,94 @@
+{
+  "agent": "reactivation",
+  "persona": "Jordan",
+  "voice": "Sulafat",
+  "callerLabel": "YOUR Med Spa",
+  "voiceNote": "Warm, conversational. Not salesy. Genuine check-in tone.",
+  "openingAudio": "opening.wav",
+  "openingText": "Hi Sarah, this is Jordan calling from YOUR Med Spa. Dr. Reeves noticed it's been about eight months since your last Botox with us, and asked me to reach out. How have you been?",
+  "turns": [
+    {
+      "id": "turn-1",
+      "branches": [
+        {
+          "label": "Good, thanks. What's up?",
+          "responseAudio": "1a-warm.wav",
+          "responseText": "Doing great, thanks for asking. I'll keep this quick. You're right at your usual eight-month mark, and Dr. Reeves has Thursday at two or Friday at eleven open. Either work for you?",
+          "nextTurn": "turn-slots"
+        },
+        {
+          "label": "Now's not a great time.",
+          "responseAudio": "1b-busy.wav",
+          "responseText": "No problem at all. I'll check back in a couple weeks. If you'd rather book yourself in the meantime, you can text the practice number anytime. Take care, Sarah.",
+          "nextTurn": "end-callback"
+        },
+        {
+          "label": "I've actually been meaning to call.",
+          "responseAudio": "1c-hot.wav",
+          "responseText": "Perfect timing. Dr. Reeves left a note to offer you a little welcome-back perk, ten percent off your next Botox. Thursday at two or Friday at eleven open for you?",
+          "nextTurn": "turn-slots"
+        }
+      ]
+    },
+    {
+      "id": "turn-slots",
+      "branches": [
+        {
+          "label": "Thursday at two works.",
+          "responseAudio": "booked-thursday.wav",
+          "responseText": "Booked. Thursday at two with Dr. Reeves. I'll text you the confirmation and a reminder the day before. See you then.",
+          "nextTurn": "end-booked"
+        },
+        {
+          "label": "Friday at eleven is better.",
+          "responseAudio": "booked-friday.wav",
+          "responseText": "Booked. Friday at eleven with Dr. Reeves. I'll text you the confirmation and a reminder the day before. See you then.",
+          "nextTurn": "end-booked"
+        },
+        {
+          "label": "What's the pricing these days?",
+          "responseAudio": "pricing.wav",
+          "responseText": "Totally fair question. Botox runs twelve to fourteen per unit, and last time you did twenty-four units. So you're looking at around three hundred twenty. Dr. Reeves can dial that in at the visit. Still want Thursday at two, or Friday at eleven?",
+          "nextTurn": "turn-after-pricing"
+        }
+      ]
+    },
+    {
+      "id": "turn-after-pricing",
+      "branches": [
+        {
+          "label": "Thursday at two.",
+          "responseAudio": "booked-thursday.wav",
+          "responseText": "Booked. Thursday at two with Dr. Reeves. I'll text you the confirmation and a reminder the day before. See you then.",
+          "nextTurn": "end-booked"
+        },
+        {
+          "label": "Friday at eleven.",
+          "responseAudio": "booked-friday.wav",
+          "responseText": "Booked. Friday at eleven with Dr. Reeves. I'll text you the confirmation and a reminder the day before. See you then.",
+          "nextTurn": "end-booked"
+        },
+        {
+          "label": "Let me think about it.",
+          "responseAudio": "softhold.wav",
+          "responseText": "No rush. The ten percent welcome-back offer is good for thirty days, so you've got time. I'll text you a booking link if you want to grab a time later. Talk soon, Sarah.",
+          "nextTurn": "end-softhold"
+        }
+      ]
+    }
+  ],
+  "endings": {
+    "end-booked": {
+      "label": "Booked",
+      "proofPoint": "That patient is worth $332 on average. You have 200+ of them sitting in your list right now. Jordan calls every single one."
+    },
+    "end-callback": {
+      "label": "Follow-up scheduled",
+      "proofPoint": "Even on a not-right-now, Jordan schedules the follow-up. Most lapsed patients come back on the second or third touch, not the first."
+    },
+    "end-softhold": {
+      "label": "Soft hold",
+      "proofPoint": "Soft holds become bookings. Jordan texts the link, follows up, and converts roughly 28 percent of on-the-fence patients."
+    }
+  }
+}

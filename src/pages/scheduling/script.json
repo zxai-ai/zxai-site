@@ -1,0 +1,113 @@
+{
+  "agent": "scheduling",
+  "persona": "Mia",
+  "voice": "Laomedeia",
+  "callerLabel": "YOUR Practice",
+  "voiceNote": "Brisk, efficient, respectful of the patient's time. Not chatty.",
+  "openingAudio": "opening.wav",
+  "openingText": "Hi Sarah, this is Mia calling from YOUR Practice. Quick call to confirm your appointment with Dr. Reeves this Thursday at two. Does that still work for you?",
+  "turns": [
+    {
+      "id": "turn-1",
+      "branches": [
+        {
+          "label": "Yes, confirmed.",
+          "responseAudio": "1a-confirmed.wav",
+          "responseText": "Great, you're confirmed for Thursday at two with Dr. Reeves. I'll text a reminder the day before. Anything else you need?",
+          "nextTurn": "turn-confirmed-close"
+        },
+        {
+          "label": "Actually, can we reschedule?",
+          "responseAudio": "1b-reschedule.wav",
+          "responseText": "Happy to. Dr. Reeves has Friday at ten or Monday at three available next week. Which works better?",
+          "nextTurn": "turn-reschedule"
+        },
+        {
+          "label": "I need to cancel, sorry.",
+          "responseAudio": "1c-cancel.wav",
+          "responseText": "Not a problem. Would you like me to put you on the waitlist for next week in case an earlier slot opens, or just cancel outright?",
+          "nextTurn": "turn-cancel"
+        }
+      ]
+    },
+    {
+      "id": "turn-reschedule",
+      "branches": [
+        {
+          "label": "Friday at ten.",
+          "responseAudio": "rescheduled-friday.wav",
+          "responseText": "Done. You're now on for Friday at ten with Dr. Reeves. I'll send the update to your portal and a reminder the day before. Anything else?",
+          "nextTurn": "turn-confirmed-close"
+        },
+        {
+          "label": "Monday at three.",
+          "responseAudio": "rescheduled-monday.wav",
+          "responseText": "Done. You're now on for Monday at three with Dr. Reeves. I'll send the update to your portal and a reminder the day before. Anything else?",
+          "nextTurn": "turn-confirmed-close"
+        },
+        {
+          "label": "Neither works. Something later?",
+          "responseAudio": "reschedule-later.wav",
+          "responseText": "Of course. I'll put you on the waitlist for next week and I'll also send over a link to our full calendar so you can pick anything that fits. Anything else for now?",
+          "nextTurn": "turn-confirmed-close"
+        }
+      ]
+    },
+    {
+      "id": "turn-cancel",
+      "branches": [
+        {
+          "label": "Put me on the waitlist.",
+          "responseAudio": "waitlisted.wav",
+          "responseText": "Done. You're on the waitlist for next week, and I'll call if something opens up. Anything else?",
+          "nextTurn": "turn-confirmed-close"
+        },
+        {
+          "label": "Just cancel, thanks.",
+          "responseAudio": "cancelled.wav",
+          "responseText": "Cancelled. You'll get a confirmation in your portal. Whenever you're ready to rebook, text us or book through the portal. Take care, Sarah.",
+          "nextTurn": "end-cancelled"
+        },
+        {
+          "label": "Actually, can you just reschedule it?",
+          "responseAudio": "cancel-to-reschedule.wav",
+          "responseText": "Absolutely. Dr. Reeves has Friday at ten or Monday at three open next week. Which works?",
+          "nextTurn": "turn-reschedule"
+        }
+      ]
+    },
+    {
+      "id": "turn-confirmed-close",
+      "branches": [
+        {
+          "label": "No, that's it. Thanks Mia.",
+          "responseAudio": "close-short.wav",
+          "responseText": "You're welcome. See you soon.",
+          "nextTurn": "end-done"
+        },
+        {
+          "label": "Can I get a virtual visit instead?",
+          "responseAudio": "close-virtual.wav",
+          "responseText": "Yes, I can switch this to telehealth. I'll text you the video link before your appointment. Anything else?",
+          "nextTurn": "end-done"
+        },
+        {
+          "label": "Can you text me the directions?",
+          "responseAudio": "close-directions.wav",
+          "responseText": "On the way. You'll get a text with the address, parking notes, and the suite number. Take care.",
+          "nextTurn": "end-done"
+        }
+      ]
+    }
+  ],
+  "endings": {
+    "end-done": {
+      "label": "Handled",
+      "proofPoint": "That call takes your front desk four to six minutes. Multiply by 30 patients a day. Mia does all of them before your staff clocks in."
+    },
+    "end-cancelled": {
+      "label": "Cancelled",
+      "proofPoint": "Even cancellations don't get wasted. Mia offers the waitlist, logs the reason, and flags rebook windows so nothing slips."
+    }
+  }
+}

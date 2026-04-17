@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reputation Agent · ZxAI Agent Demo</title>
+<meta name="description" content="Watch the Reputation AI staff agent ask every happy patient for a review and catch every unhappy patient before a public post.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/demo/_shell/shell.css">
+<script src="/consent.js" defer></script>
+<style>
+/* -----------------------------------------------------------------------
+ * Reputation (#07) — audit-aligned flow:
+ *   appointment ends → 2hr wait → SMS satisfaction check → branch →
+ *     positive (4-5): Google review link sent
+ *     neutral/negative (1-3): routed privately to practice manager
+ * ----------------------------------------------------------------------- */
+
+.demo-rep-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 980px) { .demo-rep-grid { grid-template-columns: 1fr; } }
+
+.demo-rep-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.demo-rep-card {
+  background: var(--ds-bg-elevated);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.15s ease;
+}
+.demo-rep-card.is-visible { opacity: 1; transform: translateY(0); }
+.demo-rep-card[data-outcome="review-link"] {
+  border-color: rgba(20, 184, 166, 0.3);
+  background: linear-gradient(180deg, rgba(20, 184, 166, 0.04), transparent 40%), var(--ds-bg-elevated);
+}
+.demo-rep-card[data-outcome="escalated"],
+.demo-rep-card[data-outcome="escalated-urgent"] {
+  border-color: rgba(248, 113, 113, 0.28);
+  background: linear-gradient(180deg, rgba(248, 113, 113, 0.05), transparent 40%), var(--ds-bg-elevated);
+}
+
+.demo-rep-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--ds-border);
+}
+.demo-rep-patient {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.demo-rep-patient-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ds-accent), var(--ds-accent-2));
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.demo-rep-patient-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+.demo-rep-patient-visit {
+  font-size: 12px;
+  color: var(--ds-text-dim);
+}
+.demo-rep-clock {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: var(--ds-text-dim);
+  padding: 3px 8px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--ds-border);
+  white-space: nowrap;
+}
+
+/* SMS exchange inside the card */
+.demo-rep-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.demo-rep-msg {
+  max-width: 90%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.demo-rep-msg.is-visible { opacity: 1; transform: translateY(0); }
+.demo-rep-msg-from-agent {
+  align-self: flex-start;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-bottom-left-radius: 4px;
+  color: var(--ds-text);
+}
+.demo-rep-msg-from-patient {
+  align-self: flex-end;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--ds-border-strong);
+  border-bottom-right-radius: 4px;
+  color: var(--ds-text);
+  font-weight: 600;
+}
+.demo-rep-msg-label {
+  display: block;
+  font-size: 10px;
+  color: var(--ds-text-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+/* Outcome ribbon at card footer */
+.demo-rep-outcome {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--ds-radius-sm);
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.demo-rep-outcome.is-visible { opacity: 1; }
+.demo-rep-outcome[data-outcome="review-link"] {
+  background: rgba(20, 184, 166, 0.1);
+  border: 1px solid rgba(20, 184, 166, 0.28);
+  color: var(--ds-success);
+}
+.demo-rep-outcome[data-outcome="escalated"] {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  color: var(--ds-amber);
+}
+.demo-rep-outcome[data-outcome="escalated-urgent"] {
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: var(--ds-red);
+}
+.demo-rep-outcome strong {
+  display: inline-block;
+  margin-right: 6px;
+  font-weight: 700;
+  color: inherit;
+  letter-spacing: 0.02em;
+}
+
+.demo-rep-posted-review {
+  margin-top: 10px;
+  padding: 12px 14px;
+  background: #FFFFFF;
+  color: #111;
+  border-radius: var(--ds-radius-sm);
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.demo-rep-posted-review.is-visible { opacity: 1; }
+.demo-rep-posted-source {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #666;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.demo-rep-posted-source::before {
+  content: "G";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #4285F4;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+}
+.demo-rep-posted-stars {
+  color: #F59E0B;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+/* Weekly summary sidebar */
+.demo-rep-summary {
+  position: sticky;
+  top: 88px;
+  background: var(--ds-bg-card);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.demo-rep-summary-title {
+  font-size: 12px;
+  color: var(--ds-text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.demo-rep-kpi {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--ds-border);
+}
+.demo-rep-kpi:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.demo-rep-kpi-label {
+  font-size: 12px;
+  color: var(--ds-text-muted);
+}
+.demo-rep-kpi-value {
+  font-family: var(--ds-font-display);
+  font-style: italic;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--ds-cream);
+}
+
+.demo-rep-legend {
+  margin-top: 6px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed var(--ds-border-strong);
+  border-radius: var(--ds-radius-sm);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ds-text-muted);
+}
+.demo-rep-legend strong {
+  display: block;
+  color: var(--ds-text);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+</style>
+</head>
+<body class="ds-page ds-root">
+  <main class="ds-container">
+    <a href="/demo/" class="ds-back">&larr; Back to demos</a>
+    <header class="ds-hero" style="margin-bottom:24px;">
+      <div class="ds-eyebrow">Agent #07 &middot; Reputation</div>
+      <h1 class="ds-h1">Every happy patient <em>asked.</em> Every unhappy patient <em>caught first.</em></h1>
+      <p class="ds-lead">Two hours after a visit ends, the agent sends a one-question satisfaction text. 4 or 5 becomes a Google review request. 1 to 3 goes to YOUR Practice manager privately. Negative feedback never becomes a public post.</p>
+    </header>
+    <div id="demo-root"></div>
+  </main>
+
+  <script type="module">
+    import { DEMO_UNIVERSE, getAgent } from "/demo/_shell/universe.js";
+    import { initPresenterMode } from "/demo/_shell/presenter.js";
+    import { trackEvent } from "/demo/_shell/analytics.js";
+    import { mountDashboard } from "/demo/_shell/dashboard-shell.js";
+
+    const AGENT = "reputation";
+    const rep = DEMO_UNIVERSE.reputation;
+    const agentMeta = getAgent(AGENT);
+
+    const { contentEl, finish } = mountDashboard(
+      document.getElementById("demo-root"),
+      {
+        agent: AGENT,
+        title: "Reputation Agent",
+        subtitle: "Same flow for every visit. Patient data tokenized inside the platform.",
+        onReplay: () => run(),
+        onSkip: () => showEnding(),
+      }
+    );
+
+    contentEl.innerHTML = `
+      <div class="demo-rep-grid">
+        <div>
+          <div class="demo-rep-flow" data-flow></div>
+          <div class="demo-rep-legend">
+            <strong>Why it works</strong>
+            Positive reviews are the algorithm's fuel for local search. Negative experiences get a private call from a human instead of a 1-star public post. Both matter. Both are handled the same day.
+          </div>
+        </div>
+
+        <aside class="demo-rep-summary">
+          <div class="demo-rep-summary-title">This week</div>
+          <div class="demo-rep-kpi">
+            <span class="demo-rep-kpi-label">Review requests sent</span>
+            <span class="demo-rep-kpi-value" data-sent>0</span>
+          </div>
+          <div class="demo-rep-kpi">
+            <span class="demo-rep-kpi-label">Google reviews posted</span>
+            <span class="demo-rep-kpi-value" data-posted>0</span>
+          </div>
+          <div class="demo-rep-kpi">
+            <span class="demo-rep-kpi-label">Average stars</span>
+            <span class="demo-rep-kpi-value" data-stars>0</span>
+          </div>
+          <div class="demo-rep-kpi">
+            <span class="demo-rep-kpi-label">Flagged for manager</span>
+            <span class="demo-rep-kpi-value" data-flagged>0</span>
+          </div>
+        </aside>
+      </div>
+    `;
+
+    const flowEl = contentEl.querySelector("[data-flow]");
+    const sentEl = contentEl.querySelector("[data-sent]");
+    const postedEl = contentEl.querySelector("[data-posted]");
+    const starsEl = contentEl.querySelector("[data-stars]");
+    const flaggedEl = contentEl.querySelector("[data-flagged]");
+
+    let timers = [];
+    let runToken = 0;
+    let finished = false;
+
+    function clearTimers() { timers.forEach((t) => clearTimeout(t)); timers = []; }
+    function schedule(fn, delay) { const id = setTimeout(fn, delay); timers.push(id); return id; }
+
+    function minutesAgoLabel(mins) {
+      const h = Math.floor(mins / 60);
+      const m = mins % 60;
+      if (h === 0) return `${m} min ago`;
+      if (m === 0) return `${h}h ago`;
+      return `${h}h ${m}m ago`;
+    }
+
+    function renderCardShell(p) {
+      const card = document.createElement("article");
+      card.className = "demo-rep-card";
+      card.dataset.outcome = p.outcome;
+      card.innerHTML = `
+        <div class="demo-rep-card-head">
+          <div class="demo-rep-patient">
+            <span class="demo-rep-patient-avatar">P</span>
+            <div>
+              <div class="demo-rep-patient-name">Patient #${escapeHtml(p.id)}</div>
+              <div class="demo-rep-patient-visit">${escapeHtml(p.visitType)} &middot; visit ended ${escapeHtml(minutesAgoLabel(p.visitedMinutesAgo))}</div>
+            </div>
+          </div>
+          <div class="demo-rep-clock">t + 2h</div>
+        </div>
+        <div class="demo-rep-thread" data-thread></div>
+        <div class="demo-rep-outcome" data-outcome-box data-outcome="${escapeAttr(p.outcome)}"></div>
+      `;
+      return card;
+    }
+
+    function addMessage(threadEl, opts) {
+      const msg = document.createElement("div");
+      msg.className = `demo-rep-msg demo-rep-msg-from-${opts.from}`;
+      const label = opts.from === "agent" ? "Reputation Agent · SMS" : `Patient · reply`;
+      msg.innerHTML = `<span class="demo-rep-msg-label">${escapeHtml(label)}</span>${escapeHtml(opts.text)}`;
+      threadEl.appendChild(msg);
+      requestAnimationFrame(() => msg.classList.add("is-visible"));
+      return msg;
+    }
+
+    async function playCard(p, cardEl, myToken) {
+      if (myToken !== runToken) return;
+      const threadEl = cardEl.querySelector("[data-thread]");
+      const outcomeBox = cardEl.querySelector("[data-outcome-box]");
+
+      // Step 1: agent sends satisfaction SMS
+      await sleep(400);
+      if (myToken !== runToken) return;
+      addMessage(threadEl, { from: "agent", text: p.satisfactionMessage });
+
+      // Step 2: patient reply
+      await sleep(1200);
+      if (myToken !== runToken) return;
+      addMessage(threadEl, { from: "patient", text: p.patientReply });
+
+      // Step 3: branch — follow-up message or escalation
+      await sleep(900);
+      if (myToken !== runToken) return;
+
+      if (p.outcome === "review-link") {
+        addMessage(threadEl, { from: "agent", text: p.followupMessage });
+        sentEl.textContent = String(parseInt(sentEl.textContent || "0", 10) + 1);
+
+        outcomeBox.innerHTML = `<strong>Review link sent</strong> Patient scored ${p.patientReply}/5. Automated Google review request dispatched. No human touch needed.`;
+        outcomeBox.classList.add("is-visible");
+
+        // Optional: if review got posted, show it
+        if (p.reviewPosted) {
+          await sleep(1100);
+          if (myToken !== runToken) return;
+          const review = document.createElement("div");
+          review.className = "demo-rep-posted-review";
+          review.innerHTML = `
+            <div class="demo-rep-posted-source">Google review &middot; posted 1 day later</div>
+            <div class="demo-rep-posted-stars">${"&#9733;".repeat(p.reviewStars)}</div>
+            <div>${escapeHtml(p.reviewText)}</div>
+          `;
+          cardEl.appendChild(review);
+          requestAnimationFrame(() => review.classList.add("is-visible"));
+          postedEl.textContent = String(parseInt(postedEl.textContent || "0", 10) + 1);
+          updateAverageStars();
+        }
+      } else {
+        outcomeBox.innerHTML = `<strong>${p.outcome === "escalated-urgent" ? "Urgent flag" : "Flagged for manager"}</strong> ${escapeHtml(p.escalationSummary)}`;
+        outcomeBox.classList.add("is-visible");
+        flaggedEl.textContent = String(parseInt(flaggedEl.textContent || "0", 10) + 1);
+      }
+    }
+
+    function updateAverageStars() {
+      // Compute running average from posted reviews in the rendered data.
+      const posted = rep.patients.filter((p) => p.reviewPosted);
+      if (!posted.length) return;
+      const avg = posted.reduce((s, p) => s + p.reviewStars, 0) / posted.length;
+      starsEl.textContent = avg.toFixed(1);
+    }
+
+    async function run() {
+      const myToken = ++runToken;
+      finished = false;
+      clearTimers();
+      flowEl.innerHTML = "";
+      sentEl.textContent = "0";
+      postedEl.textContent = "0";
+      starsEl.textContent = "0";
+      flaggedEl.textContent = "0";
+
+      for (let i = 0; i < rep.patients.length; i++) {
+        if (myToken !== runToken) return;
+        const p = rep.patients[i];
+        const cardEl = renderCardShell(p);
+        flowEl.appendChild(cardEl);
+        requestAnimationFrame(() => cardEl.classList.add("is-visible"));
+        playCard(p, cardEl, myToken); // fire-and-forget so the cards cascade
+        await sleep(1200);
+      }
+
+      // Wait for final per-card animations, then show the end card.
+      schedule(() => {
+        if (myToken === runToken && !finished) showEnding();
+      }, 8000);
+    }
+
+    function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+    function showEnding() {
+      if (finished) return;
+      finished = true;
+      runToken++;
+      clearTimers();
+      // Snap KPIs to the published weekly numbers so the end state shows what
+      // a full week looks like, not just this demo run.
+      sentEl.textContent   = String(rep.weeklyStats.requestsSent);
+      postedEl.textContent = String(rep.weeklyStats.reviewsPosted);
+      starsEl.textContent  = rep.weeklyStats.averageStars.toFixed(1);
+      flaggedEl.textContent = String(rep.weeklyStats.flaggedForManager);
+      finish({
+        proofPoint: agentMeta.proofPoint,
+        ctaLabel: "Book 15 minutes with Anthony",
+      });
+    }
+
+    function escapeHtml(s) {
+      return String(s ?? "")
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+    function escapeAttr(s) { return escapeHtml(s); }
+
+    initPresenterMode();
+    run();
+  </script>
+</body>
+</html>

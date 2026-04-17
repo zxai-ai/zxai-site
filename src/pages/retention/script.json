@@ -1,0 +1,86 @@
+{
+  "agent": "retention",
+  "persona": "Sam",
+  "voice": "Vindemiatrix",
+  "callerLabel": "YOUR Concierge Medicine",
+  "voiceNote": "Warm, proactive, VIP coordinator. Treats the member like a person, not a ticket.",
+  "openingAudio": "opening.wav",
+  "openingText": "Hi Sarah, this is Sam from YOUR Concierge Medicine. I'm just following up on your wellness visit with Dr. Reeves last week. Wanted to check in and see how you're feeling, and if anything came up afterward you want to talk through.",
+  "turns": [
+    {
+      "id": "turn-1",
+      "branches": [
+        {
+          "label": "The visit was great, thanks for checking.",
+          "responseAudio": "1a-positive.wav",
+          "responseText": "Happy to hear it. Dr. Reeves wanted me to flag two follow-ups from your chart. You've got lab orders ready, metabolic panel and lipid panel, and Dr. Reeves wanted to offer a sleep study referral if symptoms keep up. Want me to get those labs scheduled this week?",
+          "nextTurn": "turn-labs"
+        },
+        {
+          "label": "Actually I had a question.",
+          "responseAudio": "1b-question.wav",
+          "responseText": "Of course, happy to help. If it's about your visit, or the labs Dr. Reeves ordered, I can answer most of it. And since I have you, Dr. Reeves did order a metabolic panel and a lipid panel. Want me to get those on the calendar while we're talking?",
+          "nextTurn": "turn-labs"
+        },
+        {
+          "label": "Nothing comes to mind.",
+          "responseAudio": "1c-nothing.wav",
+          "responseText": "Good to know. I do have two quick things from Dr. Reeves before I let you go. You've got lab orders, metabolic panel and lipid panel, and there's a sleep study referral on file if you need it. Can I get you on the calendar for the labs this week?",
+          "nextTurn": "turn-labs"
+        }
+      ]
+    },
+    {
+      "id": "turn-labs",
+      "branches": [
+        {
+          "label": "Tuesday at 8 AM works.",
+          "responseAudio": "booked-tuesday.wav",
+          "responseText": "Perfect. Tuesday at eight for your labs with Dr. Reeves. I'll text you fasting instructions and a reminder the night before. Anything else while I have you?",
+          "nextTurn": "turn-close"
+        },
+        {
+          "label": "Wednesday at 10 AM is better.",
+          "responseAudio": "booked-wednesday.wav",
+          "responseText": "Perfect. Wednesday at ten for your labs with Dr. Reeves. I'll text you fasting instructions and a reminder the night before. Anything else while I have you?",
+          "nextTurn": "turn-close"
+        },
+        {
+          "label": "Can I do them at my local lab instead?",
+          "responseAudio": "external-labs.wav",
+          "responseText": "Totally fine. I'll fax the orders to whatever lab is easiest for you. Text me the name, or I can send a short list of places Dr. Reeves recommends in your area. Anything else on your mind today?",
+          "nextTurn": "turn-close"
+        }
+      ]
+    },
+    {
+      "id": "turn-close",
+      "branches": [
+        {
+          "label": "Can you email me a visit summary?",
+          "responseAudio": "send-summary.wav",
+          "responseText": "Sent. You'll see it in your inbox in a minute, and it'll also be in your portal if you prefer to read it there. Anything else?",
+          "nextTurn": "end-coordinated"
+        },
+        {
+          "label": "No, all good. Thanks Sam.",
+          "responseAudio": "close-thankyou.wav",
+          "responseText": "You're welcome, Sarah. We'll see you for labs and I'll check back in after. Dr. Reeves or I are always reachable if anything comes up. Take care.",
+          "nextTurn": "end-coordinated"
+        },
+        {
+          "label": "Actually, I want to add a visit for my daughter.",
+          "responseAudio": "add-family.wav",
+          "responseText": "Of course. I'll send you a quick intake link for her. Once you send it back, I'll get her on Dr. Reeves' schedule. Anything else today?",
+          "nextTurn": "end-coordinated"
+        }
+      ]
+    }
+  ],
+  "endings": {
+    "end-coordinated": {
+      "label": "Follow-ups coordinated",
+      "proofPoint": "Your members pay $300 to $500 a month for this level of attention. Sam makes sure they actually get it, without eating your physician's time."
+    }
+  }
+}

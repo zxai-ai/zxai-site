@@ -816,6 +816,118 @@
 }
 
 /* -------------------------------------------------------------------------
+ * Voice demo layout (Jordan, Sam, Mia)
+ * ------------------------------------------------------------------------- */
+
+.demo-voice-layout {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 56px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+@media (max-width: 960px) {
+  .demo-voice-layout { grid-template-columns: 1fr; gap: 28px; }
+}
+
+.demo-voice-copy { max-width: 54ch; }
+.demo-voice-copy h1 {
+  font-size: clamp(28px, 4.5vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.demo-voice-copy h1 em {
+  font-family: var(--ds-font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ds-accent);
+}
+.demo-voice-copy p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ds-text-muted);
+  margin-bottom: 14px;
+}
+
+.demo-voice-scenario {
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--ds-bg-card);
+  border: 1px solid var(--ds-border);
+  border-left: 3px solid var(--ds-accent);
+  border-radius: var(--ds-radius-sm);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ds-text);
+}
+.demo-voice-scenario strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ds-accent);
+}
+
+.demo-voice-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.demo-voice-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--ds-border);
+  font-size: 12px;
+  color: var(--ds-text-muted);
+}
+.demo-voice-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ds-success);
+}
+
+/* "How this works" note, used on scripted voice demos to clarify the
+   demo-vs-production distinction and point prospects at Katie as the live
+   reference. */
+.demo-voice-note {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  border-left: 3px solid var(--ds-amber);
+  border-radius: var(--ds-radius-sm);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ds-text);
+}
+.demo-voice-note strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ds-amber);
+}
+.demo-voice-note a {
+  color: var(--ds-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.demo-voice-note a:hover { text-decoration: underline; }
+
+/* -------------------------------------------------------------------------
  * Utility animations
  * ------------------------------------------------------------------------- */
 

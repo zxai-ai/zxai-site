@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retention Agent · ZxAI Agent Demo</title>
+<meta name="description" content="Meet Sam, the Retention AI staff agent. Post-visit follow-ups that turn concierge membership into real attention.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/demo/_shell/shell.css">
+<script src="/consent.js" defer></script>
+</head>
+<body class="ds-page ds-root">
+  <main class="ds-container">
+    <a href="/demo/" class="ds-back">&larr; Back to demos</a>
+    <div class="ds-eyebrow">Agent #06 &middot; Retention</div>
+
+    <div class="demo-voice-layout">
+      <div class="demo-voice-copy">
+        <h1>Meet Sam. <em>Your concierge follow-up, handled.</em></h1>
+        <p>Sam is the Retention AI staff member at YOUR Concierge Medicine. After every visit, Sam checks in, flags follow-up labs, coordinates referrals, and makes sure members actually get the VIP experience they're paying for.</p>
+        <div class="demo-voice-scenario">
+          <strong>You are the patient</strong>
+          You're a member at YOUR Concierge Medicine. You had a wellness visit last week with Dr. Reeves. Everything went fine. Sam is calling to follow up. Click Accept to take the call.
+        </div>
+        <div class="demo-voice-note">
+          <strong>How this demo works</strong>
+          This demo plays pre-recorded clips with scripted branches so every prospect sees the same flow. In production, Sam responds live, in real time, on actual patient calls, like <a href="/demo/front-desk">Katie</a>.
+        </div>
+      </div>
+
+      <div id="call-mount"></div>
+    </div>
+
+    <div id="end-card-mount"></div>
+  </main>
+
+  <script type="module">
+    import { initPresenterMode } from "/demo/_shell/presenter.js";
+    import { mountScriptedCall } from "/demo/_shell/call-ui.js";
+    import { renderEndCard } from "/demo/_shell/end-card.js";
+    import { trackEvent } from "/demo/_shell/analytics.js";
+
+    const AGENT = "retention";
+    const callEl = document.getElementById("call-mount");
+    const endCardEl = document.getElementById("end-card-mount");
+
+    initPresenterMode();
+
+    let script = null;
+    try {
+      const res = await fetch("/retention/script.json", { cache: "no-cache" });
+      if (!res.ok) throw new Error("script fetch failed " + res.status);
+      script = await res.json();
+    } catch (err) {
+      callEl.innerHTML = `<p style="color:var(--ds-red);">Could not load demo script. Please refresh.</p>`;
+      console.error(err);
+    }
+
+    if (script) startDemo();
+
+    function startDemo() {
+      endCardEl.innerHTML = "";
+      mountScriptedCall(callEl, {
+        agent: AGENT,
+        persona: script.persona,
+        callerLabel: script.callerLabel,
+        script,
+        audioBase: "/retention/audio/",
+        onEnd: ({ endingKey }) => {
+          const ending = script.endings[endingKey] || { proofPoint: "Demo complete." };
+          renderEndCard(endCardEl, {
+            agent: AGENT,
+            proofPoint: ending.proofPoint,
+            ctaLabel: "Book 15 minutes with Anthony",
+            secondaryLabel: "Try another demo",
+            secondaryHref: "/demo/",
+            onReplay: () => {
+              trackEvent(AGENT, "replay");
+              startDemo();
+            },
+          });
+          endCardEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        },
+        onSkip: () => {
+          renderEndCard(endCardEl, {
+            agent: AGENT,
+            proofPoint: "Your members pay $300 to $500 a month for this level of attention. Sam makes sure they actually get it, without eating your physician's time.",
+            ctaLabel: "Book 15 minutes with Anthony",
+            secondaryLabel: "Try another demo",
+            secondaryHref: "/demo/",
+            onReplay: () => startDemo(),
+          });
+          endCardEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        },
+      });
+    }
+  </script>
+</body>
+</html>

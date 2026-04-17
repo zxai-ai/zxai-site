@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prior Auth Agent · ZxAI Agent Demo</title>
+<meta name="description" content="Watch the Prior Auth AI staff agent file and follow up on an MRI authorization in 2 days instead of 11.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/demo/_shell/shell.css">
+<script src="/consent.js" defer></script>
+<style>
+/* -----------------------------------------------------------------------
+ * Prior Auth demo (#03) — side-by-side animated timelines
+ * ----------------------------------------------------------------------- */
+
+.demo-pa-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 820px) {
+  .demo-pa-split { grid-template-columns: 1fr; }
+}
+
+.demo-pa-column {
+  background: var(--ds-bg-elevated);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.demo-pa-column[data-track="manual"] {
+  background:
+    linear-gradient(180deg, rgba(248, 113, 113, 0.06), transparent 30%),
+    var(--ds-bg-elevated);
+  border-color: rgba(248, 113, 113, 0.2);
+}
+.demo-pa-column[data-track="ai"] {
+  background:
+    linear-gradient(180deg, rgba(20, 184, 166, 0.08), transparent 30%),
+    var(--ds-bg-elevated);
+  border-color: rgba(20, 184, 166, 0.25);
+}
+
+.demo-pa-col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ds-border);
+}
+.demo-pa-col-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.demo-pa-col-title::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.demo-pa-column[data-track="manual"] .demo-pa-col-title::before {
+  background: var(--ds-red);
+}
+.demo-pa-column[data-track="ai"] .demo-pa-col-title::before {
+  background: var(--ds-success);
+}
+.demo-pa-clock {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--ds-text-muted);
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--ds-border);
+}
+
+.demo-pa-auth-card {
+  padding: 14px;
+  background: var(--ds-bg-card);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-sm);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.demo-pa-auth-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--ds-text-muted);
+}
+.demo-pa-auth-row strong {
+  color: var(--ds-text);
+  font-weight: 500;
+}
+.demo-pa-auth-procedure {
+  color: var(--ds-text) !important;
+  font-weight: 600 !important;
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.demo-pa-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 240px;
+}
+.demo-pa-event {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-sm);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.demo-pa-event.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.demo-pa-event-day {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: var(--ds-text-dim);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.demo-pa-event-day::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ds-text-dim);
+  flex-shrink: 0;
+}
+.demo-pa-event[data-tone="warning"] .demo-pa-event-day::before { background: #EAB308; }
+.demo-pa-event[data-tone="alert"] .demo-pa-event-day::before   { background: var(--ds-amber); }
+.demo-pa-event[data-tone="success"] .demo-pa-event-day::before { background: var(--ds-success); }
+.demo-pa-event-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ds-text);
+}
+
+.demo-pa-result {
+  padding: 12px 14px;
+  border-radius: var(--ds-radius-sm);
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.demo-pa-result.is-visible { opacity: 1; }
+.demo-pa-column[data-track="manual"] .demo-pa-result {
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  color: var(--ds-red);
+}
+.demo-pa-column[data-track="ai"] .demo-pa-result {
+  background: rgba(20, 184, 166, 0.1);
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  color: var(--ds-success);
+}
+.demo-pa-result strong {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: inherit;
+  letter-spacing: 0.01em;
+}
+.demo-pa-result span {
+  color: var(--ds-text-muted);
+  font-size: 12px;
+}
+
+.demo-pa-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.demo-pa-stats.is-visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 720px) {
+  .demo-pa-stats { grid-template-columns: 1fr; }
+}
+.demo-pa-stat {
+  padding: 22px;
+  background: var(--ds-bg-card);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+}
+.demo-pa-stat-label {
+  font-size: 11px;
+  color: var(--ds-text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.demo-pa-stat-value {
+  font-family: var(--ds-font-display);
+  font-style: italic;
+  font-size: 38px;
+  line-height: 1.1;
+  color: var(--ds-cream);
+  margin-bottom: 6px;
+}
+.demo-pa-stat-compare {
+  font-size: 12px;
+  color: var(--ds-text-muted);
+}
+.demo-pa-stat-compare strong {
+  color: var(--ds-red);
+  font-weight: 500;
+}
+</style>
+</head>
+<body class="ds-page ds-root">
+  <main class="ds-container">
+    <a href="/demo/" class="ds-back">&larr; Back to demos</a>
+    <header class="ds-hero" style="margin-bottom:24px;">
+      <div class="ds-eyebrow">Agent #03 &middot; Prior Auth</div>
+      <h1 class="ds-h1">Files. Follows up. <em>Wins approvals.</em></h1>
+      <p class="ds-lead">Same MRI authorization request, two paths. One takes 11 days and burns 2.3 hours of your staff's time. The other takes 2 days and touches zero humans.</p>
+    </header>
+
+    <div id="demo-root"></div>
+  </main>
+
+  <script type="module">
+    import { DEMO_UNIVERSE, getAgent } from "/demo/_shell/universe.js";
+    import { initPresenterMode } from "/demo/_shell/presenter.js";
+    import { trackEvent } from "/demo/_shell/analytics.js";
+    import { mountDashboard } from "/demo/_shell/dashboard-shell.js";
+
+    const AGENT = "prior-auth";
+    const data = DEMO_UNIVERSE.priorAuth;
+    const auth = DEMO_UNIVERSE.patient.mriAuth;
+    const practice = DEMO_UNIVERSE.practice.name;
+    const provider = DEMO_UNIVERSE.provider.name;
+    const agentMeta = getAgent(AGENT);
+
+    // Mount the dashboard shell (handles skip/replay/end-card).
+    const { contentEl, finish } = mountDashboard(
+      document.getElementById("demo-root"),
+      {
+        agent: AGENT,
+        title: "Prior Auth Agent",
+        subtitle: "Same request. Same payer. Very different outcomes.",
+        onReplay: () => run(),
+        onSkip: () => showEnding(),
+      }
+    );
+
+    // Render the static structure once; animation is driven by toggling classes.
+    contentEl.innerHTML = `
+      <div class="demo-pa-split">
+        ${renderColumn("manual", "Manual Process", data.manualTimeline)}
+        ${renderColumn("ai",     "AI Staff Agent", data.aiTimeline)}
+      </div>
+      <div class="demo-pa-stats" data-stats>
+        <div class="demo-pa-stat">
+          <div class="demo-pa-stat-label">Time per auth</div>
+          <div class="demo-pa-stat-value" style="font-size:30px;">${data.stats.timePerAuth.withAi}</div>
+          <div class="demo-pa-stat-compare">Manual: <strong>${data.stats.timePerAuth.manual}</strong></div>
+        </div>
+        <div class="demo-pa-stat">
+          <div class="demo-pa-stat-label">Staff hours per auth</div>
+          <div class="demo-pa-stat-value">${data.stats.staffHoursPerAuth.withAi}</div>
+          <div class="demo-pa-stat-compare">Manual: <strong>${data.stats.staffHoursPerAuth.manual}</strong></div>
+        </div>
+        <div class="demo-pa-stat">
+          <div class="demo-pa-stat-label">Physician hours back</div>
+          <div class="demo-pa-stat-value">${data.stats.physicianHoursRecoveredPerWeek}</div>
+          <div class="demo-pa-stat-compare">per week, per physician</div>
+        </div>
+      </div>
+      <p style="margin-top:12px;font-size:11px;color:var(--ds-text-dim);text-align:right;">${data.stats.source}</p>
+    `;
+
+    const statsEl = contentEl.querySelector("[data-stats]");
+
+    function renderColumn(track, title, timeline) {
+      const isManual = track === "manual";
+      const totalDays = timeline[timeline.length - 1].day;
+      const staffHours = isManual ? data.stats.staffHoursPerAuth.manual : data.stats.staffHoursPerAuth.withAi;
+      const resultCopy = isManual
+        ? `<strong>${totalDays} days</strong><span>Staff time: ${staffHours} hours on this single auth</span>`
+        : `<strong>${totalDays} days</strong><span>Staff time: ${staffHours} hours. Agent handled it.</span>`;
+
+      return `
+        <section class="demo-pa-column" data-track="${track}">
+          <div class="demo-pa-col-header">
+            <div class="demo-pa-col-title">${escapeHtml(title)}</div>
+            <div class="demo-pa-clock" data-clock>Day 1</div>
+          </div>
+          <div class="demo-pa-auth-card">
+            <span class="demo-pa-auth-procedure">${escapeHtml(auth.procedure)}</span>
+            <div class="demo-pa-auth-row"><span>Provider</span><strong>${escapeHtml(provider)}</strong></div>
+            <div class="demo-pa-auth-row"><span>Practice</span><strong>${escapeHtml(practice)}</strong></div>
+            <div class="demo-pa-auth-row"><span>Payer</span><strong>${escapeHtml(auth.payer)}</strong></div>
+            <div class="demo-pa-auth-row"><span>CPT</span><strong>${escapeHtml(auth.cpt)}</strong></div>
+          </div>
+          <ol class="demo-pa-timeline" data-timeline>
+            ${timeline.map((ev) => `
+              <li class="demo-pa-event" data-tone="${escapeHtml(ev.tone)}">
+                <div class="demo-pa-event-day">Day ${ev.day}</div>
+                <div class="demo-pa-event-body">${escapeHtml(ev.label)}</div>
+              </li>
+            `).join("")}
+          </ol>
+          <div class="demo-pa-result" data-result>${resultCopy}</div>
+        </section>
+      `;
+    }
+
+    // Animation ---------------------------------------------------------------
+
+    // Manual: 5 events over ~15s. AI: 3 events over ~5s.
+    // Delays are cumulative (from animation start).
+    const MANUAL_DELAYS = [400, 3200, 6200, 9500, 12800]; // ms
+    const AI_DELAYS     = [600, 1800, 3800];              // ms
+    const MANUAL_TOTAL  = 14000;
+    const AI_TOTAL      = 4800;
+    const STATS_DELAY   = Math.max(MANUAL_TOTAL, AI_TOTAL) + 400;
+
+    let pendingTimers = [];
+    let finished = false;
+
+    function clearTimers() {
+      pendingTimers.forEach((t) => clearTimeout(t));
+      pendingTimers = [];
+    }
+
+    function schedule(fn, delay) {
+      const id = setTimeout(fn, delay);
+      pendingTimers.push(id);
+      return id;
+    }
+
+    function run() {
+      clearTimers();
+      finished = false;
+      // Reset UI.
+      contentEl.querySelectorAll(".demo-pa-event").forEach((el) => el.classList.remove("is-visible"));
+      contentEl.querySelectorAll(".demo-pa-result").forEach((el) => el.classList.remove("is-visible"));
+      statsEl.classList.remove("is-visible");
+      contentEl.querySelectorAll('[data-track="manual"] [data-clock]').forEach((el) => el.textContent = "Day 1");
+      contentEl.querySelectorAll('[data-track="ai"] [data-clock]').forEach((el) => el.textContent = "Day 1");
+
+      runTimeline("manual", MANUAL_DELAYS, data.manualTimeline, MANUAL_TOTAL);
+      runTimeline("ai",     AI_DELAYS,     data.aiTimeline,     AI_TOTAL);
+
+      schedule(() => {
+        statsEl.classList.add("is-visible");
+      }, STATS_DELAY);
+
+      schedule(() => {
+        if (!finished) showEnding();
+      }, STATS_DELAY + 2400);
+    }
+
+    function runTimeline(track, delays, events, totalMs) {
+      const col = contentEl.querySelector(`[data-track="${track}"]`);
+      const eventEls = col.querySelectorAll(".demo-pa-event");
+      const clockEl = col.querySelector("[data-clock]");
+      const resultEl = col.querySelector("[data-result]");
+
+      events.forEach((ev, i) => {
+        schedule(() => {
+          eventEls[i].classList.add("is-visible");
+          clockEl.textContent = `Day ${ev.day}`;
+        }, delays[i]);
+      });
+
+      schedule(() => {
+        resultEl.classList.add("is-visible");
+      }, totalMs - 200);
+    }
+
+    function showEnding() {
+      if (finished) return;
+      finished = true;
+      clearTimers();
+      // Snap everything to final state so the end card doesn't appear mid-animation.
+      contentEl.querySelectorAll(".demo-pa-event").forEach((el) => el.classList.add("is-visible"));
+      contentEl.querySelectorAll(".demo-pa-result").forEach((el) => el.classList.add("is-visible"));
+      statsEl.classList.add("is-visible");
+
+      finish({
+        proofPoint: agentMeta.proofPoint,
+        ctaLabel: "Book 15 minutes with Anthony",
+      });
+    }
+
+    function escapeHtml(s) {
+      return String(s ?? "")
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+
+    initPresenterMode();
+    run();
+  </script>
+</body>
+</html>

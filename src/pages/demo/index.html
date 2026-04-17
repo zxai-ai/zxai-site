@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meet Your AI Staff — ZxAI Agent Demos</title>
+<title>Meet Your AI Staff · ZxAI Agent Demos</title>
 <meta name="description" content="Try all 9 ZxAI AI staff agents. Front desk, scheduling, prior auth, revenue recovery, reactivation, retention, reputation, marketing, and web/SEO. See what each one actually does.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,11 +67,20 @@
     const grid = document.getElementById("agent-grid");
     const nonKatie = DEMO_UNIVERSE.agents.filter(a => a.slug !== "front-desk");
 
+    // Phase flip: add a slug here when its demo ships.
+    const BUILT = new Set([
+      "prior-auth",        // Phase 1
+      "reputation",        // Phase 1
+      "revenue-recovery",  // Phase 1
+      "marketing",         // Phase 1
+      "reactivation",      // Phase 3
+      "retention",         // Phase 3
+      "scheduling",        // Phase 3
+    ]);
+
     for (const agent of nonKatie) {
       const fmt = FORMAT_LABEL[agent.format] || { label: agent.format, icon: "" };
-      const live = ["reactivation", "retention", "scheduling", "prior-auth", "revenue-recovery", "reputation", "marketing", "web-seo"]
-        .indexOf(agent.slug) === -1; // all are "building" until phase completes
-      const isBuilt = false; // Phase 0: all placeholders. Flip per agent as phases ship.
+      const isBuilt = BUILT.has(agent.slug);
       const card = document.createElement(isBuilt ? "a" : "div");
       card.className = "ds-agent-card" + (isBuilt ? "" : " ds-agent-placeholder");
       if (isBuilt) card.href = `/demo/${agent.slug}`;

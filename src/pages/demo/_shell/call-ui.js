@@ -39,8 +39,6 @@ export function mountScriptedCall(container, opts) {
   container.classList.add("ds-call-root");
 
   let state = "ringing"; // ringing | connected | ended
-  let muted = false;
-  let currentTurnId = null;
   let audioEl = null;
   let timerHandle = null;
   let elapsed = 0;
@@ -77,13 +75,6 @@ export function mountScriptedCall(container, opts) {
 
         <div class="ds-call-controls" data-controls>
           <button type="button" class="ds-call-accept" data-accept>Accept</button>
-          <button type="button" class="ds-call-decline" data-decline>Decline</button>
-        </div>
-
-        <div class="ds-call-connected-controls" data-connected-controls hidden>
-          <button type="button" class="ds-call-mute" data-mute aria-pressed="false">Mute</button>
-          <button type="button" class="ds-call-skip" data-skip>Skip</button>
-          <button type="button" class="ds-call-end" data-end>End call</button>
         </div>
 
         <div class="ds-call-branches" data-branches hidden></div>
@@ -97,14 +88,9 @@ export function mountScriptedCall(container, opts) {
   const timerEl = ui.root.querySelector("[data-timer]");
   const transcriptEl = ui.root.querySelector("[data-transcript]");
   const controls = ui.root.querySelector("[data-controls]");
-  const connectedControls = ui.root.querySelector("[data-connected-controls]");
   const branchesEl = ui.root.querySelector("[data-branches]");
 
   ui.root.querySelector("[data-accept]").addEventListener("click", accept);
-  ui.root.querySelector("[data-decline]").addEventListener("click", decline);
-  ui.root.querySelector("[data-mute]").addEventListener("click", toggleMute);
-  ui.root.querySelector("[data-skip]").addEventListener("click", skip);
-  ui.root.querySelector("[data-end]").addEventListener("click", endCall);
 
   function accept() {
     if (state !== "ringing") return;
@@ -112,38 +98,9 @@ export function mountScriptedCall(container, opts) {
     screen.dataset.state = "connected";
     statusEl.textContent = "Connected";
     controls.hidden = true;
-    connectedControls.hidden = false;
     startTimer();
     trackEvent(agent, "demo_opened");
     playOpening();
-  }
-
-  function decline() {
-    if (state !== "ringing") return;
-    state = "ended";
-    trackEvent(agent, "demo_declined");
-    screen.dataset.state = "ended";
-    statusEl.textContent = "Call declined";
-    controls.hidden = true;
-    if (typeof onEnd === "function") onEnd({ endingKey: "declined", transcript });
-  }
-
-  function toggleMute() {
-    muted = !muted;
-    if (audioEl) audioEl.muted = muted;
-    const btn = ui.root.querySelector("[data-mute]");
-    btn.setAttribute("aria-pressed", String(muted));
-    btn.textContent = muted ? "Unmute" : "Mute";
-  }
-
-  function skip() {
-    trackEvent(agent, "demo_skipped");
-    if (audioEl) {
-      try { audioEl.pause(); } catch {}
-      audioEl = null;
-    }
-    endCall("skipped");
-    if (typeof onSkip === "function") onSkip();
   }
 
   function endCall(endingKey = "ended") {
@@ -152,7 +109,6 @@ export function mountScriptedCall(container, opts) {
     stopTimer();
     screen.dataset.state = "ended";
     statusEl.textContent = "Call ended";
-    connectedControls.hidden = true;
     branchesEl.hidden = true;
     if (typeof onEnd === "function") onEnd({ endingKey, transcript });
   }
@@ -191,7 +147,6 @@ export function mountScriptedCall(container, opts) {
       if (!filename) { resolve(); return; }
       // Graceful fallback: if audio fails to load or play, continue silently.
       audioEl = new Audio(audioBase + filename);
-      audioEl.muted = muted;
       audioEl.addEventListener("ended", () => { audioEl = null; resolve(); });
       audioEl.addEventListener("error", () => { audioEl = null; resolve(); });
       audioEl.play().catch(() => { audioEl = null; resolve(); });

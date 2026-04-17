@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revenue Recovery Agent · ZxAI Agent Demo</title>
+<meta name="description" content="Watch the Revenue Recovery AI staff agent collect patient balances without awkward calls. Daily scan, timed reminders, escalation for tough accounts.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/demo/_shell/shell.css">
+<script src="/consent.js" defer></script>
+<style>
+/* -----------------------------------------------------------------------
+ * Revenue Recovery (#04) — patient-pay A/R with SMS reminder cadence + escalation
+ * ----------------------------------------------------------------------- */
+
+.demo-rr-buckets {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+@media (max-width: 820px) {
+  .demo-rr-buckets { grid-template-columns: repeat(2, 1fr); }
+}
+.demo-rr-bucket {
+  padding: 14px;
+  background: var(--ds-bg-elevated);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 140px;
+  position: relative;
+  overflow: hidden;
+}
+.demo-rr-bucket[data-tone="good"]    { border-color: rgba(20, 184, 166, 0.28); }
+.demo-rr-bucket[data-tone="warn"]    { border-color: rgba(234, 179, 8, 0.28); }
+.demo-rr-bucket[data-tone="alert"]   { border-color: rgba(245, 158, 11, 0.28); }
+.demo-rr-bucket[data-tone="danger"]  { border-color: rgba(248, 113, 113, 0.28); }
+
+.demo-rr-bucket-label {
+  font-size: 11px;
+  color: var(--ds-text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.demo-rr-bucket-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  color: var(--ds-text-muted);
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+.demo-rr-bucket-count {
+  font-family: var(--ds-font-display);
+  font-style: italic;
+  font-size: 34px;
+  line-height: 1;
+  color: var(--ds-cream);
+}
+.demo-rr-bucket-count-sub {
+  font-size: 11px;
+  color: var(--ds-text-dim);
+  margin-left: 6px;
+}
+.demo-rr-bucket-value {
+  font-size: 13px;
+  color: var(--ds-text-muted);
+  font-weight: 500;
+}
+.demo-rr-bucket-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: auto;
+}
+.demo-rr-chip {
+  width: 10px;
+  height: 14px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
+.demo-rr-bucket[data-tone="good"]    .demo-rr-chip { background: rgba(20, 184, 166, 0.22); border-color: rgba(20, 184, 166, 0.5); }
+.demo-rr-bucket[data-tone="warn"]    .demo-rr-chip { background: rgba(234, 179, 8, 0.22);  border-color: rgba(234, 179, 8, 0.5); }
+.demo-rr-bucket[data-tone="alert"]   .demo-rr-chip { background: rgba(245, 158, 11, 0.22); border-color: rgba(245, 158, 11, 0.5); }
+.demo-rr-bucket[data-tone="danger"]  .demo-rr-chip { background: rgba(248, 113, 113, 0.22); border-color: rgba(248, 113, 113, 0.5); }
+.demo-rr-chip.is-new {
+  animation: demo-rr-pulse 1s ease-out;
+}
+@keyframes demo-rr-pulse {
+  0%   { transform: scale(0.4); opacity: 0; }
+  60%  { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.demo-rr-feed-wrap {
+  background: var(--ds-bg-elevated);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  padding: 18px;
+  margin-bottom: 24px;
+}
+.demo-rr-feed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.demo-rr-feed-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.demo-rr-feed-title::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ds-success);
+  box-shadow: 0 0 8px var(--ds-success);
+  animation: demo-rr-dot 1.4s infinite ease-in-out;
+}
+@keyframes demo-rr-dot {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+.demo-rr-add {
+  padding: 8px 14px;
+  border-radius: 100px;
+  background: transparent;
+  color: var(--ds-text);
+  border: 1px solid var(--ds-border-strong);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.demo-rr-add:hover {
+  background: rgba(6, 182, 212, 0.08);
+  border-color: var(--ds-accent);
+  color: var(--ds-accent);
+}
+
+.demo-rr-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 360px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ds-border-strong) transparent;
+}
+.demo-rr-feed-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--ds-bg-card);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-sm);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.demo-rr-feed-item.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.demo-rr-feed-id {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--ds-text-dim);
+}
+.demo-rr-feed-detail {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ds-text);
+}
+.demo-rr-feed-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.demo-rr-feed-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.demo-rr-feed-status[data-status="reminder-1"] { background: rgba(14, 165, 233, 0.12); color: var(--ds-accent-2); }
+.demo-rr-feed-status[data-status="reminder-1"]::before { background: var(--ds-accent-2); }
+.demo-rr-feed-status[data-status="reminder-2"] { background: rgba(234, 179, 8, 0.12); color: #EAB308; }
+.demo-rr-feed-status[data-status="reminder-2"]::before { background: #EAB308; }
+.demo-rr-feed-status[data-status="reminder-3"] { background: rgba(245, 158, 11, 0.12); color: var(--ds-amber); }
+.demo-rr-feed-status[data-status="reminder-3"]::before { background: var(--ds-amber); }
+.demo-rr-feed-status[data-status="reminder-4"] { background: rgba(249, 115, 22, 0.14); color: #FB923C; }
+.demo-rr-feed-status[data-status="reminder-4"]::before { background: #FB923C; }
+.demo-rr-feed-status[data-status="paid"]       { background: rgba(20, 184, 166, 0.12); color: var(--ds-success); }
+.demo-rr-feed-status[data-status="paid"]::before { background: var(--ds-success); }
+.demo-rr-feed-status[data-status="escalated"]  { background: rgba(248, 113, 113, 0.12); color: var(--ds-red); }
+.demo-rr-feed-status[data-status="escalated"]::before { background: var(--ds-red); }
+
+.demo-rr-totals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 720px) { .demo-rr-totals { grid-template-columns: 1fr; } }
+.demo-rr-total {
+  padding: 20px;
+  background: var(--ds-bg-card);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+}
+.demo-rr-total-label {
+  font-size: 11px;
+  color: var(--ds-text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.demo-rr-total-value {
+  font-family: var(--ds-font-display);
+  font-style: italic;
+  font-size: 40px;
+  line-height: 1.1;
+  color: var(--ds-cream);
+  margin-bottom: 4px;
+}
+.demo-rr-total-meta {
+  font-size: 12px;
+  color: var(--ds-text-muted);
+}
+
+.demo-rr-note {
+  margin-top: 14px;
+  font-size: 11px;
+  color: var(--ds-text-dim);
+  text-align: right;
+}
+</style>
+</head>
+<body class="ds-page ds-root">
+  <main class="ds-container">
+    <a href="/demo/" class="ds-back">&larr; Back to demos</a>
+    <header class="ds-hero" style="margin-bottom:24px;">
+      <div class="ds-eyebrow">Agent #04 &middot; Revenue Recovery</div>
+      <h1 class="ds-h1">Every patient balance. <em>Collected.</em></h1>
+      <p class="ds-lead">Patient-pay A/R scanned every morning. Reminders sent on day 1, 7, 14, and 30. Secure payment link in every text. 60+ day accounts flagged for YOUR Practice's staff. Handles insurance claims? No — those stay with your biller.</p>
+    </header>
+    <div id="demo-root"></div>
+  </main>
+
+  <script type="module">
+    import { DEMO_UNIVERSE, getAgent } from "/demo/_shell/universe.js";
+    import { initPresenterMode } from "/demo/_shell/presenter.js";
+    import { trackEvent } from "/demo/_shell/analytics.js";
+    import { mountDashboard } from "/demo/_shell/dashboard-shell.js";
+
+    const AGENT = "revenue-recovery";
+    const rr = DEMO_UNIVERSE.revenueRecovery;
+    const agentMeta = getAgent(AGENT);
+    const BUCKET_TONES = ["good", "warn", "alert", "danger"];
+
+    const { contentEl, finish } = mountDashboard(
+      document.getElementById("demo-root"),
+      {
+        agent: AGENT,
+        title: "Revenue Recovery Agent",
+        subtitle: "Daily A/R scan. Reminder sequence. Escalation only when needed.",
+        onReplay: () => run(),
+        onSkip: () => showEnding(),
+      }
+    );
+
+    contentEl.innerHTML = `
+      <div class="demo-rr-buckets">
+        ${rr.agingBuckets.map((b, i) => renderBucket(b, i)).join("")}
+      </div>
+
+      <div class="demo-rr-feed-wrap">
+        <div class="demo-rr-feed-header">
+          <div class="demo-rr-feed-title">Live activity &middot; today's 6 AM scan</div>
+          <button type="button" class="demo-rr-add" data-add>+ Add a new balance</button>
+        </div>
+        <div class="demo-rr-feed" data-feed></div>
+      </div>
+
+      <div class="demo-rr-totals">
+        <div class="demo-rr-total">
+          <div class="demo-rr-total-label">Collected this week</div>
+          <div class="demo-rr-total-value" data-collected>$0</div>
+          <div class="demo-rr-total-meta">via payment link</div>
+        </div>
+        <div class="demo-rr-total">
+          <div class="demo-rr-total-label">Outstanding balance</div>
+          <div class="demo-rr-total-value">$${rr.outstandingBalance.toLocaleString()}</div>
+          <div class="demo-rr-total-meta">across all buckets</div>
+        </div>
+        <div class="demo-rr-total">
+          <div class="demo-rr-total-label">Flagged for staff</div>
+          <div class="demo-rr-total-value" data-escalated>${rr.escalatedAccounts}</div>
+          <div class="demo-rr-total-meta">60+ day accounts</div>
+        </div>
+      </div>
+      <p class="demo-rr-note">Collection rate typically improves ${rr.collectionLiftPct.low} to ${rr.collectionLiftPct.high} percent. Insurance claims stay with your biller.</p>
+    `;
+
+    function renderBucket(b, i) {
+      const tone = BUCKET_TONES[i] || "warn";
+      const chipCount = Math.min(b.accounts, 18);
+      return `
+        <div class="demo-rr-bucket" data-tone="${tone}" data-bucket="${i}">
+          <div class="demo-rr-bucket-label">
+            <span>${escapeHtml(b.range)}</span>
+            <span class="demo-rr-bucket-tag">${escapeHtml(b.tag)}</span>
+          </div>
+          <div>
+            <span class="demo-rr-bucket-count">${b.accounts}</span>
+            <span class="demo-rr-bucket-count-sub">patients</span>
+          </div>
+          <div class="demo-rr-bucket-value">$${b.value.toLocaleString()}</div>
+          <div class="demo-rr-bucket-chips">
+            ${Array.from({ length: chipCount }).map(() => '<span class="demo-rr-chip"></span>').join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    const feedEl = contentEl.querySelector("[data-feed]");
+    const collectedEl = contentEl.querySelector("[data-collected]");
+    const escalatedEl = contentEl.querySelector("[data-escalated]");
+    const addBtn = contentEl.querySelector("[data-add]");
+
+    let timers = [];
+    let runToken = 0;
+    let finished = false;
+
+    const BASE_GAP_MS = 1500;
+    const TARGET_COLLECTED = rr.weeklyCollected;
+
+    function clearTimers() { timers.forEach((t) => clearTimeout(t)); timers = []; }
+    function schedule(fn, delay) {
+      const id = setTimeout(fn, delay);
+      timers.push(id);
+      return id;
+    }
+
+    function statusLabel(status) {
+      return {
+        "reminder-1": "Reminder 1",
+        "reminder-2": "Reminder 2",
+        "reminder-3": "Reminder 3",
+        "reminder-4": "Reminder 4",
+        "paid": "Paid",
+        "escalated": "Escalated",
+      }[status] || status;
+    }
+
+    function appendFeed({ patientId, status, detail }, { animate = true } = {}) {
+      const row = document.createElement("div");
+      row.className = "demo-rr-feed-item";
+      row.innerHTML = `
+        <span class="demo-rr-feed-id">Patient #${escapeHtml(String(patientId))}</span>
+        <span class="demo-rr-feed-detail">${escapeHtml(detail)}</span>
+        <span class="demo-rr-feed-status" data-status="${escapeHtml(status)}">${escapeHtml(statusLabel(status))}</span>
+      `;
+      feedEl.appendChild(row);
+      if (animate) requestAnimationFrame(() => row.classList.add("is-visible"));
+      else row.classList.add("is-visible");
+      feedEl.scrollTop = feedEl.scrollHeight;
+      return row;
+    }
+
+    function tickCounter(el, from, to, ms, format) {
+      const start = performance.now();
+      function step(t) {
+        const p = Math.min(1, (t - start) / ms);
+        const v = from + (to - from) * ease(p);
+        el.textContent = format(v);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    function ease(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function run() {
+      const myToken = ++runToken;
+      finished = false;
+      clearTimers();
+      feedEl.innerHTML = "";
+      collectedEl.textContent = "$0";
+      escalatedEl.textContent = String(rr.escalatedAccounts);
+
+      const items = rr.feedItems;
+      const totalDuration = items.length * BASE_GAP_MS;
+
+      items.forEach((item, i) => {
+        schedule(() => {
+          if (myToken !== runToken) return;
+          appendFeed(item);
+        }, i * BASE_GAP_MS);
+      });
+
+      // Ramp the collected total smoothly over the whole feed duration.
+      schedule(() => tickCounter(
+        collectedEl, 0, TARGET_COLLECTED, totalDuration,
+        (v) => "$" + Math.round(v).toLocaleString()
+      ), 200);
+
+      schedule(() => {
+        if (myToken === runToken && !finished) showEnding();
+      }, totalDuration + 1200);
+    }
+
+    // Interactive: user-triggered new balance.
+    let addCounter = 0;
+    addBtn.addEventListener("click", () => {
+      addCounter++;
+      const id = 9000 + addCounter;
+      const amount = 95 + Math.floor(Math.random() * 460);
+      trackEvent(AGENT, "interaction", { action: "add_balance" });
+      // Drop a chip into the first bucket.
+      const bucket0 = contentEl.querySelector('[data-bucket="0"] .demo-rr-bucket-chips');
+      const chip = document.createElement("span");
+      chip.className = "demo-rr-chip is-new";
+      bucket0.appendChild(chip);
+
+      appendFeed({ patientId: id, status: "reminder-1", detail: `New balance added. SMS #1 sent with payment link. Balance $${amount}. Day 1.` });
+      schedule(() => appendFeed({ patientId: id, status: "paid", detail: `Payment received via link. $${amount} collected.` }), 4800);
+      schedule(() => {
+        chip.style.opacity = "0.25";
+        const current = parseInt((collectedEl.textContent || "$0").replace(/[^0-9]/g, "") || "0", 10);
+        tickCounter(collectedEl, current, current + amount, 600,
+          (v) => "$" + Math.round(v).toLocaleString()
+        );
+      }, 4800);
+    });
+
+    function showEnding() {
+      if (finished) return;
+      finished = true;
+      runToken++;
+      clearTimers();
+      collectedEl.textContent = "$" + TARGET_COLLECTED.toLocaleString();
+      finish({
+        proofPoint: "Patient-pay collection rate improves 20 to 40 percent. Your staff stops making awkward calls about unpaid balances and gets one clean list of accounts that actually need a human.",
+        ctaLabel: "Book 15 minutes with Anthony",
+      });
+    }
+
+    function escapeHtml(s) {
+      return String(s ?? "")
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+
+    initPresenterMode();
+    run();
+  </script>
+</body>
+</html>
