@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meet Your AI Staff — ZxAI Agent Demos</title>
+<meta name="description" content="Try all 9 ZxAI AI staff agents. Front desk, scheduling, prior auth, revenue recovery, reactivation, retention, reputation, marketing, and web/SEO. See what each one actually does.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/demo/_shell/shell.css">
+<script src="/consent.js" defer></script>
+</head>
+<body class="ds-page ds-root">
+  <main class="ds-container">
+    <a href="/" class="ds-back">&larr; Back to ZxAI</a>
+
+    <header class="ds-hero">
+      <div class="ds-eyebrow">Agent Demos</div>
+      <h1 class="ds-h1">Meet your <em>AI staff.</em></h1>
+      <p class="ds-lead">Try each one. See what they actually do. The front desk demo is live. The other eight are interactive walkthroughs on YOUR Practice's data.</p>
+    </header>
+
+    <!-- Katie: distinct, featured "Talk Live" card -->
+    <a class="ds-katie-card" href="/demo/front-desk" data-agent-card="front-desk">
+      <div>
+        <div class="ds-katie-badge">Talk Live</div>
+        <h2>Katie answers the phone. For real.</h2>
+        <p>This is ZxAI's own front desk agent. Same tech we deploy inside practices. Click through, talk to her, ask anything about YOUR Practice, or book a 15-minute consult right on the call.</p>
+        <span class="ds-cta ds-cta-primary">Talk to Katie</span>
+      </div>
+      <div class="ds-katie-visual" aria-hidden="true">
+        <div class="ds-katie-waveform">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </a>
+
+    <h2 class="ds-eyebrow" style="margin-top:24px;margin-bottom:16px;">The other eight</h2>
+    <div class="ds-agent-grid" id="agent-grid"></div>
+
+    <section class="ds-bottom-cta">
+      <h3>Want to see all 9 working on YOUR Practice's data?</h3>
+      <p>15 minutes with Anthony. Real numbers, real ROI, no slides.</p>
+      <a class="ds-cta ds-cta-primary"
+         href="https://calendar.app.google/jF4TiJNkzXP8DE8n9"
+         target="_blank"
+         rel="noopener"
+         data-index-cta>Book a call</a>
+    </section>
+  </main>
+
+  <script type="module">
+    import { DEMO_UNIVERSE, trackLabel } from "/demo/_shell/universe.js";
+    import { initPresenterMode } from "/demo/_shell/presenter.js";
+    import { trackEvent } from "/demo/_shell/analytics.js";
+
+    const FORMAT_LABEL = {
+      "voice-live":     { label: "Voice \u00b7 Live",   icon: "\u{1F3A4}" },
+      "voice-scripted": { label: "Voice",               icon: "\u{1F3A4}" },
+      "visual":         { label: "Visual",              icon: "\u{1F4BB}" },
+      "visual-live":    { label: "Visual \u00b7 Live",  icon: "\u{1F4BB}" },
+    };
+
+    const grid = document.getElementById("agent-grid");
+    const nonKatie = DEMO_UNIVERSE.agents.filter(a => a.slug !== "front-desk");
+
+    for (const agent of nonKatie) {
+      const fmt = FORMAT_LABEL[agent.format] || { label: agent.format, icon: "" };
+      const live = ["reactivation", "retention", "scheduling", "prior-auth", "revenue-recovery", "reputation", "marketing", "web-seo"]
+        .indexOf(agent.slug) === -1; // all are "building" until phase completes
+      const isBuilt = false; // Phase 0: all placeholders. Flip per agent as phases ship.
+      const card = document.createElement(isBuilt ? "a" : "div");
+      card.className = "ds-agent-card" + (isBuilt ? "" : " ds-agent-placeholder");
+      if (isBuilt) card.href = `/demo/${agent.slug}`;
+      card.style.setProperty("--agent-accent", agent.accent);
+      card.dataset.agentCard = agent.slug;
+
+      const trackBadges = agent.tracks.map(t => `<span class="ds-track-badge">${escapeHtml(trackLabel(t))}</span>`).join("");
+
+      card.innerHTML = `
+        <div class="ds-agent-top">
+          <div class="ds-agent-num">${escapeHtml(agent.num)}</div>
+          <div class="ds-agent-format" aria-label="Format: ${escapeHtml(fmt.label)}">
+            <span aria-hidden="true">${fmt.icon}</span><span>${escapeHtml(fmt.label)}</span>
+          </div>
+        </div>
+        <h3 class="ds-agent-name">${escapeHtml(agent.name)}${agent.persona ? `<span class="ds-agent-persona">\u00b7 ${escapeHtml(agent.persona)}</span>` : ""}</h3>
+        <p class="ds-agent-tagline">${escapeHtml(agent.tagline)}</p>
+        <div class="ds-agent-tracks">${trackBadges}</div>
+        <span class="ds-agent-try">${isBuilt ? "Try it" : ""}</span>
+      `;
+
+      if (isBuilt) {
+        card.addEventListener("click", () => {
+          trackEvent("index", "cta_clicked", { agent: agent.slug, target: "demo" });
+        });
+      }
+      grid.appendChild(card);
+    }
+
+    // Presenter Mode swap happens after content renders.
+    initPresenterMode();
+    trackEvent("index", "demo_started");
+
+    document.querySelectorAll("[data-index-cta]").forEach(el => {
+      el.addEventListener("click", () => trackEvent("index", "cta_clicked", { target: "calendar" }));
+    });
+    document.querySelector('[data-agent-card="front-desk"]').addEventListener("click", () => {
+      trackEvent("index", "cta_clicked", { agent: "front-desk", target: "demo" });
+    });
+
+    function escapeHtml(s) {
+      return String(s ?? "")
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+  </script>
+</body>
+</html>

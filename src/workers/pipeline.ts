@@ -52,16 +52,28 @@ export default {
       return handleFrontDesk(request, env);
     }
 
+    // Route: Agent Demo Suite analytics
+    if (url.pathname === "/api/demo-events") {
+      const { handleDemoEvents } = await import("./demo-events");
+      return handleDemoEvents(request, env);
+    }
+
     // Static pages are served by wrangler assets (src/pages/).
     // /report/:id needs to serve report.html for client-side routing.
     if (url.pathname.startsWith("/report/")) {
       return env.ASSETS.fetch(new Request(new URL("/report.html", url.origin)));
     }
 
-    // Clean URL: /demo/front-desk -> /demo/front-desk.html
-    if (url.pathname === "/demo/front-desk") {
+    // Clean URLs for demo pages: /demo/ -> /demo/index.html,
+    // /demo/<slug> -> /demo/<slug>.html. Paths with an extension or that
+    // point at the shared shell fall through to the static asset handler.
+    if (url.pathname === "/demo" || url.pathname === "/demo/") {
+      return env.ASSETS.fetch(new Request(new URL("/demo/index.html", url.origin)));
+    }
+    const demoSlugMatch = url.pathname.match(/^\/demo\/([a-z0-9][a-z0-9-]*)\/?$/);
+    if (demoSlugMatch && demoSlugMatch[1] !== "_shell") {
       return env.ASSETS.fetch(
-        new Request(new URL("/demo/front-desk.html", url.origin))
+        new Request(new URL(`/demo/${demoSlugMatch[1]}.html`, url.origin))
       );
     }
 
