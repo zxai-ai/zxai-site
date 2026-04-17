@@ -51,7 +51,7 @@
 
     let script = null;
     try {
-      const res = await fetch("/scheduling/script.json", { cache: "no-cache" });
+      const res = await fetch("/ai-staff/scheduling/script.json", { cache: "no-cache" });
       if (!res.ok) throw new Error("script fetch failed " + res.status);
       script = await res.json();
     } catch (err) {
@@ -68,7 +68,7 @@
         persona: script.persona,
         callerLabel: script.callerLabel,
         script,
-        audioBase: "/scheduling/audio/",
+        audioBase: "/ai-staff/scheduling/audio/",
         onEnd: ({ endingKey }) => {
           const ending = script.endings[endingKey] || { proofPoint: "Demo complete." };
           renderEndCard(endCardEl, {

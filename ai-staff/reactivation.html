@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Retention Agent · ZxAI Agent Demo</title>
-<meta name="description" content="Meet Sam, the Retention AI staff agent. Post-visit follow-ups that turn concierge membership into real attention.">
+<title>Reactivation Agent · ZxAI Agent Demo</title>
+<meta name="description" content="Meet Jordan, the Reactivation AI staff agent. Watch a lapsed patient call that rebooks in under 90 seconds.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,19 +15,19 @@
 <body class="ds-page ds-root">
   <main class="ds-container">
     <a href="/ai-staff/" class="ds-back">&larr; Back to demos</a>
-    <div class="ds-eyebrow">Agent #06 &middot; Retention</div>
+    <div class="ds-eyebrow">Agent #05 &middot; Reactivation</div>
 
     <div class="demo-voice-layout">
       <div class="demo-voice-copy">
-        <h1>Meet Sam. <em>Your concierge follow-up, handled.</em></h1>
-        <p>Sam is the Retention AI staff member at YOUR Concierge Medicine. After every visit, Sam checks in, flags follow-up labs, coordinates referrals, and makes sure members actually get the VIP experience they're paying for.</p>
+        <h1>Meet Jordan. <em>Calling every lapsed patient.</em></h1>
+        <p>Jordan is the Reactivation AI staff member at YOUR Med Spa. Every lapsed patient in your list gets a real call, in a human voice, with the right context: what they got, who they saw, and the right refresh window.</p>
         <div class="demo-voice-scenario">
           <strong>You are the patient</strong>
-          You're a member at YOUR Concierge Medicine. You had a wellness visit last week with Dr. Reeves. Everything went fine. Sam is calling to follow up. Click Accept to take the call.
+          You got Botox at YOUR Med Spa about eight months ago with Dr. Reeves. You liked the results but just never got around to rebooking. Jordan is calling to check in. Click Accept to take the call, then pick how you'd respond.
         </div>
         <div class="demo-voice-note">
           <strong>How this demo works</strong>
-          This demo plays pre-recorded clips with scripted branches so every prospect sees the same flow. In production, Sam responds live, in real time, on actual patient calls, like <a href="/ai-staff/front-desk">Katie</a>.
+          This demo plays pre-recorded clips with scripted branches so every prospect sees the same flow. In production, Jordan responds live, in real time, on actual patient calls, like <a href="/ai-staff/front-desk">Katie</a>.
         </div>
       </div>
 
@@ -43,7 +43,7 @@
     import { renderEndCard } from "/ai-staff/_shell/end-card.js";
     import { trackEvent } from "/ai-staff/_shell/analytics.js";
 
-    const AGENT = "retention";
+    const AGENT = "reactivation";
     const callEl = document.getElementById("call-mount");
     const endCardEl = document.getElementById("end-card-mount");
 
@@ -51,7 +51,7 @@
 
     let script = null;
     try {
-      const res = await fetch("/retention/script.json", { cache: "no-cache" });
+      const res = await fetch("/ai-staff/reactivation/script.json", { cache: "no-cache" });
       if (!res.ok) throw new Error("script fetch failed " + res.status);
       script = await res.json();
     } catch (err) {
@@ -68,7 +68,7 @@
         persona: script.persona,
         callerLabel: script.callerLabel,
         script,
-        audioBase: "/retention/audio/",
+        audioBase: "/ai-staff/reactivation/audio/",
         onEnd: ({ endingKey }) => {
           const ending = script.endings[endingKey] || { proofPoint: "Demo complete." };
           renderEndCard(endCardEl, {
@@ -87,7 +87,7 @@
         onSkip: () => {
           renderEndCard(endCardEl, {
             agent: AGENT,
-            proofPoint: "Your members pay $300 to $500 a month for this level of attention. Sam makes sure they actually get it, without eating your physician's time.",
+            proofPoint: "That patient is worth $332 on average. You have 200+ of them sitting in your list right now. Jordan calls every single one.",
             ctaLabel: "Book 15 minutes with Anthony",
             secondaryLabel: "Try another demo",
             secondaryHref: "/ai-staff/",

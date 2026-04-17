@@ -64,24 +64,16 @@ export default {
       return env.ASSETS.fetch(new Request(new URL("/report.html", url.origin)));
     }
 
-    // Clean URLs for the Agent Demo Suite (rebranded "AI Staff at Work"):
-    //   /ai-staff or /ai-staff/              -> /ai-staff/index.html
-    //   /ai-staff/<slug>                     -> /ai-staff/<slug>.html
-    // Paths under /ai-staff/_shell/* fall through so the static handler can
-    // serve the CSS/JS shared components directly.
-    if (url.pathname === "/ai-staff" || url.pathname === "/ai-staff/") {
-      return env.ASSETS.fetch(new Request(new URL("/ai-staff/index.html", url.origin)));
-    }
-    const aiStaffSlugMatch = url.pathname.match(/^\/ai-staff\/([a-z0-9][a-z0-9-]*)\/?$/);
-    if (aiStaffSlugMatch && aiStaffSlugMatch[1] !== "_shell") {
-      return env.ASSETS.fetch(
-        new Request(new URL(`/ai-staff/${aiStaffSlugMatch[1]}.html`, url.origin))
-      );
-    }
-
+    // Note on /ai-staff/*:
+    //   These pages live at the repo root under /ai-staff/ and are served
+    //   by Cloudflare Pages directly. Clean URLs are handled by the
+    //   root-level _redirects file. The Worker is only in the loop for
+    //   /api/demo-events analytics, registered as a Worker route in
+    //   wrangler.toml.
+    //
     // Legacy Katie route. Kept live to preserve existing backlinks to
-    // /demo/front-desk. Do NOT add a generic /demo/<slug> catch-all here;
-    // /demo is owned by the static demo.html dashboard served by Pages.
+    // /demo/front-desk. /demo itself is owned by the static demo.html
+    // dashboard served by Pages.
     if (url.pathname === "/demo/front-desk") {
       return env.ASSETS.fetch(
         new Request(new URL("/demo/front-desk.html", url.origin))

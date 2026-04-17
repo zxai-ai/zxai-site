@@ -2,6 +2,16 @@ name = "zxai-audit"
 main = "src/workers/pipeline.ts"
 compatibility_date = "2024-06-01"
 
+# Worker routes on zxai.ai.
+# Only /api/demo-events is routed through the Worker so the analytics
+# endpoint is reachable from prospect browsers at the same origin. All
+# other /api/* endpoints stay on the workers.dev URL and are called by
+# frontend JS via the full .workers.dev apiBase (see frontdesk/config.js).
+# /ai-staff/* is served entirely by Cloudflare Pages.
+routes = [
+  { pattern = "zxai.ai/api/demo-events", zone_name = "zxai.ai" },
+]
+
 # Static assets (HTML pages served alongside the Worker)
 [assets]
 directory = "src/pages"
