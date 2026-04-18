@@ -1,16 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- www -> apex redirect: must be first to avoid rendering www at all -->
+<script>(function(){var h=window.location.hostname;if(h==='www.zxai.ai'){window.location.replace(window.location.href.replace('://www.zxai.ai','://zxai.ai'));}})();</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M43D9XD2');</script>
+<!-- End Google Tag Manager -->
+<!-- Apollo Website Tracker -->
+<script>function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,o.onload=function(){window.trackingFunctions.onLoad({appId:"66329e231cdfa001c74ed838"})},document.head.appendChild(o)}initApollo();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Retention Agent · ZxAI Agent Demo</title>
 <meta name="description" content="Meet Sam, the Retention AI staff agent. Post-visit follow-ups that turn concierge membership into real attention.">
-<meta name="robots" content="noindex">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://zxai.ai/ai-staff/retention">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zxai.ai/ai-staff/retention">
+<meta property="og:site_name" content="ZxAI">
+<meta property="og:title" content="Retention Agent (Sam)">
+<meta property="og:description" content="Meet Sam, the Retention AI staff agent. Post-visit follow-ups that turn concierge membership into real attention.">
+<meta property="og:image" content="https://zxai.ai/og-image.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@zxai_ai">
+<meta name="twitter:title" content="Retention Agent (Sam)">
+<meta name="twitter:description" content="Meet Sam, the Retention AI staff agent. Post-visit follow-ups that turn concierge membership into real attention.">
+<meta name="twitter:image" content="https://zxai.ai/og-image.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23060B18'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%2306B6D4' stroke-width='1.5'/%3E%3Cline x1='19' y1='9' x2='13' y2='23' stroke='%2306B6D4' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/ai-staff/_shell/shell.css">
 <script src="/consent.js" defer></script>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2TJ8X70VZT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2TJ8X70VZT');
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '953177177090685');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=953177177090685&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://zxai.ai/ai-staff/retention#webpage",
+      "url": "https://zxai.ai/ai-staff/retention",
+      "name": "Retention (Sam) Agent | ZxAI AI Staff",
+      "inLanguage": "en-US",
+      "isPartOf": { "@id": "https://zxai.ai/#website" },
+      "publisher": { "@id": "https://zxai.ai/#organization" },
+      "speakable": { "@type": "SpeakableSpecification", "cssSelector": ["h1", ".ds-eyebrow", ".demo-voice-copy p"] }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://zxai.ai/ai-staff/retention#service",
+      "url": "https://zxai.ai/ai-staff/retention",
+      "serviceType": "Retention (Sam) Agent",
+      "name": "ZxAI Retention (Sam) AI Staff",
+      "provider": { "@id": "https://zxai.ai/#organization" },
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Dallas-Fort Worth, Texas" },
+        { "@type": "State", "name": "Texas" },
+        { "@type": "Country", "name": "United States" }
+      ],
+      "audience": { "@type": "MedicalAudience", "audienceType": "Independent medical practices" },
+      "description": "Sam is the Retention AI staff member at YOUR Concierge Medicine. After every visit, Sam checks in, flags follow-up labs, coordinates referrals, and makes sure members actually get the VIP experience they're paying for."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://zxai.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "AI Staff", "item": "https://zxai.ai/ai-staff/" },
+        { "@type": "ListItem", "position": 3, "name": "Retention (Sam)", "item": "https://zxai.ai/ai-staff/retention" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does the ZxAI Retention agent do?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The Retention agent (Sam) runs post-visit follow-ups, flags follow-up labs, coordinates referrals, and runs proactive check-ins so your members get the VIP experience they pay for between visits." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the Retention agent built for concierge and membership practices?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. It is especially designed for concierge, functional medicine, med spa, and membership practices where retention is the core business model." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the Retention agent replace my staff?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. It handles repetitive follow-ups so your staff can spend their time on the patient interactions that actually need a human touch." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body class="ds-page ds-root">
   <main class="ds-container">
