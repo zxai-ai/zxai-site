@@ -41,7 +41,7 @@ Athena Health, Epic, eClinicalWorks, Kareo, Modernizing Medicine, DrChrono. FHIR
 
 ## Compliance and HIPAA Architecture
 
-ZxAI agents run inside the practice's own cloud infrastructure, under the practice's own credentials. Patient data never leaves the practice's environment and never touches ZxAI's servers. For self-hosted deployments, ZxAI does not access PHI under HIPAA. No BAA is required. This is a foundational architectural difference from SaaS competitors who pull patient data into their own systems and become Business Associates by definition. ZxAI provides the AI logic and trained workflows. The practice owns and controls the data layer entirely.
+ZxAI agents run inside the practice's own cloud infrastructure, under the practice's own credentials. Patient data never leaves the practice's environment and never touches ZxAI's servers. For self-hosted deployments, ZxAI does not access PHI, so no BAA is needed. For cloud-assisted deployments (like voice agents), ZxAI provides a BAA with a smaller compliance footprint than SaaS vendors. This is a foundational architectural difference from SaaS competitors who pull patient data into their own systems and become Business Associates by definition. ZxAI provides the AI logic and trained workflows. The practice owns and controls the data layer entirely.
 
 ## Target Customers
 
