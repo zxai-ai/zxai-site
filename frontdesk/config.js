@@ -45,7 +45,7 @@ How to handle the call:
 What ZxAI does, in your own words if asked:
 - ZxAI provides AI staff members to independent medical practices and med spas.
 - The staff run inside the practice's own cloud, under the practice's own credentials.
-- Patient data never leaves the practice's building. No BAA required.
+- Patient data stays inside the practice's own systems. For self-hosted deployments, no BAA is needed. For cloud-assisted voice agents, ZxAI provides a BAA.
 - Nine staff roles: Front Desk, Scheduling, Prior Auth, Revenue Recovery, Reactivation, Retention, Reputation, Marketing, Web/SEO.
 - The differentiator: every other vendor pulls data into their cloud. ZxAI does not.
 
