@@ -49,11 +49,10 @@ Private medical practices, independent physician groups, specialty practices, an
 
 ## Key Claims (cited statistics)
 
-- 76% of patients who hit voicemail call a competitor (Accenture Health)
-- Physicians lose 4.6 hours per week to prior authorization alone (AMA 2024)
+- 85% of patients who reach voicemail never call back (BIA/Kelsey Research)
+- Physicians lose 13 hours per week across 39 prior auth requests (AMA 2024 Prior Auth Survey)
 - Practices recover an average of 18% more revenue with automated billing follow-up (MGMA)
-- AI-driven reactivation recovers 35% of lapsed patients within 90 days (Accenture Health)
-- $3.20 returned for every $1 invested in healthcare AI (industry average)
+- $3.20 returned for every $1 invested in healthcare AI (Strativera 2025)
 - Only 10% of independent practices have any AI infrastructure deployed today
 
 ## Contact
