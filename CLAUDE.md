@@ -15,6 +15,25 @@ Read these files before starting work:
 
 **Be careful with worktrees under `~/Claude ZxAI/.claude/worktrees/*`.** They may be based on stale snapshots and drift from this repo. Before editing any shared file in a worktree, diff against `~/zxai-site` or confirm with Anthony.
 
+## Demo agent guardrail (HARD RULE)
+
+**Never mutate any live demo agent without explicit human sign-off in chat.** Demos are pipeline-critical and Anthony is the only founder — a silently-broken or off-brand Katie costs real revenue.
+
+Scope — anything that can change the runtime behavior or availability of a live demo:
+- Katie widget files: `frontdesk/`, `src/pages/frontdesk/`, `src/workers/frontdesk.ts`, `src/lib/frontdesk-prompt.ts`
+- Hero/staff mounts: `index.html` (`#fd-hero-mount`, `#fd-staff-mount`), `/ai-staff/*`, `/demo/front-desk`
+- `wrangler.toml` (routes, `[vars]`, bindings), worker secrets
+- Cloudflare dashboard toggles for `zxai-audit` (workers.dev subdomain, routes, DEMO_ENABLED kill switch, rate limits)
+- Persona/prompt files referenced at runtime
+
+Before any such mutation, state in chat:
+1. **What:** exact file path + edit, or dashboard setting + old→new value.
+2. **User-visible effect:** what changes on the live demo.
+3. **Blast radius:** reversibility, who is affected, deploy path.
+4. **Wait for explicit approval.** No "while I'm in here" edits.
+
+Read-only diagnosis (curl, logs, git status, DNS, clicking the live widget) does NOT require pre-approval. Only mutations do.
+
 ## Style
 
 - **No em dashes.** Hard ban in all ZxAI output.
